@@ -1,9 +1,12 @@
-import type { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosAdapter, AxiosHeaders, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
+import mpAdapter from 'axios-miniprogram-adapter'
 
 import { userToken } from './config'
 
+// #ifdef H5
 window.axios = axios
+// #endif
 
 const headers = {
     'X-Requested-With': 'XMLHttpRequest',
@@ -18,6 +21,8 @@ const baseConfig = {
 
 if (import.meta.env.VITE_APP_ENV === 'production')
     baseConfig.timeout = 300000
+
+axios.defaults.adapter = mpAdapter as AxiosAdapter
 
 axios.interceptors.request.use(
     config => config,
@@ -45,13 +50,19 @@ function checkCodeFn(data: ResponseData<any>) {
     const code = [0, 200, 1000]
     if (data.code === 401) {
         userToken.value = ''
-        // const pathname = encodeURIComponent(window.location.pathname)
-        if (!window.$$lock)
-            window.$$lock = true
-            // loginMsgBox('当前登录状态已失效, 请重新登录', pathname)
+        uni.showModal({
+            title: '提示',
+            content: '当前未登录或者登录超时, 请重新登陆',
+            success: () => {
+                //
+            },
+        })
     }
     else if (!code.includes(Number(data.code))) {
         // showMsg(data.message)
+        uni.showToast({
+            title: data.message,
+        })
     }
     else {
         data.code = 200

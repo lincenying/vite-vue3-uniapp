@@ -5,7 +5,6 @@
             <div
                 text="4xl gray4"
                 m="x-4 y-auto"
-
                 i-carbon-add transition-all-500 transform hover:rotate-135
             />
             <div i-carbon-campsite inline-block text-5xl />

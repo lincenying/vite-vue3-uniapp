@@ -1,9 +1,5 @@
 <template>
-    <div
-        class="app" :class="{
-            dark: isDark,
-        }"
-    >
+    <div class="app" :class="{ dark: isDark }">
         <main
             px-4 py-10
             font-sans text="center"
