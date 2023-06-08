@@ -1,0 +1,17 @@
+{
+  "cSpell.words": ["Vitesse"],
+  "prettier.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "editor.formatOnSave": false,
+
+  /**
+   * 解决 unocss @apply 警告问题
+   * @see https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-1979394
+   */
+  "scss.lint.unknownAtRules": "ignore"
+}
