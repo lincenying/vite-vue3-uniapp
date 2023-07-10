@@ -11,6 +11,13 @@
 
 <script setup lang="ts">
 const name = $ref('')
+
+async function getData() {
+    const data = await $api.get('api/index/getLeftTop')
+    console.log(data)
+}
+
+getData()
 </script>
 
 <route lang="yaml">

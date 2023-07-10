@@ -7,9 +7,7 @@
         >
             <slot />
             <TheFooter />
-            <div mx-auto mt-4 opacity-50 text-sm text-center>
-                [Home Layout]
-            </div>
+            <div mx-auto mt-4 opacity-50 text-sm text-center>[Home Layout]</div>
         </main>
     </div>
 </template>
