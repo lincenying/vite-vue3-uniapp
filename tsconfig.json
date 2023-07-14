@@ -1,24 +1,41 @@
 {
   "compilerOptions": {
+    "sourceMap": true,
     "baseUrl": ".",
     "module": "ESNext",
-    "target": "ESNext",
+    "target": "es2016",
     "lib": ["DOM", "ESNext"],
     "strict": true,
-    "esModuleInterop": true,
     "jsx": "preserve",
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
+    "types": [
+      "node",
+      "@dcloudio/types",
+      "@uni-helper/uni-app-types",
+      "@vue-macros/reactivity-transform/macros-global"
+    ],
     "paths": {
-      "@/*": ["./src/*"]
-    },
-    "types": ["@dcloudio/types", "@vue-macros/reactivity-transform/macros-global"]
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
+    }
   },
-  "exclude": ["dist", "node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "exclude": ["dist", "node_modules"],
+
+  // uni-app Component type prompt
+  "vueCompilerOptions": {
+    "nativeTags": ["block", "component", "template", "slot"]
+  }
 }

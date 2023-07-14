@@ -3,5 +3,5 @@
 </script>
 
 <style lang="scss">
-@import './styles/main.scss';
+@import './assets/scss/style.scss';
 </style>

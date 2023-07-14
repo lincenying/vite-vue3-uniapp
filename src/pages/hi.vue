@@ -1,19 +1,19 @@
 <template>
     <div>
         <div i-carbon-pedestrian inline-block text-4xl />
-        <p my-1>
+        <p my-8px>
             Hi, {{ props.name }}!
         </p>
-        <p op75 text-sm italic>
+        <p text-sm italic op75>
             <em>Demo of dynamic route</em>
         </p>
 
-        <div m="t-8 b-5">
+        <div m="t-64px b-40px">
             <TheCounter />
         </div>
 
         <div>
-            <button m-3 text-sm btn @click="useRouter.back()">
+            <button m-24px text-sm btn @click="router.back()">
                 Back
             </button>
         </div>

@@ -1,5 +1,5 @@
 const config = {}
 
-export default config
+console.log(process.env?.UNI_PLATFORM)
 
-export const userToken = useStorage('user-token', '')
+export default config

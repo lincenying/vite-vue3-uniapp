@@ -1,13 +1,23 @@
 <template>
-    <div flex gap-8 justify-center items-center>
-        <div p-0 rd-full center h-60 w-60 btn @click="counter.dec()"> - </div>
+    <div flex items-center justify-center gap-64px>
+        <div class="count-btn" @click="counter.dec()">
+            -
+        </div>
         <span font-mono>{{ counter.count }}</span>
-        <div p-0 rd-full center h-60 w-60 btn @click="counter.inc()"> + </div>
+        <div class="count-btn" @click="counter.inc()">
+            +
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from '~/stores/counter'
 
 const counter = useCounterStore()
 </script>
+
+<style lang="scss" scoped>
+.count-btn {
+    --uno: h-64px w-64px center rd-full p-0 btn;
+}
+</style>

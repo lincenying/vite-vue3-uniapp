@@ -1,8 +1,6 @@
-import type { AxiosAdapter, AxiosHeaders, AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosAdapter, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
-import mpAdapter from 'axios-miniprogram-adapter'
-
-import { userToken } from './config'
+import { uniAdapter } from 'fant-axios-adapter'
 
 // #ifdef H5
 window.axios = axios
@@ -22,7 +20,7 @@ const baseConfig = {
 if (import.meta.env.VITE_APP_ENV === 'production')
     baseConfig.timeout = 300000
 
-axios.defaults.adapter = mpAdapter as AxiosAdapter
+axios.defaults.adapter = uniAdapter as AxiosAdapter
 
 axios.interceptors.request.use(
     config => config,
@@ -49,7 +47,6 @@ function checkStatus(response: AxiosResponse): ResponseData<any> {
 function checkCodeFn(data: ResponseData<any>) {
     const code = [0, 200, 1000]
     if (data.code === 401) {
-        userToken.value = ''
         uni.showModal({
             title: '提示',
             content: '当前未登录或者登录超时, 请重新登陆',
@@ -59,8 +56,8 @@ function checkCodeFn(data: ResponseData<any>) {
         })
     }
     else if (!code.includes(Number(data.code))) {
-        // showMsg(data.message)
         uni.showToast({
+            icon: 'none',
             title: data.message,
         })
     }
@@ -130,8 +127,6 @@ export const $api: ApiType = {
             method,
             url,
         }
-        if (userToken.value)
-            (config.headers as AxiosHeaders).Authorization = `Bearer ${userToken.value}`
 
         if (method === 'get')
             config.params = data

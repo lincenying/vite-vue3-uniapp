@@ -104,7 +104,6 @@
     "templateRef": true,
     "throttledRef": true,
     "throttledWatch": true,
-    "title": true,
     "toRaw": true,
     "toReactive": true,
     "toRef": true,
@@ -295,7 +294,7 @@
     "watchTriggerable": true,
     "watchWithFilter": true,
     "whenever": true,
-    "$router": true,
+    "title": true,
     "useRouter": true
   }
 }

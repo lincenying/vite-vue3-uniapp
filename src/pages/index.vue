@@ -1,10 +1,10 @@
 <template>
     <div>
         <TheLogo />
-        <div py-4 />
+        <div py-32px />
         <TheInput v-model:value="name" placeholder="What's your name?" />
         <div>
-            <button m-3 text-sm btn :disabled="!name" @click="useRouter.push(`/hi?name=${name}`)">Go</button>
+            <button m-24px text-sm btn :disabled="!name" @click="router.push(`/hi?name=${name}`)"> Go </button>
         </div>
     </div>
 </template>

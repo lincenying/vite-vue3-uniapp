@@ -1,0 +1,208 @@
+@use "sass:math";
+
+:root {
+    --design-width: #{$vmDesignWidth}px;
+    --design-multiple: #{$vmDesignMultiple};
+    --max-window: #{$vmMaxWindow};
+    --min-window: #{$vmMinWindow};
+}
+
+html {
+    --body-width: #{$vmDesignWidth}px;
+    --tabbar-height: 50px;
+}
+
+// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
+body {
+    // max-width: var(--max-window);
+    min-width: var(--min-window);
+    min-height: 100vh;
+    margin: 0 auto !important;
+    font-size: 12px;
+    line-height: 1;
+    color: #000;
+    background: #f4f4f4;
+}
+
+.fixed-center {
+    left: calc((100% - var(--body-width)) / 2) !important;
+    width: 100%;
+    max-width: var(--max-window);
+    min-width: var(--min-window);
+}
+
+.body {
+    position: absolute;
+    width: 100%;
+
+    // height: 100vh;
+    // padding-bottom: var(--tabbar-height);
+    height: 100vh;
+    max-width: var(--max-window);
+    min-width: var(--min-window);
+    overflow-y: scroll;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    transition: all 0.4s;
+    -webkit-overflow-scrolling: touch;
+
+    &.is-tab {
+        height: calc(100vh - var(--tabbar-height));
+    }
+}
+
+.wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.global-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.router-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.load-more {
+    margin: 10px 0;
+}
+
+/* 通用样式 */
+
+.slide-left-enter,
+.slide-right-leave-active {
+    opacity: 0;
+    transform: translate(100%, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+    opacity: 0;
+    transform: translate(-100%, 0);
+}
+
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* start--文本行数限制--start */
+.u-line-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.u-line-2 {
+    -webkit-line-clamp: 2;
+}
+
+.u-line-3 {
+    -webkit-line-clamp: 3;
+}
+
+.u-line-4 {
+    -webkit-line-clamp: 4;
+}
+
+.u-line-5 {
+    -webkit-line-clamp: 5;
+}
+
+.u-line-2,
+.u-line-3,
+.u-line-4,
+.u-line-5 {
+    display: flexbox; // 弹性伸缩盒
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical; // 设置伸缩盒子元素排列方式
+}
+
+/* end--文本行数限制--end */
+
+/* start--Retina 屏幕下的 1px 边框--start */
+.u-border,
+.u-border-bottom,
+.u-border-left,
+.u-border-right,
+.u-border-top,
+.u-border-top-bottom {
+    position: relative;
+}
+
+.u-border-bottom::after,
+.u-border-left::after,
+.u-border-right::after,
+.u-border-top-bottom::after,
+.u-border-top::after,
+.u-border::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    // 多加0.1%，能解决有时候边框缺失的问题
+    width: 199.8%;
+    height: 199.7%;
+    pointer-events: none;
+    border: 0 solid #e4e7ed;
+    content: " ";
+    transform: scale(0.5, 0.5);
+    box-sizing: border-box;
+    transform-origin: 0 0;
+}
+
+.u-border-top::after {
+    border-top-width: 1PX;
+}
+
+.u-border-left::after {
+    border-left-width: 1PX;
+}
+
+.u-border-right::after {
+    border-right-width: 1PX;
+}
+
+.u-border-bottom::after {
+    border-bottom-width: 1PX;
+}
+
+.u-border-top-bottom::after {
+    border-width: 1PX 0;
+}
+
+.u-border::after {
+    border-width: 1PX;
+}
+
+/* end--Retina 屏幕下的 1px 边框--end */

@@ -1,8 +1,11 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export default () => ([
+    /**
+     * unplugin-auto-import 按需 import
+     * @see https://github.com/antfu/unplugin-auto-import
+     */
     AutoImport({
         eslintrc: {
             enabled: true,
@@ -15,8 +18,6 @@ export default () => ([
         ],
         imports: [
             'vue',
-            '@vueuse/core',
-            '@vueuse/head',
             {
                 '@/api': ['$api'],
                 '@lincy/utils': ['deepClone', 'deepMerge', 'deepEqual'],
@@ -35,10 +36,15 @@ export default () => ([
         dts: 'src/auto-imports.d.ts',
         dirs: ['src/components', 'src/composables', 'src/pinia'],
 
-        resolvers: [ElementPlusResolver()],
+        resolvers: [],
         defaultExportByFilename: false,
         vueTemplate: true,
     }),
+    /**
+     * unplugin-vue-components 按需引入组件
+     * 注意：需注册至 uni 之前，否则不会生效
+     * @see https://github.com/antfu/vite-plugin-components
+     */
     Components({
         include: [
             /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -47,7 +53,7 @@ export default () => ([
             /\.md$/, // .md
         ],
         extensions: ['vue', 'tsx', 'jsx'],
-        resolvers: [ElementPlusResolver()],
+        resolvers: [],
         dts: 'src/components.d.ts',
         directoryAsNamespace: true,
     }),

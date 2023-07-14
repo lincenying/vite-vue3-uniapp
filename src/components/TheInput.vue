@@ -5,12 +5,11 @@
         :placeholder="placeholder"
         autocomplete="false"
         inline-block
-        p="x-4 y-2"
-        w="250px"
+        p="x-32px y-16px"
+        w="480px"
         text="center"
         bg="transparent"
-        border="~ solid rd gray-200"
-        dark:border-color-gray-700
+        border="~ solid rd gray-200 dark:gray-700"
         outline="none active:none"
     >
 </template>
