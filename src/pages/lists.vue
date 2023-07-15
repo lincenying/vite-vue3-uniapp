@@ -1,22 +1,12 @@
 <template>
-    <div class="wrap wrap-tab">
-        <div class="title-bar" :style="`height: ${titleHeight}px`" />
-        <div h-100px />
-        <u-loading-page v-if="page === 1 && status === 'loading'" :loading="true" loading-mode="semicircle" />
-        <u-list v-else :height="height" @scrolltolower="onScroll">
-            <u-list-item v-for="(item, index) in indexLists" :key="index" :anchor="item._id">
-                <u-cell :title="item.title" />
-            </u-list-item>
-            <u-loadmore :status="status" />
-        </u-list>
-    </div>
+    <div class="wrap wrap-tab" />
 </template>
 
 <script setup lang="ts">
 import type { Article } from '~/types'
 
 defineOptions({
-    name: 'IndexRouter',
+    name: 'ListsRouter',
 })
 
 let page = $ref(1)
@@ -24,10 +14,6 @@ let page = $ref(1)
 let indexLists: Article[] = $ref([])
 
 let status = $ref('loadmore')
-
-const height = computed(() => {
-    return uni.$u.sys().windowHeight - uni.upx2px(100)
-})
 
 async function getData() {
     if (status === 'loading' || status === 'nomore')
@@ -53,15 +39,13 @@ async function getData() {
     }
 }
 
-function onScroll() {
-    getData()
-}
+// async function onScroll() {
+//     await getData()
+// }
 
 getData()
 </script>
 
 <route lang="yaml">
 layout: home
-style:
-  navigationStyle: custom
 </route>

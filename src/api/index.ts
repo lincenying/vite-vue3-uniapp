@@ -22,6 +22,13 @@ if (import.meta.env.VITE_APP_ENV === 'production')
 
 axios.defaults.adapter = uniAdapter as AxiosAdapter
 
+// #ifdef H5
+axios.defaults.baseURL = import.meta.env.VITE_APP_API
+// #endif
+// #ifndef H5
+axios.defaults.baseURL = import.meta.env.VITE_APP_MP_API
+// #endif
+
 axios.interceptors.request.use(
     config => config,
     error => Promise.resolve(error.response || error),
@@ -109,15 +116,12 @@ export const $api: ApiType = {
 
     async RESTful(url, method = 'get', data, header, checkCode) {
         const xhr = await this.$RESTful(url, method, data, header)
+        console.log(xhr)
         if (checkCode)
             return checkCodeFn(xhr)
         return xhr
     },
     async $RESTful(url, method = 'get', data, header) {
-        // if (url.split('/')[1] === '' || url.split('/')[1] === '') {
-        // } else {
-        url = import.meta.env.VITE_APP_API + url
-        // }
         const config: AxiosRequestConfig = {
             ...baseConfig,
             headers: {
@@ -136,6 +140,7 @@ export const $api: ApiType = {
         if (url.includes('NoTimeout'))
             config.timeout = 9999999
         const response = await axios(config)
+        console.log(response)
         return checkStatus(response)
     },
 }

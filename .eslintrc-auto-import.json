@@ -295,6 +295,8 @@
     "watchWithFilter": true,
     "whenever": true,
     "title": true,
-    "useRouter": true
+    "useRouter": true,
+    "titleHeight": true,
+    "statusHeight": true
   }
 }

@@ -3,5 +3,6 @@
 </script>
 
 <style lang="scss">
+@import "uview-plus/index.scss";
 @import './assets/scss/style.scss';
 </style>

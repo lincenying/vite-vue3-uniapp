@@ -1,9 +1,5 @@
 <template>
-    <div
-        class="app" :class="{
-            dark: isDark,
-        }"
-    >
+    <div class="app" :class="{ dark: isDark }">
         <main
             p="x-32px y-80px"
             font-sans text="center"

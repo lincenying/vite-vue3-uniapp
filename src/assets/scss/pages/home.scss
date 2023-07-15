@@ -3,9 +3,12 @@ page {
 }
 
 .app {
-    min-height: 100vh;
     color: #000;
     background: #fff;
+
+    &.layout-home {
+        background: #FEFAEC;
+    }
 }
 
 .dark {

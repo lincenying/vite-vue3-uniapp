@@ -7,7 +7,7 @@ import uni from '@dcloudio/vite-plugin-uni'
 import Unocss from 'unocss/vite'
 import UniPages from '@uni-helper/vite-plugin-uni-pages'
 import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
-import { viteMockServe } from '@lincy/vite-plugin-mock'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // import VueDevTools from 'vite-plugin-vue-devtools'
 
@@ -17,7 +17,7 @@ import Components from './vite.config.components'
 import Css from './vite.config.css'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode, command }: ConfigEnv) => {
+export default defineConfig(({ mode }: ConfigEnv) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
     console.log(`当前编译环境: ${process.env.VITE_APP_ENV}`)
 
@@ -68,19 +68,15 @@ export default defineConfig(({ mode, command }: ConfigEnv) => {
              * @see https://vue-macros.sxzz.moe/zh-CN/features/reactivity-transform.html
              */
             ReactivityTransform(),
-            viteMockServe({
-                mockPath: 'mock',
-                enable: command === 'serve' || process.env.VITE_APP_ENV === 'test',
-                logger: true,
-            }),
+            DefineOptions(),
         ],
         server: {
             port: 7778,
             proxy: {
                 '/api': {
-                    target: 'http://127.0.0.1:7778',
+                    target: 'https://www.mmxiaowu.com',
                     changeOrigin: true,
-                    rewrite: (path: string) => path.replace(/^\/api/, '/mock-api'),
+                    rewrite: (path: string) => path.replace(/^\/api/, '/api'),
                 },
             },
         },

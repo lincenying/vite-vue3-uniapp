@@ -21,7 +21,14 @@ export default {
             plugins: [
                 viewport({
                     unitToConvert: 'px', // 要转化的单位
-                    viewportWidth: 100, // UI设计稿的宽度    100即为 1:1 转换
+                    viewportWidth: (file: string) => {
+                        // 字号 * 100
+                        let viewportWidth = fontSize * 100
+                        if (file.includes('uview'))
+                            viewportWidth = fontSize * (375 / designWidth * 100)
+
+                        return viewportWidth
+                    }, // UI设计稿的宽度
                     unitPrecision: 6, // 转换后的精度，即小数点位数
                     propList: ['*'], // 指定可以转换的css属性，*代表全部css属性
                     viewportUnit: 'rpx', // 指定需要转换成的视窗单位，默认vw

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap">
         <div i-carbon-pedestrian inline-block text-4xl />
         <p my-8px>
             Hi, {{ props.name }}!
@@ -22,4 +22,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{ name: string }>()
+defineOptions({
+    name: 'HiRouter',
+})
 </script>

@@ -29,6 +29,24 @@ declare interface ResponseData<T> {
     info?: string
 }
 
+/**
+ * 接口返回模板里的 Data 数据 - 含分页的列表
+ * ```
+ * {
+ *  hasNext: number | boolean
+    hasPrev: number | boolean
+    total: number
+    list: T
+ * }
+ * ```
+ */
+declare interface ResDataLists<T> {
+    hasNext: number | boolean
+    hasPrev: number | boolean
+    total: number
+    list: T
+}
+
 declare interface ApiType {
     get<T>(url: string, params?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
     post<T>(url: string, data?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
