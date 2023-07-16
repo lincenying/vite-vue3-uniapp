@@ -27,6 +27,7 @@ export default () => ([
                     'onShow',
                     'onHide',
                     'onLoad',
+                    'onReady',
                     'onPullDownRefresh',
                     'onReachBottom',
                     // ... 按需添加 {@link https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle}

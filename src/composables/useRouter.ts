@@ -61,10 +61,24 @@ class UseRouter {
         })
     }
 
-    back(delta = 1) {
-        uni.navigateBack({
-            delta,
-        })
+    back(delta = 1, componentName = '') {
+        const currentPage = getCurrentPages()
+        if (currentPage.length === 1) {
+            uni.switchTab({
+                url: '/pages/index',
+            })
+        }
+        else {
+            let tmpDelta = delta
+            if (componentName) {
+                const index = currentPage.findIndex(item => item.$vm.$options.name === componentName)
+                if (index > -1)
+                    tmpDelta = index
+            }
+            uni.navigateBack({
+                delta: tmpDelta,
+            })
+        }
     }
 }
 
@@ -78,8 +92,7 @@ function getPath(url: string) {
     const hasPages = url.startsWith('/pages')
     if (hasPages)
         return url
-    else
-        return `/pages${url}`
+    return `/pages${url}`
 }
 
 export const router = new UseRouter()

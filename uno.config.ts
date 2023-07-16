@@ -3,7 +3,7 @@ import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDir
 import { presetApplet, transformerApplet, transformerAttributify } from 'unocss-applet'
 
 const pxRE = /(-?[\.\d]+)px/g
-const rpxRE = /(-?[\.\d]+)rpx/g
+// const rpxRE = /(-?[\.\d]+)rpx/g
 
 interface opType {
     baseFontSize?: number
@@ -21,8 +21,8 @@ function pxToRpxPreset(options: opType = {}): Preset {
                 if (value && typeof value === 'string' && pxRE.test(value))
                     i[1] = value.replace(pxRE, (_, p1) => `${p1 / baseFontSize}rpx`)
                 // 将无单位生生的rpx单位还原成自己需要的rpx单位
-                if (value && typeof value === 'string' && rpxRE.test(value))
-                    i[1] = value.replace(rpxRE, (_, p1) => `${(p1 * 4) / baseFontSize}rpx`)
+                // if (value && typeof value === 'string' && rpxRE.test(value))
+                //     i[1] = value.replace(rpxRE, (_, p1) => `${(p1 * 4) / baseFontSize}rpx`)
             })
         },
     }
@@ -64,7 +64,10 @@ export default defineConfig({
    * @see https://github.com/unocss/unocss#shortcuts
    */
     shortcuts: [
-        ['center', 'flex justify-center items-center'],
+        ['flex--c', 'flex items-center'],
+        ['flex-cc', 'flex justify-center items-center'],
+        ['flex-bc', 'flex justify-between items-center'],
+        ['flex-ac', 'flex justify-around items-center'],
         ['btn', 'px-32px py-8px rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
         ['icon-btn', 'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600 !outline-none'],
     ],

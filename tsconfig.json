@@ -19,19 +19,14 @@
       "node",
       "@dcloudio/types",
       "@uni-helper/uni-app-types",
-      "@vue-macros/reactivity-transform/macros-global"
+      "@vue-macros/reactivity-transform/macros-global",
+      "miniprogram-api-typings"
     ],
     "paths": {
       "~/*": ["src/*"],
       "@/*": ["src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
   "exclude": ["dist", "node_modules"],
 
   // uni-app Component type prompt

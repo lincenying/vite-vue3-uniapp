@@ -1,6 +1,6 @@
 <template>
-    <div class="wrap wrap-tab IndexRouter">
-        <title-bar title="首页" :show-back="false" />
+    <div class="ActivityRouter wrap wrap-tab">
+        <title-bar title="福利活动" :show-back="false" />
         <div h-24px />
     </div>
 </template>
@@ -9,7 +9,7 @@
 import type { Article } from '~/types'
 
 defineOptions({
-    name: 'IndexRouter',
+    name: 'ActivityRouter',
 })
 
 let page = $ref(1)
@@ -41,6 +41,11 @@ async function getData() {
         status = 'loadmore'
     }
 }
+
+// async function onScroll() {
+//     await getData()
+// }
+
 getData()
 </script>
 

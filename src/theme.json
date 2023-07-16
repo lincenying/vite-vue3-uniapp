@@ -1,8 +1,8 @@
 {
   "light": {
-    "navBgColor": "#f8f8f8",
+    "navBgColor": "#FEFAEC",
     "navTxtStyle": "black",
-    "bgColor": "#222222",
+    "bgColor": "#FEFAEC",
     "bgTxtStyle": "light",
     "bgColorTop": "#eeeeee",
     "bgColorBottom": "#efefef"

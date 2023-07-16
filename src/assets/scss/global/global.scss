@@ -52,16 +52,57 @@ body {
     }
 }
 
+/* #ifdef H5 */
+div, span {
+    box-sizing: border-box;
+}
+
+/* #endif */
+view, text {
+    box-sizing: border-box;
+}
+
+page {
+    box-sizing: border-box;
+}
+
+.app {
+    color: #000;
+    background: #FEFAEC;
+
+    &.layout-img {
+        background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/layout-home-bg.png') no-repeat;
+        background-size: cover;
+    }
+
+    &.layout-white {
+        background: #fff;
+    }
+
+    &.layout-gray {
+        background: #F0F0F0;
+    }
+}
+
+.dark {
+    color: #fff;
+    background: #121212;
+}
+
 .wrap {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - var(--window-top));
+    min-height: calc(100vh - var(--window-top) - var(--status-bar-height));
+    padding: 24px;
+    padding-top: 0;
     overflow: hidden;
+    box-sizing: border-box;
 
     &.wrap-tab {
-        min-height: calc(100vh - var(--window-top) - var(--window-bottom));
+        min-height: calc(100vh - var(--window-top) - var(--window-bottom) - var(--status-bar-height));
     }
 }
+
 
 .global-loading {
     position: fixed;
@@ -118,96 +159,3 @@ body {
     opacity: 0;
 }
 
-/* start--文本行数限制--start */
-.u-line-1 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.u-line-2 {
-    -webkit-line-clamp: 2;
-}
-
-.u-line-3 {
-    -webkit-line-clamp: 3;
-}
-
-.u-line-4 {
-    -webkit-line-clamp: 4;
-}
-
-.u-line-5 {
-    -webkit-line-clamp: 5;
-}
-
-.u-line-2,
-.u-line-3,
-.u-line-4,
-.u-line-5 {
-    display: flexbox; // 弹性伸缩盒
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    -webkit-box-orient: vertical; // 设置伸缩盒子元素排列方式
-}
-
-/* end--文本行数限制--end */
-
-/* start--Retina 屏幕下的 1px 边框--start */
-.u-border,
-.u-border-bottom,
-.u-border-left,
-.u-border-right,
-.u-border-top,
-.u-border-top-bottom {
-    position: relative;
-}
-
-.u-border-bottom::after,
-.u-border-left::after,
-.u-border-right::after,
-.u-border-top-bottom::after,
-.u-border-top::after,
-.u-border::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-
-    // 多加0.1%，能解决有时候边框缺失的问题
-    width: 199.8%;
-    height: 199.7%;
-    pointer-events: none;
-    border: 0 solid #e4e7ed;
-    content: " ";
-    transform: scale(0.5, 0.5);
-    box-sizing: border-box;
-    transform-origin: 0 0;
-}
-
-.u-border-top::after {
-    border-top-width: 1PX;
-}
-
-.u-border-left::after {
-    border-left-width: 1PX;
-}
-
-.u-border-right::after {
-    border-right-width: 1PX;
-}
-
-.u-border-bottom::after {
-    border-bottom-width: 1PX;
-}
-
-.u-border-top-bottom::after {
-    border-width: 1PX 0;
-}
-
-.u-border::after {
-    border-width: 1PX;
-}
-
-/* end--Retina 屏幕下的 1px 边框--end */

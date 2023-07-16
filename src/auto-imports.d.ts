@@ -42,7 +42,7 @@ declare global {
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
-  const isDark: typeof import('./composables/useDark')['isDark']
+  const isDark: typeof import('./composables/index')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
@@ -66,6 +66,7 @@ declare global {
   const onMounted: typeof import('vue')['onMounted']
   const onPullDownRefresh: typeof import('@dcloudio/uni-app')['onPullDownRefresh']
   const onReachBottom: typeof import('@dcloudio/uni-app')['onReachBottom']
+  const onReady: typeof import('@dcloudio/uni-app')['onReady']
   const onRenderTracked: typeof import('vue')['onRenderTracked']
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
   const onScopeDispose: typeof import('vue')['onScopeDispose']
@@ -96,7 +97,7 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
-  const statusHeight: typeof import('./composables/useDark')['statusHeight']
+  const statusHeight: typeof import('./composables/index')['statusHeight']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
@@ -104,13 +105,13 @@ declare global {
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const title: typeof import('./composables/index')['title']
-  const titleHeight: typeof import('./composables/useDark')['titleHeight']
+  const titleHeight: typeof import('./composables/index')['titleHeight']
   const toRaw: typeof import('vue')['toRaw']
   const toReactive: typeof import('@vueuse/core')['toReactive']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('vue')['toValue']
-  const toggleDark: typeof import('./composables/useDark')['toggleDark']
+  const toggleDark: typeof import('./composables/index')['toggleDark']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
   const tryOnBeforeUnmount: typeof import('@vueuse/core')['tryOnBeforeUnmount']
@@ -322,7 +323,7 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
-    readonly isDark: UnwrapRef<typeof import('./composables/useDark')['isDark']>
+    readonly isDark: UnwrapRef<typeof import('./composables/index')['isDark']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
@@ -341,6 +342,7 @@ declare module 'vue' {
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
     readonly onPullDownRefresh: UnwrapRef<typeof import('@dcloudio/uni-app')['onPullDownRefresh']>
     readonly onReachBottom: UnwrapRef<typeof import('@dcloudio/uni-app')['onReachBottom']>
+    readonly onReady: UnwrapRef<typeof import('@dcloudio/uni-app')['onReady']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
@@ -357,15 +359,14 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly statusHeight: UnwrapRef<typeof import('./composables/useDark')['statusHeight']>
+    readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly title: UnwrapRef<typeof import('./composables/index')['title']>
-    readonly titleHeight: UnwrapRef<typeof import('./composables/useDark')['titleHeight']>
+    readonly titleHeight: UnwrapRef<typeof import('./composables/index')['titleHeight']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly toggleDark: UnwrapRef<typeof import('./composables/useDark')['toggleDark']>
+    readonly toggleDark: UnwrapRef<typeof import('./composables/index')['toggleDark']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
@@ -396,7 +397,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
-    readonly isDark: UnwrapRef<typeof import('./composables/useDark')['isDark']>
+    readonly isDark: UnwrapRef<typeof import('./composables/index')['isDark']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
@@ -415,6 +416,7 @@ declare module '@vue/runtime-core' {
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
     readonly onPullDownRefresh: UnwrapRef<typeof import('@dcloudio/uni-app')['onPullDownRefresh']>
     readonly onReachBottom: UnwrapRef<typeof import('@dcloudio/uni-app')['onReachBottom']>
+    readonly onReady: UnwrapRef<typeof import('@dcloudio/uni-app')['onReady']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
@@ -431,15 +433,14 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly statusHeight: UnwrapRef<typeof import('./composables/useDark')['statusHeight']>
+    readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly title: UnwrapRef<typeof import('./composables/index')['title']>
-    readonly titleHeight: UnwrapRef<typeof import('./composables/useDark')['titleHeight']>
+    readonly titleHeight: UnwrapRef<typeof import('./composables/index')['titleHeight']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly toggleDark: UnwrapRef<typeof import('./composables/useDark')['toggleDark']>
+    readonly toggleDark: UnwrapRef<typeof import('./composables/index')['toggleDark']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>

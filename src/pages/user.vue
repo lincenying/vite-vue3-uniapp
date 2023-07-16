@@ -1,6 +1,6 @@
 <template>
-    <div class="wrap wrap-tab IndexRouter">
-        <title-bar title="首页" :show-back="false" />
+    <div class="wrap wrap-tab UserRouter">
+        <title-bar title="我的" :show-back="false" />
         <div h-24px />
     </div>
 </template>
@@ -9,8 +9,10 @@
 import type { Article } from '~/types'
 
 defineOptions({
-    name: 'IndexRouter',
+    name: 'UserRouter',
 })
+
+const needLogin = $ref(true)
 
 let page = $ref(1)
 
@@ -41,6 +43,11 @@ async function getData() {
         status = 'loadmore'
     }
 }
+
+// async function onScroll() {
+//     await getData()
+// }
+
 getData()
 </script>
 

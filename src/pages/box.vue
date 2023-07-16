@@ -1,13 +1,21 @@
 <template>
-    <div class="wrap wrap-tab" />
+    <div class="wrap wrap-tab BoxRouter">
+        <title-bar title="盒柜" :show-back="false" />
+        <div h-24px />
+    </div>
 </template>
 
 <script setup lang="ts">
 import type { Article } from '~/types'
 
 defineOptions({
-    name: 'ListsRouter',
+    name: 'BoxRouter',
 })
+
+let tabActive = $ref(0)
+function handleClickTab(tab: number) {
+    tabActive = tab
+}
 
 let page = $ref(1)
 
@@ -46,6 +54,18 @@ async function getData() {
 getData()
 </script>
 
+<style lang="scss" scoped>
+.scroll-item {
+    background: #F2ECCE;
+    @apply ml-14px h-52px w-120px flex-none border-rd-10px font-500 lh-42px text-center text="30px [#666]";
+    &.active {
+        background: #F6D53C;
+    }
+}
+</style>
+
 <route lang="yaml">
-layout: home
+layout: bgisimg
+style:
+  navigationStyle: custom
 </route>

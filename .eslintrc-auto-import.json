@@ -297,6 +297,7 @@
     "title": true,
     "useRouter": true,
     "titleHeight": true,
-    "statusHeight": true
+    "statusHeight": true,
+    "onReady": true
   }
 }

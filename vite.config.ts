@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import path from 'node:path'
 
 import type { ConfigEnv } from 'vite'
@@ -44,7 +43,9 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * vite-plugin-uni-layouts
              * @see https://github.com/uni-helper/vite-plugin-uni-layouts
              */
-            UniLayouts(),
+            UniLayouts({
+                layout: 'bgisimg',
+            }),
 
             ...Components(),
 
@@ -71,13 +72,17 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             DefineOptions(),
         ],
         server: {
-            port: 7778,
+            port: 6778,
             proxy: {
                 '/api': {
                     target: 'https://www.mmxiaowu.com',
                     changeOrigin: true,
                     rewrite: (path: string) => path.replace(/^\/api/, '/api'),
                 },
+            },
+            hmr: {
+                protocol: 'ws',
+                host: 'localhost',
             },
         },
     }
