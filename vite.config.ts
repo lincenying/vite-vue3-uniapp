@@ -5,7 +5,6 @@ import { defineConfig, loadEnv } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 import Unocss from 'unocss/vite'
 import UniPages from '@uni-helper/vite-plugin-uni-pages'
-import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // import VueDevTools from 'vite-plugin-vue-devtools'
@@ -37,14 +36,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 subPackages: [
                     'src/pages-sub',
                 ],
-            }),
-
-            /**
-             * vite-plugin-uni-layouts
-             * @see https://github.com/uni-helper/vite-plugin-uni-layouts
-             */
-            UniLayouts({
-                layout: 'bgisimg',
             }),
 
             ...Components(),

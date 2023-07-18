@@ -18,7 +18,6 @@
     "types": [
       "node",
       "@dcloudio/types",
-      "@uni-helper/uni-app-types",
       "@vue-macros/reactivity-transform/macros-global",
       "miniprogram-api-typings"
     ],

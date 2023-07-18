@@ -1,7 +1,9 @@
 <template>
-    <div class="ActivityRouter wrap wrap-tab">
-        <title-bar title="福利活动" :show-back="false" />
-        <div h-24px />
+    <div class="app layout-img" :class="{ dark: isDark }">
+        <div class="ActivityRouter wrap wrap-tab">
+            <title-bar title="福利活动" :show-back="false" />
+            <div h-24px />
+        </div>
     </div>
 </template>
 
@@ -50,7 +52,6 @@ getData()
 </script>
 
 <route lang="yaml">
-layout: bgisimg
 style:
   navigationStyle: custom
 </route>

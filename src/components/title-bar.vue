@@ -1,7 +1,11 @@
 <template>
     <div
+        mx="-24px" w-100vw
+        :style="`height: ${statusHeight}px; background: ${bgColor || 'none'}`"
+    />
+    <div
         class="title-bar"
-        fixed z-999 ml="-24px" w-full font-700 text="36px center [#000]"
+        fixed z-999 mx="-24px" w-full font-700 text="36px center [#000]"
         :style="`height: ${titleHeight}px; line-height: ${titleHeight}px;`"
     >
         {{ title }}
@@ -9,12 +13,16 @@
             <image src="@/static/arrow-left.png" h-48px w-48px />
         </div>
     </div>
-    <div :style="`height: ${titleHeight}px;`" />
+    <div
+        mx="-24px" w-100vw
+        :style="`height: ${titleHeight}px; background: ${bgColor || 'none'}`"
+    />
 </template>
 
 <script lang="ts" setup>
 defineProps<{
     title: string
+    bgColor?: string
     showBack: boolean
 }>()
 

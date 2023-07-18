@@ -9,7 +9,7 @@ export default defineUniPages({
     },
     pages: [],
     globalStyle: {
-        'navigationBarTitleText': 'uni-vitesse',
+        'navigationBarTitleText': 'vite-uniapp-vue3',
         'navigationBarBackgroundColor': '@navBgColor',
         'navigationBarTextStyle': '@navTxtStyle',
         'backgroundColor': '@bgColor',

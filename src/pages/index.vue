@@ -1,7 +1,10 @@
 <template>
-    <div class="wrap wrap-tab IndexRouter">
-        <title-bar title="首页" :show-back="false" />
-        <div h-24px />
+    <div class="app layout-img" :class="{ dark: isDark }">
+        <div class="wrap wrap-tab IndexRouter">
+            <title-bar title="首页" :show-back="false" />
+            <div h-24px />
+            <empty-popup v-if="popupShow" v-model="popupShow" title="" />
+        </div>
     </div>
 </template>
 
@@ -11,6 +14,8 @@ import type { Article } from '~/types'
 defineOptions({
     name: 'IndexRouter',
 })
+
+const popupShow = $ref(true)
 
 let page = $ref(1)
 
@@ -44,8 +49,7 @@ async function getData() {
 getData()
 </script>
 
-<route lang="yaml">
-layout: bgisimg
+<route lang="yaml" type="home">
 style:
   navigationStyle: custom
 </route>

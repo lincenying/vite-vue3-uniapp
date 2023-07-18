@@ -19,7 +19,7 @@ function useDark() {
 function getTitleHeight() {
     let navHeight = 0
     // #ifndef H5 || APP-PLUS || MP-ALIPAY
-    const statusBarHeight = uni.$u.sys().statusBarHeight || 0
+    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 0
     const menuButtonObject = uni.getMenuButtonBoundingClientRect()
     navHeight = menuButtonObject.height + (menuButtonObject.top - (statusBarHeight || 0)) * 2
     // #endif
@@ -35,8 +35,13 @@ export const titleHeight = getTitleHeight()
  * 获取胶囊位高度
  */
 function getStatusHeight() {
-    const statusBarHeight = uni.$u.sys().statusBarHeight || 0
+    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 0
     return statusBarHeight
 }
 
 export const statusHeight = getStatusHeight()
+
+export function getPageHeight(isTab = false) {
+    const data = uni.getSystemInfoSync()
+    return (isTab ? data.windowHeight : data.screenHeight) - statusHeight
+}

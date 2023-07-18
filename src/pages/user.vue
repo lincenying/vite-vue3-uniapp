@@ -1,7 +1,9 @@
 <template>
-    <div class="wrap wrap-tab UserRouter">
-        <title-bar title="我的" :show-back="false" />
-        <div h-24px />
+    <div class="app layout-img" :class="{ dark: isDark }">
+        <div class="wrap wrap-tab UserRouter">
+            <title-bar title="我的" :show-back="false" />
+            <div h-24px />
+        </div>
     </div>
 </template>
 
@@ -11,8 +13,6 @@ import type { Article } from '~/types'
 defineOptions({
     name: 'UserRouter',
 })
-
-const needLogin = $ref(true)
 
 let page = $ref(1)
 
@@ -52,7 +52,6 @@ getData()
 </script>
 
 <route lang="yaml">
-layout: bgisimg
 style:
   navigationStyle: custom
 </route>

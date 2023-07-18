@@ -28,13 +28,14 @@ export default () => ([
                     'onHide',
                     'onLoad',
                     'onReady',
+                    'onUnload',
                     'onPullDownRefresh',
                     'onReachBottom',
                     // ... 按需添加 {@link https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle}
                 ],
             },
         ],
-        dts: 'src/auto-imports.d.ts',
+        dts: 'src/z-auto-imports.d.ts',
         dirs: ['src/components', 'src/composables', 'src/pinia'],
 
         resolvers: [],
@@ -55,7 +56,7 @@ export default () => ([
         ],
         extensions: ['vue', 'tsx', 'jsx'],
         resolvers: [],
-        dts: 'src/components.d.ts',
+        dts: 'src/z-components.d.ts',
         directoryAsNamespace: true,
     }),
 ])

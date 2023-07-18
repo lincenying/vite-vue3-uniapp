@@ -7,6 +7,7 @@
     --min-window: #{$vmMinWindow};
 }
 
+/* #ifdef H5 */
 html {
     --body-width: #{$vmDesignWidth}px;
     --tabbar-height: 50px;
@@ -14,7 +15,7 @@ html {
 
 // body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
 body {
-    // max-width: var(--max-window);
+    max-width: var(--max-window);
     min-width: var(--min-window);
 
     // min-height: 100vh;
@@ -24,6 +25,12 @@ body {
     color: #000;
     background: #f4f4f4;
 }
+
+.title-bar {
+    max-width: var(--max-window);
+}
+
+/* #endif */
 
 .fixed-center {
     left: calc((100% - var(--body-width)) / 2) !important;
@@ -82,6 +89,11 @@ page {
     &.layout-gray {
         background: #F0F0F0;
     }
+
+    &.layout-invite {
+        background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/invite-bg.png') no-repeat;
+        background-size: contain;
+    }
 }
 
 .dark {
@@ -92,14 +104,14 @@ page {
 .wrap {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - var(--window-top) - var(--status-bar-height));
+    min-height: calc(100vh - var(--window-top));
     padding: 24px;
     padding-top: 0;
     overflow: hidden;
     box-sizing: border-box;
 
     &.wrap-tab {
-        min-height: calc(100vh - var(--window-top) - var(--window-bottom) - var(--status-bar-height));
+        min-height: calc(100vh - var(--window-top) - var(--window-bottom));
     }
 }
 

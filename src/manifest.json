@@ -1,5 +1,5 @@
 {
-  "name": "uni-vitesse",
+  "name": "vite-uniapp-vue3",
   "appid": "",
   "description": "uniapp + vitesse = strong !!!",
   "versionName": "1.0.0",
@@ -55,7 +55,7 @@
   /* 小程序特有相关 */
   "mp-weixin": {
     "darkmode": true,
-    "appid": "",
+    "appid": "wx7c965880586b9f71",
     "setting": {
       "urlCheck": false
     },
