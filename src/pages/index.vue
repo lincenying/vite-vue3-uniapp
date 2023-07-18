@@ -1,6 +1,7 @@
 <template>
+    <page-meta :page-style="pageStyle" />
     <div class="app layout-img" :class="{ dark: isDark }">
-        <div class="wrap wrap-tab IndexRouter">
+        <div class="IndexRouter wrap wrap-tab">
             <title-bar title="首页" :show-back="false" />
             <div h-24px />
             <empty-popup v-if="popupShow" v-model="popupShow" title="" />
@@ -16,6 +17,12 @@ defineOptions({
 })
 
 const popupShow = $ref(true)
+
+const pageStyle = computed(() => {
+    if (popupShow)
+        return 'overflow: hidden; height: 100%'
+    return 'overflow: visible'
+})
 
 let page = $ref(1)
 
