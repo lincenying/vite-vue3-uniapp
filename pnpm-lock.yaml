@@ -62,6 +62,9 @@ dependencies:
   pinia:
     specifier: ^2.0.36
     version: 2.0.36(typescript@5.1.6)(vue@3.3.4)
+  uniapp-nutui:
+    specifier: ^0.1.6
+    version: 0.1.6(vue@3.3.4)
   uview-plus:
     specifier: ^3.1.32
     version: 3.1.32
@@ -109,6 +112,9 @@ devDependencies:
   '@uni-helper/uni-app-types':
     specifier: ^0.5.8
     version: 0.5.8(typescript@5.1.6)
+  '@uni-helper/vite-plugin-uni-components':
+    specifier: ^0.0.6
+    version: 0.0.6
   '@uni-helper/vite-plugin-uni-layouts':
     specifier: ^0.1.1
     version: 0.1.1
@@ -3744,6 +3750,23 @@ packages:
 
   /@uni-helper/uni-env@0.0.3:
     resolution: {integrity: sha512-K6MEnmN7Dg+NnEkfUUhjaKc/rPVY7tcGdsVUKOlC1/z2E6H6zjSSTdJg8z+sVJtZ03Ff1G/MHz2PYDyAS6gjQQ==}
+    dev: true
+
+  /@uni-helper/vite-plugin-uni-components@0.0.6:
+    resolution: {integrity: sha512-MNlEMfiGXPtsgiGTbvwljs1dFXKxcuY5meCEOuyejPIJ47eQf35vV8d7U5nRKsdAYX9lcn7ZYL0EXfgaMnLKug==}
+    dependencies:
+      '@antfu/utils': 0.7.5
+      '@rollup/pluginutils': 5.0.2
+      chokidar: 3.5.3
+      debug: 4.3.4
+      fast-glob: 3.3.0
+      local-pkg: 0.4.3
+      magic-string: 0.30.1
+      minimatch: 8.0.4
+      resolve: 1.22.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /@uni-helper/vite-plugin-uni-layouts@0.1.1:
@@ -8554,6 +8577,13 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
+  /minimatch@8.0.4:
+    resolution: {integrity: sha512-W0Wvr9HyFXZRGIDgCicunpQ299OKXs9RgZfaukz4qAW/pJhcpUfupc9c+OObPOFueNy8VSrZgEmDtk6Kh4WzDA==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
   /minimatch@9.0.1:
     resolution: {integrity: sha512-0jWhJpD/MdhPXwPuiRkCbfYfSKp2qnn2eOc279qI7f+osl/l+prKSrvhg157zSYvx/1nmgn2NqdT6k2Z7zSH9w==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -10656,6 +10686,14 @@ packages:
       '@unhead/schema': 1.1.30
       '@unhead/shared': 1.1.30
       hookable: 5.5.3
+    dev: false
+
+  /uniapp-nutui@0.1.6(vue@3.3.4):
+    resolution: {integrity: sha512-hAV3Wv4/3hGaSeOx7c6ICjBrZlt7JLk4HFKap6vpzgFoXqD0U0PGdu58MzMSHscO0h1sCEXmljsQmyjVPK6Z/g==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.4
     dev: false
 
   /unicode-canonical-property-names-ecmascript@2.0.0:

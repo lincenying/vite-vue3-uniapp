@@ -1,5 +1,6 @@
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
+import Components from '@uni-helper/vite-plugin-uni-components'
+import { NutResolver } from 'uniapp-nutui'
 
 export default () => ([
     /**
@@ -38,7 +39,7 @@ export default () => ([
         dts: 'src/z-auto-imports.d.ts',
         dirs: ['src/components', 'src/composables', 'src/pinia'],
 
-        resolvers: [],
+        resolvers: [NutResolver()],
         defaultExportByFilename: false,
         vueTemplate: true,
     }),
@@ -55,7 +56,7 @@ export default () => ([
             /\.md$/, // .md
         ],
         extensions: ['vue', 'tsx', 'jsx'],
-        resolvers: [],
+        resolvers: [NutResolver()],
         dts: 'src/z-components.d.ts',
         directoryAsNamespace: true,
     }),

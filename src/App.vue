@@ -3,6 +3,6 @@
 </script>
 
 <style lang="scss">
-@import "uview-plus/index.scss";
+@import 'uniapp-nutui/styles/index';
 @import './assets/scss/style.scss';
 </style>
