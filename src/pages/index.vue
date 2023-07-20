@@ -4,6 +4,9 @@
         <div class="IndexRouter wrap wrap-tab">
             <title-bar title="首页" :show-back="false" />
             <div h-24px />
+            <nut-loading-page v-if="!isLoaded" :loading="true" bg-color="rgba(255, 255, 255, 0.3)" />
+            <div v-else-if="indexLists.length === 0">空</div>
+            <div v-else>列表</div>
             <empty-popup v-if="popupShow" v-model="popupShow" title="" />
         </div>
     </div>
@@ -16,12 +19,14 @@ defineOptions({
     name: 'IndexRouter',
 })
 
+let isLoaded = $ref(false)
+
 const popupShow = $ref(true)
 
 const pageStyle = computed(() => {
     if (popupShow)
         return 'overflow: hidden; height: 100%'
-    return 'overflow: visible'
+    return 'overflow: inherit'
 })
 
 let page = $ref(1)
@@ -52,6 +57,9 @@ async function getData() {
     else {
         status = 'loadmore'
     }
+    setTimeout(() => {
+        isLoaded = true
+    }, 3000)
 }
 getData()
 </script>

@@ -1,16 +1,16 @@
 <template>
     <div
-        mx="-24px" w-100vw
+        mx="-24px" w-750px
         :style="`height: ${statusHeight}px; background: ${bgColor || 'none'}`"
     />
     <div
         class="title-bar"
-        fixed z-999 mx="-24px" w-full font-700 text="36px center [#000]"
-        :style="`height: ${titleHeight}px; line-height: ${titleHeight}px;`"
+        fixed z-999 mx="-24px" w-750px font-700 text="36px center #000"
+        :style="`height: ${titleHeight}px; line-height: ${titleHeight}px; background: ${bgColor || 'none'}`"
     >
         {{ title }}
         <div v-if="showBack" top="[50%]" absolute h-48px w-48px translate-y="-50%" @click="handleBack">
-            <image src="@/static/arrow-left.png" h-48px w-48px />
+            <image src="@/static/arrow-left.png" block h-48px w-48px />
         </div>
     </div>
     <div
@@ -31,7 +31,7 @@ function handleBack() {
         router.back()
     }
     catch (error) {
-        router.push('/')
+        router.push('/page/index')
     }
 }
 </script>

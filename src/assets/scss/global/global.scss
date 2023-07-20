@@ -10,56 +10,17 @@
 /* #ifdef H5 */
 html {
     --body-width: #{$vmDesignWidth}px;
-    --tabbar-height: 50px;
+    --tabbar-height: 50Px;
 }
 
-// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
 body {
-    max-width: var(--max-window);
     min-width: var(--min-window);
-
-    // min-height: 100vh;
-    margin: 0 auto !important;
-    font-size: 12px;
+    font-size: 24px;
     line-height: 1;
     color: #000;
     background: #f4f4f4;
 }
 
-.title-bar {
-    max-width: var(--max-window);
-}
-
-/* #endif */
-
-.fixed-center {
-    left: calc((100% - var(--body-width)) / 2) !important;
-    width: 100%;
-    max-width: var(--max-window);
-    min-width: var(--min-window);
-}
-
-.body {
-    position: absolute;
-    width: 100%;
-
-    // height: 100vh;
-    // padding-bottom: var(--tabbar-height);
-    // height: 100vh;
-    max-width: var(--max-window);
-    min-width: var(--min-window);
-    overflow-y: scroll;
-    background: #f8f8f8;
-    box-sizing: border-box;
-    transition: all 0.4s;
-    -webkit-overflow-scrolling: touch;
-
-    &.is-tab {
-        height: calc(100vh - var(--tabbar-height));
-    }
-}
-
-/* #ifdef H5 */
 div, span {
     box-sizing: border-box;
 }
@@ -76,6 +37,11 @@ page {
 .app {
     color: #000;
     background: #FEFAEC;
+
+    &.dark {
+        color: #fff;
+        background: #121212;
+    }
 
     &.layout-img {
         background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/layout-home-bg.png') no-repeat;
@@ -94,19 +60,20 @@ page {
         background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/invite-bg.png') no-repeat;
         background-size: contain;
     }
-}
 
-.dark {
-    color: #fff;
-    background: #121212;
+    &.layout-laird {
+        background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/laird-bg-2.png') no-repeat;
+        background-size: contain;
+    }
 }
 
 .wrap {
     position: relative;
-    width: 100%;
+    width: 750px;
     min-height: calc(100vh - var(--window-top));
     padding: 24px;
     padding-top: 0;
+    margin: 0 auto;
     overflow: hidden;
     box-sizing: border-box;
 
@@ -114,7 +81,6 @@ page {
         min-height: calc(100vh - var(--window-top) - var(--window-bottom));
     }
 }
-
 
 .global-loading {
     position: fixed;
@@ -140,6 +106,13 @@ page {
     width: 100vw;
     height: 100vh;
     background: rgba(255, 255, 255, 0.1);
+}
+
+.fixed-center {
+    left: calc((100% - var(--body-width)) / 2) !important;
+    width: 100%;
+    max-width: var(--max-window);
+    min-width: var(--min-window);
 }
 
 .load-more {

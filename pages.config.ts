@@ -4,12 +4,12 @@ export default defineUniPages({
     easycom: {
         autoscan: true,
         custom: {
-
+            '^u-(.*)': 'uview-plus/components/u-$1/u-$1.vue',
         },
     },
     pages: [],
     globalStyle: {
-        'navigationBarTitleText': 'vite-uniapp-vue3',
+        'navigationBarTitleText': '拆机卡',
         'navigationBarBackgroundColor': '@navBgColor',
         'navigationBarTextStyle': '@navTxtStyle',
         'backgroundColor': '@bgColor',
@@ -19,6 +19,8 @@ export default defineUniPages({
         'app-plus': {
             titleNView: false, // 移除 H5、APP 顶部导航
         },
+        'rpxCalcMaxDeviceWidth': 750,
+        'rpxCalcBaseDeviceWidth': 750,
     },
     tabBar: {
         color: '#A6A6A6',
