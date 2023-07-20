@@ -14,6 +14,27 @@ function useDark() {
 }
 
 /**
+ * 使用proxy转换为异步化的uni方法
+ */
+export const uniAsync = new Proxy({}, {
+    get(_, name) {
+        return (obj: Obj) =>
+            new Promise((resolve, reject) => {
+                // @ts-expect-error: Unreachable code error
+                uni[name]({
+                    ...obj,
+                    success: (ret: any) => {
+                        resolve(ret)
+                    },
+                    fail: (err: any) => {
+                        reject(err)
+                    },
+                })
+            })
+    },
+})
+
+/**
  * 获取胶囊位高度
  */
 function getTitleHeight() {
