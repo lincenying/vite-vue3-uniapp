@@ -1,9 +1,7 @@
 <template>
-    <div class="app layout-img" :class="{ dark: isDark }">
-        <div class="ActivityRouter wrap wrap-tab">
-            <title-bar title="福利活动" :show-back="false" />
-            <div h-24px />
-        </div>
+    <div class="layout-img wrap wrap-tab ActivityRouter" :class="{ dark: isDark }">
+        <title-bar title="福利活动" :show-back="false" />
+        <div p-24px>11111</div>
     </div>
 </template>
 
@@ -12,6 +10,12 @@ import type { Article } from '~/types'
 
 defineOptions({
     name: 'ActivityRouter',
+})
+
+uni.showToast({
+    title: '标题标题标题标题标题',
+    duration: 2000,
+    icon: 'none',
 })
 
 let page = $ref(1)

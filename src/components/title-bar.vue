@@ -1,11 +1,11 @@
 <template>
     <div
-        mx="-24px" w-750px
+        w-750px
         :style="`height: ${statusHeight}px; background: ${bgColor || 'none'}`"
     />
     <div
         class="title-bar"
-        fixed z-999 mx="-24px" w-750px font-700 text="36px center #000"
+        fixed z-999 w-750px font-700 text="36px center #000"
         :style="`height: ${titleHeight}px; line-height: ${titleHeight}px; background: ${bgColor || 'none'}`"
     >
         {{ title }}
@@ -14,7 +14,7 @@
         </div>
     </div>
     <div
-        mx="-24px" w-100vw
+        w-10w-750px0vw
         :style="`height: ${titleHeight}px; background: ${bgColor || 'none'}`"
     />
 </template>

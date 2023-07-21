@@ -301,6 +301,7 @@
     "onReady": true,
     "onUnload": true,
     "getPageHeight": true,
-    "pageHeight": true
+    "pageHeight": true,
+    "uniAsync": true
   }
 }

@@ -1,9 +1,7 @@
 <template>
-    <div class="app layout-img" :class="{ dark: isDark }">
-        <div class="wrap wrap-tab UserRouter">
-            <title-bar title="我的" :show-back="false" />
-            <div h-24px />
-        </div>
+    <div class="layout-img wrap wrap-tab UserRouter" :class="{ dark: isDark }">
+        <title-bar title="我的" :show-back="false" />
+        <div p-24px>4444</div>
     </div>
 </template>
 

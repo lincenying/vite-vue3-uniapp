@@ -34,9 +34,19 @@ page {
     box-sizing: border-box;
 }
 
-.app {
+.wrap {
+    position: relative;
+    width: 750px;
+    min-height: calc(100vh - var(--window-top));
+    margin: 0 auto;
+    overflow: hidden;
+    box-sizing: border-box;
     color: #000;
     background: #FEFAEC;
+
+    &.wrap-tab {
+        min-height: calc(100vh - var(--window-top) - var(--window-bottom));
+    }
 
     &.dark {
         color: #fff;
@@ -64,21 +74,6 @@ page {
     &.layout-laird {
         background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/laird-bg-2.png') no-repeat;
         background-size: contain;
-    }
-}
-
-.wrap {
-    position: relative;
-    width: 750px;
-    min-height: calc(100vh - var(--window-top));
-    padding: 24px;
-    padding-top: 0;
-    margin: 0 auto;
-    overflow: hidden;
-    box-sizing: border-box;
-
-    &.wrap-tab {
-        min-height: calc(100vh - var(--window-top) - var(--window-bottom));
     }
 }
 

@@ -1,9 +1,7 @@
 <template>
-    <div class="app layout-img" :class="{ dark: isDark }">
-        <div class="wrap wrap-tab BoxRouter">
-            <title-bar title="盒柜" :show-back="false" />
-            <div h-24px />
-        </div>
+    <div class="layout-img wrap wrap-tab BoxRouter" :class="{ dark: isDark }">
+        <title-bar title="盒柜" :show-back="false" />
+        <div p-24px>2222</div>
     </div>
 </template>
 

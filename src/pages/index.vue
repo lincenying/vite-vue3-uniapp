@@ -1,14 +1,13 @@
 <template>
     <page-meta :page-style="pageStyle" />
-    <div class="app layout-img" :class="{ dark: isDark }">
-        <div class="IndexRouter wrap wrap-tab">
-            <title-bar title="首页" :show-back="false" />
-            <div h-24px />
-            <nut-loading-page v-if="!isLoaded" :loading="true" bg-color="rgba(255, 255, 255, 0.3)" />
-            <div v-else-if="indexLists.length === 0">空</div>
-            <div v-else>列表</div>
-            <empty-popup v-if="popupShow" v-model="popupShow" title="" />
+    <div class="layout-img wrap wrap-tab IndexRouter" :class="{ dark: isDark }">
+        <title-bar title="首页" :show-back="false" />
+        <nut-loading-page v-if="!isLoaded" :loading="true" bg-color="rgba(255, 255, 255, 0.3)" custom-color="#666" font-size="16" />
+        <div v-else p-24px>
+            <div v-if="indexLists.length === 0">空</div>
+            <div v-else>111111</div>
         </div>
+        <empty-popup v-if="popupShow" v-model="popupShow" title="" />
     </div>
 </template>
 
@@ -21,7 +20,7 @@ defineOptions({
 
 let isLoaded = $ref(false)
 
-const popupShow = $ref(true)
+const popupShow = $ref(false)
 
 const pageStyle = computed(() => {
     if (popupShow)
@@ -59,12 +58,7 @@ async function getData() {
     }
     setTimeout(() => {
         isLoaded = true
-    }, 3000)
+    }, 333000)
 }
 getData()
 </script>
-
-<route lang="yaml" type="home">
-style:
-  navigationStyle: custom
-</route>

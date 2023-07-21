@@ -4,7 +4,8 @@ import type { ConfigEnv } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 import Unocss from 'unocss/vite'
-import UniPages from '@uni-helper/vite-plugin-uni-pages'
+
+// import UniPages from '@uni-helper/vite-plugin-uni-pages'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // import VueDevTools from 'vite-plugin-vue-devtools'
@@ -32,11 +33,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * vite-plugin-uni-pages
              * @see https://github.com/uni-helper/vite-plugin-uni-pages
              */
-            UniPages({
-                subPackages: [
-                    'src/pages-sub',
-                ],
-            }),
+            // UniPages({
+            //     subPackages: [
+            //         'src/pages-sub',
+            //     ],
+            // }),
 
             ...Components(),
 
@@ -70,10 +71,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                     changeOrigin: true,
                     rewrite: (path: string) => path.replace(/^\/api/, '/api'),
                 },
-            },
-            hmr: {
-                protocol: 'ws',
-                host: 'localhost',
             },
         },
     }
