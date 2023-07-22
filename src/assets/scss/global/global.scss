@@ -114,6 +114,18 @@ page {
     margin: 10px 0;
 }
 
+.wx-btn {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+
+    &::before, &::after {
+        display: none;
+    }
+}
+
 /* 通用样式 */
 
 .slide-left-enter,

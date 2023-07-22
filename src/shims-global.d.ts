@@ -23,6 +23,7 @@ declare type AnyFn = (...args: any[]) => any;
 declare interface ResponseData<T> {
     data: T
     code: number
+    status: number
     message: string
     info?: string
 }

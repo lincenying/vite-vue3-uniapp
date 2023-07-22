@@ -1,6 +1,21 @@
 export const isDark = useDark()
 export const toggleDark = () => isDark.value = !isDark.value
 
+export const ls = {
+    set(key: string, value: any) {
+        uni.setStorageSync(key, value)
+    },
+    get<T = any>(key: string): T {
+        return uni.getStorageSync(key)
+    },
+    del(key: string) {
+        uni.removeStorageSync(key)
+    },
+    clear() {
+        uni.clearStorageSync()
+    },
+}
+
 /**
  * 获取当前系统是否为深色模式
  * @returns 是否为深色模式
@@ -16,7 +31,7 @@ function useDark() {
 /**
  * 使用proxy转换为异步化的uni方法
  */
-export const uniAsync = new Proxy({}, {
+export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     get(_, name) {
         return (obj: Obj) =>
             new Promise((resolve, reject) => {

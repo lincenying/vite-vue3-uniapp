@@ -44,6 +44,7 @@ function checkStatus(response: AxiosResponse): ResponseData<any> {
         return response.data
 
     return {
+        status: -404,
         code: -404,
         info: response.statusText || response.toString(),
         data: response.statusText || response.toString(),
@@ -53,7 +54,7 @@ function checkStatus(response: AxiosResponse): ResponseData<any> {
 
 function checkCodeFn(data: ResponseData<any>) {
     const code = [0, 200, 1000]
-    if (data.code === 401) {
+    if (data.status === 401 || data.code === 401) {
         uni.showModal({
             title: '提示',
             content: '当前未登录或者登录超时, 请重新登陆',
@@ -62,7 +63,7 @@ function checkCodeFn(data: ResponseData<any>) {
             },
         })
     }
-    else if (!code.includes(Number(data.code))) {
+    else if (!code.includes(Number(data.status)) && !code.includes(Number(data.code))) {
         uni.showToast({
             icon: 'none',
             title: data.message,
@@ -70,8 +71,13 @@ function checkCodeFn(data: ResponseData<any>) {
     }
     else {
         data.code = 200
+        data.status = 200
     }
-    return data
+    return {
+        ...data,
+        code: data.code || data.status,
+        status: data.status || data.code,
+    }
 }
 
 /**
@@ -116,17 +122,22 @@ export const $api: ApiType = {
 
     async RESTful(url, method = 'get', data, header, checkCode) {
         const xhr = await this.$RESTful(url, method, data, header)
-        console.log(xhr)
         if (checkCode)
             return checkCodeFn(xhr)
-        return xhr
+        return {
+            ...xhr,
+            code: xhr.code || xhr.status,
+            status: xhr.status || xhr.code,
+        }
     },
     async $RESTful(url, method = 'get', data, header) {
+        const token = ls.get('token') || ''
         const config: AxiosRequestConfig = {
             ...baseConfig,
             headers: {
                 ...baseConfig.headers,
                 ...header,
+                'Access-Token': token,
             },
             method,
             url,
@@ -140,7 +151,6 @@ export const $api: ApiType = {
         if (url.includes('NoTimeout'))
             config.timeout = 9999999
         const response = await axios(config)
-        console.log(response)
         return checkStatus(response)
     },
 }
