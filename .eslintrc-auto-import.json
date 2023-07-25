@@ -303,6 +303,10 @@
     "getPageHeight": true,
     "pageHeight": true,
     "uniAsync": true,
-    "ls": true
+    "ls": true,
+    "useList": true,
+    "useLists": true,
+    "useDetail": true,
+    "showToast": true
   }
 }

@@ -1,7 +1,11 @@
 <template>
     <div class="layout-img wrap wrap-tab ActivityRouter" :class="{ dark: isDark }">
         <title-bar title="福利活动" :show-back="false" />
-        <div p-24px>11111</div>
+        <no-data v-if="!pageIsLoaded || dataLists.length === 0" :page-is-loaded="pageIsLoaded" :has-list="dataLists.length > 0" />
+        <div v-else p-24px>
+            <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
+            <nut-loadmore :status="status" @re-load="getData" />
+        </div>
     </div>
 </template>
 
@@ -18,41 +22,9 @@ uni.showToast({
     icon: 'none',
 })
 
-let page = $ref(1)
+const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
 
-let indexLists: Article[] = $ref([])
-
-let status = $ref('loadmore')
-
-async function getData() {
-    if (status === 'loading' || status === 'nomore')
-        return
-    status = 'loading'
-    const { code, data } = await $api.get<ResDataLists<Article[]>>(`api/frontend/article/list?page=${page}&limit=20&by=visit&cache=true`)
-    if (code === 200) {
-        if (page === 1)
-            indexLists = data.list
-        else
-            indexLists = indexLists.concat(data.list)
-
-        if (data.hasNext) {
-            page += 1
-            status = 'loadmore'
-        }
-        else {
-            status = 'nomore'
-        }
-    }
-    else {
-        status = 'loadmore'
-    }
-}
-
-// async function onScroll() {
-//     await getData()
-// }
-
-getData()
+const { pageIsLoaded, dataLists, status, getData } = useLists<Article>(`${url}`)
 </script>
 
 <route lang="yaml">

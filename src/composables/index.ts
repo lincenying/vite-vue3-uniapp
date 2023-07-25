@@ -81,3 +81,13 @@ export function getPageHeight(isTab = false) {
     const data = uni.getSystemInfoSync()
     return (isTab ? data.windowHeight : data.screenHeight) - statusHeight
 }
+
+type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
+
+export function showToast(title: string, icon: ToastIocn = 'none', duration = 2000) {
+    uni.showToast({
+        title,
+        icon,
+        duration,
+    })
+}

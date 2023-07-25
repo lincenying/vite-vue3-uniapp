@@ -60,6 +60,7 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
+  const showToast: typeof import('./composables/index')['showToast']
   const statusHeight: typeof import('./composables/index')['statusHeight']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const titleHeight: typeof import('./composables/index')['titleHeight']
@@ -74,6 +75,9 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDetail: typeof import('./composables/get-detail')['useDetail']
+  const useList: typeof import('./composables/get-list')['useList']
+  const useLists: typeof import('./composables/get-lists')['useLists']
   const useSlots: typeof import('vue')['useSlots']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
@@ -144,6 +148,7 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
     readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly titleHeight: UnwrapRef<typeof import('./composables/index')['titleHeight']>
@@ -158,6 +163,9 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDetail: UnwrapRef<typeof import('./composables/get-detail')['useDetail']>
+    readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
+    readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
@@ -222,6 +230,7 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
     readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly titleHeight: UnwrapRef<typeof import('./composables/index')['titleHeight']>
@@ -236,6 +245,9 @@ declare module '@vue/runtime-core' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDetail: UnwrapRef<typeof import('./composables/get-detail')['useDetail']>
+    readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
+    readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
