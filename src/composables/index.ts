@@ -126,3 +126,77 @@ export function useLockFn(fn: AnyFn, autoUnlock: boolean | 'auto' = 'auto') {
         }
     }
 }
+
+/**
+ * 对象转换为多维数组
+ * @param obj 初始对象
+ * @param _key 表示父级的字段
+ * @param _value 最顶级的默认值
+ * @returns 带父子结构的多维数组
+ * @example
+ * ```ts
+ const obj = {
+    '1': {
+        id: 1,
+        pid: 0,
+        name: '北京',
+        level: 1,
+    },
+    '2': {
+        id: 2,
+        pid: 1,
+        name: '北京市',
+        level: 2,
+    },
+    '3': {
+        id: 3,
+        pid: 2,
+        name: '东城区',
+        level: 3,
+    },
+}
+```
+ObjectToArray(a) =>
+ * ```ts
+[
+    {
+        id: 1,
+        pid: 0,
+        name: '北京',
+        level: 1,
+        children: [
+            {
+                id: 2,
+                pid: 1,
+                name: '北京市',
+                level: 2,
+                children: [
+                    {
+                        id: 3,
+                        pid: 2,
+                        name: '东城区',
+                        level: 3,
+                        children: [],
+                    },
+                ],
+            },
+        ],
+    }
+]
+```
+ */
+export function ObjectToArray(obj: any, _key = 'pid', _value = 0) {
+    const result = []
+
+    for (const key in obj) {
+        const item = obj[key]
+
+        if (item[_key] === _value) {
+            const children = ObjectToArray(obj, _key, item.id)
+            item.children = children
+            result.push(item)
+        }
+    }
+
+    return result
+}

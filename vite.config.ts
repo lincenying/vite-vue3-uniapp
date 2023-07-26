@@ -28,6 +28,9 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 '@/': `${path.resolve(__dirname, 'src')}/`,
             },
         },
+        optimizeDeps: {
+            include: [],
+        },
         plugins: [
             /**
              * vite-plugin-uni-pages

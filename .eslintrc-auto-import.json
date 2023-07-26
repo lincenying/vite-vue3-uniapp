@@ -307,6 +307,8 @@
     "useList": true,
     "useLists": true,
     "useDetail": true,
-    "showToast": true
+    "showToast": true,
+    "ObjectToArray": true,
+    "useLockFn": true
   }
 }

@@ -10,17 +10,21 @@
 </template>
 
 <script setup lang="ts">
+import { useToast } from '@uni-helper/uni-use'
 import type { Article } from '~/types'
 
 defineOptions({
     name: 'ActivityRouter',
 })
 
-uni.showToast({
-    title: '标题标题标题标题标题',
-    duration: 2000,
-    icon: 'none',
-})
+// uni.showToast({
+//     title: '标题标题标题标题标题',
+//     duration: 2000,
+//     icon: 'none',
+// })
+
+const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
+showToast()
 
 const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
 

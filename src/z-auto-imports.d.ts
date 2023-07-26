@@ -7,6 +7,7 @@ export {}
 declare global {
   const $api: typeof import('@/api')['$api']
   const EffectScope: typeof import('vue')['EffectScope']
+  const ObjectToArray: typeof import('./composables/index')['ObjectToArray']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -78,6 +79,7 @@ declare global {
   const useDetail: typeof import('./composables/get-detail')['useDetail']
   const useList: typeof import('./composables/get-list')['useList']
   const useLists: typeof import('./composables/get-lists')['useLists']
+  const useLockFn: typeof import('./composables/index')['useLockFn']
   const useSlots: typeof import('vue')['useSlots']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
@@ -95,6 +97,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('@/api')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ObjectToArray: UnwrapRef<typeof import('./composables/index')['ObjectToArray']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
@@ -166,6 +169,7 @@ declare module 'vue' {
     readonly useDetail: UnwrapRef<typeof import('./composables/get-detail')['useDetail']>
     readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
+    readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
@@ -177,6 +181,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('@/api')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ObjectToArray: UnwrapRef<typeof import('./composables/index')['ObjectToArray']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
@@ -248,6 +253,7 @@ declare module '@vue/runtime-core' {
     readonly useDetail: UnwrapRef<typeof import('./composables/get-detail')['useDetail']>
     readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
+    readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>

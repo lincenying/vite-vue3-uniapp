@@ -64,10 +64,7 @@ function checkCodeFn(data: ResponseData<any>) {
         })
     }
     else if (!code.includes(Number(data.status)) && !code.includes(Number(data.code))) {
-        uni.showToast({
-            icon: 'none',
-            title: data.message,
-        })
+        showToast(data.message)
     }
     else {
         data.code = 200
