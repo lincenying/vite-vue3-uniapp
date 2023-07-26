@@ -309,6 +309,7 @@
     "useDetail": true,
     "showToast": true,
     "ObjectToArray": true,
-    "useLockFn": true
+    "useLockFn": true,
+    "useUserStore": true
   }
 }
