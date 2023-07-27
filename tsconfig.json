@@ -18,6 +18,7 @@
     "types": [
       "node",
       "@dcloudio/types",
+      "unplugin-vue-define-options/macros-global",
       "@vue-macros/reactivity-transform/macros-global",
       "miniprogram-api-typings"
     ],

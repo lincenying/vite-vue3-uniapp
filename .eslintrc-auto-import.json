@@ -310,6 +310,11 @@
     "showToast": true,
     "ObjectToArray": true,
     "useLockFn": true,
-    "useUserStore": true
+    "useUserStore": true,
+    "activeCategoryKey": true,
+    "activeTreeKey": true,
+    "updateActiveCategoryKey": true,
+    "updateActiveTreeKey": true,
+    "noDataKey": true
   }
 }

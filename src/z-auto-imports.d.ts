@@ -8,6 +8,8 @@ declare global {
   const $api: typeof import('@/api')['$api']
   const EffectScope: typeof import('vue')['EffectScope']
   const ObjectToArray: typeof import('./composables/index')['ObjectToArray']
+  const activeCategoryKey: typeof import('./composables/provide')['activeCategoryKey']
+  const activeTreeKey: typeof import('./composables/provide')['activeTreeKey']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -31,6 +33,7 @@ declare global {
   const ls: typeof import('./composables/index')['ls']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
+  const noDataKey: typeof import('./composables/provide')['noDataKey']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeUnmount: typeof import('vue')['onBeforeUnmount']
@@ -73,6 +76,8 @@ declare global {
   const triggerRef: typeof import('vue')['triggerRef']
   const uniAsync: typeof import('./composables/index')['uniAsync']
   const unref: typeof import('vue')['unref']
+  const updateActiveCategoryKey: typeof import('./composables/provide')['updateActiveCategoryKey']
+  const updateActiveTreeKey: typeof import('./composables/provide')['updateActiveTreeKey']
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -122,6 +127,7 @@ declare module 'vue' {
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly noDataKey: UnwrapRef<typeof import('./composables/provide')['noDataKey']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
@@ -207,6 +213,7 @@ declare module '@vue/runtime-core' {
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly noDataKey: UnwrapRef<typeof import('./composables/provide')['noDataKey']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>

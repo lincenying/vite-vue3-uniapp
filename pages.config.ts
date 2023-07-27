@@ -8,7 +8,7 @@ export default defineUniPages({
     },
     pages: [],
     globalStyle: {
-        'navigationBarTitleText': '拆机卡',
+        'navigationBarTitleText': 'vite-uniapp-vue3',
         'navigationBarBackgroundColor': '@navBgColor',
         'navigationBarTextStyle': '@navTxtStyle',
         'backgroundColor': '@bgColor',

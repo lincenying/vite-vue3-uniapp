@@ -2,7 +2,7 @@
     <page-meta :page-style="pageStyle" />
     <div class="layout-img wrap wrap-tab IndexRouter" :class="{ dark: isDark }">
         <title-bar title="首页" :show-back="false" />
-        <nut-loading-page v-if="!pageIsLoaded" :loading="true" bg-color="rgba(255, 255, 255, 0.3)" custom-color="#666" font-size="16" />
+        <no-data v-if="showNoData" />
         <div v-else p-24px>
             <div v-if="dataLists.length === 0">空</div>
             <div v-else>111111</div>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Article } from '~/types'
+import type { Article } from './index.types'
 
 defineOptions({
     name: 'IndexRouter',
@@ -29,4 +29,15 @@ const pageStyle = computed(() => {
 const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
 
 const { pageIsLoaded, dataLists } = useLists<Article>(`${url}`)
+
+const showNoData = computed(() => !pageIsLoaded.value || dataLists.value.length === 0)
+provide(noDataKey, computed(() => ({
+    pageIsLoaded: pageIsLoaded.value,
+    hasData: dataLists.value.length > 0,
+})))
 </script>
+
+<route lang="yaml">
+style:
+  navigationStyle: custom
+</route>
