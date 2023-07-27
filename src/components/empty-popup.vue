@@ -17,7 +17,9 @@ const props = defineProps<{
     modelValue: boolean
 }>()
 
-const emit = defineEmits(['update:modelValue'])
+const emits = defineEmits<{
+    (event: 'update:modelValue', palyload: boolean): void
+}>()
 
 let showBasic = $ref(props.modelValue)
 
@@ -26,6 +28,6 @@ watch(() => props.modelValue, () => {
 })
 
 function onClose() {
-    emit('update:modelValue', false)
+    emits('update:modelValue', false)
 }
 </script>
