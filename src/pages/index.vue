@@ -18,7 +18,7 @@ defineOptions({
     name: 'IndexRouter',
 })
 
-const popupShow = $ref(false)
+const popupShow = $ref(true)
 
 const pageStyle = computed(() => {
     if (popupShow)

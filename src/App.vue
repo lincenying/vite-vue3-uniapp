@@ -9,5 +9,6 @@ onLaunch(async () => {
 
 <style lang="scss">
 @import 'uniapp-nutui/styles/index';
+// @import "uview-plus/index.scss";
 @import './assets/scss/style.scss';
 </style>

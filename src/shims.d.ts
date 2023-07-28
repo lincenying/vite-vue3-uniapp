@@ -1,2 +1,1 @@
-export {}
-
+declare module 'uview-plus'

@@ -12,12 +12,7 @@ declare module '@vue/runtime-core' {
     EmptyComponents: typeof import('./components/empty-components.vue')['default']
     EmptyPopup: typeof import('./components/empty-popup.vue')['default']
     NoData: typeof import('./components/no-data.vue')['default']
-    NutButton: typeof import('uniapp-nutui/components/button/button.vue')['default']
-    NutCell: typeof import('uniapp-nutui/components/cell/cell.vue')['default']
-    NutIcon: typeof import('uniapp-nutui/components/icon/icon.vue')['default']
-    NutLoadingPage: typeof import('uniapp-nutui/components/loadingpage/loadingpage.vue')['default']
     NutLoadmore: typeof import('./components/nut-loadmore.vue')['default']
-    NutPopup: typeof import('uniapp-nutui/components/popup/popup.vue')['default']
     TitleBar: typeof import('./components/title-bar.vue')['default']
   }
 }

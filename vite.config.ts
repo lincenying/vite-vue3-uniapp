@@ -29,7 +29,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             },
         },
         optimizeDeps: {
-            include: [],
+            include: ['uview-plus', 'uniapp-nutui'],
         },
         plugins: [
             /**

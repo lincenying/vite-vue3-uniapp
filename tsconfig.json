@@ -17,6 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "types": [
       "node",
+      "vite/client",
       "@dcloudio/types",
       "unplugin-vue-define-options/macros-global",
       "@vue-macros/reactivity-transform/macros-global",
