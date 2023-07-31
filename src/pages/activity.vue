@@ -4,7 +4,7 @@
         <no-data v-if="showNoData" />
         <div v-else p-24px>
             <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
-            <nut-loadmore :status="status" @re-load="getData" />
+            <com-loadmore :status="status" @re-load="getData" />
         </div>
     </div>
 </template>

@@ -9,10 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ComLoadmore: typeof import('./components/com-loadmore.vue')['default']
     EmptyComponents: typeof import('./components/empty-components.vue')['default']
     EmptyPopup: typeof import('./components/empty-popup.vue')['default']
     NoData: typeof import('./components/no-data.vue')['default']
-    NutLoadmore: typeof import('./components/nut-loadmore.vue')['default']
     TitleBar: typeof import('./components/title-bar.vue')['default']
   }
 }

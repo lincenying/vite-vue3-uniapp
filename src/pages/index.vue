@@ -5,7 +5,7 @@
         <no-data v-if="showNoData" />
         <div v-else p-24px>
             <div v-if="dataLists.length === 0">空</div>
-            <div v-else>111111</div>
+            <div v-else>111111%</div>
         </div>
         <empty-popup v-if="popupShow" v-model="popupShow" title="" />
     </div>

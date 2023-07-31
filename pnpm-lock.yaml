@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^0.1.2
     version: 0.1.2
   '@uni-helper/vite-plugin-uni-pages':
-    specifier: ^0.2.3
-    version: 0.2.3(@types/lodash-es@4.17.8)(lodash-es@4.17.21)(lodash@4.17.21)
+    specifier: ^0.2.6
+    version: 0.2.6(@types/lodash-es@4.17.8)(lodash-es@4.17.21)(lodash@4.17.21)
   '@unocss/eslint-config':
     specifier: ^0.54.0
     version: 0.54.0(eslint@8.46.0)(typescript@5.1.6)
@@ -1842,7 +1842,7 @@ packages:
     dependencies:
       '@vue/shared': 3.2.47
       parse-css-font: 4.0.0
-      postcss: 8.4.26
+      postcss: 8.4.27
     dev: false
 
   /@dcloudio/uni-push@3.0.0-3080720230703001(postcss@8.4.27)(vue@3.3.4):
@@ -3856,18 +3856,18 @@ packages:
       scule: 1.0.0
     dev: true
 
-  /@uni-helper/vite-plugin-uni-pages@0.2.3(@types/lodash-es@4.17.8)(lodash-es@4.17.21)(lodash@4.17.21):
-    resolution: {integrity: sha512-NHIO1JR5K+VgSU1kUKPFF/FqMkPK2KeaNJJDiDQdamomYh4duISKKfnYtu38dLIfNGxDqW0xYQ8wzpD/DdZmtg==}
+  /@uni-helper/vite-plugin-uni-pages@0.2.6(@types/lodash-es@4.17.8)(lodash-es@4.17.21)(lodash@4.17.21):
+    resolution: {integrity: sha512-CJnsgDfBwtmHPhGR4I0sCFCvNMoJBHk56fbDD06TExCGe7kpWcre8nx9kkP+2hcgEx91yal/L1e6DQ6QQfaXaA==}
     dependencies:
       '@uni-helper/uni-env': 0.0.3
       '@vue/compiler-sfc': 3.3.4
       chokidar: 3.5.3
       debug: 4.3.4
-      fast-glob: 3.3.0
+      fast-glob: 3.3.1
       json5: 2.2.3
       lodash-unified: 1.0.3(@types/lodash-es@4.17.8)(lodash-es@4.17.21)(lodash@4.17.21)
-      magic-string: 0.30.1
-      unconfig: 0.3.9
+      magic-string: 0.30.2
+      unconfig: 0.3.10
       yaml: 2.3.1
     transitivePeerDependencies:
       - '@types/lodash-es'
@@ -4339,8 +4339,8 @@ packages:
       '@vue/reactivity-transform': 3.3.4
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
-      magic-string: 0.30.1
-      postcss: 8.4.26
+      magic-string: 0.30.2
+      postcss: 8.4.27
       source-map-js: 1.0.2
 
   /@vue/compiler-ssr@3.2.47:
@@ -4394,7 +4394,7 @@ packages:
       '@vue/compiler-core': 3.3.4
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
-      magic-string: 0.30.1
+      magic-string: 0.30.2
 
   /@vue/reactivity@3.3.4:
     resolution: {integrity: sha512-kLTDLwd0B1jG08NBF3R5rqULtv/f8x3rOFByTDz4J53ttIQEDmALqKqXY0J+XQeN0aV2FBxY8nJDf88yvOPAqQ==}
@@ -10394,14 +10394,6 @@ packages:
       defu: 6.1.2
       jiti: 1.19.1
       mlly: 1.4.0
-    dev: true
-
-  /unconfig@0.3.9:
-    resolution: {integrity: sha512-8yhetFd48M641mxrkWA+C/lZU4N0rCOdlo3dFsyFPnBHBjMJfjT/3eAZBRT2RxCRqeBMAKBVgikejdS6yeBjMw==}
-    dependencies:
-      '@antfu/utils': 0.7.5
-      defu: 6.1.2
-      jiti: 1.19.1
     dev: true
 
   /unhead@1.1.30:

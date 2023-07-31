@@ -59,7 +59,7 @@
     "@uni-helper/uni-app-types": "^0.5.8",
     "@uni-helper/vite-plugin-uni-components": "^0.0.6",
     "@uni-helper/vite-plugin-uni-layouts": "^0.1.2",
-    "@uni-helper/vite-plugin-uni-pages": "^0.2.3",
+    "@uni-helper/vite-plugin-uni-pages": "^0.2.6",
     "@unocss/eslint-config": "^0.54.0",
     "@vue-macros/reactivity-transform": "^0.3.16",
     "@vueuse/core": "^9.13.0",
