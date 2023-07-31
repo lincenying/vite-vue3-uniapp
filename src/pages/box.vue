@@ -1,8 +1,9 @@
 <template>
     <div class="layout-img wrap wrap-tab BoxRouter" :class="{ dark: isDark }">
         <title-bar title="盒柜" :show-back="false" />
-        <div p-24px>
-            <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
+        <no-data v-if="showNoData" />
+        <div v-else p-24px>
+            {{ dataDetail?.content }}
         </div>
     </div>
 </template>
@@ -14,7 +15,11 @@ defineOptions({
     name: 'BoxRouter',
 })
 
-const dataLists = ref<Article[]>([])
+const url = $ref('api/frontend/article/item?id=589af8cde9be1c5b21ef8e9c')
+
+const { pageIsLoaded, dataDetail } = useDetail<Article>(`${url}`)
+
+const showNoData = computed(() => !pageIsLoaded.value || !dataDetail.value)
 </script>
 
 <route lang="yaml">
