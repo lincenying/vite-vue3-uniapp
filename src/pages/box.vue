@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import { isEmpty } from '@lincy/utils'
 import type { Article } from './index.types'
 
 defineOptions({
@@ -20,6 +21,10 @@ const url = $ref('api/frontend/article/item?id=589af8cde9be1c5b21ef8e9c')
 const { pageIsLoaded, dataDetail } = useDetail<Article>(`${url}`)
 
 const showNoData = computed(() => !pageIsLoaded.value || !dataDetail.value)
+provide(noDataKey, computed(() => ({
+    pageIsLoaded: pageIsLoaded.value,
+    hasData: !isEmpty(dataDetail.value),
+})))
 </script>
 
 <route lang="yaml">
