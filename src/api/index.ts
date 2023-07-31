@@ -81,22 +81,22 @@ function checkCodeFn(data: ResponseData<any>) {
  * axios Api 封装
  * ```
     get<T>(url: string, params?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
-    post<T>(url: string, data?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
-    put<T>(url: string, data?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
-    delete<T>(url: string, data?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
+    post<T>(url: string, data: Obj = {}, header: Obj = {}, checkCode?: boolean): Promise<ResponseData<T>>
+    put<T>(url: string, data: Obj = {}, header: Obj = {}, checkCode?: boolean): Promise<ResponseData<T>>
+    delete<T>(url: string, data: Obj = {}, header: Obj = {}, checkCode?: boolean): Promise<ResponseData<T>>
  * ```
  */
 export const $api: ApiType = {
-    post(url, data, header, checkCode = true) {
+    post(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
         return this.RESTful(url, 'post', data, header, checkCode)
     },
-    get(url, params, header, checkCode = true) {
-        return this.RESTful(url, 'get', params, header, checkCode)
+    get(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
+        return this.RESTful(url, 'get', data, header, checkCode)
     },
-    put(url, data, header, checkCode = true) {
+    put(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
         return this.RESTful(url, 'put', data, header, checkCode)
     },
-    delete(url, data, header, checkCode = true) {
+    delete(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
         return this.RESTful(url, 'delete', data, header, checkCode)
     },
     async downFile(url, method = 'get', data) {
