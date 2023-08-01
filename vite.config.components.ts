@@ -1,9 +1,10 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from '@uni-helper/vite-plugin-uni-components'
+import type { PluginOption } from 'vite'
 
 // import { NutResolver } from 'uniapp-nutui'
 
-export default () => ([
+export default (): PluginOption[] => ([
     /**
      * unplugin-auto-import 按需 import
      * @see https://github.com/antfu/unplugin-auto-import

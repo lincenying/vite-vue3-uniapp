@@ -21,7 +21,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     console.log(`当前编译环境: ${process.env.VITE_APP_ENV}`)
 
     return {
-        ...Css,
+        css: Css,
         resolve: {
             alias: {
                 '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -64,6 +64,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * @see https://vue-macros.sxzz.moe/zh-CN/features/reactivity-transform.html
              */
             ReactivityTransform(),
+
+            /**
+             * defineOptions
+             * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
+             */
             DefineOptions(),
         ],
         server: {
