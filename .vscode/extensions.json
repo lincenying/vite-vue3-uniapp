@@ -4,6 +4,9 @@
     "antfu.unocss",
     "antfu.goto-alias",
     "vue.volar",
-    "dbaeumer.vscode-eslint"
+    "vue.vscode-typescript-vue-plugin",
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens",
+    "uni-helper.uni-app-snippets-vscode"
   ]
 }

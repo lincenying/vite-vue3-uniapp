@@ -6,3 +6,4 @@ src/assets/icon-font/*
 components.d.ts
 auto-imports.d.ts
 src/polyfill/index.js
+*.code-snippets
