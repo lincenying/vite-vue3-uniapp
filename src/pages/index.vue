@@ -1,24 +1,23 @@
 <template>
     <page-meta :page-style="pageStyle" />
-    <div class="layout-img wrap wrap-tab IndexRouter" :class="{ dark: isDark }">
-        <title-bar title="首页" :show-back="false" />
-        <no-data v-if="showNoData" />
-        <div v-else p-24px>
+    <layout classes="wrap-tab layout-img IndexRouter">
+        <div p-24px>
             <div v-if="dataLists.length === 0">空</div>
             <div v-else>111111%</div>
         </div>
         <empty-popup v-if="popupShow" v-model="popupShow" title="" />
-    </div>
+    </layout>
 </template>
 
 <script setup lang="ts">
 import type { Article } from './index.types'
+import type { LayoutDataType } from '~/types'
 
 defineOptions({
     name: 'IndexRouter',
 })
 
-const popupShow = $ref(true)
+let popupShow = $ref(false)
 
 const pageStyle = computed(() => {
     if (popupShow)
@@ -30,10 +29,18 @@ const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
 
 const { pageIsLoaded, dataLists } = useLists<Article>(`${url}`)
 
-const showNoData = computed(() => !pageIsLoaded.value || dataLists.value.length === 0)
-provide(noDataKey, computed(() => ({
+watch(pageIsLoaded, (val) => {
+    if (val)
+        popupShow = true
+})
+
+provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,
     hasData: dataLists.value.length > 0,
+    showNoData: !pageIsLoaded.value || dataLists.value.length === 0,
+    barTitle: '首页',
+    barBgColor: 'none',
+    barShowBack: false,
 })))
 </script>
 

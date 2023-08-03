@@ -315,6 +315,7 @@
     "activeTreeKey": true,
     "updateActiveCategoryKey": true,
     "updateActiveTreeKey": true,
-    "noDataKey": true
+    "noDataKey": true,
+    "layoutDataKey": true
   }
 }

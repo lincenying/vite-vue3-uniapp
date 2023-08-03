@@ -1,14 +1,24 @@
 <template>
-    <div class="layout-img wrap wrap-tab UserRouter" :class="{ dark: isDark }">
-        <title-bar title="我的" :show-back="false" />
+    <layout classes="wrap-tab layout-img UserRouter">
         <div p-24px>4444</div>
-    </div>
+    </layout>
 </template>
 
 <script setup lang="ts">
+import type { LayoutDataType } from '~/types'
+
 defineOptions({
     name: 'UserRouter',
 })
+
+provide(layoutDataKey, computed<LayoutDataType>(() => ({
+    pageIsLoaded: true,
+    hasData: false,
+    showNoData: true,
+    barTitle: '我的',
+    barBgColor: 'none',
+    barShowBack: false,
+})))
 </script>
 
 <route lang="yaml">

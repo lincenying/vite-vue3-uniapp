@@ -36,8 +36,10 @@ page {
 
 .wrap {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 750px;
-    min-height: calc(100vh - var(--window-top));
+    min-height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     box-sizing: border-box;
@@ -45,7 +47,7 @@ page {
     background: #FEFAEC;
 
     &.wrap-tab {
-        min-height: calc(100vh - var(--window-top) - var(--window-bottom));
+        min-height: calc(100vh - var(--window-bottom));
     }
 
     &.dark {

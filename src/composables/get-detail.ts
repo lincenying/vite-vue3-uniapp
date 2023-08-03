@@ -1,3 +1,5 @@
+import { sleep } from '@lincy/utils'
+
 interface DataDetail<T> {
     pageIsLoaded: boolean
     dataDetail: Nullable<T>
@@ -13,6 +15,7 @@ export function useDetail<T>(payload: string) {
 
     async function getData() {
         const { code, data } = await $api.get<T>(`${dataDetail.apiUrl}`)
+        await sleep(3000)
         if (code === 200)
             dataDetail.dataDetail = data
 

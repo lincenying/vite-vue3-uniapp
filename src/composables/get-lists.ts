@@ -1,3 +1,5 @@
+import { sleep } from '@lincy/utils'
+
 interface ListsReactive<T> {
     pageIsLoaded: boolean
     page: number
@@ -21,6 +23,7 @@ export function useLists<T>(payload: string) {
 
         listData.status = 'loading'
         const { code, data } = await $api.get<ResDataLists<T[]>>(`${listData.apiUrl}${listData.apiUrl.includes('?') ? '&' : '?'}page=${listData.page}`)
+        await sleep(3000)
         if (code === 200) {
             if (listData.page === 1)
                 listData.dataLists = [...data.list]

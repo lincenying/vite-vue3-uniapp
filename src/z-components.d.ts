@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     ComLoadmore: typeof import('./components/com-loadmore.vue')['default']
     EmptyComponents: typeof import('./components/empty-components.vue')['default']
     EmptyPopup: typeof import('./components/empty-popup.vue')['default']
+    Layout: typeof import('./components/layout.vue')['default']
     NoData: typeof import('./components/no-data.vue')['default']
     TitleBar: typeof import('./components/title-bar.vue')['default']
   }
