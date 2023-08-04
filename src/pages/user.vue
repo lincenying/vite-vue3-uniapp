@@ -19,6 +19,11 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barBgColor: 'none',
     barShowBack: false,
 })))
+provide(layoutReloadKey, async () => {
+    showLoading()
+    // await getData()
+    uni.hideLoading()
+})
 </script>
 
 <route lang="yaml">

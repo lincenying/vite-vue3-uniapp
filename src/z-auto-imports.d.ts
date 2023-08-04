@@ -31,6 +31,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const layoutDataKey: typeof import('./composables/provide')['layoutDataKey']
+  const layoutReloadKey: typeof import('./composables/provide')['layoutReloadKey']
   const ls: typeof import('./composables/index')['ls']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
@@ -65,6 +66,7 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
+  const showLoading: typeof import('./composables/index')['showLoading']
   const showToast: typeof import('./composables/index')['showToast']
   const statusHeight: typeof import('./composables/index')['statusHeight']
   const storeToRefs: typeof import('pinia')['storeToRefs']
@@ -126,6 +128,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
+    readonly layoutReloadKey: UnwrapRef<typeof import('./composables/provide')['layoutReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -160,6 +163,7 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly showLoading: UnwrapRef<typeof import('./composables/index')['showLoading']>
     readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
     readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
@@ -213,6 +217,7 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
+    readonly layoutReloadKey: UnwrapRef<typeof import('./composables/provide')['layoutReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -247,6 +252,7 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly showLoading: UnwrapRef<typeof import('./composables/index')['showLoading']>
     readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
     readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>

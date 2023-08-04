@@ -4,25 +4,34 @@ interface ListsReactive<T> {
     pageIsLoaded: boolean
     page: number
     dataLists: T[]
-    status: 'loading' | 'loadmore' | 'nomore'
+    status: 'loading' | 'more' | 'no-more'
     apiUrl: string
+    apiParams: Obj
 }
 
-export function useLists<T>(payload: string) {
+/**
+ * 获取类似带分页的列表接口
+ * @param url api请求地址
+ * @param params api请求参数
+ * @returns
+ */
+export function useLists<T>(url: string, params: Obj = {}) {
     const listData: ListsReactive<T> = reactive({
         pageIsLoaded: false,
         page: 1,
         dataLists: [],
-        status: 'loadmore',
-        apiUrl: payload,
+        status: 'more',
+        apiUrl: url,
+        apiParams: params,
     })
 
     async function getData() {
-        if (listData.status === 'loading' || listData.status === 'nomore')
+        if (listData.status === 'loading' || listData.status === 'no-more')
             return
 
         listData.status = 'loading'
-        const { code, data } = await $api.get<ResDataLists<T[]>>(`${listData.apiUrl}${listData.apiUrl.includes('?') ? '&' : '?'}page=${listData.page}`)
+        listData.apiParams.page = listData.page
+        const { code, data } = await $api.get<ResDataLists<T[]>>(`${listData.apiUrl}`, listData.apiParams)
         await sleep(3000)
         if (code === 200) {
             if (listData.page === 1)
@@ -32,14 +41,14 @@ export function useLists<T>(payload: string) {
 
             if (data.hasNext) {
                 listData.page += 1
-                listData.status = 'loadmore'
+                listData.status = 'more'
             }
             else {
-                listData.status = 'nomore'
+                listData.status = 'no-more'
             }
         }
         else {
-            listData.status = 'loadmore'
+            listData.status = 'more'
         }
         listData.pageIsLoaded = true
     }

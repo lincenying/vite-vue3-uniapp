@@ -1,10 +1,8 @@
 <template>
     <page-meta :page-style="pageStyle" />
     <layout classes="wrap-tab layout-img IndexRouter">
-        <div p-24px>
-            <div v-if="dataLists.length === 0">空</div>
-            <div v-else>111111%</div>
-        </div>
+        <div v-if="dataLists.length === 0">空</div>
+        <div v-else>111111%</div>
         <empty-popup v-if="popupShow" v-model="popupShow" title="" />
     </layout>
 </template>
@@ -27,7 +25,7 @@ const pageStyle = computed(() => {
 
 const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
 
-const { pageIsLoaded, dataLists } = useLists<Article>(`${url}`)
+const { pageIsLoaded, dataLists, getData } = useLists<Article>(`${url}`)
 
 watch(pageIsLoaded, (val) => {
     if (val)
@@ -42,6 +40,11 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barBgColor: 'none',
     barShowBack: false,
 })))
+provide(layoutReloadKey, async () => {
+    showLoading()
+    await getData()
+    uni.hideLoading()
+})
 </script>
 
 <route lang="yaml">

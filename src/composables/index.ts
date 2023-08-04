@@ -1,6 +1,9 @@
 export const isDark = useDark()
 export const toggleDark = () => isDark.value = !isDark.value
 
+/**
+ * 本地存储封装
+ */
 export const ls = {
     set(key: string, value: any) {
         uni.setStorageSync(key, value)
@@ -77,6 +80,11 @@ function getStatusHeight() {
 
 export const statusHeight = getStatusHeight()
 
+/**
+ * 获取页面高度
+ * @param isTab 是否是导航页, 默认:false
+ * @returns 页面高度(tab页会扣除tabbar的高度)
+ */
 export function getPageHeight(isTab = false) {
     const data = uni.getSystemInfoSync()
     return (isTab ? data.windowHeight : data.screenHeight) - statusHeight
@@ -89,12 +97,25 @@ type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
  * @param title 标题
  * @param icon 图标
  * @param duration 延迟时间
- */
+ * @description 文档: [http://uniapp.dcloud.io/api/ui/prompt?id=showtoast](http://uniapp.dcloud.io/api/ui/prompt?id=showtoast)
+*/
 export function showToast(title: string, icon: ToastIocn = 'none', duration = 2000) {
     uni.showToast({
         title,
         icon,
         duration,
+    })
+}
+
+/**
+ * 显示 loading 提示框
+ *
+ * 文档: [http://uniapp.dcloud.io/api/ui/prompt?id=showloading](http://uniapp.dcloud.io/api/ui/prompt?id=showloading)
+ */
+export function showLoading(title: string = '加载中...', mask = true) {
+    uni.showLoading({
+        title,
+        mask,
     })
 }
 

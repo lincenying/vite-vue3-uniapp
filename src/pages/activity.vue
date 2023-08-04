@@ -1,9 +1,8 @@
 <template>
     <layout classes="wrap-tab layout-img ActivityRouter">
-        <div p-24px>
-            <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
-            <com-loadmore :status="status" @re-load="getData" />
-        </div>
+        <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
+        <com-loadmore :status="status" @re-load="getData" />
+        <!-- <uni-load-more :status="status" /> -->
     </layout>
 </template>
 
@@ -31,6 +30,12 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barBgColor: 'none',
     barShowBack: false,
 })))
+provide(layoutReloadKey, async () => {
+    status.value = 'more'
+    showLoading()
+    await getData()
+    uni.hideLoading()
+})
 </script>
 
 <route lang="yaml">

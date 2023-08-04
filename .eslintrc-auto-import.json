@@ -316,6 +316,8 @@
     "updateActiveCategoryKey": true,
     "updateActiveTreeKey": true,
     "noDataKey": true,
-    "layoutDataKey": true
+    "layoutDataKey": true,
+    "showLoading": true,
+    "layoutReloadKey": true
   }
 }

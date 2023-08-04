@@ -3,11 +3,11 @@
         <nut-icon name="loading1" />
         <text ml-6px text="#666">加载中...</text>
     </div>
-    <div v-else-if="status === 'loadmore'" flex-cc @click="handleReload">
+    <div v-else-if="status === 'more'" flex-cc @click="handleReload">
         <nut-icon name="tips" />
         <text ml-6px text="#666">点击加载更多</text>
     </div>
-    <div v-else-if="status === 'nomore'" flex-cc>
+    <div v-else-if="status === 'no-more'" flex-cc>
         <nut-icon name="failure" />
         <text ml-6px text="#666">没有更多了</text>
     </div>

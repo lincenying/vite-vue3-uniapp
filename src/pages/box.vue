@@ -1,7 +1,7 @@
 <template>
     <layout classes="wrap-tab layout-img BoxRouter">
-        <div>
-            {{ dataDetail?.content }}
+        <div v-if="dataDetail">
+            {{ dataDetail.content }}
         </div>
     </layout>
 </template>
@@ -17,7 +17,7 @@ defineOptions({
 
 const url = $ref('api/frontend/article/item?id=589af8cde9be1c5b21ef8e9c')
 
-const { pageIsLoaded, dataDetail } = useDetail<Article>(`${url}`)
+const { pageIsLoaded, dataDetail, getData } = useDetail<Article>(`${url}`)
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,
@@ -27,6 +27,11 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barBgColor: 'none',
     barShowBack: false,
 })))
+provide(layoutReloadKey, async () => {
+    showLoading()
+    await getData()
+    uni.hideLoading()
+})
 </script>
 
 <route lang="yaml">
