@@ -19,6 +19,10 @@ const Css: CSSOptions = {
     },
     postcss: {
         plugins: [
+            /**
+             * 将 px 单位转换为视图单位(vw, vh, vmin, vmax)的 PostCSS 插件
+             * @see https://github.com/lkxian888/postcss-px-to-viewport-8-plugin#readme
+             */
             viewport({
                 unitToConvert: 'px', // 要转化的单位
                 viewportWidth: (file: string) => {

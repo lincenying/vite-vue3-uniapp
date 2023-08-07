@@ -12,8 +12,9 @@ import DefineOptions from 'unplugin-vue-define-options/vite'
 
 import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
 
-import Components from './vite.config.components'
 import Css from './vite.config.css'
+import Build from './vite.config.build'
+import Components from './vite.config.components'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
@@ -22,6 +23,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 
     return {
         css: Css,
+        server: Build.server,
+        build: Build.build,
         resolve: {
             alias: {
                 '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -71,15 +74,5 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              */
             DefineOptions(),
         ],
-        server: {
-            port: 6778,
-            proxy: {
-                '/api': {
-                    target: 'https://www.mmxiaowu.com',
-                    changeOrigin: true,
-                    rewrite: (path: string) => path.replace(/^\/api/, '/api'),
-                },
-            },
-        },
     }
 })

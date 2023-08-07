@@ -44,7 +44,16 @@ if (isApplet) {
     transformers.push(transformerApplet())
 }
 else {
+    /**
+     * 默认预设
+     * @see https://unocss.dev/presets/uno
+     */
     presets.push(presetUno())
+    /**
+     * 开启属性模式
+     * @see https://unocss.dev/presets/attributify
+     * @example <div text="sm white" font="mono light"></div>
+     */
     presets.push(presetAttributify())
 }
 
@@ -52,7 +61,7 @@ presets.push(pxToRpxPreset({ baseFontSize: 1 }))
 
 export default defineConfig({
     presets: [
-    // 由 Iconify 提供支持的纯 CSS 图标解决方案
+        // 由 Iconify 提供支持的纯 CSS 图标解决方案
         presetIcons({
             scale: 1.0,
             warn: true,
@@ -60,9 +69,9 @@ export default defineConfig({
         ...presets,
     ],
     /**
-   * 自定义快捷语句
-   * @see https://github.com/unocss/unocss#shortcuts
-   */
+     * 自定义快捷语句
+     * @see https://github.com/unocss/unocss#shortcuts
+     */
     shortcuts: [
         ['flex--c', 'flex items-center'],
         ['flex-cc', 'flex justify-center items-center'],
@@ -72,8 +81,18 @@ export default defineConfig({
         ['icon-btn', 'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600 !outline-none'],
     ],
     transformers: [
-        transformerDirectives(), // 启用 @apply 功能
-        transformerVariantGroup(), // 启用 () 分组功能
+        /**
+         * 启用 --uno: 功能
+         * @see https://unocss.dev/transformers/directives
+         * @example .custom-div { --uno: text-center my-0 font-medium; }
+         */
+        transformerDirectives(),
+        /**
+         * 启用 () 分组功能
+         * @see https://unocss.dev/transformers/variant-group
+         * @example <div class="hover:(bg-gray-400 font-medium) font-(light mono)"/>
+         */
+        transformerVariantGroup(),
         ...transformers,
     ],
 })
