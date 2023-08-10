@@ -3,6 +3,7 @@ import Components from '@uni-helper/vite-plugin-uni-components'
 import type { PluginOption } from 'vite'
 
 // import { NutResolver } from 'uniapp-nutui'
+import { TuNiaoResolver } from './vite.config.tuniao'
 
 export default (): PluginOption[] => ([
     /**
@@ -58,7 +59,9 @@ export default (): PluginOption[] => ([
             /\.md$/, // .md
         ],
         extensions: ['vue', 'tsx', 'jsx'],
-        resolvers: [],
+        resolvers: [
+            TuNiaoResolver(),
+        ],
         dts: 'src/z-components.d.ts',
         directoryAsNamespace: true,
     }),

@@ -4,7 +4,7 @@ interface ListsReactive<T> {
     pageIsLoaded: boolean
     page: number
     dataLists: T[]
-    status: 'loading' | 'more' | 'no-more'
+    status: 'loading' | 'loadmore' | 'nomore'
     apiUrl: string
     apiParams: Obj
 }
@@ -20,18 +20,18 @@ export function useLists<T>(url: string, params: Obj = {}) {
         pageIsLoaded: false,
         page: 1,
         dataLists: [],
-        status: 'more',
+        status: 'loadmore',
         apiUrl: url,
         apiParams: params,
     })
 
     async function getData() {
-        if (listData.status === 'loading' || listData.status === 'no-more')
+        if (listData.status === 'loading' || listData.status === 'nomore')
             return
 
         listData.status = 'loading'
         listData.apiParams.page = listData.page
-        await sleep(3000)
+        await sleep(1000)
         const { code, data } = await $api.get<ResDataLists<T[]>>(`${listData.apiUrl}`, listData.apiParams)
         if (code === 200) {
             if (listData.page === 1)
@@ -41,14 +41,14 @@ export function useLists<T>(url: string, params: Obj = {}) {
 
             if (data.hasNext) {
                 listData.page += 1
-                listData.status = 'more'
+                listData.status = 'loadmore'
             }
             else {
-                listData.status = 'no-more'
+                listData.status = 'nomore'
             }
         }
         else {
-            listData.status = 'more'
+            listData.status = 'loadmore'
         }
         listData.pageIsLoaded = true
     }

@@ -3,7 +3,16 @@
     <layout classes="wrap-tab layout-img IndexRouter">
         <div v-if="dataLists.length === 0">空</div>
         <div v-else>111111%</div>
-        <empty-popup v-if="popupShow" v-model="popupShow" title="" />
+        <TnButton type="warning">按钮</TnButton>
+        <TnCheckboxGroup v-model="selectValue" border>
+            <TnCheckbox label="value1">value1</TnCheckbox>
+            <TnCheckbox label="value2">value2</TnCheckbox>
+        </TnCheckboxGroup>
+        <tn-checkbox-group v-model="selectValue" border>
+            <tn-checkbox label="value1">value1</tn-checkbox>
+            <tn-checkbox label="value2">value2</tn-checkbox>
+        </tn-checkbox-group>
+        <empty-popup-tn v-if="popupShow" v-model="popupShow" title="" />
     </layout>
 </template>
 
@@ -29,8 +38,10 @@ const { pageIsLoaded, dataLists, getData } = useLists<Article>(`${url}`)
 
 watch(pageIsLoaded, (val) => {
     if (val)
-        popupShow = true
+        popupShow = false
 })
+
+const selectValue = ref<string[]>(['value1'])
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,

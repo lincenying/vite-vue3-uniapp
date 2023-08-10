@@ -1,19 +1,30 @@
 <template>
     <layout classes="wrap-tab layout-img ActivityRouter">
         <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
-        <com-loadmore :status="status" @re-load="getData" />
+        <div py-10px>
+            <TnLoadmore :status="status" :text="customLoadMoreText" loading-icon-mode="flower" color="#999" />
+        </div>
+        <!-- <com-loadmore :status="status" @re-load="getData" /> -->
         <!-- <uni-load-more :status="status" /> -->
     </layout>
 </template>
 
 <script setup lang="ts">
 // import { useToast } from '@uni-helper/uni-use'
+import type { LoadmoreText } from '@tuniao/tnui-vue3-uniapp'
 import type { Article } from './index.types'
 import type { LayoutDataType } from '~/types'
 
 defineOptions({
     name: 'ActivityRouter',
 })
+
+const customLoadMoreText: LoadmoreText = {
+    loadmore: '还有内容呢',
+    loading: '等等，数据正在赶来',
+    nomore: '哎呀，没有啦',
+    empty: '空空的呀',
+}
 
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
@@ -31,7 +42,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barShowBack: false,
 })))
 provide(layoutReloadKey, async () => {
-    status.value = 'more'
+    status.value = 'loadmore'
     showLoading()
     await getData()
     uni.hideLoading()

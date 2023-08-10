@@ -6,8 +6,8 @@ export default defineUniPages({
         custom: {
             '^u-(.*)': 'uview-plus/components/u-$1/u-$1.vue',
             '^uni-(.*)': '@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue',
-            '^nut-(.*)?-(.*)': 'uniapp-nutui/components/$1$2/$1$2.vue',
-            '^nut-(.*)': 'uniapp-nutui/components/$1/$1.vue',
+            // '^nut-(.*)?-(.*)': 'uniapp-nutui/components/$1$2/$1$2.vue',
+            // '^nut-(.*)': 'uniapp-nutui/components/$1/$1.vue',
         },
     },
     pages: [],
