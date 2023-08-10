@@ -25,7 +25,7 @@ class UseRouter {
         }
         else {
             const queryParams = this.setQuery(arg?.query || {})
-            url = `${arg?.path}?${queryParams}`
+            url = `${arg?.path}${queryParams ? (arg?.path.includes('?') ? '&' : '?') + queryParams : ''}`
             replace = arg?.replace || false
         }
 
@@ -58,6 +58,12 @@ class UseRouter {
         this.push({
             ...arg,
             replace: true,
+        })
+    }
+
+    tab(url: string) {
+        uni.switchTab({
+            url,
         })
     }
 
