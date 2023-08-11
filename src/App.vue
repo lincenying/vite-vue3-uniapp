@@ -8,8 +8,6 @@ onLaunch(async () => {
 </script>
 
 <style lang="scss">
-// @import 'uniapp-nutui/styles/index';
-// @import "uview-plus/index.scss";
 @import '@tuniao/tn-style/dist/uniapp/index.css';
 @import './assets/scss/style.scss';
 </style>

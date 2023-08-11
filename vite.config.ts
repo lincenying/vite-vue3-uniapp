@@ -32,7 +32,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             },
         },
         optimizeDeps: {
-            include: ['uview-plus', 'uniapp-nutui'],
+            include: [],
         },
         plugins: [
             /**
