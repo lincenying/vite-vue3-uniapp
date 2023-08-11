@@ -318,6 +318,13 @@
     "noDataKey": true,
     "layoutDataKey": true,
     "showLoading": true,
-    "layoutReloadKey": true
+    "layoutReloadKey": true,
+    "useUniAppSystemRectInfo": true,
+    "navBarInfo": true,
+    "getnavBarInfo": true,
+    "defaultBarData": true,
+    "defaultNoBarData": true,
+    "useWxShare": true,
+    "getNavBarInfo": true
   }
 }

@@ -11,6 +11,10 @@ export interface LayoutDataType {
     layoutImg?: string
     /** 无数据组件-无内容时显示的文字 */
     layoutText?: string
+    /** 是否显示导航条 */
+    showBar: boolean
+    /** 不显示导航条时是否占位 */
+    showPlaceholder?: boolean
     /** 导航条标题 */
     barTitle: string
     /** 导航条背景颜色 */

@@ -32,7 +32,7 @@ export function useLists<T>(url: string, params: Obj = {}) {
         listData.status = 'loading'
         listData.apiParams.page = listData.page
         await sleep(1000)
-        const { code, data } = await $api.get<ResDataLists<T[]>>(`${listData.apiUrl}`, listData.apiParams)
+        const { code, data } = await $api.get<ResDataLists<T[]>>(listData.apiUrl, listData.apiParams)
         if (code === 200) {
             if (listData.page === 1)
                 listData.dataLists = [...data.list]

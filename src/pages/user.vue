@@ -1,6 +1,8 @@
 <template>
     <layout classes="wrap-tab layout-img UserRouter">
         <div p-24px>4444</div>
+        <TnButton type="warning">1</TnButton>
+        <TnLoading show type="primary" mode="circle" />
     </layout>
 </template>
 
@@ -16,8 +18,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     hasData: false,
     showNoData: true,
     barTitle: '我的',
-    barBgColor: 'none',
-    barShowBack: false,
+    ...defaultBarData,
 })))
 provide(layoutReloadKey, async () => {
     showLoading()

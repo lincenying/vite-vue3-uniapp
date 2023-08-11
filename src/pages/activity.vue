@@ -1,11 +1,17 @@
 <template>
     <layout classes="wrap-tab layout-img ActivityRouter">
-        <nut-cell v-for="(item, index) in dataLists" :key="index" :title="item.title" desc="描1述文字" />
-        <div py-10px>
+        <TnListItem
+            v-for="(item, index) in dataLists" :key="index" right-icon="right"
+            @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"
+        >
+            <div flex>
+                <TnIcon name="tree" />
+                <div ml-10px class="tn-text-ellipsis-1">{{ item.title }}</div>
+            </div>
+        </TnListItem>
+        <div pb-10px pt-30px>
             <TnLoadmore :status="status" :text="customLoadMoreText" loading-icon-mode="flower" color="#999" />
         </div>
-        <!-- <com-loadmore :status="status" @re-load="getData" /> -->
-        <!-- <uni-load-more :status="status" /> -->
     </layout>
 </template>
 
@@ -38,8 +44,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     hasData: dataLists.value.length > 0,
     showNoData: !pageIsLoaded.value || dataLists.value.length === 0,
     barTitle: '福利活动',
-    barBgColor: 'none',
-    barShowBack: false,
+    ...defaultBarData,
 })))
 provide(layoutReloadKey, async () => {
     status.value = 'loadmore'

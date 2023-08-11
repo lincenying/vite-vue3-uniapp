@@ -1,8 +1,19 @@
 <template>
     <page-meta :page-style="pageStyle" />
     <layout classes="wrap-tab layout-img IndexRouter">
+        <div h-420px w-full>
+            <TnSwiper v-model="currentSwiperIndex" :data="swiperData" loop autoplay>
+                <template #default="{ data }">
+                    <view h-full w-full border-rd-30px>
+                        <image h-full w-full :src="data" mode="aspectFill" />
+                    </view>
+                </template>
+            </TnSwiper>
+        </div>
         <div v-if="dataLists.length === 0">空</div>
-        <div v-else>111111%</div>
+        <div v-else>
+            <div>查看详情</div>
+        </div>
         <TnButton type="warning">按钮</TnButton>
         <TnCheckboxGroup v-model="selectValue" border>
             <TnCheckbox label="value1">value1</TnCheckbox>
@@ -12,7 +23,7 @@
             <tn-checkbox label="value1">value1</tn-checkbox>
             <tn-checkbox label="value2">value2</tn-checkbox>
         </tn-checkbox-group>
-        <empty-popup-tn v-if="popupShow" v-model="popupShow" title="" />
+        <empty-popup v-if="popupShow" v-model="popupShow" title="" />
     </layout>
 </template>
 
@@ -43,13 +54,21 @@ watch(pageIsLoaded, (val) => {
 
 const selectValue = ref<string[]>(['value1'])
 
+const swiperData = [
+    'https://resource.tuniaokj.com/images/xiongjie/x14.jpg',
+    'https://resource.tuniaokj.com/images/xiongjie/xiong-3d-2.jpg',
+    'https://resource.tuniaokj.com/images/xiongjie/xiong-3d-new.jpg',
+    'https://resource.tuniaokj.com/images/xiongjie/xiong-3d-new1.png',
+    'https://resource.tuniaokj.com/images/xiongjie/xiong-3d.jpg',
+]
+const currentSwiperIndex = ref(0)
+
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,
     hasData: dataLists.value.length > 0,
     showNoData: !pageIsLoaded.value || dataLists.value.length === 0,
     barTitle: '首页',
-    barBgColor: 'none',
-    barShowBack: false,
+    ...defaultBarData,
 })))
 provide(layoutReloadKey, async () => {
     showLoading()

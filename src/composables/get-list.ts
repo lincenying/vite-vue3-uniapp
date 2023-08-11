@@ -20,7 +20,7 @@ export function useList<T>(url: string, params: Obj = {}) {
     })
 
     async function getData() {
-        const { code, data } = await $api.get<T[]>(`${listData.apiUrl}`, listData.apiParams)
+        const { code, data } = await $api.get<T[]>(listData.apiUrl, listData.apiParams)
         if (code === 200)
             listData.dataLists = [...data]
 

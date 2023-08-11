@@ -25,8 +25,8 @@ export function useDetail<T>(url: string, params: Obj = {}, needLoginFn: AnyFn =
     })
 
     async function getData() {
-        await sleep(3000)
-        const { code, data } = await $api.get<T>(`${dataDetail.apiUrl}`, dataDetail.apiParams)
+        await sleep(1000)
+        const { code, data } = await $api.get<T>(dataDetail.apiUrl, dataDetail.apiParams)
         if (code === 200) {
             dataDetail.dataDetail = data
         }

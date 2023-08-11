@@ -16,12 +16,15 @@ declare global {
   const deepClone: typeof import('@lincy/utils')['deepClone']
   const deepEqual: typeof import('@lincy/utils')['deepEqual']
   const deepMerge: typeof import('@lincy/utils')['deepMerge']
+  const defaultBarData: typeof import('./composables/index')['defaultBarData']
+  const defaultNoBarData: typeof import('./composables/index')['defaultNoBarData']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
   const effectScope: typeof import('vue')['effectScope']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getNavBarInfo: typeof import('./composables/system-rect-info')['getNavBarInfo']
   const getPageHeight: typeof import('./composables/index')['getPageHeight']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
@@ -34,6 +37,7 @@ declare global {
   const layoutReloadKey: typeof import('./composables/provide')['layoutReloadKey']
   const ls: typeof import('./composables/index')['ls']
   const markRaw: typeof import('vue')['markRaw']
+  const navBarInfo: typeof import('./composables/system-rect-info')['navBarInfo']
   const nextTick: typeof import('vue')['nextTick']
   const noDataKey: typeof import('./composables/provide')['noDataKey']
   const onActivated: typeof import('vue')['onActivated']
@@ -89,7 +93,9 @@ declare global {
   const useLists: typeof import('./composables/get-lists')['useLists']
   const useLockFn: typeof import('./composables/index')['useLockFn']
   const useSlots: typeof import('vue')['useSlots']
+  const useUniAppSystemRectInfo: typeof import('./composables/system-rect-info')['useUniAppSystemRectInfo']
   const useUserStore: typeof import('./pinia/useUserInfo')['useUserStore']
+  const useWxShare: typeof import('./composables/wx-share')['useWxShare']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -113,13 +119,15 @@ declare module 'vue' {
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
+    readonly defaultBarData: UnwrapRef<typeof import('./composables/index')['defaultBarData']>
+    readonly defaultNoBarData: UnwrapRef<typeof import('./composables/index')['defaultNoBarData']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getPageHeight: UnwrapRef<typeof import('./composables/index')['getPageHeight']>
+    readonly getNavBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['getNavBarInfo']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/index')['isDark']>
@@ -131,6 +139,7 @@ declare module 'vue' {
     readonly layoutReloadKey: UnwrapRef<typeof import('./composables/provide')['layoutReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly noDataKey: UnwrapRef<typeof import('./composables/provide')['noDataKey']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
@@ -165,9 +174,7 @@ declare module 'vue' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly showLoading: UnwrapRef<typeof import('./composables/index')['showLoading']>
     readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
-    readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly titleHeight: UnwrapRef<typeof import('./composables/index')['titleHeight']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
@@ -184,7 +191,9 @@ declare module 'vue' {
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useUniAppSystemRectInfo: UnwrapRef<typeof import('./composables/system-rect-info')['useUniAppSystemRectInfo']>
     readonly useUserStore: UnwrapRef<typeof import('./pinia/useUserInfo')['useUserStore']>
+    readonly useWxShare: UnwrapRef<typeof import('./composables/wx-share')['useWxShare']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
@@ -202,13 +211,15 @@ declare module '@vue/runtime-core' {
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
+    readonly defaultBarData: UnwrapRef<typeof import('./composables/index')['defaultBarData']>
+    readonly defaultNoBarData: UnwrapRef<typeof import('./composables/index')['defaultNoBarData']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getPageHeight: UnwrapRef<typeof import('./composables/index')['getPageHeight']>
+    readonly getNavBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['getNavBarInfo']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/index')['isDark']>
@@ -220,6 +231,7 @@ declare module '@vue/runtime-core' {
     readonly layoutReloadKey: UnwrapRef<typeof import('./composables/provide')['layoutReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly noDataKey: UnwrapRef<typeof import('./composables/provide')['noDataKey']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
@@ -254,9 +266,7 @@ declare module '@vue/runtime-core' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly showLoading: UnwrapRef<typeof import('./composables/index')['showLoading']>
     readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
-    readonly statusHeight: UnwrapRef<typeof import('./composables/index')['statusHeight']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly titleHeight: UnwrapRef<typeof import('./composables/index')['titleHeight']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
@@ -273,7 +283,9 @@ declare module '@vue/runtime-core' {
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useUniAppSystemRectInfo: UnwrapRef<typeof import('./composables/system-rect-info')['useUniAppSystemRectInfo']>
     readonly useUserStore: UnwrapRef<typeof import('./pinia/useUserInfo')['useUserStore']>
+    readonly useWxShare: UnwrapRef<typeof import('./composables/wx-share')['useWxShare']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

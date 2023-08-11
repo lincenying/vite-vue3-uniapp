@@ -3,7 +3,7 @@ import Components from '@uni-helper/vite-plugin-uni-components'
 import type { PluginOption } from 'vite'
 
 // import { NutResolver } from 'uniapp-nutui'
-import { TuNiaoResolver } from './vite.config.tuniao'
+import { TuNiaoResolver } from '@lincy/uniapp-ui-resolver'
 
 export default (): PluginOption[] => ([
     /**

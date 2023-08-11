@@ -52,44 +52,6 @@ export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     },
 })
 
-/**
- * 获取胶囊位高度
- */
-function getTitleHeight() {
-    let navHeight = 0
-    // #ifndef H5 || APP-PLUS || MP-ALIPAY
-    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 0
-    const menuButtonObject = uni.getMenuButtonBoundingClientRect()
-    navHeight = menuButtonObject.height + (menuButtonObject.top - (statusBarHeight || 0)) * 2
-    // #endif
-    // #ifdef H5 || APP-PLUS || MP-ALIPAY
-    navHeight = 44
-    // #endif
-    return navHeight
-}
-
-export const titleHeight = getTitleHeight()
-
-/**
- * 获取胶囊位高度
- */
-function getStatusHeight() {
-    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 0
-    return statusBarHeight
-}
-
-export const statusHeight = getStatusHeight()
-
-/**
- * 获取页面高度
- * @param isTab 是否是导航页, 默认:false
- * @returns 页面高度(tab页会扣除tabbar的高度)
- */
-export function getPageHeight(isTab = false) {
-    const data = uni.getSystemInfoSync()
-    return (isTab ? data.windowHeight : data.screenHeight) - statusHeight
-}
-
 type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
 
 /**
@@ -220,4 +182,18 @@ export function ObjectToArray(obj: any, _key = 'pid', _value = 0) {
     }
 
     return result
+}
+
+export const defaultBarData = {
+    showBar: false,
+    showPlaceholder: true,
+    barBgColor: 'none',
+    barShowBack: false,
+}
+
+export const defaultNoBarData = {
+    showBar: true,
+    showPlaceholder: false,
+    barBgColor: 'none',
+    barShowBack: true,
 }
