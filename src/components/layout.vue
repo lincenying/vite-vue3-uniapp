@@ -2,8 +2,8 @@
     <div class="wrap" :class="`${classes} ${isDark ? 'dark' : ''}`">
         <TnNavbar
             v-if="layoutData.showBar"
-            frosted :back-icon="layoutData.barShowBack ? 'left' : ''" :home-icon="layoutData.barShowBack ? 'home-capsule-fill' : ''"
-            :safe-area-inset-right="safeAreaInsetRight" :fixed="true" index-url="/pages/index"
+            :back-icon="layoutData.barShowBack ? 'left' : ''" :home-icon="layoutData.barShowBack ? 'home-capsule-fill' : ''"
+            :safe-area-inset-right="safeAreaInsetRight" :fixed="true" frosted index-url="/pages/index"
         >
             {{ layoutData.barTitle }}
         </TnNavbar>
@@ -11,7 +11,9 @@
         <div flex-none>
             <slot name="header" />
         </div>
-        <no-data v-if="layoutData.showNoData" />
+        <no-data v-if="layoutData.showNoData">
+            <slot name="other" />
+        </no-data>
         <div v-else flex-auto p-24px>
             <slot />
         </div>

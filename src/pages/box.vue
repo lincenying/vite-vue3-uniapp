@@ -44,9 +44,7 @@ const imageListData = [
     'https://resource.tuniaokj.com/images/album/xiong9.jpg',
 ]
 
-const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
-
-const { pageIsLoaded, dataLists, getData } = useLists<Article>(`${url}`)
+const { pageIsLoaded, dataLists, getData } = useLists<Article>('api/frontend/article/list?limit=20&by=visit&cache=true')
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,

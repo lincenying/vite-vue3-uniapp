@@ -35,9 +35,11 @@ const customLoadMoreText: LoadmoreText = {
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
 
-const url = $ref('api/frontend/article/list?limit=20&by=visit&cache=true')
-
-const { pageIsLoaded, dataLists, status, getData } = useLists<Article>(`${url}`)
+const { pageIsLoaded, dataLists, status, getData } = useLists<Article>('api/frontend/article/list', {
+    limit: 20,
+    by: 'visit',
+    cache: 'true',
+})
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,

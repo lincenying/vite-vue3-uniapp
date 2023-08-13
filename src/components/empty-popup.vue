@@ -1,5 +1,5 @@
 <template>
-    <TnPopup v-model="showBasic" open-direction="center" :overlay-closeable="false" bg-color="none">
+    <TnPopup v-model="showBasic" open-direction="center" :overlay-closeable="false" bg-color="none" :z-index="20091">
         <div relative h-924px w-578px>
             <image src="@/static/index/gift-bg.png" h-924px w-578px />
             <div absolute left-0 top-0 h-full w-full flex="~ col items-center">

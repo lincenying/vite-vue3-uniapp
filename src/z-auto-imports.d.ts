@@ -92,6 +92,7 @@ declare global {
   const useList: typeof import('./composables/get-list')['useList']
   const useLists: typeof import('./composables/get-lists')['useLists']
   const useLockFn: typeof import('./composables/index')['useLockFn']
+  const useScroll: typeof import('./composables/scroll')['useScroll']
   const useSlots: typeof import('vue')['useSlots']
   const useUniAppSystemRectInfo: typeof import('./composables/system-rect-info')['useUniAppSystemRectInfo']
   const useUserStore: typeof import('./pinia/useUserInfo')['useUserStore']
@@ -190,6 +191,7 @@ declare module 'vue' {
     readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
+    readonly useScroll: UnwrapRef<typeof import('./composables/scroll')['useScroll']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useUniAppSystemRectInfo: UnwrapRef<typeof import('./composables/system-rect-info')['useUniAppSystemRectInfo']>
     readonly useUserStore: UnwrapRef<typeof import('./pinia/useUserInfo')['useUserStore']>
@@ -282,6 +284,7 @@ declare module '@vue/runtime-core' {
     readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
+    readonly useScroll: UnwrapRef<typeof import('./composables/scroll')['useScroll']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useUniAppSystemRectInfo: UnwrapRef<typeof import('./composables/system-rect-info')['useUniAppSystemRectInfo']>
     readonly useUserStore: UnwrapRef<typeof import('./pinia/useUserInfo')['useUserStore']>

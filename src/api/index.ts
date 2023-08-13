@@ -2,10 +2,6 @@ import type { AxiosAdapter, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 import { uniAdapter } from 'fant-axios-adapter'
 
-// #ifdef H5
-window.axios = axios
-// #endif
-
 const headers = {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
@@ -151,3 +147,7 @@ export const $api: ApiType = {
         return checkStatus(response)
     },
 }
+// #ifdef H5
+window.axios = axios
+window.$$api = $api
+// #endif

@@ -38,16 +38,20 @@ export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     get(_, name) {
         return (obj: Obj) =>
             new Promise((resolve, reject) => {
-                // @ts-expect-error: Unreachable code error
-                uni[name]({
-                    ...obj,
-                    success: (ret: any) => {
-                        resolve(ret)
-                    },
-                    fail: (err: any) => {
-                        reject(err)
-                    },
-                })
+                try {
+                    uni[name as keyof Uni]({
+                        ...obj,
+                        success: (ret: any) => {
+                            resolve(ret)
+                        },
+                        fail: (err: any) => {
+                            reject(err)
+                        },
+                    })
+                }
+                catch (error) {
+                    showToast(`${String(name)}: 方法不存在...`)
+                }
             })
     },
 })

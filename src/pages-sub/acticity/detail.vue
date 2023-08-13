@@ -13,13 +13,13 @@ import type { LayoutDataType } from '~/types'
 
 const props = defineProps<{ id: string }>()
 
+const { id } = $(toRefs(props))
+
 defineOptions({
     name: 'BoxRouter',
 })
 
-const url = $ref(`api/frontend/article/item?id=${props.id}`)
-
-const { pageIsLoaded, dataDetail, getData } = useDetail<Article>(`${url}`)
+const { pageIsLoaded, dataDetail, getData } = useDetail<Article>('api/frontend/article/item', { id })
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,
