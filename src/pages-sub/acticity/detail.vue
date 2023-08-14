@@ -11,9 +11,7 @@ import { isEmpty } from '@lincy/utils'
 import type { Article } from '~/pages/index.types'
 import type { LayoutDataType } from '~/types'
 
-const props = defineProps<{ id: string }>()
-
-const { id } = $(toRefs(props))
+const { id } = defineProps<{ id: string }>()
 
 defineOptions({
     name: 'BoxRouter',

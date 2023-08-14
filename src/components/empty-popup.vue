@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
+const { modelValue } = defineProps<{
     modelValue: boolean
 }>()
 
@@ -21,10 +21,10 @@ const emits = defineEmits<{
     (event: 'update:modelValue', palyload: boolean): void
 }>()
 
-let showBasic = $ref(props.modelValue)
+let showBasic = $ref(modelValue)
 
-watch(() => props.modelValue, () => {
-    showBasic = props.modelValue
+watch(() => modelValue, () => {
+    showBasic = modelValue
 })
 
 function onClose() {
