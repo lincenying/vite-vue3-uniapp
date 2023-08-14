@@ -1,6 +1,6 @@
 <template>
-    <layout classes="wrap-tab layout-img BoxRouter">
-        <div v-if="dataDetail">
+    <layout class-name="wrap-tab layout-img BoxRouter">
+        <div v-if="dataDetail" bg="#fff" border-rd-16px p-24px>
             <rich-text :nodes="dataDetail.html" />
         </div>
     </layout>

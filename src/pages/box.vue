@@ -1,5 +1,5 @@
 <template>
-    <layout classes="wrap-tab layout-img BoxRouter">
+    <layout class-name="wrap-tab layout-img BoxRouter">
         <TnScrollList>
             <view relative mb-30px flex flex-nowrap items-center>
                 <view

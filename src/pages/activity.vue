@@ -1,5 +1,5 @@
 <template>
-    <layout classes="wrap-tab layout-img ActivityRouter">
+    <layout class-name="wrap-tab layout-img ActivityRouter">
         <TnListItem
             v-for="(item, index) in dataLists" :key="index" right-icon="right"
             @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"

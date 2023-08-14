@@ -1,11 +1,13 @@
 <template>
-    <div class="wrap" :class="`${classes} ${isDark ? 'dark' : ''}`">
+    <div class="wrap" :class="`${className} ${isDark ? 'dark' : ''}`">
         <TnNavbar
             v-if="layoutData.showBar"
-            :back-icon="layoutData.barShowBack ? 'left' : ''" :home-icon="layoutData.barShowBack ? 'home-capsule-fill' : ''"
-            :safe-area-inset-right="safeAreaInsetRight" :fixed="true" frosted index-url="/pages/index"
+            :back-icon="layoutData.barShowBack ? 'left' : ''"
+            :home-icon="layoutData.barShowBack ? 'home-capsule-fill' : ''"
+            :safe-area-inset-right="safeAreaInsetRight"
+            :fixed="true" frosted index-url="/pages/index"
         >
-            {{ layoutData.barTitle }}
+            <text font-600 text="32px #333">{{ layoutData.barTitle }}</text>
         </TnNavbar>
         <div v-else-if="layoutData.showPlaceholder" :style="`height:${navBarInfo}px`" />
         <div flex-none>
@@ -24,7 +26,7 @@
 import type { LayoutDataType } from '~/types'
 
 defineProps<{
-    classes: string
+    className: string
 }>()
 
 // #ifndef MP-WEIXIN
@@ -46,7 +48,6 @@ const layoutData = inject(layoutDataKey, ref({} as LayoutDataType))
 export default {
     name: 'Layout',
     options: {
-        // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
         virtualHost: true,
     },
 }

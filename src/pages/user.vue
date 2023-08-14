@@ -1,5 +1,5 @@
 <template>
-    <layout classes="wrap-tab layout-img UserRouter">
+    <layout class-name="wrap-tab layout-img UserRouter">
         <div p-24px>4444</div>
         <TnButton type="warning">1</TnButton>
         <TnLoading show type="primary" mode="circle" />

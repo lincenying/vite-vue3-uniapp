@@ -1,7 +1,7 @@
 <template>
     <page-meta :page-style="pageStyle" />
     <div class="init-top" />
-    <layout classes="wrap-tab layout-img IndexRouter">
+    <layout class-name="wrap-tab layout-img IndexRouter">
         <div h-420px w-full>
             <TnSwiper v-model="currentSwiperIndex" :data="swiperData" loop autoplay>
                 <template #default="{ data }">

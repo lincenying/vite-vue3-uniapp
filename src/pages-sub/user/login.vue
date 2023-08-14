@@ -1,5 +1,5 @@
 <template>
-    <layout classes="layout-white UserLogin">
+    <layout class-name="layout-white UserLogin">
         <div mt-240px flex--c flex-col>
             <image src="https://media.sammu.top/lohascity/user/login-logo.png" h-310px w-386px />
             <div mt-117px flex--c>
