@@ -35,7 +35,6 @@ function onClose() {
 <!-- #ifdef MP-WEIXIN -->
 <script lang="ts">
 export default {
-    name: 'Layout',
     options: {
         virtualHost: true,
     },
