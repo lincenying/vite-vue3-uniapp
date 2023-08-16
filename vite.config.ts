@@ -6,11 +6,13 @@ import uni from '@dcloudio/vite-plugin-uni'
 import Unocss from 'unocss/vite'
 
 import UniPages from '@uni-helper/vite-plugin-uni-pages'
-import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // import VueDevTools from 'vite-plugin-vue-devtools'
 
+import DefineOptions from 'unplugin-vue-define-options/vite'
 import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
+import DefineProps from '@vue-macros/define-props/vite'
+import DefinePropsRefs from '@vue-macros/define-props-refs/vite'
 
 import Css from './vite.config.css'
 import Build from './vite.config.build'
@@ -73,6 +75,16 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
              */
             DefineOptions(),
+            /**
+             * defineProps
+             * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-props.html
+             */
+            DefineProps(),
+            /**
+             * definePropsRefs
+             * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-props-refs.html
+             */
+            DefinePropsRefs(),
         ],
     }
 })

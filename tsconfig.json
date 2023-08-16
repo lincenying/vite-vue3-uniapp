@@ -19,8 +19,7 @@
       "node",
       "vite/client",
       "@dcloudio/types",
-      "unplugin-vue-define-options/macros-global",
-      "@vue-macros/reactivity-transform/macros-global",
+      "unplugin-vue-macros/macros-global",
       "miniprogram-api-typings"
     ],
     "paths": {
@@ -35,7 +34,9 @@
     "nativeTags": ["div", "block", "component", "template", "slot"],
     "target": 3, // or 2.7 for Vue 2
     "plugins": [
-      "@vue-macros/volar/define-options"
+      "@vue-macros/volar/define-options",
+      "@vue-macros/volar/define-props-refs",
+      "@vue-macros/volar/define-props"
     ]
   }
 }

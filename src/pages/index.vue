@@ -2,6 +2,7 @@
     <page-meta :page-style="pageStyle" />
     <div class="init-top" />
     <layout class-name="wrap-tab layout-img IndexRouter">
+        <empty-components />
         <div h-420px w-full>
             <TnSwiper v-model="currentSwiperIndex" :data="swiperData" loop autoplay>
                 <template #default="{ data }">
@@ -60,7 +61,7 @@ const { pageIsLoaded, dataLists, getData } = useLists<Article>('api/frontend/art
 
 watch(pageIsLoaded, (val) => {
     if (val)
-        popupShow = false
+        popupShow = true
 })
 
 const swiperData = [

@@ -39,7 +39,8 @@ export const uniAsync = new Proxy({} as UniNamespace.Uni, {
         return (obj: Obj) =>
             new Promise((resolve, reject) => {
                 try {
-                    uni[name as keyof Uni]({
+                    // @ts-expect-error 通过吧
+                    uni[name]({
                         ...obj,
                         success: (ret: any) => {
                             resolve(ret)

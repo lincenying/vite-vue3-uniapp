@@ -1,11 +1,15 @@
 <template>
-    <div />
+    <div>{{ title }}</div>
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+import { withDefaults } from 'unplugin-vue-macros/macros' assert { type: 'macro' }
+
+const { title } = withDefaults(definePropsRefs<{
     title: string
-}>()
+}>(), {
+    title: 'title',
+})
 </script>
 
 <!-- #ifdef MP-WEIXIN -->

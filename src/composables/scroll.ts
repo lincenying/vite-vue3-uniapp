@@ -14,7 +14,7 @@ export function useScroll(watchData: MaybeRefOrGetter[]) {
     })
     const stop = watch(watchData, (val, oldVal) => {
         let hasTrue = false
-        watchData.forEach((_item, index) => {
+        val.forEach((_item, index) => {
             if (oldVal[index] && !val[index])
                 hasTrue = true
         })

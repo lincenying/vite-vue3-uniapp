@@ -11,13 +11,15 @@ import { isEmpty } from '@lincy/utils'
 import type { Article } from '~/pages/index.types'
 import type { LayoutDataType } from '~/types'
 
-const { id } = defineProps<{ id: string }>()
+const { id } = $(definePropsRefs<{ id: string }>())
 
 defineOptions({
     name: 'BoxRouter',
 })
 
 const { pageIsLoaded, dataDetail, getData } = useDetail<Article>('api/frontend/article/item', { id })
+
+console.log($$(id))
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     pageIsLoaded: pageIsLoaded.value,
