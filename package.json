@@ -74,7 +74,7 @@
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.1.6",
     "uniapp-axios-adapter": "^0.3.2",
-    "unocss": "^0.55.0",
+    "unocss": "^0.55.1",
     "unocss-applet": "^0.5.3",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",

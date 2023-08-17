@@ -34,7 +34,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const layoutDataKey: typeof import('./composables/provide')['layoutDataKey']
-  const layoutReloadKey: typeof import('./composables/provide')['layoutReloadKey']
+  const dataReloadKey: typeof import('./composables/provide')['dataReloadKey']
   const ls: typeof import('./composables/index')['ls']
   const markRaw: typeof import('vue')['markRaw']
   const navBarInfo: typeof import('./composables/system-rect-info')['navBarInfo']
@@ -137,7 +137,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
-    readonly layoutReloadKey: UnwrapRef<typeof import('./composables/provide')['layoutReloadKey']>
+    readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>
@@ -230,7 +230,7 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
-    readonly layoutReloadKey: UnwrapRef<typeof import('./composables/provide')['layoutReloadKey']>
+    readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>

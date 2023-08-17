@@ -53,7 +53,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barTitle: '首页',
     ...defaultBarData,
 })))
-provide(layoutReloadKey, async () => {
+provide(dataReloadKey, async () => {
     showLoading()
     await getData()
     uni.hideLoading()

@@ -20,7 +20,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barTitle: '我的',
     ...defaultBarData,
 })))
-provide(layoutReloadKey, async () => {
+provide(dataReloadKey, async () => {
     showLoading()
     // await getData()
     uni.hideLoading()

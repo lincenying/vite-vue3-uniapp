@@ -48,7 +48,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     barTitle: '福利活动',
     ...defaultBarData,
 })))
-provide(layoutReloadKey, async () => {
+provide(dataReloadKey, async () => {
     status.value = 'loadmore'
     showLoading()
     await getData()
