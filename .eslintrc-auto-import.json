@@ -325,6 +325,7 @@
     "defaultBarData": true,
     "defaultNoBarData": true,
     "useWxShare": true,
-    "getNavBarInfo": true
+    "getNavBarInfo": true,
+    "dataReloadKey": true
   }
 }

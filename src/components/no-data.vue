@@ -25,14 +25,13 @@ import type { LayoutDataType } from '~/types'
 
 const layoutData = inject(layoutDataKey, ref({} as LayoutDataType))
 const dataReload = inject(dataReloadKey, () => {})
-</script>
 
-<!-- #ifdef MP-WEIXIN -->
-<script lang="ts">
-export default {
+defineOptions({
+    name: 'NoData',
+    // #ifdef MP-WEIXIN
     options: {
         virtualHost: true,
     },
-}
+    // #endif
+})
 </script>
-<!-- #endif -->

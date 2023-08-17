@@ -29,11 +29,14 @@ defineProps<{
     className: string
 }>()
 
-// #ifndef MP-WEIXIN
 defineOptions({
     name: 'Layout',
+    // #ifdef MP-WEIXIN
+    options: {
+        virtualHost: true,
+    },
+    // #endif
 })
-// #endif
 
 let safeAreaInsetRight = $ref(false)
 // #ifdef MP-WEIXIN
@@ -42,14 +45,3 @@ safeAreaInsetRight = true
 
 const layoutData = inject(layoutDataKey, ref({} as LayoutDataType))
 </script>
-
-<!-- #ifdef MP-WEIXIN -->
-<script lang="ts">
-export default {
-    name: 'Layout',
-    options: {
-        virtualHost: true,
-    },
-}
-</script>
-<!-- #endif -->

@@ -21,6 +21,15 @@ const emits = defineEmits<{
     (event: 'update:modelValue', palyload: boolean): void
 }>()
 
+defineOptions({
+    name: 'EmptyPopup',
+    // #ifdef MP-WEIXIN
+    options: {
+        virtualHost: true,
+    },
+    // #endif
+})
+
 let showBasic = $ref(modelValue)
 
 watch(() => modelValue, () => {
@@ -31,13 +40,3 @@ function onClose() {
     emits('update:modelValue', false)
 }
 </script>
-
-<!-- #ifdef MP-WEIXIN -->
-<script lang="ts">
-export default {
-    options: {
-        virtualHost: true,
-    },
-}
-</script>
-<!-- #endif -->

@@ -4,7 +4,7 @@
             v-for="(item, index) in dataLists" :key="index" right-icon="right"
             @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"
         >
-            <div flex>
+            <div flex--c>
                 <TnIcon name="tree" />
                 <div ml-10px class="tn-text-ellipsis-1">{{ item.title }}</div>
             </div>

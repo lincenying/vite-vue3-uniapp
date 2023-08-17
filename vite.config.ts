@@ -69,7 +69,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * @see https://vue-macros.sxzz.moe/zh-CN/features/reactivity-transform.html
              */
             ReactivityTransform(),
-
             /**
              * defineOptions
              * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html

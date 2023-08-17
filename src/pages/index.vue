@@ -26,6 +26,15 @@
             </view>
         </div>
 
+        <div flex--c>
+            <div class="i-carbon:api" />
+            <div class="i-svg-spinners:ring-resize?bg" text="60px #f90" />
+            <div v-if="checked === 0" class="i-mdi:checkbox-blank-circle-outline" text="60px #999" @click="checked = 1" />
+            <div v-else class="i-mdi:checkbox-marked-circle" text="60px #f90" @click="checked = 0" />
+            <div v-if="radioed === 0" class="i-mdi:checkbox-blank-outline" text="60px #999" @click="radioed = 1" />
+            <div v-else class="i-mdi:checkbox-intermediate" text="60px #f90" @click="radioed = 0" />
+        </div>
+
         <empty-popup v-if="popupShow" v-model="popupShow" title="" />
     </layout>
 </template>
@@ -41,6 +50,9 @@ defineOptions({
 })
 
 let popupShow = $ref(false)
+
+const checked = $ref(0)
+const radioed = $ref(0)
 
 // #ifdef H5
 useScroll([

@@ -13,6 +13,7 @@ declare global {
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
+  const dataReloadKey: typeof import('./composables/provide')['dataReloadKey']
   const deepClone: typeof import('@lincy/utils')['deepClone']
   const deepEqual: typeof import('@lincy/utils')['deepEqual']
   const deepMerge: typeof import('@lincy/utils')['deepMerge']
@@ -34,7 +35,6 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const layoutDataKey: typeof import('./composables/provide')['layoutDataKey']
-  const dataReloadKey: typeof import('./composables/provide')['dataReloadKey']
   const ls: typeof import('./composables/index')['ls']
   const markRaw: typeof import('vue')['markRaw']
   const navBarInfo: typeof import('./composables/system-rect-info')['navBarInfo']
@@ -117,6 +117,7 @@ declare module 'vue' {
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
@@ -137,7 +138,6 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
-    readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>
@@ -210,6 +210,7 @@ declare module '@vue/runtime-core' {
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
@@ -230,7 +231,6 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
-    readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>

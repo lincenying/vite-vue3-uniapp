@@ -10,15 +10,13 @@ const { title } = withDefaults(definePropsRefs<{
 }>(), {
     title: 'title',
 })
-</script>
 
-<!-- #ifdef MP-WEIXIN -->
-<script lang="ts">
-export default {
-    name: 'Layout',
+defineOptions({
+    name: 'EmptyComponents',
+    // #ifdef MP-WEIXIN
     options: {
         virtualHost: true,
     },
-}
+    // #endif
+})
 </script>
-<!-- #endif -->

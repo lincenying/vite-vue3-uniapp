@@ -15,7 +15,6 @@ declare module '@vue/runtime-core' {
     NoData: typeof import('./components/no-data.vue')['default']
     TnButton: typeof import('@tuniao/tnui-vue3-uniapp/components/button/src/button.vue')['default']
     TnCheckbox: typeof import('@tuniao/tnui-vue3-uniapp/components/checkbox/src/checkbox.vue')['default']
-    TnCheckboxGroup: typeof import('@tuniao/tnui-vue3-uniapp/components/checkbox/src/checkbox-group.vue')['default']
     TnEmpty: typeof import('@tuniao/tnui-vue3-uniapp/components/empty/src/empty.vue')['default']
     TnForm: typeof import('@tuniao/tnui-vue3-uniapp/components/form/src/form.vue')['default']
     TnFormItem: typeof import('@tuniao/tnui-vue3-uniapp/components/form/src/form-item.vue')['default']
