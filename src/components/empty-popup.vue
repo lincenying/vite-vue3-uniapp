@@ -6,7 +6,7 @@
                 <tn-button type="primary">主要按钮</tn-button>
             </div>
         </div>
-        <div mt-60px flex="~ justify-center">
+        <div mt-60px flex-c->
             <image sr src="@/static/index/close.png" h-70px w-70px @click="onClose" />
         </div>
     </TnPopup>
@@ -19,6 +19,7 @@ const { modelValue } = defineProps<{
 
 const emits = defineEmits<{
     (event: 'update:modelValue', palyload: boolean): void
+    (event: 'close', palyload: boolean): void
 }>()
 
 defineOptions({
@@ -38,5 +39,6 @@ watch(() => modelValue, () => {
 
 function onClose() {
     emits('update:modelValue', false)
+    emits('close', false)
 }
 </script>

@@ -35,7 +35,19 @@
             <div v-else class="i-mdi:checkbox-intermediate" text="60px #f90" @click="radioed = 0" />
         </div>
 
-        <empty-popup v-if="popupShow" v-model="popupShow" title="" />
+        <div flex--c>
+            <lcy-checkbox v-model="checked2" :font-size="40" icon-color="#f90">
+                <template #pre><div>请先同意协议</div></template>
+                <div>请先同意协议</div>
+            </lcy-checkbox>
+        </div>
+
+        <div flex-bc>
+            <div v-if="!heart" class="i-line-md:heart" text="40px" @click="heart = 1" />
+            <div v-else class="i-line-md:heart-filled" text="40px" @click="heart = 0" />
+            <div class="i-mdi:chevron-right" text="40px" />
+        </div>
+        <empty-popup v-model="popupShow" title="" @close="onPopupClose" />
     </layout>
 </template>
 
@@ -52,6 +64,8 @@ defineOptions({
 let popupShow = $ref(false)
 
 const checked = $ref(0)
+let checked2 = $ref(false)
+const heart = $ref(0)
 const radioed = $ref(0)
 
 // #ifdef H5
@@ -59,6 +73,7 @@ useScroll([
     () => popupShow,
 ])
 // #endif
+
 const pageStyle = computed(() => {
     if (popupShow)
         return 'overflow: hidden; height: 100%'
@@ -66,15 +81,16 @@ const pageStyle = computed(() => {
 })
 
 const { pageIsLoaded, dataLists, getData } = useLists<Article>('api/frontend/article/list', {
-    limit: 20,
-    by: 'visit',
-    cache: 'true',
+    limit: 20, by: 'visit', cache: 'true',
 })
 
-watch(pageIsLoaded, (val) => {
+watch(() => checked2, (val) => {
     if (val)
         popupShow = true
 })
+function onPopupClose(payload: boolean) {
+    checked2 = payload
+}
 
 const swiperData = [
     'https://resource.tuniaokj.com/images/xiongjie/x14.jpg',

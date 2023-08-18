@@ -18,11 +18,17 @@ body {
     font-size: 24px;
     line-height: 1;
     color: #000;
-    background: #f4f4f4;
+    background: #fff;
 }
 
 div, span {
     box-sizing: border-box;
+}
+
+.uni-tabbar {
+    left: 50% !important;
+    width: 750rpx !important;
+    margin-left: -375rpx !important;
 }
 
 /* #endif */

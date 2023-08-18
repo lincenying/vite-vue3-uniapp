@@ -3,7 +3,7 @@ public/assets/**/*.js
 dist/**/*.js
 dist/**/*.css
 src/assets/icon-font/*
-components.d.ts
-auto-imports.d.ts
+z-components.d.ts
+z-auto-imports.d.ts
 src/polyfill/index.js
 *.code-snippets

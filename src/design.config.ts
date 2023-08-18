@@ -2,7 +2,7 @@ const vmDesignWidth = 750 // 设计稿宽度
 const vmDesignHeight = 1334 // 设计稿宽度
 const vmMinWidth = 320 // 兼容最小宽度
 const vmMaxWidth = 750 // 兼容最大宽度
-const vmFontSize = 1
+const vmFontSize = 1 // px转成rpx的比例
 
 const vmMinWindow = `${vmMinWidth}Px` // 兼容最小宽度
 const vmMaxWindow = `${vmMaxWidth}Px` // 兼容最大宽度

@@ -6,7 +6,7 @@
 import { withDefaults } from 'unplugin-vue-macros/macros' assert { type: 'macro' }
 
 const { title } = withDefaults(definePropsRefs<{
-    title: string
+    title?: string
 }>(), {
     title: 'title',
 })

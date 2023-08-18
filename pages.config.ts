@@ -4,7 +4,6 @@ export default defineUniPages({
     easycom: {
         autoscan: true,
         custom: {
-            '^u-(.*)': 'uview-plus/components/u-$1/u-$1.vue',
             '^uni-(.*)': '@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue',
         },
     },
@@ -20,8 +19,10 @@ export default defineUniPages({
         'app-plus': {
             titleNView: false, // 移除 H5、APP 顶部导航
         },
+        // rpx 计算所支持的最大设备宽度，单位 px
         'rpxCalcMaxDeviceWidth': 750,
-        'rpxCalcBaseDeviceWidth': 750,
+        // rpx 计算使用的基准设备宽度，设备实际宽度超出 rpx 计算所支持的最大设备宽度时将按基准宽度计算，单位 px
+        'rpxCalcBaseDeviceWidth': 540,
     },
     tabBar: {
         color: '#A6A6A6',
