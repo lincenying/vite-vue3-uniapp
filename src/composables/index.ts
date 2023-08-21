@@ -189,16 +189,16 @@ export function ObjectToArray(obj: any, _key = 'pid', _value = 0) {
     return result
 }
 
-export const defaultBarData = {
-    showBar: false,
-    showPlaceholder: true,
-    barBgColor: 'none',
-    barShowBack: false,
+export const defaultShowBar = {
+    showTopBar: false,
+    showTopBarPlaceholder: true,
+    topBarBgColor: 'none',
+    showTopBarBackBtn: false,
 }
 
-export const defaultNoBarData = {
-    showBar: true,
-    showPlaceholder: false,
-    barBgColor: 'none',
-    barShowBack: true,
+export const defaultHideBar = {
+    showTopBar: true,
+    showTopBarPlaceholder: false,
+    topBarBgColor: 'none',
+    showTopBarBackBtn: true,
 }

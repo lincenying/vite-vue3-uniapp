@@ -8,8 +8,6 @@ declare global {
   const $api: typeof import('@/api')['$api']
   const EffectScope: typeof import('vue')['EffectScope']
   const ObjectToArray: typeof import('./composables/index')['ObjectToArray']
-  const activeCategoryKey: typeof import('./composables/provide')['activeCategoryKey']
-  const activeTreeKey: typeof import('./composables/provide')['activeTreeKey']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -17,8 +15,8 @@ declare global {
   const deepClone: typeof import('@lincy/utils')['deepClone']
   const deepEqual: typeof import('@lincy/utils')['deepEqual']
   const deepMerge: typeof import('@lincy/utils')['deepMerge']
-  const defaultBarData: typeof import('./composables/index')['defaultBarData']
-  const defaultNoBarData: typeof import('./composables/index')['defaultNoBarData']
+  const defaultHideBar: typeof import('./composables/index')['defaultHideBar']
+  const defaultShowBar: typeof import('./composables/index')['defaultShowBar']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
@@ -26,7 +24,6 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getNavBarInfo: typeof import('./composables/system-rect-info')['getNavBarInfo']
-  const getPageHeight: typeof import('./composables/index')['getPageHeight']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./composables/index')['isDark']
@@ -72,9 +69,7 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const showLoading: typeof import('./composables/index')['showLoading']
   const showToast: typeof import('./composables/index')['showToast']
-  const statusHeight: typeof import('./composables/index')['statusHeight']
   const storeToRefs: typeof import('pinia')['storeToRefs']
-  const titleHeight: typeof import('./composables/index')['titleHeight']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -83,8 +78,6 @@ declare global {
   const triggerRef: typeof import('vue')['triggerRef']
   const uniAsync: typeof import('./composables/index')['uniAsync']
   const unref: typeof import('vue')['unref']
-  const updateActiveCategoryKey: typeof import('./composables/provide')['updateActiveCategoryKey']
-  const updateActiveTreeKey: typeof import('./composables/provide')['updateActiveTreeKey']
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -121,8 +114,8 @@ declare module 'vue' {
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
-    readonly defaultBarData: UnwrapRef<typeof import('./composables/index')['defaultBarData']>
-    readonly defaultNoBarData: UnwrapRef<typeof import('./composables/index')['defaultNoBarData']>
+    readonly defaultHideBar: UnwrapRef<typeof import('./composables/index')['defaultHideBar']>
+    readonly defaultShowBar: UnwrapRef<typeof import('./composables/index')['defaultShowBar']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
@@ -214,8 +207,8 @@ declare module '@vue/runtime-core' {
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
-    readonly defaultBarData: UnwrapRef<typeof import('./composables/index')['defaultBarData']>
-    readonly defaultNoBarData: UnwrapRef<typeof import('./composables/index')['defaultNoBarData']>
+    readonly defaultHideBar: UnwrapRef<typeof import('./composables/index')['defaultHideBar']>
+    readonly defaultShowBar: UnwrapRef<typeof import('./composables/index')['defaultShowBar']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>

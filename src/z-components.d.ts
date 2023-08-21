@@ -11,11 +11,10 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     EmptyComponents: typeof import('./components/empty-components.vue')['default']
     EmptyPopup: typeof import('./components/empty-popup.vue')['default']
+    IsEmpty: typeof import('./components/is-empty.vue')['default']
     Layout: typeof import('./components/layout.vue')['default']
     LcyCheckbox: typeof import('./components/lcy-checkbox.vue')['default']
-    NoData: typeof import('./components/no-data.vue')['default']
     TnButton: typeof import('@tuniao/tnui-vue3-uniapp/components/button/src/button.vue')['default']
-    TnCheckbox: typeof import('@tuniao/tnui-vue3-uniapp/components/checkbox/src/checkbox.vue')['default']
     TnEmpty: typeof import('@tuniao/tnui-vue3-uniapp/components/empty/src/empty.vue')['default']
     TnForm: typeof import('@tuniao/tnui-vue3-uniapp/components/form/src/form.vue')['default']
     TnFormItem: typeof import('@tuniao/tnui-vue3-uniapp/components/form/src/form-item.vue')['default']

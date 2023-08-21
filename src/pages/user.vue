@@ -14,11 +14,11 @@ defineOptions({
 })
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
-    pageIsLoaded: true,
+    dataIsLoaded: true,
     hasData: false,
-    showNoData: true,
-    barTitle: '我的',
-    ...defaultBarData,
+    showEmptySlot: true,
+    topBarTitle: '我的',
+    ...defaultShowBar,
 })))
 provide(dataReloadKey, async () => {
     showLoading()

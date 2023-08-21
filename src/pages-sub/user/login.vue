@@ -135,11 +135,11 @@ async function mpWeixinLogin() {
 }
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
-    pageIsLoaded: true,
+    dataIsLoaded: true,
     hasData: true,
-    showNoData: false,
-    barTitle: '',
-    ...defaultNoBarData,
+    showEmptySlot: false,
+    topBarTitle: '',
+    ...defaultHideBar,
 })))
 provide(dataReloadKey, async () => {
     showLoading()

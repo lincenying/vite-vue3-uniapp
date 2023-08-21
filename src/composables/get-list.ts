@@ -1,8 +1,10 @@
-interface ListReactive<T> {
-    pageIsLoaded: boolean
+import type { UnwrapRef } from 'vue'
+
+interface ListReactive<T, K> {
+    dataIsLoaded: boolean
     dataLists: T[]
     apiUrl: string
-    apiParams: Obj
+    apiParams: UnwrapRef<K>
 }
 
 /**
@@ -11,12 +13,13 @@ interface ListReactive<T> {
  * @param params api请求参数
  * @returns
  */
-export function useList<T>(url: string, params: Obj = {}) {
-    const listData: ListReactive<T> = reactive({
-        pageIsLoaded: false,
+export function useList<T, K extends object = object>(url: string, params?: K) {
+    const apiParams = params ?? {} as K
+    const listData: ListReactive<T, K> = reactive({
+        dataIsLoaded: false,
         dataLists: [],
         apiUrl: url,
-        apiParams: params,
+        apiParams,
     })
 
     async function getData() {
@@ -24,7 +27,7 @@ export function useList<T>(url: string, params: Obj = {}) {
         if (code === 200)
             listData.dataLists = [...data]
 
-        listData.pageIsLoaded = true
+        listData.dataIsLoaded = true
     }
 
     getData()

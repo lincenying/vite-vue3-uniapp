@@ -2,7 +2,7 @@
     <layout class-name="wrap-tab layout-img ActivityRouter">
         <TnListItem
             v-for="(item, index) in dataLists" :key="index" right-icon="right"
-            @click="router.push(`~sub/acticity/detail?id=${item._id}`)"
+            @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"
         >
             <div flex--c>
                 <TnIcon name="tree" />
@@ -10,7 +10,7 @@
             </div>
         </TnListItem>
         <div pb-10px pt-30px>
-            <TnLoadmore :status="status" :text="customLoadMoreText" loading-icon-mode="flower" color="#999" />
+            <TnLoadmore :status="loadStatus" :text="customLoadMoreText" loading-icon-mode="flower" color="#999" />
         </div>
     </layout>
 </template>
@@ -35,19 +35,23 @@ const customLoadMoreText: LoadmoreText = {
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
 
-const { pageIsLoaded, dataLists, status, getData } = useLists<Article>('api/frontend/article/list', {
-    limit: 20, by: 'visit', cache: 'true',
+interface ApiParams { page: number; limit: number; by: string; cache: string }
+
+const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/frontend/article/list', {
+    limit: 20, by: 'visit', cache: 'true', page: 1,
 })
 
+console.log(apiParams)
+
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
-    pageIsLoaded: pageIsLoaded.value,
+    dataIsLoaded: dataIsLoaded.value,
     hasData: dataLists.value.length > 0,
-    showNoData: !pageIsLoaded.value || dataLists.value.length === 0,
-    barTitle: '福利活动',
-    ...defaultBarData,
+    showEmptySlot: !dataIsLoaded.value || dataLists.value.length === 0,
+    topBarTitle: '福利活动',
+    ...defaultShowBar,
 })))
 provide(dataReloadKey, async () => {
-    status.value = 'loadmore'
+    loadStatus.value = 'loadmore'
     showLoading()
     await getData()
     uni.hideLoading()

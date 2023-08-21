@@ -1,12 +1,16 @@
 import { sleep } from '@lincy/utils'
+import type { UnwrapRef } from 'vue'
 
-interface ListsReactive<T> {
-    pageIsLoaded: boolean
+interface PageType {
     page: number
+}
+
+interface ListsReactive<T, K> {
+    dataIsLoaded: boolean
     dataLists: T[]
-    status: 'loading' | 'loadmore' | 'nomore'
+    loadStatus: 'loading' | 'loadmore' | 'nomore'
     apiUrl: string
-    apiParams: Obj
+    apiParams: UnwrapRef<K>
 }
 
 /**
@@ -15,42 +19,41 @@ interface ListsReactive<T> {
  * @param params api请求参数
  * @returns
  */
-export function useLists<T>(url: string, params: Obj = {}) {
-    const listData: ListsReactive<T> = reactive({
-        pageIsLoaded: false,
-        page: 1,
+export function useLists<T, K extends PageType = PageType>(url: string, params?: K) {
+    const apiParams = params ?? { page: 1 } as K
+    const listData: ListsReactive<T, K> = reactive({
+        dataIsLoaded: false,
         dataLists: [],
-        status: 'loadmore',
+        loadStatus: 'loadmore',
         apiUrl: url,
-        apiParams: params,
+        apiParams,
     })
 
     async function getData() {
-        if (listData.status === 'loading' || listData.status === 'nomore')
+        if (listData.loadStatus === 'loading' || listData.loadStatus === 'nomore')
             return
 
-        listData.status = 'loading'
-        listData.apiParams.page = listData.page
+        listData.loadStatus = 'loading'
         await sleep(1000)
         const { code, data } = await $api.get<ResDataLists<T[]>>(listData.apiUrl, listData.apiParams)
         if (code === 200) {
-            if (listData.page === 1)
+            if (listData.apiParams.page === 1)
                 listData.dataLists = [...data.list]
             else
                 listData.dataLists = listData.dataLists.concat(data.list)
 
             if (data.hasNext) {
-                listData.page += 1
-                listData.status = 'loadmore'
+                listData.apiParams.page += 1
+                listData.loadStatus = 'loadmore'
             }
             else {
-                listData.status = 'nomore'
+                listData.loadStatus = 'nomore'
             }
         }
         else {
-            listData.status = 'loadmore'
+            listData.loadStatus = 'loadmore'
         }
-        listData.pageIsLoaded = true
+        listData.dataIsLoaded = true
     }
 
     getData()

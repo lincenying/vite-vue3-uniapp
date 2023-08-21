@@ -80,9 +80,7 @@ const pageStyle = computed(() => {
     return 'overflow: inherit'
 })
 
-const { pageIsLoaded, dataLists, getData } = useLists<Article>('api/frontend/article/list', {
-    limit: 20, by: 'visit', cache: 'true',
-})
+const { dataIsLoaded, dataLists, getData } = useLists<Article>('api/frontend/article/list')
 
 watch(() => checked2, (val) => {
     if (val)
@@ -140,11 +138,11 @@ function submitForm() {
 }
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
-    pageIsLoaded: pageIsLoaded.value,
+    dataIsLoaded: dataIsLoaded.value,
     hasData: dataLists.value.length > 0,
-    showNoData: !pageIsLoaded.value || dataLists.value.length === 0,
-    barTitle: '首页',
-    ...defaultBarData,
+    showEmptySlot: !dataIsLoaded.value || dataLists.value.length === 0,
+    topBarTitle: '首页',
+    ...defaultShowBar,
 })))
 provide(dataReloadKey, async () => {
     showLoading()

@@ -1,10 +1,11 @@
 import { sleep } from '@lincy/utils'
+import type { UnwrapRef } from 'vue'
 
-interface DataDetail<T> {
-    pageIsLoaded: boolean
+interface DataDetail<T, K> {
+    dataIsLoaded: boolean
     dataDetail: Nullable<T>
     apiUrl: string
-    apiParams: Obj
+    apiParams: UnwrapRef<K>
     needLogin: boolean
 }
 
@@ -15,12 +16,13 @@ interface DataDetail<T> {
  * @param needLoginFn 接口返回401时执行函数
  * @returns
  */
-export function useDetail<T>(url: string, params: Obj = {}, needLoginFn: AnyFn = () => {}) {
-    const dataDetail: DataDetail<T> = reactive({
-        pageIsLoaded: false,
+export function useDetail<T, K extends object = object>(url: string, params?: K, needLoginFn: AnyFn = () => {}) {
+    const apiParams = params ?? {} as K
+    const dataDetail: DataDetail<T, K> = reactive({
+        dataIsLoaded: false,
         dataDetail: null,
         apiUrl: url,
-        apiParams: params,
+        apiParams,
         needLogin: false,
     })
 
@@ -35,7 +37,7 @@ export function useDetail<T>(url: string, params: Obj = {}, needLoginFn: AnyFn =
             needLoginFn()
         }
 
-        dataDetail.pageIsLoaded = true
+        dataDetail.dataIsLoaded = true
     }
 
     getData()
