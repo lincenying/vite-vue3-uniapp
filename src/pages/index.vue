@@ -28,7 +28,7 @@
 
         <div flex--c>
             <div class="i-carbon:api" />
-            <div class="i-svg-spinners:ring-resize?bg" text="60px #f90" />
+            <div class="i-svg-spinners:ring-resize" text="60px #f90" />
             <div v-if="checked === 0" class="i-mdi:checkbox-blank-circle-outline" text="60px #999" @click="checked = 1" />
             <div v-else class="i-mdi:checkbox-marked-circle" text="60px #f90" @click="checked = 0" />
             <div v-if="radioed === 0" class="i-mdi:checkbox-blank-outline" text="60px #999" @click="radioed = 1" />
@@ -123,17 +123,11 @@ const formRules: FormRules = {
 /* 提交表单 */
 function submitForm() {
     formRef.value?.validate((valid) => {
-        if (valid) {
-            uni.showToast({
-                title: '提交成功',
-            })
-        }
-        else {
-            uni.showToast({
-                title: '表单校验失败',
-                icon: 'none',
-            })
-        }
+        if (valid)
+            showToast('提交成功', 'success')
+
+        else
+            showToast('表单校验失败')
     })
 }
 
