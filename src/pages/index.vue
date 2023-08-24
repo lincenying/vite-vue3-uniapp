@@ -22,7 +22,7 @@
                 </TnFormItem>
             </TnForm>
             <view class="tn-mt tn-flex-center">
-                <TnButton size="lg" @click="submitForm"> 提交 </TnButton>
+                <tn-button size="lg" @click="submitForm"> 提交 </tn-button>
             </view>
         </div>
 

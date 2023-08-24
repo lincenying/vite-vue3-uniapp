@@ -3,13 +3,15 @@
 </template>
 
 <script lang="ts" setup>
-import { withDefaults } from 'unplugin-vue-macros/macros' assert { type: 'macro' }
-
-const { title } = withDefaults(definePropsRefs<{
+interface Props {
     title?: string
-}>(), {
+}
+
+const props = withDefaults(defineProps<Props>(), {
     title: 'title',
 })
+
+const { title } = toRefs(props)
 
 defineOptions({
     name: 'EmptyComponents',

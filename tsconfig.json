@@ -34,7 +34,6 @@
     "nativeTags": ["div", "block", "component", "template", "slot"],
     "target": 3, // or 2.7 for Vue 2
     "plugins": [
-      "@vue-macros/volar/define-options",
       "@vue-macros/volar/define-props-refs",
       "@vue-macros/volar/define-props"
     ]
