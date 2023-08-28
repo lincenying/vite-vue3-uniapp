@@ -35,11 +35,13 @@ const customLoadMoreText: LoadmoreText = {
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
 
-interface ApiParams { page: number; limit: number; by: string; cache: string }
+interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number}
 
 const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/frontend/article/list', {
     limit: 20, by: 'visit', cache: 'true', page: 1,
 })
+
+apiParams.value.xxx = 1
 
 console.log(apiParams)
 
@@ -58,7 +60,11 @@ provide(dataReloadKey, async () => {
 })
 </script>
 
-<route lang="yaml">
-style:
-  navigationStyle: custom
+<route lang="json">
+{
+    "style": {
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true
+    }
+}
 </route>

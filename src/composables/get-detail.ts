@@ -6,6 +6,7 @@ interface DataDetail<T, K> {
     dataDetail: Nullable<T>
     apiUrl: string
     apiParams: UnwrapRef<K>
+    isRefresh: boolean
     needLogin: boolean
 }
 
@@ -24,6 +25,7 @@ export function useDetail<T, K extends object = object>(url: string, params?: K,
         apiUrl: url,
         apiParams,
         needLogin: false,
+        isRefresh: false,
     })
 
     async function getData() {
@@ -31,6 +33,9 @@ export function useDetail<T, K extends object = object>(url: string, params?: K,
         const { code, data } = await $api.get<T>(dataDetail.apiUrl, dataDetail.apiParams)
         if (code === 200) {
             dataDetail.dataDetail = data
+
+            if (dataDetail.isRefresh)
+                showToast('刷新成功!')
         }
         else if (code === 401) {
             dataDetail.needLogin = true
@@ -41,6 +46,13 @@ export function useDetail<T, K extends object = object>(url: string, params?: K,
     }
 
     getData()
+
+    onPullDownRefresh(async () => {
+        dataDetail.isRefresh = true
+        await getData()
+        uni.stopPullDownRefresh()
+        dataDetail.isRefresh = false
+    })
 
     return {
         ...toRefs(dataDetail),

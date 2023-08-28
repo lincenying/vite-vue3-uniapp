@@ -1,21 +1,18 @@
-const vmDesignWidth = 750 // 设计稿宽度
-const vmDesignHeight = 1334 // 设计稿宽度
-const vmMinWidth = 320 // 兼容最小宽度
-const vmMaxWidth = 750 // 兼容最大宽度
-const vmFontSize = 1 // px转成rpx的比例
-
-const vmMinWindow = `${vmMinWidth}Px` // 兼容最小宽度
-const vmMaxWindow = `${vmMaxWidth}Px` // 兼容最大宽度
-const vmDesignMultiple = vmDesignWidth / 750
-
-export const designWidth = vmDesignWidth
-export const designHeight = vmDesignHeight
-export const designMultiple = vmDesignMultiple
-export const minWidth = vmMinWidth
-export const minWindow = vmMinWindow
-export const maxWidth = vmMaxWidth
-export const maxWindow = vmMaxWindow
-export const fontSize = vmFontSize
+/** 设计稿宽度 */
+export const designWidth = 750
+/** 设计稿宽度 */
+export const designHeight = 1334
+export const designMultiple = designWidth / 750
+/** 兼容最小宽度 */
+export const minWidth = 320
+/** 兼容最大宽度 */
+export const minWindow = 750
+/** 兼容最小宽度 */
+export const maxWidth = `${minWidth}Px`
+/** 兼容最大宽度 */
+export const maxWindow = `${minWindow}Px`
+/** px转rpx的比例 */
+export const fontSize = designWidth / 750
 
 export const charsetRemoval = function () {
     return {

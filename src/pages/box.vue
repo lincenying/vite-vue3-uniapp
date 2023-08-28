@@ -44,7 +44,11 @@ const imageListData = [
     'https://resource.tuniaokj.com/images/album/xiong9.jpg',
 ]
 
-const { dataIsLoaded, dataLists, getData } = useLists<Article>('api/frontend/article/list?limit=20&by=visit&cache=true')
+interface ApiParams { page: number; limit: number; by: string; cache: string }
+
+const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('api/frontend/article/list', {
+    limit: 20, by: 'visit', cache: 'true', page: 1,
+})
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     dataIsLoaded: dataIsLoaded.value,

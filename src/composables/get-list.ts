@@ -5,6 +5,7 @@ interface ListReactive<T, K> {
     dataLists: T[]
     apiUrl: string
     apiParams: UnwrapRef<K>
+    isRefresh: boolean
 }
 
 /**
@@ -20,6 +21,7 @@ export function useList<T, K extends object = object>(url: string, params?: K) {
         dataLists: [],
         apiUrl: url,
         apiParams,
+        isRefresh: false,
     })
 
     async function getData() {
@@ -27,10 +29,19 @@ export function useList<T, K extends object = object>(url: string, params?: K) {
         if (code === 200)
             listData.dataLists = [...data]
 
+        if (listData.isRefresh)
+            showToast('刷新成功!')
         listData.dataIsLoaded = true
     }
 
     getData()
+
+    onPullDownRefresh(async () => {
+        listData.isRefresh = true
+        await getData()
+        uni.stopPullDownRefresh()
+        listData.isRefresh = false
+    })
 
     return {
         ...toRefs(listData),

@@ -11,6 +11,7 @@ interface ListsReactive<T, K> {
     loadStatus: 'loading' | 'loadmore' | 'nomore'
     apiUrl: string
     apiParams: UnwrapRef<K>
+    isRefresh: boolean
 }
 
 /**
@@ -27,6 +28,7 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
         loadStatus: 'loadmore',
         apiUrl: url,
         apiParams,
+        isRefresh: false,
     })
 
     async function getData() {
@@ -49,6 +51,9 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
             else {
                 listData.loadStatus = 'nomore'
             }
+
+            if (listData.isRefresh)
+                showToast('刷新成功!')
         }
         else {
             listData.loadStatus = 'loadmore'
@@ -59,6 +64,14 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
     getData()
 
     onReachBottom(getData)
+
+    onPullDownRefresh(async () => {
+        listData.apiParams.page = 1
+        listData.isRefresh = true
+        await getData()
+        uni.stopPullDownRefresh()
+        listData.isRefresh = false
+    })
 
     return {
         ...toRefs(listData),
