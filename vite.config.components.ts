@@ -24,6 +24,7 @@ export default (): PluginOption[] => ([
             {
                 '@/api': ['$api'],
                 '@lincy/utils': ['deepClone', 'deepMerge', 'deepEqual'],
+                '@lincy/vue-reuse-template': ['createReusableTemplate'],
                 'pinia': ['defineStore', 'storeToRefs'],
                 '@dcloudio/uni-app': [
                     'onLaunch',

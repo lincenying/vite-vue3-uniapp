@@ -1,4 +1,8 @@
 <template>
+    <DefineTemplate v-slot="{ data }">
+        <div v-for="(item, index) in data" :key="index">{{ item }}</div>
+    </DefineTemplate>
+
     <layout class-name="wrap-tab layout-img BoxRouter">
         <TnScrollList>
             <view relative mb-30px flex flex-nowrap items-center>
@@ -21,12 +25,16 @@
         <div>
             <TnPhotoAlbum :data="imageListData" :max="9" />
         </div>
+
+        <ReuseTemplate :data="imageListData" />
     </layout>
 </template>
 
 <script setup lang="ts">
 import type { Article } from './index.types'
 import type { LayoutDataType } from '~/types'
+
+const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ data: string[] }>()
 
 defineOptions({
     name: 'BoxRouter',

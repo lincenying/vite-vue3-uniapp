@@ -29,6 +29,9 @@ dependencies:
   '@lincy/utils':
     specifier: ^0.3.3
     version: 0.3.3
+  '@lincy/vue-reuse-template':
+    specifier: ^1.0.1
+    version: 1.0.1(vue@3.3.4)
   '@tuniao/tn-icon':
     specifier: ^1.5.0
     version: 1.5.0
@@ -3984,6 +3987,14 @@ packages:
 
   /@lincy/utils@0.3.3:
     resolution: {integrity: sha512-huehEehOq+I+QoxwlcNDowMDE0mfVCivUXh8MuSun7fYHX/lZYdLn+korXL7rV5F1HKoOzKuu9u+wPcNIlC1DA==}
+    dev: false
+
+  /@lincy/vue-reuse-template@1.0.1(vue@3.3.4):
+    resolution: {integrity: sha512-cB9y101+tgF2f3VMDBhN5u3gwoVjXQ+jD6vGfeW4gKfFZx+Vz+LVreEBJEQh1TjNJ8yp9/LPD3ZjONGEnETGnw==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.4
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:

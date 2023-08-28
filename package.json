@@ -36,6 +36,7 @@
     "@dcloudio/uni-ui": "^1.4.28",
     "@lincy/async-validation": "^1.0.0",
     "@lincy/utils": "^0.3.3",
+    "@lincy/vue-reuse-template": "^1.0.1",
     "@tuniao/tn-icon": "^1.5.0",
     "@tuniao/tn-style": "^1.0.19",
     "@tuniao/tnui-vue3-uniapp": "^1.0.11",

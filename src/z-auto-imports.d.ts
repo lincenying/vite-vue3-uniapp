@@ -10,6 +10,7 @@ declare global {
   const ObjectToArray: typeof import('./composables/index')['ObjectToArray']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
+  const createReusableTemplate: typeof import('@lincy/vue-reuse-template')['createReusableTemplate']
   const customRef: typeof import('vue')['customRef']
   const dataReloadKey: typeof import('./composables/provide')['dataReloadKey']
   const deepClone: typeof import('@lincy/utils')['deepClone']
@@ -109,6 +110,7 @@ declare module 'vue' {
     readonly ObjectToArray: UnwrapRef<typeof import('./composables/index')['ObjectToArray']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createReusableTemplate: UnwrapRef<typeof import('@lincy/vue-reuse-template')['createReusableTemplate']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
@@ -202,6 +204,7 @@ declare module '@vue/runtime-core' {
     readonly ObjectToArray: UnwrapRef<typeof import('./composables/index')['ObjectToArray']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createReusableTemplate: UnwrapRef<typeof import('@lincy/vue-reuse-template')['createReusableTemplate']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly dataReloadKey: UnwrapRef<typeof import('./composables/provide')['dataReloadKey']>
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
