@@ -103,6 +103,7 @@ userStore.setGlobalLoading(true)
   }
 }
 ```
+相关文档: https://github.com/uni-helper/vite-plugin-uni-pages
 
 ## Api封装
 使用axios重新封装, 并使用`fant-axios-adapter`将小程序的api适配一致
@@ -153,7 +154,7 @@ const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Art
 ```
 
 
-如果你需要做搜索, 或者切换分类什么的, 也很简单, 假设我现在需要修改tab的值,然后重新请求接口, 那么只需要:
+如果你需要做搜索, 或者切换分类什么的, 也很简单, 假设我现在需要修改by的值,然后重新请求接口, 那么只需要:
 ```ts
 function changeBy(by: string) {
     apiParams.value.by = by
@@ -162,6 +163,14 @@ function changeBy(by: string) {
 }
 ```
 先更新apiParams里的相关参数, 然后重新请求接口即可
+当然也可以新增参数, 不过需要在ts类型里先定义好
+```ts
+function addParams() {
+    apiParams.value.xxx = 1
+    apiParams.value.page = 1
+    getData()
+}
+```
 
 接口默认返回数据接口为:
 ```
