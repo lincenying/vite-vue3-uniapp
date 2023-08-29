@@ -150,9 +150,13 @@ const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Art
     limit: 20, by: 'visit', cache: 'true', page: 1,
 })
 ```
-如上面代码, 只需要将接口相关参数传入接口, 返回的参数中, `dataIsLoaded`为接口是否请求完成(响应式的Ref数据),`apiParams`为传入参数(响应式的Ref数据),
+如上面代码, 只需要将接口相关参数传入接口, 返回的参数中,
 
-`dataList`为数据列表(响应式的Ref数据), `getData`为请求列表的方法, `loadStatus`为分页状态(响应式的Ref数据), 可能的值为: 'loading' | 'loadmore' | 'nomore'
+- `dataIsLoaded`为接口是否请求完成(响应式的Ref数据),
+- `apiParams`为传入参数(响应式的Ref数据),
+- `dataList`为数据列表(响应式的Ref数据),
+- `getData`为请求列表的方法,
+- `loadStatus`为分页状态(响应式的Ref数据), 可能的值为: 'loading' | 'loadmore' | 'nomore'
 
 模板代码为:
 ```html
