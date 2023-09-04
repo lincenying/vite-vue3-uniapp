@@ -42,6 +42,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * @see https://github.com/uni-helper/vite-plugin-uni-pages
              */
             UniPages({
+                dts: 'src/uni-pages.d.ts',
                 subPackages: [
                     'src/pages-sub',
                 ],
