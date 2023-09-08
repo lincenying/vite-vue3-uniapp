@@ -2,7 +2,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from '@uni-helper/vite-plugin-uni-components'
 import type { PluginOption } from 'vite'
 
-import { TuNiaoResolver } from '@lincy/uniapp-ui-resolver'
+import { TuNiaoResolver, wotDesignResolver } from '@lincy/uniapp-ui-resolver'
 
 export default (): PluginOption[] => ([
     /**
@@ -61,6 +61,7 @@ export default (): PluginOption[] => ([
         extensions: ['vue', 'tsx', 'jsx'],
         resolvers: [
             TuNiaoResolver(),
+            wotDesignResolver(),
         ],
         dts: 'src/z-components.d.ts',
         directoryAsNamespace: true,

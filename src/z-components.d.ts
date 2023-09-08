@@ -28,5 +28,8 @@ declare module '@vue/runtime-core' {
     TnPopup: typeof import('@tuniao/tnui-vue3-uniapp/components/popup/src/popup.vue')['default']
     TnScrollList: typeof import('@tuniao/tnui-vue3-uniapp/components/scroll-list/src/scroll-list.vue')['default']
     TnSwiper: typeof import('@tuniao/tnui-vue3-uniapp/components/swiper/src/swiper.vue')['default']
+    WdButton: typeof import('wot-design-uni/components/wd-button/wd-button.vue')['default']
+    WdIcon: typeof import('wot-design-uni/components/wd-icon/wd-icon.vue')['default']
+    WdLoading: typeof import('wot-design-uni/components/wd-loading/wd-loading.vue')['default']
   }
 }

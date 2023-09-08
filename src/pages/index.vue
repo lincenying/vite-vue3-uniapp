@@ -42,6 +42,11 @@
             </lcy-checkbox>
         </div>
 
+        <div>
+            <wd-button>主要按钮</wd-button>
+            <wd-loading color="green" type="outline" />
+        </div>
+
         <div flex-bc>
             <div v-if="!heart" class="i-line-md:heart" text="40px" @click="heart = 1" />
             <div v-else class="i-line-md:heart-filled" text="40px" @click="heart = 0" />

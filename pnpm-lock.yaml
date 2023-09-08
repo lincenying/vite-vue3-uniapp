@@ -65,6 +65,9 @@ dependencies:
   we-cropper:
     specifier: ^1.4.0
     version: 1.4.0
+  wot-design-uni:
+    specifier: ^0.1.9
+    version: 0.1.9(vue@3.3.4)
 
 devDependencies:
   '@dcloudio/types':
@@ -104,8 +107,8 @@ devDependencies:
     specifier: ^1.15.10
     version: 1.15.10(postcss@8.4.29)(stylelint@15.10.3)
   '@lincy/uniapp-ui-resolver':
-    specifier: ^1.0.4
-    version: 1.0.4
+    specifier: ^1.1.0
+    version: 1.1.0
   '@types/node':
     specifier: ^20.5.9
     version: 20.5.9
@@ -3974,8 +3977,8 @@ packages:
       - postcss
     dev: true
 
-  /@lincy/uniapp-ui-resolver@1.0.4:
-    resolution: {integrity: sha512-bp4PvbtdXeBCWnyYvyNJBoIJepArEzxTKxoU36FVR96/NnIm2RRKSZOrehxOGEUhIOBSp7Bjtih0hD1jYMDbLg==}
+  /@lincy/uniapp-ui-resolver@1.1.0:
+    resolution: {integrity: sha512-VXoqMEO4P8O2QPXlnf9sykxQc0RWG+xHgH7BFp5IfzbfdTCwnp0SRFcjw1HQXnLhJ3/OR99gDJhkmwJCFsCZPw==}
     dev: true
 
   /@lincy/utils@0.3.3:
@@ -4724,9 +4727,6 @@ packages:
     engines: {node: '>=14'}
     peerDependencies:
       postcss: ^8.4.21
-    peerDependenciesMeta:
-      postcss:
-        optional: true
     dependencies:
       '@unocss/config': 0.55.7
       '@unocss/core': 0.55.7
@@ -11604,6 +11604,15 @@ packages:
       assert-never: 1.2.1
       babel-walk: 3.0.0-canary-5
     dev: true
+
+  /wot-design-uni@0.1.9(vue@3.3.4):
+    resolution: {integrity: sha512-Gjb33vasDqdoMV0rTkPSCgmB+d9acwsdhfYNiMX1OO5N28R2ayhl8JlvBgakVC4OFT/ll3NoHkKWJs7EuXr7tg==}
+    engines: {HBuilderX: ^3.8.7}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
 
   /wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}

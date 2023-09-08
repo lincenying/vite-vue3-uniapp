@@ -47,7 +47,8 @@
     "fant-axios-adapter": "^0.0.6",
     "pinia": "2.0.36",
     "vue": "^3.3.4",
-    "we-cropper": "^1.4.0"
+    "we-cropper": "^1.4.0",
+    "wot-design-uni": "^0.1.9"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
@@ -62,7 +63,7 @@
     "@lincy/base-config": "^0.0.2",
     "@lincy/eslint-config": "^2.2.0",
     "@lincy/stylelint-config": "^1.15.10",
-    "@lincy/uniapp-ui-resolver": "^1.0.4",
+    "@lincy/uniapp-ui-resolver": "^1.1.0",
     "@types/node": "^20.5.9",
     "@uni-helper/uni-app-types": "^0.5.9",
     "@uni-helper/vite-plugin-uni-components": "^0.0.6",
