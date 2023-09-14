@@ -48,7 +48,7 @@
     "pinia": "2.0.36",
     "vue": "^3.3.4",
     "we-cropper": "^1.4.0",
-    "wot-design-uni": "^0.1.13"
+    "wot-design-uni": "^0.1.14"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
@@ -61,11 +61,11 @@
     "@iconify-json/mdi": "^1.1.54",
     "@iconify-json/svg-spinners": "^1.1.2",
     "@lincy/base-config": "^0.0.2",
-    "@lincy/eslint-config": "^2.3.0",
+    "@lincy/eslint-config": "^2.4.0",
     "@lincy/stylelint-config": "^1.15.10",
     "@lincy/uniapp-ui-resolver": "^1.1.0",
     "@types/node": "^20.6.0",
-    "@uni-helper/uni-app-types": "^0.5.9",
+    "@uni-helper/uni-app-types": "^0.5.10",
     "@uni-helper/vite-plugin-uni-components": "^0.0.6",
     "@uni-helper/vite-plugin-uni-pages": "^0.2.9",
     "@unocss/eslint-config": "^0.55.7",
@@ -75,7 +75,7 @@
     "miniprogram-api-typings": "^3.12.0",
     "pnpm": "^8.7.5",
     "postcss-px-to-viewport-8-plugin": "^1.2.2",
-    "sass": "^1.66.1",
+    "sass": "^1.67.0",
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.2.2",
     "unocss": "^0.55.7",
