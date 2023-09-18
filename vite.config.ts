@@ -54,7 +54,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * unocss
              * @see https://github.com/antfu/unocss
              * see unocss.config.ts for config
-            */
+             */
             Unocss(),
 
             /**
