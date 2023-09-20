@@ -48,7 +48,7 @@
     "unhead": "^1.7.4",
     "vue": "^3.3.4",
     "we-cropper": "^1.4.0",
-    "wot-design-uni": "^0.1.14"
+    "wot-design-uni": "^0.1.18"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
@@ -68,7 +68,7 @@
     "@uni-helper/uni-app-types": "^0.5.10",
     "@uni-helper/vite-plugin-uni-components": "^0.0.6",
     "@uni-helper/vite-plugin-uni-pages": "^0.2.9",
-    "@unocss/eslint-config": "^0.55.7",
+    "@unocss/eslint-config": "^0.56.0",
     "@vue-macros/volar": "^0.14.3",
     "eslint": "^8.49.0",
     "lint-staged": "^14.0.1",
@@ -78,7 +78,7 @@
     "sass": "^1.67.0",
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.2.2",
-    "unocss": "^0.55.7",
+    "unocss": "^0.56.0",
     "unocss-applet": "^0.5.5",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
