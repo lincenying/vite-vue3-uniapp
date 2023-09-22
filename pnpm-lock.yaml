@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^0.0.2
     version: 0.0.2(postcss@8.4.30)(vite@4.4.9)
   '@lincy/eslint-config':
-    specifier: ^3.0.8
-    version: 3.0.8(eslint@8.49.0)(typescript@5.2.2)
+    specifier: ^3.0.10
+    version: 3.0.10(eslint@8.49.0)(typescript@5.2.2)
   '@lincy/stylelint-config':
     specifier: ^1.15.10
     version: 1.15.10(postcss@8.4.30)(stylelint@15.10.3)
@@ -3942,8 +3942,8 @@ packages:
       - vite
     dev: true
 
-  /@lincy/eslint-config@3.0.8(eslint@8.49.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-27k4g19UNUWTCPZr2/ZTJ10d9+XphohwxuSWF05YgmLmbFBuyPnYwoWCA6er5XdS1dt/VJDI7OkI3i2IT5A7fw==}
+  /@lincy/eslint-config@3.0.10(eslint@8.49.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-lckXZ8JQ9KJ8Qf74NU9SKd4+IzZDMWRxtMajvJL6TrMNxWqBl1bc5bnm5+FDGBmWki0kYoD/eoHY2jy2wJL11Q==}
     peerDependencies:
       eslint: '>=8.0.0'
     dependencies:
