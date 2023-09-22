@@ -65,7 +65,7 @@ type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
  * @param icon 图标
  * @param duration 延迟时间
  * @description 文档: [http://uniapp.dcloud.io/api/ui/prompt?id=showtoast](http://uniapp.dcloud.io/api/ui/prompt?id=showtoast)
-*/
+ */
 export function showToast(title: string, icon: ToastIocn = 'none', duration = 2000) {
     uni.showToast({
         title,

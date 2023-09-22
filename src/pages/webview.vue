@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-const { url } = defineProps<{ url: string }>()
 defineOptions({
     name: 'WebviewRouter',
 })
+const { url } = defineProps<{ url: string }>()
 </script>

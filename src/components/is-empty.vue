@@ -23,9 +23,6 @@
 import defaultImg from '@/static/no-data.png'
 import type { LayoutDataType } from '~/types'
 
-const layoutData = inject(layoutDataKey, ref({} as LayoutDataType))
-const dataReload = inject(dataReloadKey, () => {})
-
 defineOptions({
     name: 'IsEmpty',
     // #ifdef MP-WEIXIN
@@ -34,4 +31,6 @@ defineOptions({
     },
     // #endif
 })
+const layoutData = inject(layoutDataKey, ref({} as LayoutDataType))
+const dataReload = inject(dataReloadKey, () => {})
 </script>

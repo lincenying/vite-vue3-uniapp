@@ -34,11 +34,11 @@
 import type { Article } from './index.types'
 import type { LayoutDataType } from '~/types'
 
-const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ data: string[] }>()
-
 defineOptions({
     name: 'BoxRouter',
 })
+
+const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ data: string[] }>()
 
 const imageListData = [
     'https://resource.tuniaokj.com/images/album/xiong1.jpg',

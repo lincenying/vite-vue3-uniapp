@@ -12,7 +12,6 @@ interface ListReactive<T, K> {
  * 获取类似无分页的列表接口
  * @param url api请求地址
  * @param params api请求参数
- * @returns
  */
 export function useList<T, K extends object = object>(url: string, params?: K) {
     const apiParams = params ?? {} as K

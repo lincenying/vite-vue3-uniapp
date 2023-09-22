@@ -8,6 +8,15 @@
 </template>
 
 <script lang="ts" setup>
+defineOptions({
+    name: 'EmptyComponents',
+    // #ifdef MP-WEIXIN
+    options: {
+        virtualHost: true,
+    },
+    // #endif
+})
+
 const { modelValue, fontSize, iconColor } = defineProps<{
     modelValue: boolean
     fontSize: number
@@ -35,14 +44,5 @@ const iconStyle = computed(() => {
         'font-size': `${uni.upx2px(fontSize)}px`,
         'color': iconColor,
     }
-})
-
-defineOptions({
-    name: 'EmptyComponents',
-    // #ifdef MP-WEIXIN
-    options: {
-        virtualHost: true,
-    },
-    // #endif
 })
 </script>

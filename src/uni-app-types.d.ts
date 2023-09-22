@@ -1,85 +1,85 @@
-import { DefineComponent, ComputedOptions, MethodOptions, ComponentOptionsMixin, EmitsOptions, ExtractPropTypes, VNodeProps, AllowedComponentProps, ComponentCustomProps } from 'vue3';
+import type { AllowedComponentProps, ComponentCustomProps, ComponentOptionsMixin, ComputedOptions, DefineComponent, EmitsOptions, ExtractPropTypes, MethodOptions, VNodeProps } from 'vue3'
 
-type PublicProps = VNodeProps & AllowedComponentProps & ComponentCustomProps;
-type _AnyRecord = Record<string, any>;
-type _Component<P extends _AnyRecord = _AnyRecord> = DefineComponent<{}, {}, {}, ComputedOptions, MethodOptions, ComponentOptionsMixin, ComponentOptionsMixin, EmitsOptions, string, PublicProps, Readonly<ExtractPropTypes<P>>>;
+type PublicProps = VNodeProps & AllowedComponentProps & ComponentCustomProps
+type _AnyRecord = Record<string, any>
+type _Component<P extends _AnyRecord = _AnyRecord> = DefineComponent<{}, {}, {}, ComputedOptions, MethodOptions, ComponentOptionsMixin, ComponentOptionsMixin, EmitsOptions, string, PublicProps, Readonly<ExtractPropTypes<P>>>
 
 declare global {
     namespace UniHelper {
-        type AnyRecord = _AnyRecord;
-        type Component = _Component;
+        type AnyRecord = _AnyRecord
+        type Component = _Component
     }
 }
 
 /** 组件的一些属性值集合 */
 interface _EventTarget<Dataset extends _AnyRecord = _AnyRecord> {
     /** 事件源组件的id */
-    id?: string;
+    id?: string
     /** 当前组件的类型 */
-    tagName?: string;
+    tagName?: string
     /** 事件源组件上由 data- 开头的自定义属性组成的集合 */
-    dataset?: Dataset;
+    dataset?: Dataset
     /** 距离页面顶部的偏移量 */
-    offsetTop: number;
+    offsetTop: number
     /** 距离页面左边的偏移量 */
-    offsetLeft: number;
-    [key: string]: any;
+    offsetLeft: number
+    [key: string]: any
 }
 /** 基础事件 */
 interface _BaseEvent<Mark extends _AnyRecord = _AnyRecord, CurrentTargetDataset extends _AnyRecord = _AnyRecord, TargetDataset extends _AnyRecord = CurrentTargetDataset> {
     /** 事件类型 */
-    type?: string;
+    type?: string
     /** 事件生成时的时间戳 */
-    timeStamp?: number;
+    timeStamp?: number
     /** 事件冒泡路径上所有由 mark: 开头的自定义属性组成的集合 */
-    mark?: Mark;
+    mark?: Mark
     /** 触发事件的源组件的一些属性值集合 */
-    target?: _EventTarget<TargetDataset>;
+    target?: _EventTarget<TargetDataset>
     /** 事件绑定的当前组件的一些属性值集合 */
-    currentTarget?: _EventTarget<CurrentTargetDataset>;
-    [key: string]: any;
+    currentTarget?: _EventTarget<CurrentTargetDataset>
+    [key: string]: any
 }
 /** 自定义事件 */
 interface _CustomEvent<Detail extends _AnyRecord = _AnyRecord, Mark extends _AnyRecord = _AnyRecord, CurrentTargetDataset extends _AnyRecord = _AnyRecord, TargetDataset extends _AnyRecord = CurrentTargetDataset> extends _BaseEvent<Mark, CurrentTargetDataset, TargetDataset> {
     /** 额外信息 */
-    detail: Detail;
-    [key: string]: any;
+    detail: Detail
+    [key: string]: any
 }
 /** 当前停留在屏幕中的触摸点信息 */
 interface _TouchDetail {
     /** 标志符 */
-    identifier?: number;
+    identifier?: number
     /** 距离文档左上角的横向距离 */
-    pageX?: number;
+    pageX?: number
     /** 距离文档左上角的纵向距离 */
-    pageY?: number;
+    pageY?: number
     /** 距离页面可显示区域（屏幕除去导航条）左上角的横向距离 */
-    clientX?: number;
+    clientX?: number
     /** 距离页面可显示区域（屏幕除去导航条）左上角的纵向距离 */
-    clientY?: number;
+    clientY?: number
 }
 /** 当前停留在 canvas 中的触摸点信息 */
 interface _TouchCanvasDetail {
     /** 标志符 */
-    identifier?: number;
+    identifier?: number
     /** 距离 canvas 左上角的横向距离 */
-    x?: number;
+    x?: number
     /** 距离 canvas 左上角的纵向距离 */
-    y?: number;
+    y?: number
 }
 /** 触摸事件 */
 interface _BaseTouchEvent<Detail extends _AnyRecord = _AnyRecord, T extends _TouchDetail | _TouchCanvasDetail = _TouchDetail, Mark extends _AnyRecord = _AnyRecord, CurrentTargetDataset extends _AnyRecord = _AnyRecord, TargetDataset extends _AnyRecord = CurrentTargetDataset> extends _CustomEvent<Detail, Mark, CurrentTargetDataset, TargetDataset> {
     /** 当前停留在屏幕中的触摸点信息的数组 */
-    touches: T[];
+    touches: T[]
     /** 当前变化的触摸点信息的数组 */
-    changedTouches: T[];
+    changedTouches: T[]
 }
 /** 触摸事件响应 */
 interface _TouchEvent<Detail extends _AnyRecord = _AnyRecord, Mark extends _AnyRecord = _AnyRecord, CurrentTargetDataset extends _AnyRecord = _AnyRecord, TargetDataset extends _AnyRecord = CurrentTargetDataset> extends _BaseTouchEvent<Detail, _TouchDetail, Mark, CurrentTargetDataset, TargetDataset> {
 }
 /** canvas 触摸事件响应 */
 interface _TouchCanvasEvent<Mark extends _AnyRecord = _AnyRecord, TargetDataset extends _AnyRecord = _AnyRecord> extends _BaseTouchEvent<never, _TouchCanvasDetail, Mark, never, TargetDataset> {
-    currentTarget: never;
+    currentTarget: never
 }
 
 declare global {
@@ -120,13 +120,13 @@ type _ViewProps = Partial<{
      *
      * 默认为 none
      */
-    hoverClass: string;
+    hoverClass: string
     /**
      * 指定是否阻止本节点的祖先节点出现点击态
      *
      * 默认为 false
      */
-    hoverStopPropagation: boolean;
+    hoverStopPropagation: boolean
     /**
      * 按住后多久出现点击态
      *
@@ -134,7 +134,7 @@ type _ViewProps = Partial<{
      *
      * 默认为 50
      */
-    hoverStartTime: number;
+    hoverStartTime: number
     /**
      * 手指松开后点击态保留时间
      *
@@ -142,8 +142,8 @@ type _ViewProps = Partial<{
      *
      * 默认为 400
      */
-    hoverStayTime: number;
-}>;
+    hoverStayTime: number
+}>
 /**
  * 视图容器，和 div 类似，用于包裹各种元素内容
  *
@@ -151,14 +151,14 @@ type _ViewProps = Partial<{
  *
  * 如果使用 div，会编译成 view
  */
-type _View = _Component<_ViewProps>;
+type _View = _Component<_ViewProps>
 /** 视图容器实例 */
-type _ViewInstance = InstanceType<_View>;
+type _ViewInstance = InstanceType<_View>
 
 declare global {
     namespace UniHelper {
         /** 视图容器属性 */
-        type ViewProps = _ViewProps;
+        type ViewProps = _ViewProps
         /**
          * 视图容器，和 div 类似，用于包裹各种元素内容
          *
@@ -166,9 +166,9 @@ declare global {
          *
          * 如果使用 div，会编译成 view
          */
-        type View = _View;
+        type View = _View
         /** 视图容器实例 */
-        type ViewInstance = _ViewInstance;
+        type ViewInstance = _ViewInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -180,7 +180,7 @@ declare module '@vue/runtime-core' {
          *
          * 如果使用 div，会编译成 view
          */
-        View: _View;
+        View: _View
     }
 }
 declare global {
@@ -193,7 +193,7 @@ declare global {
              *
              * 如果使用 div，会编译成 view
              */
-            view: _View;
+            view: _View
         }
     }
 }
@@ -207,7 +207,7 @@ declare module 'vue3/jsx-runtime' {
              *
              * 如果使用 div，会编译成 view
              */
-            view: _View;
+            view: _View
         }
     }
 }
@@ -217,49 +217,49 @@ declare module 'vue3/jsx-runtime' {
  *
  * none 不使用默认样式
  */
-type _ScrollViewRefresherDefaultStyle = 'black' | 'white' | 'none';
-type _ScrollViewOnScrolltoupperEvent = _BaseEvent;
+type _ScrollViewRefresherDefaultStyle = 'black' | 'white' | 'none'
+type _ScrollViewOnScrolltoupperEvent = _BaseEvent
 /** 滚动到顶部/左边时触发 */
 interface _ScrollViewOnScrolltoupper {
-    (event: _ScrollViewOnScrolltoupperEvent): void;
+    (event: _ScrollViewOnScrolltoupperEvent): void
 }
-type _ScrollViewOnScrolltolowerEvent = _BaseEvent;
+type _ScrollViewOnScrolltolowerEvent = _BaseEvent
 /** 滚动到底部/右边时触发 */
 interface _ScrollViewOnScrolltolower {
-    (event: _ScrollViewOnScrolltolowerEvent): void;
+    (event: _ScrollViewOnScrolltolowerEvent): void
 }
 interface _ScrollViewOnScrollDetail {
-    scrollLeft: number;
-    scrollTop: number;
-    scrollHeight: number;
-    scrollWidth: number;
-    deltaX: number;
-    deltaY: number;
+    scrollLeft: number
+    scrollTop: number
+    scrollHeight: number
+    scrollWidth: number
+    deltaX: number
+    deltaY: number
 }
-type _ScrollViewOnScrollEvent = _CustomEvent<_ScrollViewOnScrollDetail>;
+type _ScrollViewOnScrollEvent = _CustomEvent<_ScrollViewOnScrollDetail>
 /** 滚动时触发 */
 interface _ScrollViewOnScroll {
-    (event: _ScrollViewOnScrollEvent): void;
+    (event: _ScrollViewOnScrollEvent): void
 }
-type _ScrollViewOnRefresherpullingEvent = _BaseEvent;
+type _ScrollViewOnRefresherpullingEvent = _BaseEvent
 /** 自定义下拉刷新控件被下拉时触发 */
 interface _ScrollViewOnRefresherpulling {
-    (event: _ScrollViewOnRefresherpullingEvent): void;
+    (event: _ScrollViewOnRefresherpullingEvent): void
 }
-type _ScrollViewOnRefresherrefreshEvent = _BaseEvent;
+type _ScrollViewOnRefresherrefreshEvent = _BaseEvent
 /** 自定义下拉刷新被触发时触发 */
 interface _ScrollViewOnRefresherrefresh {
-    (event: _ScrollViewOnRefresherrefreshEvent): void;
+    (event: _ScrollViewOnRefresherrefreshEvent): void
 }
-type _ScrollViewOnRefresherrestoreEvent = _BaseEvent;
+type _ScrollViewOnRefresherrestoreEvent = _BaseEvent
 /** 自定义下拉刷新被复位时触发 */
 interface _ScrollViewOnRefresherrestore {
-    (event: _ScrollViewOnRefresherrestoreEvent): void;
+    (event: _ScrollViewOnRefresherrestoreEvent): void
 }
-type _ScrollViewOnRefresherabortEvent = _BaseEvent;
+type _ScrollViewOnRefresherabortEvent = _BaseEvent
 /** 自定义下拉刷新被中止时触发 */
 interface _ScrollViewOnRefresherabort {
-    (event: _ScrollViewOnRefresherabortEvent): void;
+    (event: _ScrollViewOnRefresherabortEvent): void
 }
 /** 可滚动视图区域属性 */
 type _ScrollViewProps = Partial<{
@@ -268,13 +268,13 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 false
      */
-    scrollX: boolean;
+    scrollX: boolean
     /**
      * 是否允许纵向滚动
      *
      * 默认为 false
      */
-    scrollY: boolean;
+    scrollY: boolean
     /**
      * 距顶部/左边多远时触发 scrolltoupper 事件
      *
@@ -282,7 +282,7 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 50
      */
-    upperThreshold: number | string;
+    upperThreshold: number | string
     /**
      * 距底部/右边多远时触发 scrolltolower 事件
      *
@@ -290,19 +290,19 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 50
      */
-    lowerThreshold: number | string;
+    lowerThreshold: number | string
     /**
      * 设置纵向滚动条位置
      *
      * 优先级低于 scroll-into-view
      */
-    scrollTop: number | string;
+    scrollTop: number | string
     /**
      * 优先级低于 scroll-into-view
      *
      * @decs 设置横向滚动条位置
      */
-    scrollLeft: number | string;
+    scrollLeft: number | string
     /**
      * 值应为某子元素 id，id 不能以数字开头
      *
@@ -310,13 +310,13 @@ type _ScrollViewProps = Partial<{
      *
      * 优先级高于 scroll-top / scroll-left
      */
-    scrollIntoView: string;
+    scrollIntoView: string
     /**
      * 在设置滚动条位置时是否使用动画过渡
      *
      * 默认为 false
      */
-    scrollWithAnimation: boolean;
+    scrollWithAnimation: boolean
     /**
      * 是否允许 iOS 点击顶部状态栏、安卓双击标题栏时，滚动条返回顶部
      *
@@ -324,25 +324,25 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 false
      */
-    enableBackToTop: boolean;
+    enableBackToTop: boolean
     /**
      * 控制是否出现滚动条
      *
      * 默认为 false
      */
-    showScrollbar: boolean;
+    showScrollbar: boolean
     /**
      * 是否开启自定义下拉刷新
      *
      * 默认为 false
      */
-    refresherEnabled: boolean;
+    refresherEnabled: boolean
     /**
      * 设置自定义下拉刷新阈值
      *
      * 默认为 45
      */
-    refresherThreshold: number;
+    refresherThreshold: number
     /**
      * 设置自定义下拉刷新默认样式
      *
@@ -350,13 +350,13 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 black
      */
-    refresherDefaultStyle: _ScrollViewRefresherDefaultStyle;
+    refresherDefaultStyle: _ScrollViewRefresherDefaultStyle
     /**
      * 自定义下拉刷新区域背景颜色
      *
      * 默认为 #FFF
      */
-    refresherBackground: string;
+    refresherBackground: string
     /**
      * 设置当前下拉刷新状态
      *
@@ -366,7 +366,7 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 false
      */
-    refresherTriggered: boolean;
+    refresherTriggered: boolean
     /**
      * 是否启用 flexbox 布局
      *
@@ -374,7 +374,7 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 false
      */
-    enableFlex: boolean;
+    enableFlex: boolean
     /**
      * 是否开启 scroll anchoring 特性，即控制滚动位置不随内容变化而抖动，仅在 iOS 下生效
      *
@@ -382,22 +382,22 @@ type _ScrollViewProps = Partial<{
      *
      * 默认为 false
      */
-    scrollAnchoring: boolean;
+    scrollAnchoring: boolean
     /** 滚动到顶部/左边时触发 */
-    onScrolltoupper: _ScrollViewOnScrolltoupper;
+    onScrolltoupper: _ScrollViewOnScrolltoupper
     /** 滚动到底部/右边时触发 */
-    onScrolltolower: _ScrollViewOnScrolltolower;
+    onScrolltolower: _ScrollViewOnScrolltolower
     /** 滚动时触发 */
-    onScroll: _ScrollViewOnScroll;
+    onScroll: _ScrollViewOnScroll
     /** 自定义下拉刷新控件被下拉时触发 */
-    onRefresherpulling: _ScrollViewOnRefresherpulling;
+    onRefresherpulling: _ScrollViewOnRefresherpulling
     /** 自定义下拉刷新被触发时触发 */
-    onRefresherrefresh: _ScrollViewOnRefresherrefresh;
+    onRefresherrefresh: _ScrollViewOnRefresherrefresh
     /** 自定义下拉刷新被复位时触发 */
-    onRefresherrestore: _ScrollViewOnRefresherrestore;
+    onRefresherrestore: _ScrollViewOnRefresherrestore
     /** 自定义下拉刷新被中止时触发 */
-    onRefresherabort: _ScrollViewOnRefresherabort;
-}>;
+    onRefresherabort: _ScrollViewOnRefresherabort
+}>
 /**
  * 可滚动视图区域，用于区域滚动
  *
@@ -410,9 +410,9 @@ type _ScrollViewProps = Partial<{
  * scroll-view 是区域滚动，不会触发页面滚动，无法触发 pages.json 配置的下拉刷新、页面触底onReachBottomDistance、titleNView 的
  * transparent 透明渐变
  */
-type _ScrollView = _Component<_ScrollViewProps>;
+type _ScrollView = _Component<_ScrollViewProps>
 /** 可滚动视图区域实例 */
-type _ScrollViewInstance = InstanceType<_ScrollView>;
+type _ScrollViewInstance = InstanceType<_ScrollView>
 
 declare global {
     namespace UniHelper {
@@ -421,39 +421,39 @@ declare global {
          *
          * none 不使用默认样式
          */
-        type ScrollViewRefresherDefaultStyle = _ScrollViewRefresherDefaultStyle;
-        type ScrollViewOnScrolltoupperEvent = _ScrollViewOnScrolltoupperEvent;
+        type ScrollViewRefresherDefaultStyle = _ScrollViewRefresherDefaultStyle
+        type ScrollViewOnScrolltoupperEvent = _ScrollViewOnScrolltoupperEvent
         /** 滚动到顶部/左边时触发 */
         interface ScrollViewOnScrolltoupper extends _ScrollViewOnScrolltoupper {
         }
-        type ScrollViewOnScrolltolowerEvent = _ScrollViewOnScrolltolowerEvent;
+        type ScrollViewOnScrolltolowerEvent = _ScrollViewOnScrolltolowerEvent
         /** 滚动到底部/右边时触发 */
         interface ScrollViewOnScrolltolower extends _ScrollViewOnScrolltolower {
         }
         interface ScrollViewOnScrollDetail extends _ScrollViewOnScrollDetail {
         }
-        type ScrollViewOnScrollEvent = _ScrollViewOnScrollEvent;
+        type ScrollViewOnScrollEvent = _ScrollViewOnScrollEvent
         /** 滚动时触发 */
         interface ScrollViewOnScroll extends _ScrollViewOnScroll {
         }
-        type ScrollViewOnRefresherpullingEvent = _ScrollViewOnRefresherpullingEvent;
+        type ScrollViewOnRefresherpullingEvent = _ScrollViewOnRefresherpullingEvent
         /** 自定义下拉刷新控件被下拉时触发 */
         interface ScrollViewOnRefresherpulling extends _ScrollViewOnRefresherpulling {
         }
-        type ScrollViewOnRefresherrefreshEvent = _ScrollViewOnRefresherrefreshEvent;
+        type ScrollViewOnRefresherrefreshEvent = _ScrollViewOnRefresherrefreshEvent
         /** 自定义下拉刷新被触发时触发 */
         interface ScrollViewOnRefresherrefresh extends _ScrollViewOnRefresherrefresh {
         }
-        type ScrollViewOnRefresherrestoreEvent = _ScrollViewOnRefresherrestoreEvent;
+        type ScrollViewOnRefresherrestoreEvent = _ScrollViewOnRefresherrestoreEvent
         /** 自定义下拉刷新被复位时触发 */
         interface ScrollViewOnRefresherrestore extends _ScrollViewOnRefresherrestore {
         }
-        type ScrollViewOnRefresherabortEvent = _ScrollViewOnRefresherabortEvent;
+        type ScrollViewOnRefresherabortEvent = _ScrollViewOnRefresherabortEvent
         /** 自定义下拉刷新被中止时触发 */
         interface ScrollViewOnRefresherabort extends _ScrollViewOnRefresherabort {
         }
         /** 可滚动视图区域属性 */
-        type ScrollViewProps = _ScrollViewProps;
+        type ScrollViewProps = _ScrollViewProps
         /**
          * 可滚动视图区域，用于区域滚动
          *
@@ -466,9 +466,9 @@ declare global {
          * scroll-view 是区域滚动，不会触发页面滚动，无法触发 pages.json 配置的下拉刷新、页面触底 onReachBottomDistance、titleNView 的
          * transparent 透明渐变
          */
-        type ScrollView = _ScrollView;
+        type ScrollView = _ScrollView
         /** 可滚动视图区域实例 */
-        type ScrollViewInstance = _ScrollViewInstance;
+        type ScrollViewInstance = _ScrollViewInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -485,7 +485,7 @@ declare module '@vue/runtime-core' {
          * scroll-view 是区域滚动，不会触发页面滚动，无法触发 pages.json 配置的下拉刷新、页面触底 onReachBottomDistance、titleNView 的
          * transparent 透明渐变
          */
-        ScrollView: _ScrollView;
+        ScrollView: _ScrollView
     }
 }
 
@@ -498,12 +498,12 @@ declare module '@vue/runtime-core' {
  *
  * 空字符串 其它原因
  */
-type _SwiperSource = 'autoplay' | 'touch' | '';
+type _SwiperSource = 'autoplay' | 'touch' | ''
 /** swiper 切换动画类型 */
-type _SwiperEasingFunction = 'default' | 'linear' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic';
+type _SwiperEasingFunction = 'default' | 'linear' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic'
 interface _SwiperOnChangeDetail {
     /** 当前所在滑块的下标 */
-    current: number;
+    current: number
     /**
      * 导致变更的原因
      *
@@ -513,25 +513,25 @@ interface _SwiperOnChangeDetail {
      *
      * 空字符串 其它原因
      */
-    source: _SwiperSource;
+    source: _SwiperSource
 }
-type _SwiperOnChangeEvent = _CustomEvent<_SwiperOnChangeDetail>;
+type _SwiperOnChangeEvent = _CustomEvent<_SwiperOnChangeDetail>
 /** current 改变时触发 */
 interface _SwiperOnChange {
-    (event: _SwiperOnChangeEvent): void;
+    (event: _SwiperOnChangeEvent): void
 }
 interface _SwiperOnTransitionDetail {
-    dx?: number;
-    dy?: number;
+    dx?: number
+    dy?: number
 }
-type _SwiperOnTransitionEvent = _CustomEvent<_SwiperOnTransitionDetail>;
+type _SwiperOnTransitionEvent = _CustomEvent<_SwiperOnTransitionDetail>
 /** swiper-item 位置改变时触发 */
 interface _SwiperOnTransition {
-    (event: _SwiperOnTransitionEvent): void;
+    (event: _SwiperOnTransitionEvent): void
 }
 interface _SwiperOnAnimationfinishDetail {
     /** 当前所在滑块的下标 */
-    current: number;
+    current: number
     /**
      * 导致变更的原因
      *
@@ -541,12 +541,12 @@ interface _SwiperOnAnimationfinishDetail {
      *
      * 空字符串其它原因
      */
-    source: _SwiperSource;
+    source: _SwiperSource
 }
-type _SwiperOnAnimationfinishEvent = _CustomEvent<_SwiperOnAnimationfinishDetail>;
+type _SwiperOnAnimationfinishEvent = _CustomEvent<_SwiperOnAnimationfinishDetail>
 /** 动画结束时触发 */
 interface _SwiperOnAnimationfinish {
-    (event: _SwiperOnAnimationfinishEvent): void;
+    (event: _SwiperOnAnimationfinishEvent): void
 }
 /** 滑块视图容器属性 */
 type _SwiperProps = Partial<{
@@ -555,61 +555,61 @@ type _SwiperProps = Partial<{
      *
      * 默认为 false
      */
-    indicatorDots: boolean;
+    indicatorDots: boolean
     /**
      * 指示点颜色
      *
      * 默认为 rgba(0, 0, 0, 0.3)
      */
-    indicatorColor: string;
+    indicatorColor: string
     /**
      * 当前选中的指示点颜色
      *
      * 默认为 #000000
      */
-    indicatorActiveColor: string;
+    indicatorActiveColor: string
     /** swiper-item 可见时的 class */
-    activeClass: string;
+    activeClass: string
     /** acceleration 设置为 true 时且处于滑动过程中，中间若干屏处于可见时的 class */
-    changingClass: boolean;
+    changingClass: boolean
     /**
      * 是否自动切换
      *
      * 默认为 false
      */
-    autoplay: boolean;
+    autoplay: boolean
     /**
      * 当前所在滑块的下标
      *
      * 默认为 0
      */
-    current: number;
+    current: number
     /** 当前所在滑块的 item-id ，不能与 current 被同时指定 */
-    currentItemId: string;
+    currentItemId: string
     /**
      * 自动切换时间间隔
      *
      * 默认为 5000
      */
-    interval: number;
+    interval: number
     /**
      * 滑动动画时长
      *
      * 默认为 500
      */
-    duration: number;
+    duration: number
     /**
      * 是否采用衔接滑动，即播放到末尾后重新回到开头
      *
      * 默认为 false
      */
-    circular: boolean;
+    circular: boolean
     /**
      * 滑动方向是否为纵向
      *
      * 默认为 false
      */
-    vertical: boolean;
+    vertical: boolean
     /**
      * 前边距，可用于露出前一项的一小部分
      *
@@ -617,7 +617,7 @@ type _SwiperProps = Partial<{
      *
      * 默认为 0px
      */
-    previousMargin: string;
+    previousMargin: string
     /**
      * 后边距，可用于露出后一项的一小部分
      *
@@ -625,25 +625,25 @@ type _SwiperProps = Partial<{
      *
      * 默认为 0px
      */
-    nextMargin: string;
+    nextMargin: string
     /**
      * 当开启时，会根据滑动速度，连续滑动多屏
      *
      * 默认 false
      */
-    acceleration: boolean;
+    acceleration: boolean
     /**
      * 是否禁用代码变动触发 swiper 切换时使用动画
      *
      * 默认为 false
      */
-    disableProgrammaticAnimation: boolean;
+    disableProgrammaticAnimation: boolean
     /**
      * 同时显示的滑块数量
      *
      * 默认为 1
      */
-    displayMultipleItems: number;
+    displayMultipleItems: number
     /**
      * 是否跳过未显示的滑块布局
      *
@@ -651,13 +651,13 @@ type _SwiperProps = Partial<{
      *
      * 默认为 false
      */
-    skipHiddenItemLayout: boolean;
+    skipHiddenItemLayout: boolean
     /**
      * 是否禁止用户 touch 操作
      *
      * 默认为 false
      */
-    disableTouch: boolean;
+    disableTouch: boolean
     /**
      * 是否监听用户的触摸事件
      *
@@ -665,20 +665,20 @@ type _SwiperProps = Partial<{
      *
      * 默认为 true
      */
-    touchable: boolean;
+    touchable: boolean
     /**
      * 指定 swiper 切换缓动动画类型
      *
      * 默认为 default
      */
-    easingFunction: _SwiperEasingFunction;
+    easingFunction: _SwiperEasingFunction
     /** current 改变时触发 */
-    onChange: _SwiperOnChange;
+    onChange: _SwiperOnChange
     /** swiper-item 位置改变时触发 */
-    onTransition: _SwiperOnTransition;
+    onTransition: _SwiperOnTransition
     /** 动画结束时触发 */
-    onAnimationfinish: _SwiperOnAnimationfinish;
-}>;
+    onAnimationfinish: _SwiperOnAnimationfinish
+}>
 /**
  * 滑块视图容器，一般用于左右滑动或上下滑动，比如 banner 轮播图
  *
@@ -686,9 +686,9 @@ type _SwiperProps = Partial<{
  *
  * swiper 下的每个 swiper-item 是一个滑动切换区域，不能停留在 2 个滑动区域之间
  */
-type _Swiper = _Component<_SwiperProps>;
+type _Swiper = _Component<_SwiperProps>
 /** 滑块视图容器实例 */
-type _SwiperInstance = InstanceType<_Swiper>;
+type _SwiperInstance = InstanceType<_Swiper>
 
 declare global {
     namespace UniHelper {
@@ -701,29 +701,29 @@ declare global {
          *
          * 空字符串 其它原因
          */
-        type SwiperSource = _SwiperSource;
+        type SwiperSource = _SwiperSource
         /** swiper 切换动画类型 */
-        type SwiperEasingFunction = _SwiperEasingFunction;
+        type SwiperEasingFunction = _SwiperEasingFunction
         interface SwiperOnChangeDetail extends _SwiperOnChangeDetail {
         }
-        type SwiperOnChangeEvent = _SwiperOnChangeEvent;
+        type SwiperOnChangeEvent = _SwiperOnChangeEvent
         /** current 改变时触发 */
         interface SwiperOnChange extends _SwiperOnChange {
         }
         interface SwiperOnTransitionDetail extends _SwiperOnTransitionDetail {
         }
-        type SwiperOnTransitionEvent = _SwiperOnTransitionEvent;
+        type SwiperOnTransitionEvent = _SwiperOnTransitionEvent
         /** swiper-item 位置改变时触发 */
         interface SwiperOnTransition extends _SwiperOnTransition {
         }
         interface SwiperOnAnimationfinishDetail extends _SwiperOnAnimationfinishDetail {
         }
-        type SwiperOnAnimationfinishEvent = _SwiperOnAnimationfinishEvent;
+        type SwiperOnAnimationfinishEvent = _SwiperOnAnimationfinishEvent
         /** 动画结束时触发 */
         interface SwiperOnAnimationfinish extends _SwiperOnAnimationfinish {
         }
         /** 滑块视图容器属性 */
-        type SwiperProps = _SwiperProps;
+        type SwiperProps = _SwiperProps
         /**
          * 滑块视图容器，一般用于左右滑动或上下滑动，比如 banner 轮播图
          *
@@ -731,9 +731,9 @@ declare global {
          *
          * swiper 下的每个 swiper-item 是一个滑动切换区域，不能停留在 2 个滑动区域之间
          */
-        type Swiper = _Swiper;
+        type Swiper = _Swiper
         /** 滑块视图容器实例 */
-        type SwiperInstance = _SwiperInstance;
+        type SwiperInstance = _SwiperInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -745,36 +745,36 @@ declare module '@vue/runtime-core' {
          *
          * swiper 下的每个 swiper-item 是一个滑动切换区域，不能停留在 2 个滑动区域之间
          */
-        Swiper: _Swiper;
+        Swiper: _Swiper
     }
 }
 
 /** swiper 直接子组件属性 */
 type _SwiperItemProps = Partial<{
     /** 标识符 */
-    itemId: string;
-}>;
+    itemId: string
+}>
 /**
  * swiper 直接子组件，宽高自动设置为父组件的 100%
  *
  * 不能被子组件自动撑开
  */
-type _SwiperItem = _Component<_SwiperItemProps>;
+type _SwiperItem = _Component<_SwiperItemProps>
 /** swiper 直接子组件实例 */
-type _SwiperItemInstance = InstanceType<_SwiperItem>;
+type _SwiperItemInstance = InstanceType<_SwiperItem>
 
 declare global {
     namespace UniHelper {
         /** swiper 直接子组件属性 */
-        type SwiperItemProps = _SwiperItemProps;
+        type SwiperItemProps = _SwiperItemProps
         /**
          * swiper 直接子组件，宽高自动设置为父组件的 100%
          *
          * 不能被子组件自动撑开
          */
-        type SwiperItem = _SwiperItem;
+        type SwiperItem = _SwiperItem
         /** swiper 直接子组件实例 */
-        type SwiperItemInstance = _SwiperItemInstance;
+        type SwiperItemInstance = _SwiperItemInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -784,7 +784,7 @@ declare module '@vue/runtime-core' {
          *
          * 不能被子组件自动撑开
          */
-        SwiperItem: _SwiperItem;
+        SwiperItem: _SwiperItem
     }
 }
 
@@ -795,7 +795,7 @@ declare module '@vue/runtime-core' {
  *
  * portrait 纵向
  */
-type _MatchMediaOrientation = 'landscape' | 'portrait';
+type _MatchMediaOrientation = 'landscape' | 'portrait'
 /** media query 匹配检测节点属性 */
 type _MatchMediaProps = Partial<{
     /**
@@ -803,37 +803,37 @@ type _MatchMediaProps = Partial<{
      *
      * 单位为 px
      */
-    minWidth: number;
+    minWidth: number
     /**
      * 页面最大宽度
      *
      * 单位为 px
      */
-    maxWidth: number;
+    maxWidth: number
     /**
      * 页面宽度
      *
      * 单位为 px
      */
-    width: number;
+    width: number
     /**
      * 页面最小高度
      *
      * 单位为 px
      */
-    minHeight: number;
+    minHeight: number
     /**
      * 页面最大高度
      *
      * 单位为 px
      */
-    maxHeight: number;
+    maxHeight: number
     /**
      * 页面高度
      *
      * 单位为 px
      */
-    height: number;
+    height: number
     /**
      * 屏幕方向
      *
@@ -841,8 +841,8 @@ type _MatchMediaProps = Partial<{
      *
      * portrait 纵向
      */
-    orientation: _MatchMediaOrientation;
-}>;
+    orientation: _MatchMediaOrientation
+}>
 /**
  * media query 匹配检测节点
  *
@@ -850,9 +850,9 @@ type _MatchMediaProps = Partial<{
  *
  * 可以指定一组 media query 媒体查询规则，满足查询条件时，这个组件才会被展示
  */
-type _MatchMedia = _Component<_MatchMediaProps>;
+type _MatchMedia = _Component<_MatchMediaProps>
 /** media query 匹配检测节点实例 */
-type _MatchMediaInstance = InstanceType<_MatchMedia>;
+type _MatchMediaInstance = InstanceType<_MatchMedia>
 
 declare global {
     namespace UniHelper {
@@ -863,9 +863,9 @@ declare global {
          *
          * portrait 纵向
          */
-        type MatchMediaOrientation = _MatchMediaOrientation;
+        type MatchMediaOrientation = _MatchMediaOrientation
         /** media query 匹配检测节点属性 */
-        type MatchMediaProps = _MatchMediaProps;
+        type MatchMediaProps = _MatchMediaProps
         /**
          * media query 匹配检测节点
          *
@@ -873,9 +873,9 @@ declare global {
          *
          * 可以指定一组 media query 媒体查询规则，满足查询条件时，这个组件才会被展示
          */
-        type MatchMedia = _MatchMedia;
+        type MatchMedia = _MatchMedia
         /** media query 匹配检测节点 */
-        type MatchMediaInstance = _MatchMediaInstance;
+        type MatchMediaInstance = _MatchMediaInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -887,7 +887,7 @@ declare module '@vue/runtime-core' {
          *
          * 可以指定一组 media query 媒体查询规则，满足查询条件时，这个组件才会被展示
          */
-        MatchMedia: _MatchMedia;
+        MatchMedia: _MatchMedia
     }
 }
 
@@ -898,8 +898,8 @@ type _MovableAreaProps = Partial<{
      *
      * 默认为 false
      */
-    scaleArea: boolean;
-}>;
+    scaleArea: boolean
+}>
 /**
  * 可拖动区域
  *
@@ -911,14 +911,14 @@ type _MovableAreaProps = Partial<{
  *
  * 默认宽高为 10px
  */
-type _MovableArea = _Component<_MovableAreaProps>;
+type _MovableArea = _Component<_MovableAreaProps>
 /** 可拖动区域实例 */
-type _MovableAreaInstance = InstanceType<_MovableArea>;
+type _MovableAreaInstance = InstanceType<_MovableArea>
 
 declare global {
     namespace UniHelper {
         /** 可拖动区域属性 */
-        type MovableAreaProps = _MovableAreaProps;
+        type MovableAreaProps = _MovableAreaProps
         /**
          * 可拖动区域
          *
@@ -930,9 +930,9 @@ declare global {
          *
          * 默认宽高为 10px
          */
-        type MovableArea = _MovableArea;
+        type MovableArea = _MovableArea
         /** 可拖动区域实例 */
-        type MovableAreaInstance = _MovableAreaInstance;
+        type MovableAreaInstance = _MovableAreaInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -948,12 +948,12 @@ declare module '@vue/runtime-core' {
          *
          * 默认宽高为 10px
          */
-        MovableArea: _MovableArea;
+        MovableArea: _MovableArea
     }
 }
 
 /** movable-view 的移动方向 */
-type _MovableViewDirection = 'all' | 'vertical' | 'horizontal' | 'none';
+type _MovableViewDirection = 'all' | 'vertical' | 'horizontal' | 'none'
 /**
  * movable-view 产生移动的原因
  *
@@ -967,10 +967,10 @@ type _MovableViewDirection = 'all' | 'vertical' | 'horizontal' | 'none';
  *
  * 空字符串 setData
  */
-type _MovableViewSource = 'touch' | 'touch-out-of-bounds' | 'out-of-bounds' | 'friction' | '';
+type _MovableViewSource = 'touch' | 'touch-out-of-bounds' | 'out-of-bounds' | 'friction' | ''
 interface _MovableViewOnChangeDetail {
-    x: number;
-    y: number;
+    x: number
+    y: number
     /**
      * movable-view 产生移动的原因
      *
@@ -984,27 +984,27 @@ interface _MovableViewOnChangeDetail {
      *
      * 空字符串 setData
      */
-    source: _MovableViewSource;
+    source: _MovableViewSource
 }
-type _MovableViewOnChangeEvent = _CustomEvent<_MovableViewOnChangeDetail>;
+type _MovableViewOnChangeEvent = _CustomEvent<_MovableViewOnChangeDetail>
 /** 拖动过程中触发 */
 interface _MovableViewOnChange {
-    (event: _MovableViewOnChangeEvent): void;
+    (event: _MovableViewOnChangeEvent): void
 }
 interface _MovableViewOnScaleDetail {
-    x: number;
-    y: number;
+    x: number
+    y: number
     /**
      * 是否支持双指缩放
      *
      * 默认缩放手势生效区域是在 movable-view 内
      */
-    scale: boolean;
+    scale: boolean
 }
-type _MovableViewOnScaleEvent = _CustomEvent<_MovableViewOnScaleDetail>;
+type _MovableViewOnScaleEvent = _CustomEvent<_MovableViewOnScaleDetail>
 /** 缩放过程中触发 */
 interface _MovableViewOnScale {
-    (event: _MovableViewOnScaleEvent): void;
+    (event: _MovableViewOnScaleEvent): void
 }
 /** 可移动的视图容器属性 */
 type _MovableViewProps = Partial<{
@@ -1013,19 +1013,19 @@ type _MovableViewProps = Partial<{
      *
      * 默认为 none
      */
-    direction: _MovableViewDirection;
+    direction: _MovableViewDirection
     /**
      * 是否带有惯性
      *
      * 默认为 false
      */
-    inertia: boolean;
+    inertia: boolean
     /**
      * 超过可移动区域后，是否还可以移动
      *
      * 默认为 false
      */
-    outOfBounds: boolean;
+    outOfBounds: boolean
     /**
      * 定义 x 轴方向的偏移
      *
@@ -1033,7 +1033,7 @@ type _MovableViewProps = Partial<{
      *
      * 改变 x 的值会触发动画
      */
-    x: string | number;
+    x: string | number
     /**
      * 定义 y 轴方向的偏移
      *
@@ -1041,7 +1041,7 @@ type _MovableViewProps = Partial<{
      *
      * 改变 y 的值会触发动画
      */
-    y: string | number;
+    y: string | number
     /**
      * 阻尼系数，用于控制 x 或 y 改变时的动画和过界回弹的动画
      *
@@ -1049,7 +1049,7 @@ type _MovableViewProps = Partial<{
      *
      * 默认为 20
      */
-    damping: number;
+    damping: number
     /**
      * 摩擦系数，用于控制惯性滑动的动画
      *
@@ -1059,13 +1059,13 @@ type _MovableViewProps = Partial<{
      *
      * 默认为 2
      */
-    friction: number;
+    friction: number
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /**
      * 是否支持双指缩放
      *
@@ -1073,19 +1073,19 @@ type _MovableViewProps = Partial<{
      *
      * 默认为 false
      */
-    scale: boolean;
+    scale: boolean
     /**
      * 定义缩放倍数最小值
      *
      * 默认为 0.5
      */
-    scaleMin: number;
+    scaleMin: number
     /**
      * 定义缩放倍数最大值
      *
      * 默认为 10
      */
-    scaleMax: number;
+    scaleMax: number
     /**
      * 定义缩放倍数
      *
@@ -1093,31 +1093,31 @@ type _MovableViewProps = Partial<{
      *
      * 默认为 1
      */
-    scaleValue: number;
+    scaleValue: number
     /**
      * 是否使用动画
      *
      * 默认为 true
      */
-    animation: boolean;
+    animation: boolean
     /** 拖动过程中触发 */
-    onChange: _MovableViewOnChange;
+    onChange: _MovableViewOnChange
     /** 缩放过程中触发 */
-    onScale: _MovableViewOnScale;
-}>;
+    onScale: _MovableViewOnScale
+}>
 /**
  * 可移动的视图容器，在页面中可以拖拽滑动或双指缩放
  *
  * movable-area 直接子组件
  */
-type _MovableView = _Component<_MovableViewProps>;
+type _MovableView = _Component<_MovableViewProps>
 /** 可移动的视图容器实例 */
-type _MovableViewInstance = InstanceType<_MovableView>;
+type _MovableViewInstance = InstanceType<_MovableView>
 
 declare global {
     namespace UniHelper {
         /** movable-view 的移动方向 */
-        type MovableViewDirection = _MovableViewDirection;
+        type MovableViewDirection = _MovableViewDirection
         /**
          * movable-view 产生移动的原因
          *
@@ -1131,29 +1131,29 @@ declare global {
          *
          * 空字符串 setData
          */
-        type MovableViewSource = _MovableViewSource;
+        type MovableViewSource = _MovableViewSource
         interface MovableViewOnChangeDetail extends _MovableViewOnChangeDetail {
         }
-        type MovableViewOnChangeEvent = _MovableViewOnChangeEvent;
+        type MovableViewOnChangeEvent = _MovableViewOnChangeEvent
         /** 拖动过程中触发 */
         interface MovableViewOnChange extends _MovableViewOnChange {
         }
         interface MovableViewOnScaleDetail extends _MovableViewOnScaleDetail {
         }
-        type MovableViewOnScaleEvent = _MovableViewOnScaleEvent;
+        type MovableViewOnScaleEvent = _MovableViewOnScaleEvent
         /** 缩放过程中触发 */
         interface MovableViewOnScale extends _MovableViewOnScale {
         }
         /** 可移动的视图容器属性 */
-        type MovableViewProps = _MovableViewProps;
+        type MovableViewProps = _MovableViewProps
         /**
          * 可移动的视图容器，在页面中可以拖拽滑动或双指缩放
          *
          * movable-area 直接子组件
          */
-        type MovableView = _MovableView;
+        type MovableView = _MovableView
         /** 可移动的视图容器实例 */
-        type MovableViewInstance = _MovableViewInstance;
+        type MovableViewInstance = _MovableViewInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -1163,7 +1163,7 @@ declare module '@vue/runtime-core' {
          *
          * movable-area 直接子组件
          */
-        MovableView: _MovableView;
+        MovableView: _MovableView
     }
 }
 
@@ -1174,8 +1174,8 @@ type _CoverViewProps = Partial<{
      *
      * 仅在设置了 overflow-y: scroll 成为滚动元素后生效
      */
-    scrollTop: number | string;
-}>;
+    scrollTop: number | string
+}>
 /**
  * 覆盖在原生组件之上的视图
  *
@@ -1185,14 +1185,14 @@ type _CoverViewProps = Partial<{
  *
  * 为了能正常覆盖原生组件，设计了 cover-view
  */
-type _CoverView = _Component<_CoverViewProps>;
+type _CoverView = _Component<_CoverViewProps>
 /** 覆盖在原生组件之上的视图 */
-type _CoverViewInstance = InstanceType<_CoverView>;
+type _CoverViewInstance = InstanceType<_CoverView>
 
 declare global {
     namespace UniHelper {
         /** 覆盖在原生组件之上的视图 */
-        type CoverViewProps = _CoverViewProps;
+        type CoverViewProps = _CoverViewProps
         /**
          * 覆盖在原生组件之上的视图
          *
@@ -1202,9 +1202,9 @@ declare global {
          *
          * 为了能正常覆盖原生组件，设计了 cover-view
          */
-        type CoverView = _CoverView;
+        type CoverView = _CoverView
         /** 覆盖在原生组件之上的视图实例 */
-        type CoverViewInstance = _CoverViewInstance;
+        type CoverViewInstance = _CoverViewInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -1218,19 +1218,19 @@ declare module '@vue/runtime-core' {
          *
          * 为了能正常覆盖原生组件，设计了 cover-view
          */
-        CoverView: _CoverView;
+        CoverView: _CoverView
     }
 }
 
-type _CoverImageOnLoadEvent = _BaseEvent;
+type _CoverImageOnLoadEvent = _BaseEvent
 /** 图片加载成功时触发 */
 interface _CoverImageOnLoad {
-    (event: _CoverImageOnLoadEvent): void;
+    (event: _CoverImageOnLoadEvent): void
 }
-type _CoverImageOnErrorEvent = _BaseEvent;
+type _CoverImageOnErrorEvent = _BaseEvent
 /** 图片加载失败时触发 */
 interface _CoverImageOnError {
-    (event: _CoverImageOnErrorEvent): void;
+    (event: _CoverImageOnErrorEvent): void
 }
 /** 覆盖在原生组件之上的图片视图属性 */
 type _CoverImageProps = Partial<{
@@ -1241,12 +1241,12 @@ type _CoverImageProps = Partial<{
      *
      * 不支持 base64 格式
      */
-    src: string;
+    src: string
     /** 图片加载成功时触发 */
-    onLoad: _CoverImageOnLoad;
+    onLoad: _CoverImageOnLoad
     /** 图片加载失败时触发 */
-    onError: _CoverImageOnError;
-}>;
+    onError: _CoverImageOnError
+}>
 /**
  * 覆盖在原生组件之上的图片视图
  *
@@ -1254,22 +1254,22 @@ type _CoverImageProps = Partial<{
  *
  * 支持嵌套在 cover-view 里
  */
-type _CoverImage = _Component<_CoverImageProps>;
+type _CoverImage = _Component<_CoverImageProps>
 /** 覆盖在原生组件之上的图片视图实例 */
-type _CoverImageInstance = InstanceType<_CoverImage>;
+type _CoverImageInstance = InstanceType<_CoverImage>
 
 declare global {
     namespace UniHelper {
-        type CoverImageOnLoadEvent = _CoverImageOnLoadEvent;
+        type CoverImageOnLoadEvent = _CoverImageOnLoadEvent
         /** 图片加载成功时触发 */
         interface CoverImageOnLoad extends _CoverImageOnLoad {
         }
-        type CoverImageOnErrorEvent = _CoverImageOnErrorEvent;
+        type CoverImageOnErrorEvent = _CoverImageOnErrorEvent
         /** 图片加载失败时触发 */
         interface CoverImageOnError extends _CoverImageOnError {
         }
         /** 覆盖在原生组件之上的图片视图属性 */
-        type CoverImageProps = _CoverImageProps;
+        type CoverImageProps = _CoverImageProps
         /**
          * 覆盖在原生组件之上的图片视图
          *
@@ -1277,9 +1277,9 @@ declare global {
          *
          * 支持嵌套在 cover-view 里
          */
-        type CoverImage = _CoverImage;
+        type CoverImage = _CoverImage
         /** 覆盖在原生组件之上的图片视图实例 */
-        type CoverImageInstance = _CoverImageInstance;
+        type CoverImageInstance = _CoverImageInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -1291,14 +1291,14 @@ declare module '@vue/runtime-core' {
          *
          * 支持嵌套在 cover-view 里
          */
-        CoverImage: _CoverImage;
+        CoverImage: _CoverImage
     }
 }
 
 /** 图标属性 */
 type _IconProps = Partial<{
     /** 类型 */
-    type: string;
+    type: string
     /**
      * 大小
      *
@@ -1306,29 +1306,29 @@ type _IconProps = Partial<{
      *
      * 默认为 23
      */
-    size: number;
+    size: number
     /** 颜色 */
-    color: string;
-}>;
+    color: string
+}>
 /** 图标 */
-type _Icon = _Component<_IconProps>;
+type _Icon = _Component<_IconProps>
 /** 图标实例 */
-type _IconInstance = InstanceType<_Icon>;
+type _IconInstance = InstanceType<_Icon>
 
 declare global {
     namespace UniHelper {
         /** 图标属性 */
-        type IconProps = _IconProps;
+        type IconProps = _IconProps
         /** 图标 */
-        type Icon = _Icon;
+        type Icon = _Icon
         /** 图标实例 */
-        type IconInstance = _IconInstance;
+        type IconInstance = _IconInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 图标 */
-        Icon: _Icon;
+        Icon: _Icon
     }
 }
 
@@ -1341,7 +1341,7 @@ declare module '@vue/runtime-core' {
  *
  * nbsp 根据字体设置的空格大小
  */
-type _TextSpace = 'ensp' | 'emsp' | 'nbsp';
+type _TextSpace = 'ensp' | 'emsp' | 'nbsp'
 /** 文本组件属性 */
 type _TextProps = Partial<{
     /**
@@ -1349,13 +1349,13 @@ type _TextProps = Partial<{
      *
      * 默认为 false
      */
-    selectable: boolean;
+    selectable: boolean
     /**
      * 文本是否可选，可能会使文本节点显示为 inline-block
      *
      * 默认为 false
      */
-    userSelect: boolean;
+    userSelect: boolean
     /**
      * 显示连续空格
      *
@@ -1367,22 +1367,22 @@ type _TextProps = Partial<{
      *
      * 没有默认值
      */
-    space: _TextSpace;
+    space: _TextSpace
     /**
      * 是否解码
      *
      * 默认为 false
      */
-    decode: boolean;
-}>;
+    decode: boolean
+}>
 /**
  * 文本组件
  *
  * 用于包裹文本内容
  */
-type _Text = _Component<_TextProps>;
+type _Text = _Component<_TextProps>
 /** 文本组件实例 */
-type _TextInstance = InstanceType<_Text>;
+type _TextInstance = InstanceType<_Text>
 
 declare global {
     namespace UniHelper {
@@ -1395,17 +1395,17 @@ declare global {
          *
          * nbsp 根据字体设置的空格大小
          */
-        type TextSpace = _TextSpace;
+        type TextSpace = _TextSpace
         /** 文本组件属性 */
-        type TextProps = _TextProps;
+        type TextProps = _TextProps
         /**
          * 文本组件
          *
          * 用于包裹文本内容
          */
-        type Text = _Text;
+        type Text = _Text
         /** 文本组件实例 */
-        type TextInstance = _TextInstance;
+        type TextInstance = _TextInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -1415,7 +1415,7 @@ declare module '@vue/runtime-core' {
          *
          * 用于包裹文本内容
          */
-        Text: _Text;
+        Text: _Text
     }
 }
 declare global {
@@ -1426,7 +1426,7 @@ declare global {
              *
              * 用于包裹文本内容
              */
-            text: _Text;
+            text: _Text
         }
     }
 }
@@ -1438,52 +1438,52 @@ declare module 'vue3/jsx-runtime' {
              *
              * 用于包裹文本内容
              */
-            text: _Text;
+            text: _Text
         }
     }
 }
 
 /** 显示连续空格 */
-type _RichTextSpace = 'ensp' | 'emsp' | 'nbsp';
+type _RichTextSpace = 'ensp' | 'emsp' | 'nbsp'
 /** 文本节点 */
 interface _RichTextTextNode {
-    type: 'text';
-    text: string;
+    type: 'text'
+    text: string
 }
 /** 元素节点 */
 interface _RichTextNodeNode {
-    type?: 'node';
-    name: string;
-    attrs?: _AnyRecord;
-    children?: Array<_RichTextTextNode | _RichTextNodeNode>;
+    type?: 'node'
+    name: string
+    attrs?: _AnyRecord
+    children?: Array<_RichTextTextNode | _RichTextNodeNode>
 }
 /** 节点 */
-type _RichTextNode = _RichTextTextNode | _RichTextNodeNode;
+type _RichTextNode = _RichTextTextNode | _RichTextNodeNode
 /** 节点列表 */
-type _RichTextNodes = _RichTextNode[] | string;
+type _RichTextNodes = _RichTextNode[] | string
 type _RichTextOnItemclickEvent = _CustomEvent<{
-    node: _RichTextNode;
-}>;
+    node: _RichTextNode
+}>
 /** 拦截点击事件，支持 a 和 img 标签 */
 interface _RichTextOnItemclick {
-    (event: _RichTextOnItemclickEvent): void;
+    (event: _RichTextOnItemclickEvent): void
 }
 /** 富文本属性 */
 type _RichTextProps = Partial<{
     /** 节点列表 */
-    nodes: _RichTextNodes;
+    nodes: _RichTextNodes
     /**
      * 显示连续空格
      *
      * 没有默认值
      */
-    space: _RichTextSpace;
+    space: _RichTextSpace
     /**
      * 富文本是否可以长按选中
      *
      * 默认为 true
      */
-    selectable: boolean;
+    selectable: boolean
     /**
      * 是否阻止长按图片时弹起默认菜单
      *
@@ -1491,7 +1491,7 @@ type _RichTextProps = Partial<{
      *
      * 默认为 false
      */
-    imageMenuPrevent: boolean;
+    imageMenuPrevent: boolean
     /**
      * 富文本中的图片是否可点击预览
      *
@@ -1499,19 +1499,19 @@ type _RichTextProps = Partial<{
      *
      * 未显示设置 preview 时会进行点击默认预览判断，建议显示设置 preview
      */
-    preview: boolean;
+    preview: boolean
     /** 拦截点击事件，支持 a 和 img 标签 */
-    onItemclick: _RichTextOnItemclick;
-}>;
+    onItemclick: _RichTextOnItemclick
+}>
 /** 富文本 */
-type _RichText = _Component<_RichTextProps>;
+type _RichText = _Component<_RichTextProps>
 /** 富文本实例 */
-type _RichTextInstance = InstanceType<_RichText>;
+type _RichTextInstance = InstanceType<_RichText>
 
 declare global {
     namespace UniHelper {
         /** 显示连续空格 */
-        type RichTextSpace = _RichTextSpace;
+        type RichTextSpace = _RichTextSpace
         /** 文本节点 */
         interface RichTextTextNode extends _RichTextTextNode {
         }
@@ -1519,25 +1519,25 @@ declare global {
         interface RichTextNodeNode extends _RichTextNodeNode {
         }
         /** 节点 */
-        type RichTextNode = _RichTextNode;
+        type RichTextNode = _RichTextNode
         /** 节点列表 */
-        type RichTextNodes = _RichTextNodes;
-        type RichTextOnItemclickEvent = _RichTextOnItemclickEvent;
+        type RichTextNodes = _RichTextNodes
+        type RichTextOnItemclickEvent = _RichTextOnItemclickEvent
         /** 拦截点击事件，支持 a 和 img 标签 */
         interface RichTextOnItemclick extends _RichTextOnItemclick {
         }
         /** 富文本属性 */
-        type RichTextProps = _RichTextProps;
+        type RichTextProps = _RichTextProps
         /** 富文本 */
-        type RichText = _RichText;
+        type RichText = _RichText
         /** 富文本实例 */
-        type RichTextInstance = _RichTextInstance;
+        type RichTextInstance = _RichTextInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 富文本 */
-        RichText: _RichText;
+        RichText: _RichText
     }
 }
 
@@ -1548,11 +1548,11 @@ declare module '@vue/runtime-core' {
  *
  * forwards 动画从上次结束点接着播
  */
-type _ProgressActiveMode = 'backwards' | 'forwards';
-type _ProgressOnActiveendEvent = _BaseEvent;
+type _ProgressActiveMode = 'backwards' | 'forwards'
+type _ProgressOnActiveendEvent = _BaseEvent
 /** 动画完成时触发 */
 interface _ProgressOnActiveend {
-    (event: _ProgressOnActiveendEvent): void;
+    (event: _ProgressOnActiveendEvent): void
 }
 /** 进度条属性 */
 type _ProgressProps = Partial<{
@@ -1563,25 +1563,25 @@ type _ProgressProps = Partial<{
      *
      * 没有默认值
      */
-    percent: number;
+    percent: number
     /**
      * 是否在进度条右侧显示百分比
      *
      * 默认为 false
      */
-    showInfo: boolean;
+    showInfo: boolean
     /**
      * 圆角大小
      *
      * 默认为 0
      */
-    borderRadius: number | string;
+    borderRadius: number | string
     /**
      * 进度条右侧显示的百分比字体大小
      *
      * 默认为 16
      */
-    fontSize: number | string;
+    fontSize: number | string
     /**
      * 进度条线的宽度
      *
@@ -1589,25 +1589,25 @@ type _ProgressProps = Partial<{
      *
      * 默认为 6
      */
-    strokeWidth: number;
+    strokeWidth: number
     /**
      * 已选择的进度条的颜色
      *
      * 默认为 #09bb07，百度默认为 #e6e6e6
      */
-    activeColor: string;
+    activeColor: string
     /**
      * 未选择的进度条的颜色
      *
      * 默认为 #ebebeb
      */
-    backgroundColor: string;
+    backgroundColor: string
     /**
      * 是否显示进度条从左往右的动画
      *
      * 默认为 false
      */
-    active: boolean;
+    active: boolean
     /**
      * 动画播放方式
      *
@@ -1617,7 +1617,7 @@ type _ProgressProps = Partial<{
      *
      * 默认为 backwards
      */
-    activeMode: _ProgressActiveMode;
+    activeMode: _ProgressActiveMode
     /**
      * 进度增加 1% 所需时间
      *
@@ -1625,14 +1625,14 @@ type _ProgressProps = Partial<{
      *
      * 默认为 30
      */
-    duration: number;
+    duration: number
     /** 动画完成时触发 */
-    onActiveend: _ProgressOnActiveend;
-}>;
+    onActiveend: _ProgressOnActiveend
+}>
 /** 进度条 */
-type _Progress = _Component<_ProgressProps>;
+type _Progress = _Component<_ProgressProps>
 /** 进度条实例 */
-type _ProgressInstance = InstanceType<_Progress>;
+type _ProgressInstance = InstanceType<_Progress>
 
 declare global {
     namespace UniHelper {
@@ -1643,30 +1643,30 @@ declare global {
          *
          * forwards 动画从上次结束点接着播
          */
-        type ProgressActiveMode = _ProgressActiveMode;
-        type ProgressOnActiveendEvent = _ProgressOnActiveendEvent;
+        type ProgressActiveMode = _ProgressActiveMode
+        type ProgressOnActiveendEvent = _ProgressOnActiveendEvent
         /** 动画完成时触发 */
         interface ProgressOnActiveend extends _ProgressOnActiveend {
         }
         /** 进度条属性 */
-        type ProgressProps = _ProgressProps;
+        type ProgressProps = _ProgressProps
         /** 进度条 */
-        type Progress = _Progress;
+        type Progress = _Progress
         /** 进度条实例 */
-        type ProgressInstance = _ProgressInstance;
+        type ProgressInstance = _ProgressInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 进度条 */
-        Progress: _Progress;
+        Progress: _Progress
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 进度条 */
-            progress: _Progress;
+            progress: _Progress
         }
     }
 }
@@ -1674,7 +1674,7 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 进度条 */
-            progress: _Progress;
+            progress: _Progress
         }
     }
 }
@@ -1686,7 +1686,7 @@ declare module 'vue3/jsx-runtime' {
  *
  * mini 小
  */
-type _ButtonSize = 'default' | 'mini';
+type _ButtonSize = 'default' | 'mini'
 /**
  * 按钮的样式类型，如想在多端统一颜色，请用 default 然后自行写样式
  *
@@ -1696,7 +1696,7 @@ type _ButtonSize = 'default' | 'mini';
  *
  * warn 红色
  */
-type _ButtonType = 'primary' | 'default' | 'warn';
+type _ButtonType = 'primary' | 'default' | 'warn'
 /**
  * 用于 form 组件，点击分别会触发 form 组件的 submit / reset 事件
  *
@@ -1704,7 +1704,7 @@ type _ButtonType = 'primary' | 'default' | 'warn';
  *
  * reset 点击会触发 form 的 reset 事件
  */
-type _ButtonFormType = 'submit' | 'reset';
+type _ButtonFormType = 'submit' | 'reset'
 /**
  * 开放能力
  *
@@ -1760,7 +1760,7 @@ type _ButtonFormType = 'submit' | 'reset';
  *
  * openProfile 触发打开用户主页
  */
-type _ButtonOpenType = 'feedback' | 'share' | 'getUserInfo' | 'contact' | 'getPhoneNumber' | 'launchApp' | 'openSetting' | 'chooseAvatar' | 'getAuthorize' | 'lifestyle' | 'contactShare' | 'openGroupProfile' | 'openGuildProfile' | 'openPublicProfile' | 'shareMessageToFriend' | 'addFriend' | 'addColorSign' | 'addGroupApp' | 'addToFavorites' | 'chooseAddress' | 'chooseInvoiceTitle' | 'login' | 'subscribe' | 'favorite' | 'watchLater' | 'openProfile';
+type _ButtonOpenType = 'feedback' | 'share' | 'getUserInfo' | 'contact' | 'getPhoneNumber' | 'launchApp' | 'openSetting' | 'chooseAvatar' | 'getAuthorize' | 'lifestyle' | 'contactShare' | 'openGroupProfile' | 'openGuildProfile' | 'openPublicProfile' | 'shareMessageToFriend' | 'addFriend' | 'addColorSign' | 'addGroupApp' | 'addToFavorites' | 'chooseAddress' | 'chooseInvoiceTitle' | 'login' | 'subscribe' | 'favorite' | 'watchLater' | 'openProfile'
 /**
  * 返回用户信息的语言
  *
@@ -1770,107 +1770,107 @@ type _ButtonOpenType = 'feedback' | 'share' | 'getUserInfo' | 'contact' | 'getPh
  *
  * en 英文
  */
-type _ButtonLang = 'zh_CN' | 'zh_TW' | 'en';
+type _ButtonLang = 'zh_CN' | 'zh_TW' | 'en'
 interface _ButtonOnGetphonenumberDetail {
     /** 错误信息 */
-    errMsg?: string;
+    errMsg?: string
     /** 动态令牌 */
-    code?: string;
+    code?: string
     /** 包括敏感数据在内的完整用户信息的加密数据 */
-    encryptedData?: string;
+    encryptedData?: string
     /** 加密算法的初始向量 */
-    iv?: string;
+    iv?: string
     /** 敏感数据对应的云 ID，开通云开发的小程序才会返回，可通过云调用直接获取开放数据 */
-    cloudID?: string;
+    cloudID?: string
 }
-type _ButtonOnGetphonenumberEvent = _CustomEvent<_ButtonOnGetphonenumberDetail>;
+type _ButtonOnGetphonenumberEvent = _CustomEvent<_ButtonOnGetphonenumberDetail>
 /**
  * 获取用户手机号时回调
  *
  * open-type="getPhoneNumber" 时有效
  */
 interface _ButtonOnGetphonenumber {
-    (event: _ButtonOnGetphonenumberEvent): void;
+    (event: _ButtonOnGetphonenumberEvent): void
 }
-type _ButtonOnErrorEvent = _BaseEvent;
+type _ButtonOnErrorEvent = _BaseEvent
 /** 使用开放能力发生错误时回调 */
 interface _ButtonOnError {
-    (event: _ButtonOnErrorEvent): void;
+    (event: _ButtonOnErrorEvent): void
 }
 interface _ButtonOnOpensettingDetail {
-    authSetting: _AnyRecord;
+    authSetting: _AnyRecord
 }
-type _ButtonOnOpensettingEvent = _CustomEvent<_ButtonOnOpensettingDetail>;
+type _ButtonOnOpensettingEvent = _CustomEvent<_ButtonOnOpensettingDetail>
 /**
  * 在打开授权设置页并关闭后回调
  *
  * open-type="openSetting" 时有效
  */
 interface _ButtonOnOpensetting {
-    (event: _ButtonOnOpensettingEvent): void;
+    (event: _ButtonOnOpensettingEvent): void
 }
-type _ButtonOnLaunchappEvent = _BaseEvent;
+type _ButtonOnLaunchappEvent = _BaseEvent
 /**
  * 从小程序成功打开 APP 回调
  *
  * open-type="launchApp" 时有效
  */
 interface _ButtonOnLaunchapp {
-    (event: _ButtonOnLaunchappEvent): void;
+    (event: _ButtonOnLaunchappEvent): void
 }
-type _ButtonOnChooseavatarEvent = _BaseEvent;
+type _ButtonOnChooseavatarEvent = _BaseEvent
 /**
  * 获取用户头像回调
  *
  * open-type="chooseAvatar" 时有效
  */
 interface _ButtonOnChooseavatar {
-    (event: _ButtonOnChooseavatarEvent): void;
+    (event: _ButtonOnChooseavatarEvent): void
 }
-type _ButtonOnAddgroupappEvent = _BaseEvent;
+type _ButtonOnAddgroupappEvent = _BaseEvent
 /**
  * 添加群应用回调
  *
  * open-type="addGroupApp" 时有效
  */
 interface _ButtonOnAddgroupapp {
-    (event: _ButtonOnAddgroupappEvent): void;
+    (event: _ButtonOnAddgroupappEvent): void
 }
-type _ButtonOnChooseaddressEvent = _BaseEvent;
+type _ButtonOnChooseaddressEvent = _BaseEvent
 /**
  * 用户编辑并选择收货地址回调
  *
  * open-type="chooseAddress" 时有效
  */
 interface _ButtonOnChooseaddress {
-    (event: _ButtonOnChooseaddressEvent): void;
+    (event: _ButtonOnChooseaddressEvent): void
 }
-type _ButtonOnChooseinvoicetitleEvent = _BaseEvent;
+type _ButtonOnChooseinvoicetitleEvent = _BaseEvent
 /**
  * 用户选择发票抬头回调
  *
  * open-type="chooseInvoiceTitle" 时有效
  */
 interface _ButtonOnChooseinvoicetitle {
-    (event: _ButtonOnChooseinvoicetitleEvent): void;
+    (event: _ButtonOnChooseinvoicetitleEvent): void
 }
-type _ButtonOnSubscribeEvent = _BaseEvent;
+type _ButtonOnSubscribeEvent = _BaseEvent
 /**
  * 订阅消息授权回调
  *
  * open-type="subscribe" 时有效
  */
 interface _ButtonOnSubscribe {
-    (event: _ButtonOnSubscribeEvent): void;
+    (event: _ButtonOnSubscribeEvent): void
 }
-type _ButtonOnLoginEvent = _BaseEvent;
+type _ButtonOnLoginEvent = _BaseEvent
 /**
  * 登录回调
  *
  * open-type="login" 时有效
  */
 interface _ButtonOnLogin {
-    (event: _ButtonOnLoginEvent): void;
+    (event: _ButtonOnLoginEvent): void
 }
 /** 按钮属性 */
 type _ButtonProps = Partial<{
@@ -1883,7 +1883,7 @@ type _ButtonProps = Partial<{
      *
      * 默认为 default
      */
-    size: _ButtonSize;
+    size: _ButtonSize
     /**
      * 按钮的样式类型
      *
@@ -1895,21 +1895,21 @@ type _ButtonProps = Partial<{
      *
      * 默认为 default
      */
-    type: _ButtonType;
+    type: _ButtonType
     /**
      * 按钮是否镂空，背景色透明
      *
      * 默认为 false
      */
-    plain: boolean;
+    plain: boolean
     /** 是否禁用 */
-    disabled: boolean;
+    disabled: boolean
     /**
      * 是否带 loading 图标
      *
      * 默认为 false
      */
-    loading: boolean;
+    loading: boolean
     /**
      * 用于 form 组件，点击分别会触发 form 组件的 submit / reset 事件
      *
@@ -1919,7 +1919,7 @@ type _ButtonProps = Partial<{
      *
      * 没有默认值
      */
-    formType: _ButtonFormType;
+    formType: _ButtonFormType
     /**
      * 开放能力
      *
@@ -1976,7 +1976,7 @@ type _ButtonProps = Partial<{
      *
      * openProfile 触发打开用户主页
      */
-    openType: _ButtonOpenType;
+    openType: _ButtonOpenType
     /**
      * 指定按下去的样式类
      *
@@ -1984,7 +1984,7 @@ type _ButtonProps = Partial<{
      *
      * 默认为 button-hover
      */
-    hoverClass: string;
+    hoverClass: string
     /**
      * 按住后多久出现点击态
      *
@@ -1992,7 +1992,7 @@ type _ButtonProps = Partial<{
      *
      * 默认为 20
      */
-    hoverStartTime: number;
+    hoverStartTime: number
     /**
      * 手指松开后点击态保留时间
      *
@@ -2000,19 +2000,19 @@ type _ButtonProps = Partial<{
      *
      * 默认为 70
      */
-    hoverStayTime: number;
+    hoverStayTime: number
     /**
      * 打开 APP 时，向 APP 传递的参数
      *
      * open-type="launchApp" 时有效
      */
-    appParameter: string;
+    appParameter: string
     /**
      * 指定是否阻止本节点的祖先节点出现点击态
      *
      * 默认为 false
      */
-    hoverStopPropagation: boolean;
+    hoverStopPropagation: boolean
     /**
      * 返回用户信息的语言
      *
@@ -2024,13 +2024,13 @@ type _ButtonProps = Partial<{
      *
      * 默认为 en
      */
-    lang: _ButtonLang;
+    lang: _ButtonLang
     /**
      * 会话来源
      *
      * open-type="contact" 时有效
      */
-    sessionFrom: string;
+    sessionFrom: string
     /**
      * 会话内消息卡片标题
      *
@@ -2038,7 +2038,7 @@ type _ButtonProps = Partial<{
      *
      * 默认为当前标题
      */
-    sendMessageTitle: string;
+    sendMessageTitle: string
     /**
      * 会话内消息卡片点击跳转小程序路径
      *
@@ -2046,7 +2046,7 @@ type _ButtonProps = Partial<{
      *
      * 默认为当前分享路径
      */
-    sendMessagePath: string;
+    sendMessagePath: string
     /**
      * 会话内消息卡片图片
      *
@@ -2054,7 +2054,7 @@ type _ButtonProps = Partial<{
      *
      * 默认为截图
      */
-    sendMessageImg: string;
+    sendMessageImg: string
     /**
      * 是否显示会话内消息卡片
      *
@@ -2064,86 +2064,86 @@ type _ButtonProps = Partial<{
      *
      * 默认为 false
      */
-    showMessageCard: boolean;
+    showMessageCard: boolean
     /**
      * 打开群资料卡时，传递的群号
      *
      * open-type="openGroupProfile" 时有效
      */
-    groupId: string;
+    groupId: string
     /**
      * 打开频道页面时，传递的频道号
      *
      * open-type="openGuildProfile" 时有效
      */
-    guildId: string;
+    guildId: string
     /**
      * 打开公众号资料卡时，传递的号码
      *
      * open-type="openPublicProfile" 时有效
      */
-    publicId: string;
+    publicId: string
     /**
      * 获取用户手机号时回调
      *
      * open-type="getPhoneNumber" 时有效
      */
-    onGetphonenumber: _ButtonOnGetphonenumber;
+    onGetphonenumber: _ButtonOnGetphonenumber
     /** 使用开放能力发生错误时回调 */
-    onError: _ButtonOnError;
+    onError: _ButtonOnError
     /**
      * 在打开授权设置页并关闭后回调
      *
      * open-type="openSetting" 时有效
      */
-    onOpensetting: _ButtonOnOpensetting;
+    onOpensetting: _ButtonOnOpensetting
     /**
      * 从小程序成功打开 APP 回调
      *
      * open-type="launchApp" 时有效
      */
-    onLaunchapp: _ButtonOnLaunchapp;
+    onLaunchapp: _ButtonOnLaunchapp
     /**
      * 获取用户头像回调
      *
      * open-type="chooseAvatar" 时有效
      */
-    onChooseavatar: _ButtonOnChooseavatar;
+    onChooseavatar: _ButtonOnChooseavatar
     /**
      * 添加群应用回调
      *
      * open-type="addGroupApp" 时有效
      */
-    onAddgroupapp: _ButtonOnAddgroupapp;
+    onAddgroupapp: _ButtonOnAddgroupapp
     /**
      * 用户编辑并选择收货地址回调
      *
      * open-type="chooseAddress" 时有效
      */
-    onChooseaddress: _ButtonOnChooseaddress;
+    onChooseaddress: _ButtonOnChooseaddress
     /**
      * 用户选择发票抬头回调
      *
      * open-type="chooseInvoiceTitle" 时有效
      */
-    onChooseinvoicetitle: _ButtonOnChooseinvoicetitle;
+    onChooseinvoicetitle: _ButtonOnChooseinvoicetitle
     /**
      * 订阅消息授权回调
      *
      * open-type="subscribe" 时有效
      */
-    onSubscribe: _ButtonOnSubscribe;
+    onSubscribe: _ButtonOnSubscribe
     /**
      * 登录回调
      *
      * open-type="login" 时有效
      */
-    onLogin: _ButtonOnLogin;
-}>;
+    onLogin: _ButtonOnLogin
+}>
 /** 按钮 */
-type _Button = _Component<_ButtonProps>;
+type _Button = _Component<_ButtonProps>
 /** 按钮实例 */
-type _ButtonInstance = InstanceType<_Button>;
+type _ButtonInstance = InstanceType<_Button>
 
 declare global {
     namespace UniHelper {
@@ -2154,7 +2154,7 @@ declare global {
          *
          * mini 小
          */
-        type ButtonSize = _ButtonSize;
+        type ButtonSize = _ButtonSize
         /**
          * 按钮的样式类型，如想在多端统一颜色，请用 default 然后自行写样式
          *
@@ -2164,7 +2164,7 @@ declare global {
          *
          * warn 红色
          */
-        type ButtonType = _ButtonType;
+        type ButtonType = _ButtonType
         /**
          * 用于 form 组件，点击分别会触发 form 组件的 submit / reset 事件
          *
@@ -2172,7 +2172,7 @@ declare global {
          *
          * reset 点击会触发 form 的 reset 事件
          */
-        type ButtonFormType = _ButtonFormType;
+        type ButtonFormType = _ButtonFormType
         /**
          * 开放能力
          *
@@ -2230,7 +2230,7 @@ declare global {
          *
          * openProfile 触发打开用户主页
          */
-        type ButtonOpenType = _ButtonOpenType;
+        type ButtonOpenType = _ButtonOpenType
         /**
          * 返回用户信息的语言
          *
@@ -2240,10 +2240,10 @@ declare global {
          *
          * en 英文
          */
-        type ButtonLang = _ButtonLang;
+        type ButtonLang = _ButtonLang
         interface ButtonOnGetphonenumberDetail extends _ButtonOnGetphonenumberDetail {
         }
-        type ButtonOnGetphonenumberEvent = _ButtonOnGetphonenumberEvent;
+        type ButtonOnGetphonenumberEvent = _ButtonOnGetphonenumberEvent
         /**
          * 获取用户手机号时回调
          *
@@ -2251,13 +2251,13 @@ declare global {
          */
         interface ButtonOnGetphonenumber extends _ButtonOnGetphonenumber {
         }
-        type ButtonOnErrorEvent = _ButtonOnErrorEvent;
+        type ButtonOnErrorEvent = _ButtonOnErrorEvent
         /** 使用开放能力发生错误时回调 */
         interface ButtonOnError extends _ButtonOnError {
         }
         interface ButtonOnOpensettingDetail extends _ButtonOnOpensettingDetail {
         }
-        type ButtonOnOpensettingEvent = _ButtonOnOpensettingEvent;
+        type ButtonOnOpensettingEvent = _ButtonOnOpensettingEvent
         /**
          * 在打开授权设置页并关闭后回调
          *
@@ -2265,7 +2265,7 @@ declare global {
          */
         interface ButtonOnOpensetting extends _ButtonOnOpensetting {
         }
-        type ButtonOnLaunchappEvent = _ButtonOnLaunchappEvent;
+        type ButtonOnLaunchappEvent = _ButtonOnLaunchappEvent
         /**
          * 从小程序成功打开 APP 回调
          *
@@ -2273,7 +2273,7 @@ declare global {
          */
         interface ButtonOnLaunchapp extends _ButtonOnLaunchapp {
         }
-        type ButtonOnChooseavatarEvent = _ButtonOnChooseavatarEvent;
+        type ButtonOnChooseavatarEvent = _ButtonOnChooseavatarEvent
         /**
          * 获取用户头像回调
          *
@@ -2281,7 +2281,7 @@ declare global {
          */
         interface ButtonOnChooseavatar extends _ButtonOnChooseavatar {
         }
-        type ButtonOnAddgroupappEvent = _ButtonOnAddgroupappEvent;
+        type ButtonOnAddgroupappEvent = _ButtonOnAddgroupappEvent
         /**
          * 添加群应用回调
          *
@@ -2289,7 +2289,7 @@ declare global {
          */
         interface ButtonOnAddgroupapp extends _ButtonOnAddgroupapp {
         }
-        type ButtonOnChooseaddressEvent = _ButtonOnChooseaddressEvent;
+        type ButtonOnChooseaddressEvent = _ButtonOnChooseaddressEvent
         /**
          * 用户编辑并选择收货地址回调
          *
@@ -2297,7 +2297,7 @@ declare global {
          */
         interface ButtonOnChooseaddress extends _ButtonOnChooseaddress {
         }
-        type ButtonOnChooseinvoicetitleEvent = _ButtonOnChooseinvoicetitleEvent;
+        type ButtonOnChooseinvoicetitleEvent = _ButtonOnChooseinvoicetitleEvent
         /**
          * 用户选择发票抬头回调
          *
@@ -2305,7 +2305,7 @@ declare global {
          */
         interface ButtonOnChooseinvoicetitle extends _ButtonOnChooseinvoicetitle {
         }
-        type ButtonOnSubscribeEvent = _ButtonOnSubscribeEvent;
+        type ButtonOnSubscribeEvent = _ButtonOnSubscribeEvent
         /**
          * 订阅消息授权回调
          *
@@ -2313,7 +2313,7 @@ declare global {
          */
         interface ButtonOnSubscribe extends _ButtonOnSubscribe {
         }
-        type ButtonOnLoginEvent = _ButtonOnLoginEvent;
+        type ButtonOnLoginEvent = _ButtonOnLoginEvent
         /**
          * 登录回调
          *
@@ -2322,24 +2322,24 @@ declare global {
         interface ButtonOnLogin extends _ButtonOnLogin {
         }
         /** 按钮属性 */
-        type ButtonProps = _ButtonProps;
+        type ButtonProps = _ButtonProps
         /** 按钮 */
-        type Button = _Button;
+        type Button = _Button
         /** 按钮实例 */
-        type ButtonInstance = _ButtonInstance;
+        type ButtonInstance = _ButtonInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 按钮 */
-        Button: _Button;
+        Button: _Button
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 按钮 */
-            button: _Button;
+            button: _Button
         }
     }
 }
@@ -2347,7 +2347,7 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 按钮 */
-            button: _Button;
+            button: _Button
         }
     }
 }
@@ -2357,36 +2357,36 @@ declare module 'vue3/jsx-runtime' {
  *
  * 选中时触发 checkbox-group 的 change 事件并携带 value
  */
-type _CheckboxValue = string;
+type _CheckboxValue = string
 /** 多选项目属性 */
 type _CheckboxProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /**
      * 标识
      *
      * 选中时触发 checkbox-group 的 change 事件并携带 value
      */
-    value: _CheckboxValue;
+    value: _CheckboxValue
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /**
      * 当前是否选中，可用于设置默认选中
      *
      * 默认为 false
      */
-    checked: boolean;
+    checked: boolean
     /** 颜色 */
-    color: string;
-}>;
+    color: string
+}>
 /** 多选项目 */
-type _Checkbox = _Component<_CheckboxProps>;
+type _Checkbox = _Component<_CheckboxProps>
 /** 多选项目实例 */
-type _CheckboxInstance = InstanceType<_Checkbox>;
+type _CheckboxInstance = InstanceType<_Checkbox>
 
 declare global {
     namespace UniHelper {
@@ -2395,102 +2395,102 @@ declare global {
          *
          * 选中时触发 checkbox-group 的 change 事件并携带 value
          */
-        type CheckboxValue = _CheckboxValue;
+        type CheckboxValue = _CheckboxValue
         /** 多选项目属性 */
-        type CheckboxProps = _CheckboxProps;
+        type CheckboxProps = _CheckboxProps
         /** 多选项目 */
-        type Checkbox = _Checkbox;
+        type Checkbox = _Checkbox
         /** 多选项目实例 */
-        type CheckboxInstance = _CheckboxInstance;
+        type CheckboxInstance = _CheckboxInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 多选项目 */
-        Checkbox: _Checkbox;
+        Checkbox: _Checkbox
     }
 }
 
 interface _CheckboxGroupOnChangeDetail {
-    value: _CheckboxValue[];
+    value: _CheckboxValue[]
 }
-type _CheckboxGroupOnChangeEvent = _CustomEvent<_CheckboxGroupOnChangeDetail>;
+type _CheckboxGroupOnChangeEvent = _CustomEvent<_CheckboxGroupOnChangeDetail>
 /** 选中项发生改变时触发 */
 interface _CheckboxGroupOnChange {
-    (event: _CheckboxGroupOnChangeEvent): void;
+    (event: _CheckboxGroupOnChangeEvent): void
 }
 /** 多项选择器属性 */
 type _CheckboxGroupProps = Partial<{
     /** 选中项发生改变时触发 */
-    onChange: _CheckboxGroupOnChange;
-}>;
+    onChange: _CheckboxGroupOnChange
+}>
 /** 多项选择器，内部由多个 checkbox 组成 */
-type _CheckboxGroup = _Component<_CheckboxGroupProps>;
+type _CheckboxGroup = _Component<_CheckboxGroupProps>
 /** 多项选择器实例 */
-type _CheckboxGroupInstance = InstanceType<_CheckboxGroup>;
+type _CheckboxGroupInstance = InstanceType<_CheckboxGroup>
 
 declare global {
     namespace UniHelper {
         interface CheckboxGroupOnChangeDetail extends _CheckboxGroupOnChangeDetail {
         }
-        type CheckboxGroupOnChangeEvent = _CheckboxGroupOnChangeEvent;
+        type CheckboxGroupOnChangeEvent = _CheckboxGroupOnChangeEvent
         /** 选中项发生改变时触发 */
         interface CheckboxGroupOnChange extends _CheckboxGroupOnChange {
         }
         /** 多项选择器属性 */
-        type CheckboxGroupProps = _CheckboxGroupProps;
+        type CheckboxGroupProps = _CheckboxGroupProps
         /** 多项选择器，内部由多个 checkbox 组成 */
-        type CheckboxGroup = _CheckboxGroup;
+        type CheckboxGroup = _CheckboxGroup
         /** 多项选择器实例 */
-        type CheckboxGroupInstance = _CheckboxGroupInstance;
+        type CheckboxGroupInstance = _CheckboxGroupInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 多项选择器，内部由多个 checkbox 组成 */
-        CheckboxGroup: _CheckboxGroup;
+        CheckboxGroup: _CheckboxGroup
     }
 }
 
-type _EditorOnReadyEvent = _BaseEvent;
+type _EditorOnReadyEvent = _BaseEvent
 /** 编辑器初始化完成时触发 */
 interface _EditorOnReady {
-    (event: _EditorOnReadyEvent): void;
+    (event: _EditorOnReadyEvent): void
 }
 interface _EditorOnFocusDetail {
-    html: string;
-    text: string;
-    delta: _AnyRecord;
+    html: string
+    text: string
+    delta: _AnyRecord
 }
-type _EditorOnFocusEvent = _CustomEvent<_EditorOnFocusDetail>;
+type _EditorOnFocusEvent = _CustomEvent<_EditorOnFocusDetail>
 /** 编辑器聚焦时触发 */
 interface _EditorOnFocus {
-    (event: _EditorOnFocusEvent): void;
+    (event: _EditorOnFocusEvent): void
 }
 interface _EditorOnBlurDetail {
-    html: string;
-    text: string;
-    delta: _AnyRecord;
+    html: string
+    text: string
+    delta: _AnyRecord
 }
-type _EditorOnBlurEvent = _CustomEvent<_EditorOnBlurDetail>;
+type _EditorOnBlurEvent = _CustomEvent<_EditorOnBlurDetail>
 /** 编辑器失焦时触发 */
 interface _EditorOnBlur {
-    (event: _EditorOnBlurEvent): void;
+    (event: _EditorOnBlurEvent): void
 }
 interface _EditorOnInputDetail {
-    html: string;
-    text: string;
-    delta: _AnyRecord;
+    html: string
+    text: string
+    delta: _AnyRecord
 }
-type _EditorOnInputEvent = _CustomEvent<_EditorOnInputDetail>;
+type _EditorOnInputEvent = _CustomEvent<_EditorOnInputDetail>
 /** 编辑器内容改变时触发 */
 interface _EditorOnInput {
-    (event: _EditorOnInputEvent): void;
+    (event: _EditorOnInputEvent): void
 }
-type _EditorOnStatuschangeEvent = _BaseEvent;
+type _EditorOnStatuschangeEvent = _BaseEvent
 /** 通过 Context 方法改变编辑器内样式时触发，返回选区已设置的样式 */
 interface _EditorOnStatuschange {
-    (event: _EditorOnStatuschangeEvent): void;
+    (event: _EditorOnStatuschangeEvent): void
 }
 /** 编辑器属性 */
 type _EditorProps = Partial<{
@@ -2499,38 +2499,38 @@ type _EditorProps = Partial<{
      *
      * 默认为 false
      */
-    readOnly: boolean;
+    readOnly: boolean
     /** 提示信息 */
-    placeholder: string;
+    placeholder: string
     /**
      * 点击图片时是否显示图片大小控件
      *
      * 默认为 false
      */
-    showImgSize: boolean;
+    showImgSize: boolean
     /**
      * 点击图片时是否显示工具栏控件
      *
      * 默认为 false
      */
-    showImgToolbar: boolean;
+    showImgToolbar: boolean
     /**
      * 点击图片时是否显示修改尺寸控件
      *
      * 默认为 false
      */
-    showImgResize: string;
+    showImgResize: string
     /** 编辑器初始化完成时触发 */
-    onReady: _EditorOnReady;
+    onReady: _EditorOnReady
     /** 编辑器聚焦时触发 */
-    onFocus: _EditorOnFocus;
+    onFocus: _EditorOnFocus
     /** 编辑器失焦时触发 */
-    onBlur: _EditorOnBlur;
+    onBlur: _EditorOnBlur
     /** 编辑器内容改变时触发 */
-    onInput: _EditorOnInput;
+    onInput: _EditorOnInput
     /** 通过 Context 方法改变编辑器内样式时触发，返回选区已设置的样式 */
-    onStatuschange: _EditorOnStatuschange;
-}>;
+    onStatuschange: _EditorOnStatuschange
+}>
 /**
  * 富文本编辑器，可以对图片、文字进行编辑和混排
  *
@@ -2540,40 +2540,40 @@ type _EditorProps = Partial<{
  *
  * 图片控件仅初始化时设置有效
  */
-type _Editor = _Component<_EditorProps>;
+type _Editor = _Component<_EditorProps>
 /** 富文本编辑器实例 */
-type _EditorInstance = InstanceType<_Editor>;
+type _EditorInstance = InstanceType<_Editor>
 
 declare global {
     namespace UniHelper {
-        type EditorOnReadyEvent = _EditorOnReadyEvent;
+        type EditorOnReadyEvent = _EditorOnReadyEvent
         /** 编辑器初始化完成时触发 */
         interface EditorOnReady extends _EditorOnReady {
         }
         interface EditorOnFocusDetail extends _EditorOnFocusDetail {
         }
-        type EditorOnFocusEvent = _EditorOnFocusEvent;
+        type EditorOnFocusEvent = _EditorOnFocusEvent
         /** 编辑器聚焦时触发 */
         interface EditorOnFocus extends _EditorOnFocus {
         }
         interface EditorOnBlurDetail extends _EditorOnBlurDetail {
         }
-        type EditorOnBlurEvent = _EditorOnBlurEvent;
+        type EditorOnBlurEvent = _EditorOnBlurEvent
         /** 编辑器失焦时触发 */
         interface EditorOnBlur extends _EditorOnBlur {
         }
         interface EditorOnInputDetail extends _EditorOnInputDetail {
         }
-        type EditorOnInputEvent = _EditorOnInputEvent;
+        type EditorOnInputEvent = _EditorOnInputEvent
         /** 编辑器内容改变时触发 */
         interface EditorOnInput extends _EditorOnInput {
         }
-        type EditorOnStatuschangeEvent = _EditorOnStatuschangeEvent;
+        type EditorOnStatuschangeEvent = _EditorOnStatuschangeEvent
         /** 通过 Context 方法改变编辑器内样式时触发，返回选区已设置的样式 */
         interface EditorOnStatuschange extends _EditorOnStatuschange {
         }
         /** 编辑器属性 */
-        type EditorProps = _EditorProps;
+        type EditorProps = _EditorProps
         /**
          * 富文本编辑器，可以对图片、文字进行编辑和混排
          *
@@ -2583,9 +2583,9 @@ declare global {
          *
          * 图片控件仅初始化时设置有效
          */
-        type Editor = _Editor;
+        type Editor = _Editor
         /** 富文本编辑器实例 */
-        type EditorInstance = _EditorInstance;
+        type EditorInstance = _EditorInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -2599,12 +2599,12 @@ declare module '@vue/runtime-core' {
          *
          * 图片控件仅初始化时设置有效
          */
-        Editor: _Editor;
+        Editor: _Editor
     }
 }
 
 /** 输入框的内容 */
-type _InputValue = string;
+type _InputValue = string
 /**
  * input 类型
  *
@@ -2622,13 +2622,13 @@ type _InputValue = string;
  *
  * nickname 昵称输入键盘
  */
-type _InputType = 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname';
+type _InputType = 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'
 /**
  * 文本区域的语义，根据类型自动填充
  *
  * oneTimeCode 一次性验证码
  */
-type _InputTextContentType = 'oneTimeCode';
+type _InputTextContentType = 'oneTimeCode'
 /**
  * 设置键盘右下角按钮的文字
  *
@@ -2644,7 +2644,7 @@ type _InputTextContentType = 'oneTimeCode';
  *
  * @decs done 完成
  */
-type _InputConfirmType = 'send' | 'search' | 'next' | 'go' | 'done';
+type _InputConfirmType = 'send' | 'search' | 'next' | 'go' | 'done'
 /**
  * 枚举属性，提供了用户在编辑元素或其内容时可能输入的数据类型的提示
  *
@@ -2664,61 +2664,61 @@ type _InputConfirmType = 'send' | 'search' | 'next' | 'go' | 'done';
  *
  * url 网址输入键盘，表单内网址输入因 type="url"
  */
-type _InputInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+type _InputInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
 interface _InputOnInputDetail {
-    value: _InputValue;
+    value: _InputValue
     /** 光标位置 */
-    cursor?: number;
+    cursor?: number
     /** 键值 */
-    keyCode?: number;
+    keyCode?: number
 }
-type _InputOnInputEvent = _CustomEvent<_InputOnInputDetail>;
+type _InputOnInputEvent = _CustomEvent<_InputOnInputDetail>
 /** 输入时触发 */
 interface _InputOnInput {
-    (event: _InputOnInputEvent): string | void;
+    (event: _InputOnInputEvent): string | void
 }
 interface _InputOnFocusDetail {
-    value: _InputValue;
+    value: _InputValue
     /** 键盘高度 */
-    height?: number;
+    height?: number
 }
-type _InputOnFocusEvent = _CustomEvent<_InputOnFocusDetail>;
+type _InputOnFocusEvent = _CustomEvent<_InputOnFocusDetail>
 /** 聚焦时触发 */
 interface _InputOnFocus {
-    (event: _InputOnFocusEvent): void;
+    (event: _InputOnFocusEvent): void
 }
 interface _InputOnBlurDetail {
-    value: _InputValue;
+    value: _InputValue
 }
-type _InputOnBlurEvent = _CustomEvent<_InputOnBlurDetail>;
+type _InputOnBlurEvent = _CustomEvent<_InputOnBlurDetail>
 /** 失焦时触发 */
 interface _InputOnBlur {
-    (event: _InputOnBlurEvent): void;
+    (event: _InputOnBlurEvent): void
 }
 interface _InputOnConfirmDetail {
-    value: _InputValue;
+    value: _InputValue
 }
-type _InputOnConfirmEvent = _CustomEvent<_InputOnConfirmDetail>;
+type _InputOnConfirmEvent = _CustomEvent<_InputOnConfirmDetail>
 /** 点击完成按钮时触发 */
 interface _InputOnConfirm {
-    (event: _InputOnConfirmEvent): void;
+    (event: _InputOnConfirmEvent): void
 }
 interface _InputOnKeyboardheightchangeDetail {
     /** 键盘高度 */
-    height: number;
-    duration: number;
+    height: number
+    duration: number
 }
-type _InputOnKeyboardheightchangeEvent = _CustomEvent<_InputOnKeyboardheightchangeDetail>;
+type _InputOnKeyboardheightchangeEvent = _CustomEvent<_InputOnKeyboardheightchangeDetail>
 /** 键盘高度变化时触发 */
 interface _InputOnKeyboardheightchange {
-    (event: _InputOnKeyboardheightchangeEvent): void;
+    (event: _InputOnKeyboardheightchangeEvent): void
 }
 /** 输入框属性 */
 type _InputProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /** 输入框的初始内容 */
-    value: _InputValue;
+    value: _InputValue
     /**
      * input 类型
      *
@@ -2738,35 +2738,35 @@ type _InputProps = Partial<{
      *
      * 默认为 text
      */
-    type: _InputType;
+    type: _InputType
     /**
      * 文本区域的语义，根据类型自动填充
      *
      * oneTimeCode 一次性验证码
      */
-    textContentType: _InputTextContentType;
+    textContentType: _InputTextContentType
     /**
      * 是否是密码类型
      *
      * 默认为 false
      */
-    password: boolean;
+    password: boolean
     /** 输入框为空时占位符 */
-    placeholder: string;
+    placeholder: string
     /** 指定 placeholder 的样式 */
-    placeholderStyle: string;
+    placeholderStyle: string
     /**
      * 指定 placeholder 的样式类
      *
      * 默认为 input-placeholder
      */
-    placeholderClass: string;
+    placeholderClass: string
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /**
      * 最大输入长度
      *
@@ -2774,7 +2774,7 @@ type _InputProps = Partial<{
      *
      * 默认为 140
      */
-    maxlength: number;
+    maxlength: number
     /**
      * 指定光标与键盘的距离
      *
@@ -2784,19 +2784,19 @@ type _InputProps = Partial<{
      *
      * 默认为 0
      */
-    cursorSpacing: number;
+    cursorSpacing: number
     /**
      * 是否获取焦点
      *
      * 默认为 false
      */
-    focus: boolean;
+    focus: boolean
     /**
      * 是否自动聚焦，拉起键盘
      *
      * 默认为 false
      */
-    autoFocus: boolean;
+    autoFocus: boolean
     /**
      * 设置键盘右下角按钮的文字
      *
@@ -2814,45 +2814,45 @@ type _InputProps = Partial<{
      *
      * @decs done 完成
      */
-    confirmType: _InputConfirmType;
+    confirmType: _InputConfirmType
     /**
      * 点击键盘右下角按钮时是否保持键盘不收起
      *
      * 默认为 false
      */
-    confirmHold: boolean;
+    confirmHold: boolean
     /** 指定 focus 时的光标位置 */
-    cursor: number;
+    cursor: number
     /**
      * 光标起始位置，自动聚焦时有效，需与 selection-end 搭配使用
      *
      * 默认为 -1
      */
-    selectionStart: number;
+    selectionStart: number
     /**
      * 光标结束位置，自动聚焦时有效，需与 selection-start 搭配使用
      *
      * 默认为 -1
      */
-    selectionEnd: number;
+    selectionEnd: number
     /**
      * 键盘弹起时，是否自动上推页面
      *
      * 默认为 true
      */
-    adjustPosition: boolean;
+    adjustPosition: boolean
     /**
      * 聚焦时，点击页面的时候是否不收起键盘
      *
      * 默认为 false
      */
-    holdKeyboard: boolean;
+    holdKeyboard: boolean
     /**
      * 键盘收起时，是否自动失焦
      *
      * 默认为 false
      */
-    autoBlur: boolean;
+    autoBlur: boolean
     /**
      * 是否忽略组件内对文本合成系统事件的处理
      *
@@ -2860,7 +2860,7 @@ type _InputProps = Partial<{
      *
      * 默认为 true
      */
-    ignoreCompositionEvent: boolean;
+    ignoreCompositionEvent: boolean
     /**
      * 是否强制 input 处于同层状态，仅在 iOS 生效
      *
@@ -2868,25 +2868,25 @@ type _InputProps = Partial<{
      *
      * 默认为 false
      */
-    alwaysEmbed: boolean;
+    alwaysEmbed: boolean
     /** 安全键盘加密公钥的路径，只支持包内路径 */
-    safePasswordCertPath: string;
+    safePasswordCertPath: string
     /** 安全键盘输入密码长度 */
-    safePasswordLength: number;
+    safePasswordLength: number
     /** 安全键盘加密时间戳 */
-    safePasswordTimeStamp: number;
+    safePasswordTimeStamp: number
     /** 安全键盘加密盐值 */
-    safePasswordNonce: string;
+    safePasswordNonce: string
     /** 安全键盘计算 hash 盐值，若指定 custom-hash 则无效 */
-    safePasswordSalt: string;
+    safePasswordSalt: string
     /** 安全键盘计算 hash 的算法表达式 */
-    safePasswordCustomHash: string;
+    safePasswordCustomHash: string
     /**
      * 当 type 为 number、digit、idcard 时，数字键盘是否随机排列
      *
      * 默认为 false
      */
-    randomNumber: boolean;
+    randomNumber: boolean
     /**
      * 是否为受控组件
      *
@@ -2894,7 +2894,7 @@ type _InputProps = Partial<{
      *
      * 默认为 false
      */
-    controlled: boolean;
+    controlled: boolean
     /**
      * 是否强制使用系统键盘和 Web-view 创建的 input 元素
      *
@@ -2902,7 +2902,7 @@ type _InputProps = Partial<{
      *
      * 默认为 false
      */
-    alwaysSystem: boolean;
+    alwaysSystem: boolean
     /**
      * 枚举属性，提供了用户在编辑元素或其内容时可能输入的数据类型的提示
      *
@@ -2922,27 +2922,27 @@ type _InputProps = Partial<{
      *
      * url 网址输入键盘，表单内网址输入因 type="url"
      */
-    inputMode: _InputInputMode;
+    inputMode: _InputInputMode
     /** 输入时触发 */
-    onInput: _InputOnInput;
+    onInput: _InputOnInput
     /** 聚焦时触发 */
-    onFocus: _InputOnFocus;
+    onFocus: _InputOnFocus
     /** 失焦时触发 */
-    onBlur: _InputOnBlur;
+    onBlur: _InputOnBlur
     /** 点击完成按钮时触发 */
-    onConfirm: _InputOnConfirm;
+    onConfirm: _InputOnConfirm
     /** 键盘高度变化时触发 */
-    onKeyboardheightchange: _InputOnKeyboardheightchange;
-}>;
+    onKeyboardheightchange: _InputOnKeyboardheightchange
+}>
 /** 输入框 */
-type _Input = _Component<_InputProps>;
+type _Input = _Component<_InputProps>
 /** 输入框实例 */
-type _InputInstance = InstanceType<_Input>;
+type _InputInstance = InstanceType<_Input>
 
 declare global {
     namespace UniHelper {
         /** 输入框的内容 */
-        type InputValue = _InputValue;
+        type InputValue = _InputValue
         /**
          * input 类型
          *
@@ -2960,13 +2960,13 @@ declare global {
          *
          * nickname 昵称输入键盘
          */
-        type InputType = _InputType;
+        type InputType = _InputType
         /**
          * 文本区域的语义，根据类型自动填充
          *
          * oneTimeCode 一次性验证码
          */
-        type InputTextContentType = _InputTextContentType;
+        type InputTextContentType = _InputTextContentType
         /**
          * 设置键盘右下角按钮的文字
          *
@@ -2982,7 +2982,7 @@ declare global {
          *
          * @decs done 完成
          */
-        type InputConfirmType = _InputConfirmType;
+        type InputConfirmType = _InputConfirmType
         /**
          * 枚举属性，提供了用户在编辑元素或其内容时可能输入的数据类型的提示
          *
@@ -3002,56 +3002,56 @@ declare global {
          *
          * url 网址输入键盘，表单内网址输入因 type="url"
          */
-        type InputInputMode = _InputInputMode;
+        type InputInputMode = _InputInputMode
         interface InputOnInputDetail extends _InputOnInputDetail {
         }
-        type InputOnInputEvent = _InputOnInputEvent;
+        type InputOnInputEvent = _InputOnInputEvent
         /** 输入时触发 */
         interface InputOnInput extends _InputOnInput {
         }
         interface InputOnFocusDetail extends _InputOnFocusDetail {
         }
-        type InputOnFocusEvent = _InputOnFocusEvent;
+        type InputOnFocusEvent = _InputOnFocusEvent
         /** 聚焦时触发 */
         interface InputOnFocus extends _InputOnFocus {
         }
         interface InputOnBlurDetail extends _InputOnBlurDetail {
         }
-        type InputOnBlurEvent = _InputOnBlurEvent;
+        type InputOnBlurEvent = _InputOnBlurEvent
         /** 失焦时触发 */
         interface InputOnBlur extends _InputOnBlur {
         }
         interface InputOnConfirmDetail extends _InputOnConfirmDetail {
         }
-        type InputOnConfirmEvent = _InputOnConfirmEvent;
+        type InputOnConfirmEvent = _InputOnConfirmEvent
         /** 点击完成按钮时触发 */
         interface InputOnConfirm extends _InputOnConfirm {
         }
         interface InputOnKeyboardheightchangeDetail extends _InputOnKeyboardheightchangeDetail {
         }
-        type InputOnKeyboardheightchangeEvent = _InputOnKeyboardheightchangeEvent;
+        type InputOnKeyboardheightchangeEvent = _InputOnKeyboardheightchangeEvent
         /** 键盘高度变化时触发 */
         interface InputOnKeyboardheightchange extends _InputOnKeyboardheightchange {
         }
         /** 输入框属性 */
-        type InputProps = _InputProps;
+        type InputProps = _InputProps
         /** 输入框 */
-        type Input = _Input;
+        type Input = _Input
         /** 输入框实例 */
-        type InputInstance = _InputInstance;
+        type InputInstance = _InputInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 输入框 */
-        Input: _Input;
+        Input: _Input
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 输入框 */
-            input: _Input;
+            input: _Input
         }
     }
 }
@@ -3059,49 +3059,49 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 输入框 */
-            input: _Input;
+            input: _Input
         }
     }
 }
 
 /** 需要展示的内容 */
-type _SelectorPickerRange = string[] | _AnyRecord[];
+type _SelectorPickerRange = string[] | _AnyRecord[]
 /** 当前选择的下标 */
-type _SelectorPickerValue = number;
+type _SelectorPickerValue = number
 /** 大屏时 UI 类型，支持 picker、select、auto */
-type _SelectorPickerSelectorType = 'auto' | 'picker' | 'select';
+type _SelectorPickerSelectorType = 'auto' | 'picker' | 'select'
 interface _SelectorPickerOnChangeDetail {
-    value: _SelectorPickerValue;
+    value: _SelectorPickerValue
 }
-type _SelectorPickerOnChangeEvent = _CustomEvent<_SelectorPickerOnChangeDetail>;
+type _SelectorPickerOnChangeEvent = _CustomEvent<_SelectorPickerOnChangeDetail>
 /** value 改变时触发 */
 interface _SelectorPickerOnChange {
-    (event: _SelectorPickerOnChangeEvent): void;
+    (event: _SelectorPickerOnChangeEvent): void
 }
-type _SelectorPickerOnCancelEvent = _BaseEvent;
+type _SelectorPickerOnCancelEvent = _BaseEvent
 /** 取消选择时触发 */
 interface _SelectorPickerOnCancel {
-    (event: _SelectorPickerOnCancelEvent): void;
+    (event: _SelectorPickerOnCancelEvent): void
 }
 type _SelectorPickerProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /** 设置为普通选择器 */
-    mode?: 'selector';
+    mode?: 'selector'
     /**
      * 需要展示的内容
      *
      * 默认为 []
      */
-    range: _SelectorPickerRange;
+    range: _SelectorPickerRange
     /** 当 range 是一个 Object Array 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容 */
-    rangeKey: string;
+    rangeKey: string
     /**
      * 当前选择的下标
      *
      * 默认为 0
      */
-    value: _SelectorPickerValue;
+    value: _SelectorPickerValue
     /**
      * 大屏时 UI 类型，支持 picker、select、auto
      *
@@ -3111,137 +3111,137 @@ type _SelectorPickerProps = Partial<{
      *
      * 默认为 auto
      */
-    selectorType: _SelectorPickerSelectorType;
+    selectorType: _SelectorPickerSelectorType
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** value 改变时触发 */
-    onChange: _SelectorPickerOnChange;
+    onChange: _SelectorPickerOnChange
     /** 取消选择时触发 */
-    onCancel: _SelectorPickerOnCancel;
-}>;
+    onCancel: _SelectorPickerOnCancel
+}>
 /** 需要展示的内容 */
-type _MultiSelectorPickerRange = string[][] | _AnyRecord[][];
+type _MultiSelectorPickerRange = string[][] | _AnyRecord[][]
 /** 当前某列选择的下标 */
-type _MultiSelectorPickerValueElement = number;
+type _MultiSelectorPickerValueElement = number
 /** 当前每列选择的下标 */
-type _MultiSelectorPickerValue = _MultiSelectorPickerValueElement[];
+type _MultiSelectorPickerValue = _MultiSelectorPickerValueElement[]
 interface _MultiSelectorPickerOnChangeDetail {
-    value: _MultiSelectorPickerValue;
+    value: _MultiSelectorPickerValue
 }
-type _MultiSelectorPickerOnChangeEvent = _CustomEvent<_MultiSelectorPickerOnChangeDetail>;
+type _MultiSelectorPickerOnChangeEvent = _CustomEvent<_MultiSelectorPickerOnChangeDetail>
 /** value 改变时触发 */
 interface _MultiSelectorPickerOnChange {
-    (event: _MultiSelectorPickerOnChangeEvent): void;
+    (event: _MultiSelectorPickerOnChangeEvent): void
 }
 interface _MultiSelectorPickerOnColumnchangeDetail {
-    column: number;
-    value: _MultiSelectorPickerValueElement;
+    column: number
+    value: _MultiSelectorPickerValueElement
 }
-type _MultiSelectorPickerOnColumnchangeEvent = _CustomEvent<_MultiSelectorPickerOnColumnchangeDetail>;
+type _MultiSelectorPickerOnColumnchangeEvent = _CustomEvent<_MultiSelectorPickerOnColumnchangeDetail>
 /** 某一列 value 改变时触发 */
 interface _MultiSelectorPickerOnColumnchange {
-    (event: _MultiSelectorPickerOnColumnchangeEvent): void;
+    (event: _MultiSelectorPickerOnColumnchangeEvent): void
 }
-type _MultiSelectorPickerOnCancelEvent = _BaseEvent;
+type _MultiSelectorPickerOnCancelEvent = _BaseEvent
 /** 取消选择时触发 */
 interface _MultiSelectorPickerOnCancel {
-    (event: _MultiSelectorPickerOnCancelEvent): void;
+    (event: _MultiSelectorPickerOnCancelEvent): void
 }
 type _MultiSelectorPickerProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /** 设置为多列选择器 */
-    mode: 'multiSelector';
+    mode: 'multiSelector'
     /**
      * 需要展示的内容
      *
      * 默认为 []
      */
-    range: _MultiSelectorPickerRange;
+    range: _MultiSelectorPickerRange
     /** 当 range 是一个 Object Array 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容 */
-    rangeKey: string;
+    rangeKey: string
     /**
      * 当前每列选择的下标
      *
      * 默认为列数个 0 组成的数组
      */
-    value: _MultiSelectorPickerValue;
+    value: _MultiSelectorPickerValue
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** value 改变时触发 */
-    onChange: _MultiSelectorPickerOnChange;
+    onChange: _MultiSelectorPickerOnChange
     /** 某一列 value 改变时触发 */
-    onColumnchange: _MultiSelectorPickerOnColumnchange;
+    onColumnchange: _MultiSelectorPickerOnColumnchange
     /** 取消选择时触发 */
-    onCancel: _MultiSelectorPickerOnCancel;
-}>;
+    onCancel: _MultiSelectorPickerOnCancel
+}>
 /**
  * 选中的时间
  *
  * 格式为 hh:mm
  */
-type _TimePickerValue = string;
+type _TimePickerValue = string
 interface _TimePickerOnChangeDetail {
-    value: _TimePickerValue;
+    value: _TimePickerValue
 }
-type _TimePickerOnChangeEvent = _CustomEvent<_TimePickerOnChangeDetail>;
+type _TimePickerOnChangeEvent = _CustomEvent<_TimePickerOnChangeDetail>
 /** value 改变时触发 */
 interface _TimePickerOnChange {
-    (event: _TimePickerOnChangeEvent): void;
+    (event: _TimePickerOnChangeEvent): void
 }
-type _TimePickerOnCancelEvent = _BaseEvent;
+type _TimePickerOnCancelEvent = _BaseEvent
 /** 取消选择时触发 */
 interface _TimePickerOnCancel {
-    (event: _TimePickerOnCancelEvent): void;
+    (event: _TimePickerOnCancelEvent): void
 }
 type _TimePickerProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /** 设置为时间选择器 */
-    mode: 'time';
+    mode: 'time'
     /**
      * 选中的日期
      *
      * 格式为 hh:mm
      */
-    value: _TimePickerValue;
+    value: _TimePickerValue
     /**
      * 有效日期范围的开始
      *
      * 格式为 hh:mm
      */
-    start: _TimePickerValue;
+    start: _TimePickerValue
     /**
      * 有效日期范围的结束
      *
      * 格式为 hh:mm
      */
-    end: _TimePickerValue;
+    end: _TimePickerValue
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** value 改变时触发 */
-    onChange: _TimePickerOnChange;
+    onChange: _TimePickerOnChange
     /** 取消选择时触发 */
-    onCancel: _TimePickerOnCancel;
-}>;
+    onCancel: _TimePickerOnCancel
+}>
 /**
  * 选中的日期
  *
  * 格式为 YYYY-MM-DD
  */
-type _DatePickerValue = string;
+type _DatePickerValue = string
 /**
  * 选择器的粒度
  *
@@ -3251,43 +3251,43 @@ type _DatePickerValue = string;
  *
  * day 日
  */
-type _DatePickerFields = 'year' | 'month' | 'day';
+type _DatePickerFields = 'year' | 'month' | 'day'
 interface _DatePickerOnChangeDetail {
-    value: _DatePickerValue;
+    value: _DatePickerValue
 }
-type _DatePickerOnChangeEvent = _CustomEvent<_DatePickerOnChangeDetail>;
+type _DatePickerOnChangeEvent = _CustomEvent<_DatePickerOnChangeDetail>
 /** value 改变时触发 */
 interface _DatePickerOnChange {
-    (event: _DatePickerOnChangeEvent): void;
+    (event: _DatePickerOnChangeEvent): void
 }
-type _DatePickerOnCancelEvent = _BaseEvent;
+type _DatePickerOnCancelEvent = _BaseEvent
 /** 取消选择时触发 */
 interface _DatePickerOnCancel {
-    (event: _DatePickerOnCancelEvent): void;
+    (event: _DatePickerOnCancelEvent): void
 }
 type _DatePickerProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /** 设置为日期选择器 */
-    mode: 'date';
+    mode: 'date'
     /**
      * 选中的日期
      *
      * 格式为 YYYY-MM-DD
      */
-    value: _DatePickerValue;
+    value: _DatePickerValue
     /**
      * 有效日期范围的开始
      *
      * 格式为 YYYY-MM-DD
      */
-    start: _DatePickerValue;
+    start: _DatePickerValue
     /**
      * 有效日期范围的结束
      *
      * 格式为 YYYY-MM-DD
      */
-    end: _DatePickerValue;
+    end: _DatePickerValue
     /**
      * 选择器的粒度
      *
@@ -3299,21 +3299,21 @@ type _DatePickerProps = Partial<{
      *
      * 默认为 day
      */
-    fields: _DatePickerFields;
+    fields: _DatePickerFields
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** value 改变时触发 */
-    onChange: _DatePickerOnChange;
+    onChange: _DatePickerOnChange
     /** 取消选择时触发 */
-    onCancel: _DatePickerOnCancel;
-}>;
-type _RegionPickerValueElement = string;
+    onCancel: _DatePickerOnCancel
+}>
+type _RegionPickerValueElement = string
 /** 选中的省市区 */
-type _RegionPickerValue = _RegionPickerValueElement[];
+type _RegionPickerValue = _RegionPickerValueElement[]
 /**
  * 选择器层级
  *
@@ -3325,37 +3325,37 @@ type _RegionPickerValue = _RegionPickerValueElement[];
  *
  * sub-district 街道级
  */
-type _RegionPickerLevel = 'province' | 'city' | 'region' | 'sub-district';
+type _RegionPickerLevel = 'province' | 'city' | 'region' | 'sub-district'
 interface _RegionPickerOnChangeDetail {
-    value: _RegionPickerValue;
+    value: _RegionPickerValue
     /** 统计用区划代码 */
-    code?: [string, string, string];
+    code?: [string, string, string]
     /** 邮政编码 */
-    postcode?: string;
+    postcode?: string
 }
-type _RegionPickerOnChangeEvent = _CustomEvent<_RegionPickerOnChangeDetail>;
+type _RegionPickerOnChangeEvent = _CustomEvent<_RegionPickerOnChangeDetail>
 /** value 改变时触发 */
 interface _RegionPickerOnChange {
-    (event: _RegionPickerOnChangeEvent): void;
+    (event: _RegionPickerOnChangeEvent): void
 }
-type _RegionPickerOnCancelEvent = _BaseEvent;
+type _RegionPickerOnCancelEvent = _BaseEvent
 /** 取消选择时触发 */
 interface _RegionPickerOnCancel {
-    (event: _RegionPickerOnCancelEvent): void;
+    (event: _RegionPickerOnCancelEvent): void
 }
 type _RegionPickerProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /** 设置为省市区选择器 */
-    mode: 'region';
+    mode: 'region'
     /**
      * 选中的省市区
      *
      * 默认选中每一列第一个值
      */
-    value: _RegionPickerValue;
+    value: _RegionPickerValue
     /** 可为每一列的顶部添加一个自定义的项 */
-    customItem: string;
+    customItem: string
     /**
      * 选择器层级
      *
@@ -3367,91 +3367,91 @@ type _RegionPickerProps = Partial<{
      *
      * sub-district 街道级
      */
-    level: _RegionPickerLevel;
+    level: _RegionPickerLevel
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** value 改变时触发 */
-    onChange: _RegionPickerOnChange;
+    onChange: _RegionPickerOnChange
     /** 取消选择时触发 */
-    onCancel: _RegionPickerOnCancel;
-}>;
-type _PickerValue = _SelectorPickerValue | _MultiSelectorPickerValue | _TimePickerValue | _DatePickerValue | _RegionPickerValue;
+    onCancel: _RegionPickerOnCancel
+}>
+type _PickerValue = _SelectorPickerValue | _MultiSelectorPickerValue | _TimePickerValue | _DatePickerValue | _RegionPickerValue
 /** 滚动选择器属性 */
-type _PickerProps = _SelectorPickerProps | _MultiSelectorPickerProps | _TimePickerProps | _DatePickerProps | _RegionPickerProps;
+type _PickerProps = _SelectorPickerProps | _MultiSelectorPickerProps | _TimePickerProps | _DatePickerProps | _RegionPickerProps
 /** 从底部弹起的滚动选择器，通过 mode 来区分 */
-type _Picker = _Component<_PickerProps>;
+type _Picker = _Component<_PickerProps>
 /** 从底部弹起的滚动选择器实例 */
-type _PickerInstance = InstanceType<_Picker>;
+type _PickerInstance = InstanceType<_Picker>
 
 declare global {
     namespace UniHelper {
         /** 需要展示的内容 */
-        type SelectorPickerRange = _SelectorPickerRange;
+        type SelectorPickerRange = _SelectorPickerRange
         /** 当前选择的下标 */
-        type SelectorPickerValue = _SelectorPickerValue;
+        type SelectorPickerValue = _SelectorPickerValue
         /** 大屏时 UI 类型，支持 picker、select、auto */
-        type SelectorPickerSelectorType = _SelectorPickerSelectorType;
+        type SelectorPickerSelectorType = _SelectorPickerSelectorType
         interface SelectorPickerOnChangeDetail extends _SelectorPickerOnChangeDetail {
         }
-        type SelectorPickerOnChangeEvent = _SelectorPickerOnChangeEvent;
+        type SelectorPickerOnChangeEvent = _SelectorPickerOnChangeEvent
         /** value 改变时触发 */
         interface SelectorPickerOnChange extends _SelectorPickerOnChange {
         }
-        type SelectorPickerOnCancelEvent = _SelectorPickerOnCancelEvent;
+        type SelectorPickerOnCancelEvent = _SelectorPickerOnCancelEvent
         /** 取消选择时触发 */
         interface SelectorPickerOnCancel extends _SelectorPickerOnCancel {
         }
-        type SelectorPickerProps = _SelectorPickerProps;
+        type SelectorPickerProps = _SelectorPickerProps
         /** 需要展示的内容 */
-        type MultiSelectorPickerRange = _MultiSelectorPickerRange;
+        type MultiSelectorPickerRange = _MultiSelectorPickerRange
         /** 当前某列选择的下标 */
-        type MultiSelectorPickerValueElement = _MultiSelectorPickerValueElement;
+        type MultiSelectorPickerValueElement = _MultiSelectorPickerValueElement
         /** 当前每列选择的下标 */
-        type MultiSelectorPickerValue = _MultiSelectorPickerValue;
+        type MultiSelectorPickerValue = _MultiSelectorPickerValue
         interface MultiSelectorPickerOnChangeDetail extends _MultiSelectorPickerOnChangeDetail {
         }
-        type MultiSelectorPickerOnChangeEvent = _MultiSelectorPickerOnChangeEvent;
+        type MultiSelectorPickerOnChangeEvent = _MultiSelectorPickerOnChangeEvent
         /** value 改变时触发 */
         interface MultiSelectorPickerOnChange extends _MultiSelectorPickerOnChange {
         }
         interface MultiSelectorPickerOnColumnchangeDetail extends _MultiSelectorPickerOnColumnchangeDetail {
         }
-        type MultiSelectorPickerOnColumnchangeEvent = _MultiSelectorPickerOnColumnchangeEvent;
+        type MultiSelectorPickerOnColumnchangeEvent = _MultiSelectorPickerOnColumnchangeEvent
         /** 某一列 value 改变时触发 */
         interface MultiSelectorPickerOnColumnchange extends _MultiSelectorPickerOnColumnchange {
         }
-        type MultiSelectorPickerOnCancelEvent = _MultiSelectorPickerOnCancelEvent;
+        type MultiSelectorPickerOnCancelEvent = _MultiSelectorPickerOnCancelEvent
         /** 取消选择时触发 */
         interface MultiSelectorPickerOnCancel extends _MultiSelectorPickerOnCancel {
         }
-        type MultiSelectorPickerProps = _MultiSelectorPickerProps;
+        type MultiSelectorPickerProps = _MultiSelectorPickerProps
         /**
          * 选中的时间
          *
          * 格式为 hh:mm
          */
-        type TimePickerValue = _TimePickerValue;
+        type TimePickerValue = _TimePickerValue
         interface TimePickerOnChangeDetail extends _TimePickerOnChangeDetail {
         }
-        type TimePickerOnChangeEvent = _TimePickerOnChangeEvent;
+        type TimePickerOnChangeEvent = _TimePickerOnChangeEvent
         /** value 改变时触发 */
         interface TimePickerOnChange extends _TimePickerOnChange {
         }
-        type TimePickerOnCancelEvent = _TimePickerOnCancelEvent;
+        type TimePickerOnCancelEvent = _TimePickerOnCancelEvent
         /** 取消选择时触发 */
         interface TimePickerOnCancel extends _TimePickerOnCancel {
         }
-        type TimePickerProps = _TimePickerProps;
+        type TimePickerProps = _TimePickerProps
         /**
          * 选中的日期
          *
          * 格式为 YYYY-MM-DD
          */
-        type DatePickerValue = _DatePickerValue;
+        type DatePickerValue = _DatePickerValue
         /**
          * 选择器的粒度
          *
@@ -3461,21 +3461,21 @@ declare global {
          *
          * day 日
          */
-        type DatePickerFields = _DatePickerFields;
+        type DatePickerFields = _DatePickerFields
         interface DatePickerOnChangeDetail extends _DatePickerOnChangeDetail {
         }
-        type DatePickerOnChangeEvent = _DatePickerOnChangeEvent;
+        type DatePickerOnChangeEvent = _DatePickerOnChangeEvent
         /** value 改变时触发 */
         interface DatePickerOnChange extends _DatePickerOnChange {
         }
-        type DatePickerOnCancelEvent = _DatePickerOnCancelEvent;
+        type DatePickerOnCancelEvent = _DatePickerOnCancelEvent
         /** 取消选择时触发 */
         interface DatePickerOnCancel extends _DatePickerOnCancel {
         }
-        type DatePickerProps = _DatePickerProps;
-        type RegionPickerValueElement = _RegionPickerValueElement;
+        type DatePickerProps = _DatePickerProps
+        type RegionPickerValueElement = _RegionPickerValueElement
         /** 选中的省市区 */
-        type RegionPickerValue = _RegionPickerValue;
+        type RegionPickerValue = _RegionPickerValue
         /**
          * 选择器层级
          *
@@ -3487,31 +3487,31 @@ declare global {
          *
          * sub-district 街道级
          */
-        type RegionPickerLevel = _RegionPickerLevel;
+        type RegionPickerLevel = _RegionPickerLevel
         interface RegionPickerOnChangeDetail extends _RegionPickerOnChangeDetail {
         }
-        type RegionPickerOnChangeEvent = _RegionPickerOnChangeEvent;
+        type RegionPickerOnChangeEvent = _RegionPickerOnChangeEvent
         /** value 改变时触发 */
         interface RegionPickerOnChange extends _RegionPickerOnChange {
         }
-        type RegionPickerOnCancelEvent = _RegionPickerOnCancelEvent;
+        type RegionPickerOnCancelEvent = _RegionPickerOnCancelEvent
         /** 取消选择时触发 */
         interface RegionPickerOnCancel extends _RegionPickerOnCancel {
         }
-        type PickerValue = _PickerValue;
-        type RegionPickerProps = _RegionPickerProps;
+        type PickerValue = _PickerValue
+        type RegionPickerProps = _RegionPickerProps
         /** 滚动选择器属性 */
-        type PickerProps = _PickerProps;
+        type PickerProps = _PickerProps
         /** 从底部弹起的滚动选择器，通过 mode 来区分 */
-        type Picker = _Picker;
+        type Picker = _Picker
         /** 从底部弹起的滚动选择器实例 */
-        type PickerInstance = _PickerInstance;
+        type PickerInstance = _PickerInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 从底部弹起的滚动选择器，通过 mode 来区分 */
-        Picker: _Picker;
+        Picker: _Picker
     }
 }
 
@@ -3520,36 +3520,36 @@ declare module '@vue/runtime-core' {
  *
  * 被选中时，radio-group 的 change 事件会携带该 value
  */
-type _RadioValue = string;
+type _RadioValue = string
 /** 单选项目属性 */
 type _RadioProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /**
      * 标识
      *
      * 被选中时，radio-group 的 change 事件会携带该 value
      */
-    value: _RadioValue;
+    value: _RadioValue
     /**
      * 当前是否选中
      *
      * 默认为 false
      */
-    checked: boolean;
+    checked: boolean
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** 颜色 */
-    color: string;
-}>;
+    color: string
+}>
 /** 单选项目 */
-type _Radio = _Component<_RadioProps>;
+type _Radio = _Component<_RadioProps>
 /** 单选项目实例 */
-type _RadioInstance = InstanceType<_Radio>;
+type _RadioInstance = InstanceType<_Radio>
 
 declare global {
     namespace UniHelper {
@@ -3558,86 +3558,86 @@ declare global {
          *
          * 被选中时，radio-group 的 change 事件会携带该 value
          */
-        type RadioValue = _RadioValue;
+        type RadioValue = _RadioValue
         /** 单选项目属性 */
-        type RadioProps = _RadioProps;
+        type RadioProps = _RadioProps
         /** 单选项目 */
-        type Radio = _Radio;
+        type Radio = _Radio
         /** 单选项目实例 */
-        type RadioInstance = _RadioInstance;
+        type RadioInstance = _RadioInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 单选项目 */
-        Radio: _Radio;
+        Radio: _Radio
     }
 }
 
 /** 取值 */
-type _SliderValue = number;
+type _SliderValue = number
 interface _SliderOnChangeDetail {
-    value: _SliderValue;
+    value: _SliderValue
 }
-type _SliderOnChangeEvent = _CustomEvent<_SliderOnChangeDetail>;
+type _SliderOnChangeEvent = _CustomEvent<_SliderOnChangeDetail>
 /** 完成一次拖动后触发 */
 interface _SliderOnChange {
-    (event: _SliderOnChangeEvent): void;
+    (event: _SliderOnChangeEvent): void
 }
 interface _SliderOnChangingDetail {
-    value: _SliderValue;
+    value: _SliderValue
 }
-type _SliderOnChangingEvent = _CustomEvent<_SliderOnChangingDetail>;
+type _SliderOnChangingEvent = _CustomEvent<_SliderOnChangingDetail>
 /** 拖动过程中触发 */
 interface _SliderOnChanging {
-    (event: _SliderOnChangingEvent): void;
+    (event: _SliderOnChangingEvent): void
 }
 /** 滑动选择器属性 */
 type _SliderProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /**
      * 最小值
      *
      * 默认为 0
      */
-    min: _SliderValue;
+    min: _SliderValue
     /**
      * 最大值
      *
      * 默认为 100
      */
-    max: _SliderValue;
+    max: _SliderValue
     /**
      * 步长，取值必须大于 0，并且可被 (max - min) 整除
      *
      * 默认为 1
      */
-    step: _SliderValue;
+    step: _SliderValue
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /**
      * 当前取值
      *
      * 默认为 0
      */
-    value: _SliderValue;
+    value: _SliderValue
     /**
      * 滑块左侧已选择部分的线条颜色
      *
      * 默认为各平台默认色
      */
-    activeColor: string;
+    activeColor: string
     /**
      * 滑块右侧背景条的颜色
      *
      * 默认为 #e9e9e9
      */
-    backgroundColor: string;
+    backgroundColor: string
     /**
      * 滑块的大小
      *
@@ -3645,131 +3645,131 @@ type _SliderProps = Partial<{
      *
      * 默认为 28
      */
-    blockSize: number;
+    blockSize: number
     /**
      * 滑块的颜色
      *
      * 默认为 #fff
      */
-    blockColor: string;
+    blockColor: string
     /**
      * 是否显示当前 value
      *
      * 默认为 false
      */
-    showValue: boolean;
+    showValue: boolean
     /** 完成一次拖动后触发 */
-    onChange: _SliderOnChange;
+    onChange: _SliderOnChange
     /** 拖动过程中触发 */
-    onChanging: _SliderOnChanging;
-}>;
+    onChanging: _SliderOnChanging
+}>
 /** 滑动选择器 */
-type _Slider = _Component<_SliderProps>;
+type _Slider = _Component<_SliderProps>
 /** 滑动选择器实例 */
-type _SliderInstance = InstanceType<_Slider>;
+type _SliderInstance = InstanceType<_Slider>
 
 declare global {
     namespace UniHelper {
         /** 取值 */
-        type SliderValue = _SliderValue;
+        type SliderValue = _SliderValue
         interface SliderOnChangeDetail extends _SliderOnChangeDetail {
         }
-        type SliderOnChangeEvent = _SliderOnChangeEvent;
+        type SliderOnChangeEvent = _SliderOnChangeEvent
         /** 完成一次拖动后触发 */
         interface SliderOnChange extends _SliderOnChange {
         }
         interface SliderOnChangingDetail extends _SliderOnChangingDetail {
         }
-        type SliderOnChangingEvent = _SliderOnChangingEvent;
+        type SliderOnChangingEvent = _SliderOnChangingEvent
         /** 拖动过程中触发 */
         interface SliderOnChanging extends _SliderOnChanging {
         }
         /** 滑动选择器属性 */
-        type SliderProps = _SliderProps;
+        type SliderProps = _SliderProps
         /** 滑动选择器 */
-        type Slider = _Slider;
+        type Slider = _Slider
         /** 滑动选择器实例 */
-        type SliderInstance = _SliderInstance;
+        type SliderInstance = _SliderInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 滑动选择器 */
-        Slider: _Slider;
+        Slider: _Slider
     }
 }
 
 /** 是否选中 */
-type _SwitchChecked = boolean;
+type _SwitchChecked = boolean
 /** 样式 */
-type _SwitchType = '_Switch' | 'checkbox';
+type _SwitchType = '_Switch' | 'checkbox'
 interface _SwitchOnChangeDetail {
-    value: _SwitchChecked;
+    value: _SwitchChecked
 }
-type _SwitchOnChangeEvent = _CustomEvent<_SwitchOnChangeDetail>;
+type _SwitchOnChangeEvent = _CustomEvent<_SwitchOnChangeDetail>
 /** checked 改变时触发 */
 interface _SwitchOnChange {
-    (event: _SwitchOnChangeEvent): void;
+    (event: _SwitchOnChangeEvent): void
 }
 /** 开关选择器属性 */
 type _SwitchProps = Partial<{
     /** 在 form 中作为 key */
-    name: string;
+    name: string
     /**
      * 是否选中
      *
      * 默认为 false
      */
-    checked: _SwitchChecked;
+    checked: _SwitchChecked
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /** 样式 */
-    type: _SwitchType;
+    type: _SwitchType
     /** 颜色 */
-    color: string;
+    color: string
     /** checked 改变时触发 */
-    onChange: _SwitchOnChange;
-}>;
+    onChange: _SwitchOnChange
+}>
 /** 开关选择器 */
-type _Switch = _Component<_SwitchProps>;
+type _Switch = _Component<_SwitchProps>
 /** 开关选择器实例 */
-type _SwitchInstance = InstanceType<_Switch>;
+type _SwitchInstance = InstanceType<_Switch>
 
 declare global {
     namespace UniHelper {
         /** 是否选中 */
-        type SwitchChecked = _SwitchChecked;
+        type SwitchChecked = _SwitchChecked
         /** 样式 */
-        type SwitchType = _SwitchType;
+        type SwitchType = _SwitchType
         interface SwitchOnChangeDetail extends _SwitchOnChangeDetail {
         }
-        type SwitchOnChangeEvent = _SwitchOnChangeEvent;
+        type SwitchOnChangeEvent = _SwitchOnChangeEvent
         /** checked 改变时触发 */
         interface SwitchOnChange extends _SwitchOnChange {
         }
         /** 开关选择器属性 */
-        type SwitchProps = _SwitchProps;
+        type SwitchProps = _SwitchProps
         /** 开关选择器 */
-        type Switch = _Switch;
+        type Switch = _Switch
         /** 开关选择器实例 */
-        type SwitchInstance = _SwitchInstance;
+        type SwitchInstance = _SwitchInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 开关选择器 */
-        Switch: _Switch;
+        Switch: _Switch
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 开关选择器 */
-            switch: _Switch;
+            switch: _Switch
         }
     }
 }
@@ -3777,30 +3777,30 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 开关选择器 */
-            switch: _Switch;
+            switch: _Switch
         }
     }
 }
 
 /** 表单内 switch、input、checkbox、slider、radio、picker 对应的键值对 */
 interface _FormOnSubmitDetailValue {
-    [key: string]: _SwitchChecked | _InputValue | _CheckboxValue | _SliderValue | _RadioValue | _PickerValue;
+    [key: string]: _SwitchChecked | _InputValue | _CheckboxValue | _SliderValue | _RadioValue | _PickerValue
 }
 interface _FormOnSubmitDetail {
     /** 表单内 switch、input、checkbox、slider、radio、picker 对应的键值对 */
-    value: _FormOnSubmitDetailValue;
+    value: _FormOnSubmitDetailValue
     /** report-submit 为 true 时返回，用于发送模板消息 */
-    formId?: string;
+    formId?: string
 }
-type _FormOnSubmitEvent = _CustomEvent<_FormOnSubmitDetail>;
+type _FormOnSubmitEvent = _CustomEvent<_FormOnSubmitDetail>
 /** 表单提交时触发 */
 interface _FormOnSubmit {
-    (event: _FormOnSubmitEvent): void;
+    (event: _FormOnSubmitEvent): void
 }
-type _FormOnResetEvent = _BaseEvent;
+type _FormOnResetEvent = _BaseEvent
 /** 表单重置时触发 */
 interface _FormOnReset {
-    (event: _FormOnResetEvent): void;
+    (event: _FormOnResetEvent): void
 }
 /** 表单属性 */
 type _FormProps = Partial<{
@@ -3809,7 +3809,7 @@ type _FormProps = Partial<{
      *
      * 默认为 false
      */
-    reportSubmit: boolean;
+    reportSubmit: boolean
     /**
      * 等待一段时间以确认 formId 是否生效
      *
@@ -3823,20 +3823,20 @@ type _FormProps = Partial<{
      *
      * 默认为 0
      */
-    reportSubmitTimeout: number;
+    reportSubmitTimeout: number
     /** 表单提交时触发 */
-    onSubmit: _FormOnSubmit;
+    onSubmit: _FormOnSubmit
     /** 表单重置时触发 */
-    onReset: _FormOnReset;
-}>;
+    onReset: _FormOnReset
+}>
 /**
  * 表单
  *
  * 将组件内的用户输入的 switch、input、checkbox、slider、radio、picker 提交
  */
-type _Form = _Component<_FormProps>;
+type _Form = _Component<_FormProps>
 /** 表单实例 */
-type _FormInstance = InstanceType<_Form>;
+type _FormInstance = InstanceType<_Form>
 
 declare global {
     namespace UniHelper {
@@ -3845,24 +3845,24 @@ declare global {
         }
         interface FormOnSubmitDetail extends _FormOnSubmitDetail {
         }
-        type FormOnSubmitEvent = _FormOnSubmitEvent;
+        type FormOnSubmitEvent = _FormOnSubmitEvent
         /** 表单提交时触发 */
         interface FormOnSubmit extends _FormOnSubmit {
         }
-        type FormOnResetEvent = _FormOnResetEvent;
+        type FormOnResetEvent = _FormOnResetEvent
         /** 表单重置时触发 */
         interface FormOnReset extends _FormOnReset {
         }
         /** 表单属性 */
-        type FormProps = _FormProps;
+        type FormProps = _FormProps
         /**
          * 表单
          *
          * 将组件内的用户输入的 switch、input、checkbox、slider、radio、picker 提交
          */
-        type Form = _Form;
+        type Form = _Form
         /** 表单实例 */
-        type FormInstance = _FormInstance;
+        type FormInstance = _FormInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -3872,7 +3872,7 @@ declare module '@vue/runtime-core' {
          *
          * 将组件内的用户输入的 switch、input、checkbox、slider、radio、picker 提交
          */
-        Form: _Form;
+        Form: _Form
     }
 }
 declare global {
@@ -3883,7 +3883,7 @@ declare global {
              *
              * 将组件内的用户输入的 switch、input、checkbox、slider、radio、picker 提交
              */
-            form: _Form;
+            form: _Form
         }
     }
 }
@@ -3895,7 +3895,7 @@ declare module 'vue3/jsx-runtime' {
              *
              * 将组件内的用户输入的 switch、input、checkbox、slider、radio、picker 提交
              */
-            form: _Form;
+            form: _Form
         }
     }
 }
@@ -3903,8 +3903,8 @@ declare module 'vue3/jsx-runtime' {
 /** 表单标签属性 */
 type _LabelProps = Partial<{
     /** 绑定控件的 id */
-    for: string;
-}>;
+    for: string
+}>
 /**
  * 表单标签
  *
@@ -3914,14 +3914,14 @@ type _LabelProps = Partial<{
  *
  * for 优先级高于内部控件，内部有多个控件的时候默认触发第一个控件
  */
-type _Label = _Component<_LabelProps>;
+type _Label = _Component<_LabelProps>
 /** 表单标签实例 */
-type _LabelInstance = InstanceType<_Label>;
+type _LabelInstance = InstanceType<_Label>
 
 declare global {
     namespace UniHelper {
         /** 标签属性 */
-        type LabelProps = _LabelProps;
+        type LabelProps = _LabelProps
         /**
          * 表单标签
          *
@@ -3931,9 +3931,9 @@ declare global {
          *
          * for 优先级高于内部控件，内部有多个控件的时候默认触发第一个控件
          */
-        type Label = _Label;
+        type Label = _Label
         /** 表单标签实例 */
-        type LabelInstance = _LabelInstance;
+        type LabelInstance = _LabelInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -3947,7 +3947,7 @@ declare module '@vue/runtime-core' {
          *
          * for 优先级高于内部控件，内部有多个控件的时候默认触发第一个控件
          */
-        Label: _Label;
+        Label: _Label
     }
 }
 declare global {
@@ -3962,7 +3962,7 @@ declare global {
              *
              * for 优先级高于内部控件，内部有多个控件的时候默认触发第一个控件
              */
-            label: _Label;
+            label: _Label
         }
     }
 }
@@ -3978,31 +3978,31 @@ declare module 'vue3/jsx-runtime' {
              *
              * for 优先级高于内部控件，内部有多个控件的时候默认触发第一个控件
              */
-            label: _Label;
+            label: _Label
         }
     }
 }
 
-type _PickerViewValueElement = number;
+type _PickerViewValueElement = number
 /** 依次表示 picker-view 内 picker-view-column 选择的下标 */
-type _PickerViewValue = _PickerViewValueElement[];
+type _PickerViewValue = _PickerViewValueElement[]
 interface _PickerViewOnChangeDetail {
-    value: _PickerViewValue;
+    value: _PickerViewValue
 }
-type _PickerViewOnChangeEvent = _CustomEvent<_PickerViewOnChangeDetail>;
+type _PickerViewOnChangeEvent = _CustomEvent<_PickerViewOnChangeDetail>
 /** value 改变时触发 */
 interface _PickerViewOnChange {
-    (event: _PickerViewOnChangeEvent): void;
+    (event: _PickerViewOnChangeEvent): void
 }
-type _PickerViewOnPickstartEvent = _BaseEvent;
+type _PickerViewOnPickstartEvent = _BaseEvent
 /** 滚动选择开始时触发 */
 interface _PickerViewOnPickstart {
-    (event: _PickerViewOnPickstartEvent): void;
+    (event: _PickerViewOnPickstartEvent): void
 }
-type _PickerViewOnPickendEvent = _BaseEvent;
+type _PickerViewOnPickendEvent = _BaseEvent
 /** 滚动选择结束时触发 */
 interface _PickerViewOnPickend {
-    (event: _PickerViewOnPickendEvent): void;
+    (event: _PickerViewOnPickendEvent): void
 }
 type _PickerViewProps = Partial<{
     /**
@@ -4010,15 +4010,15 @@ type _PickerViewProps = Partial<{
      *
      * 超出 picker-view-column 可选项长度时，选择最后一项
      */
-    value: _PickerViewValue;
+    value: _PickerViewValue
     /** 设置选择器中间选中框的样式 */
-    indicatorStyle: string;
+    indicatorStyle: string
     /** 设置选择器中间选中框的类名 */
-    indicatorClass: string;
+    indicatorClass: string
     /** 设置蒙层的样式 */
-    maskStyle: string;
+    maskStyle: string
     /** 设置蒙层的类名 */
-    maskClass: string;
+    maskClass: string
     /**
      * 是否在手指松开时立即触发 change 事件
      *
@@ -4026,109 +4026,109 @@ type _PickerViewProps = Partial<{
      *
      * 默认为 false
      */
-    immediateChange: boolean;
+    immediateChange: boolean
     /** value 改变时触发 */
-    onChange: _PickerViewOnChange;
+    onChange: _PickerViewOnChange
     /** 滚动选择开始时触发 */
-    onPickstart: _PickerViewOnPickstart;
+    onPickstart: _PickerViewOnPickstart
     /** 滚动选择结束时触发 */
-    onPickend: _PickerViewOnPickend;
-}>;
+    onPickend: _PickerViewOnPickend
+}>
 /** 嵌入页面的滚动选择器，比 picker 更灵活 */
-type _PickerView = _Component<_PickerViewProps>;
+type _PickerView = _Component<_PickerViewProps>
 /** 嵌入页面的滚动选择器 */
-type _PickerViewInstance = InstanceType<_PickerView>;
+type _PickerViewInstance = InstanceType<_PickerView>
 
 declare global {
     namespace UniHelper {
-        type PickerViewValueElement = _PickerViewValueElement;
+        type PickerViewValueElement = _PickerViewValueElement
         /** 依次表示 picker-view 内 picker-view-column 选择的下标 */
-        type PickerViewValue = _PickerViewValue;
+        type PickerViewValue = _PickerViewValue
         interface PickerViewOnChangeDetail extends _PickerViewOnChangeDetail {
         }
-        type PickerViewOnChangeEvent = _PickerViewOnChangeEvent;
+        type PickerViewOnChangeEvent = _PickerViewOnChangeEvent
         /** value 改变时触发 */
         interface PickerViewOnChange extends _PickerViewOnChange {
         }
-        type PickerViewOnPickstartEvent = _PickerViewOnPickstartEvent;
+        type PickerViewOnPickstartEvent = _PickerViewOnPickstartEvent
         /** 滚动选择开始时触发 */
         interface PickerViewOnPickstart extends _PickerViewOnPickstart {
         }
-        type PickerViewOnPickendEvent = _PickerViewOnPickendEvent;
+        type PickerViewOnPickendEvent = _PickerViewOnPickendEvent
         /** 滚动选择结束时触发 */
         interface PickerViewOnPickend extends _PickerViewOnPickend {
         }
-        type PickerViewProps = _PickerViewProps;
+        type PickerViewProps = _PickerViewProps
         /** 嵌入页面的滚动选择器，比 picker 更灵活 */
-        type PickerView = _PickerView;
+        type PickerView = _PickerView
         /** 嵌入页面的滚动选择器实例 */
-        type PickerViewInstance = _PickerViewInstance;
+        type PickerViewInstance = _PickerViewInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 嵌入页面的滚动选择器，比 picker 更灵活 */
-        PickerView: _PickerView;
+        PickerView: _PickerView
     }
 }
 
-type _PickerViewColumnProps = Partial<{}>;
-type _PickerViewColumn = _Component<_PickerViewColumnProps>;
-type _PickerViewColumnInstance = InstanceType<_PickerViewColumn>;
+type _PickerViewColumnProps = Partial<{}>
+type _PickerViewColumn = _Component<_PickerViewColumnProps>
+type _PickerViewColumnInstance = InstanceType<_PickerViewColumn>
 
 declare global {
     namespace UniHelper {
-        type PickerViewColumnProps = _PickerViewColumnProps;
-        type PickerViewColumn = _PickerViewColumn;
-        type PickerViewColumnInstance = _PickerViewColumnInstance;
+        type PickerViewColumnProps = _PickerViewColumnProps
+        type PickerViewColumn = _PickerViewColumn
+        type PickerViewColumnInstance = _PickerViewColumnInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
-        PickerViewColumn: _PickerViewColumn;
+        PickerViewColumn: _PickerViewColumn
     }
 }
 
 interface _RadioGroupOnChangeDetail {
-    value: _RadioValue;
+    value: _RadioValue
 }
-type _RadioGroupOnChangeEvent = _CustomEvent<_RadioGroupOnChangeDetail>;
+type _RadioGroupOnChangeEvent = _CustomEvent<_RadioGroupOnChangeDetail>
 /** 选中项发生变化时触发 */
 interface _RadioGroupOnChange {
-    (event: _RadioGroupOnChangeEvent): void;
+    (event: _RadioGroupOnChangeEvent): void
 }
 /** 单项选择器属性 */
 type _RadioGroupProps = Partial<{
     /** 选中项发生变化时触发 */
-    onChange: _RadioGroupOnChange;
-}>;
+    onChange: _RadioGroupOnChange
+}>
 /**
  * 单项选择器，内部由多个 radio 组成
  *
  * 通过把多个 radio 包裹在一个 radio-group 下，实现这些 radio 的单选
  */
-type _RadioGroup = _Component<_RadioGroupProps>;
+type _RadioGroup = _Component<_RadioGroupProps>
 /** 单项选择器实例 */
-type _RadioGroupInstance = InstanceType<_RadioGroup>;
+type _RadioGroupInstance = InstanceType<_RadioGroup>
 
 declare global {
     namespace UniHelper {
         interface RadioGroupOnChangeDetail extends _RadioGroupOnChangeDetail {
         }
-        type RadioGroupOnChangeEvent = _RadioGroupOnChangeEvent;
+        type RadioGroupOnChangeEvent = _RadioGroupOnChangeEvent
         /** 选中项发生变化时触发 */
         interface RadioGroupOnChange extends _RadioGroupOnChange {
         }
         /** 单项选择器属性 */
-        type RadioGroupProps = _RadioGroupProps;
+        type RadioGroupProps = _RadioGroupProps
         /**
          * 单项选择器，内部由多个 radio 组成
          *
          * 通过把多个 radio 包裹在一个 radio-group 下，实现这些 radio 的单选
          */
-        type RadioGroup = _RadioGroup;
+        type RadioGroup = _RadioGroup
         /** 单项选择器实例 */
-        type RadioGroupInstance = _RadioGroupInstance;
+        type RadioGroupInstance = _RadioGroupInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -4138,12 +4138,12 @@ declare module '@vue/runtime-core' {
          *
          * 通过把多个 radio 包裹在一个 radio-group 下，实现这些 radio 的单选
          */
-        RadioGroup: _RadioGroup;
+        RadioGroup: _RadioGroup
     }
 }
 
 /** 输入框内容 */
-type _TextareaValue = string;
+type _TextareaValue = string
 /**
  * 设置键盘右下角按钮的文字
  *
@@ -4157,101 +4157,101 @@ type _TextareaValue = string;
  *
  * done 完成
  */
-type _TextareaConfirmType = 'send' | 'search' | 'next' | 'go' | 'done';
+type _TextareaConfirmType = 'send' | 'search' | 'next' | 'go' | 'done'
 interface _TextareaOnFocusDetail {
-    value: _TextareaValue;
+    value: _TextareaValue
     /** 键盘高度 */
-    height?: number;
+    height?: number
 }
-type _TextareaOnFocusEvent = _CustomEvent<_TextareaOnFocusDetail>;
+type _TextareaOnFocusEvent = _CustomEvent<_TextareaOnFocusDetail>
 /** 聚焦时触发 */
 interface _TextareaOnFocus {
-    (event: _TextareaOnFocusEvent): void;
+    (event: _TextareaOnFocusEvent): void
 }
 interface _TextareaOnBlurDetail {
-    value: _TextareaValue;
+    value: _TextareaValue
     /** 光标位置 */
-    cursor?: number;
+    cursor?: number
 }
-type _TextareaOnBlurEvent = _CustomEvent<_TextareaOnBlurDetail>;
+type _TextareaOnBlurEvent = _CustomEvent<_TextareaOnBlurDetail>
 /** 失焦时触发 */
 interface _TextareaOnBlur {
-    (event: _TextareaOnBlurEvent): void;
+    (event: _TextareaOnBlurEvent): void
 }
 interface _TextareaOnLinechangeDetail {
-    height: number;
-    heightRpx: number;
-    lineCount: number;
+    height: number
+    heightRpx: number
+    lineCount: number
 }
-type _TextareaOnLinechangeEvent = _CustomEvent<_TextareaOnLinechangeDetail>;
+type _TextareaOnLinechangeEvent = _CustomEvent<_TextareaOnLinechangeDetail>
 /** 输入框行数变化时触发 */
 interface _TextareaOnLinechange {
-    (event: _TextareaOnLinechangeEvent): void;
+    (event: _TextareaOnLinechangeEvent): void
 }
 interface _TextareaOnInputDetail {
-    value: _TextareaValue;
-    cursor: number;
+    value: _TextareaValue
+    cursor: number
 }
-type _TextareaOnInputEvent = _CustomEvent<_TextareaOnInputDetail>;
+type _TextareaOnInputEvent = _CustomEvent<_TextareaOnInputDetail>
 /** 输入时触发 */
 interface _TextareaOnInput {
-    (event: _TextareaOnInputEvent): string | void;
+    (event: _TextareaOnInputEvent): string | void
 }
 interface _TextareaOnConfirmDetail {
-    value: _TextareaValue;
+    value: _TextareaValue
 }
-type _TextareaOnConfirmEvent = _CustomEvent<_TextareaOnConfirmDetail>;
+type _TextareaOnConfirmEvent = _CustomEvent<_TextareaOnConfirmDetail>
 /** 点击完成按钮时触发 */
 interface _TextareaOnConfirm {
-    (event: _TextareaOnConfirmEvent): void;
+    (event: _TextareaOnConfirmEvent): void
 }
 interface _TextareaOnKeyboardheightchangeDetail {
-    height: number;
-    duration: number;
+    height: number
+    duration: number
 }
-type _TextareaOnKeyboardheightchangeEvent = _CustomEvent<_TextareaOnKeyboardheightchangeDetail>;
+type _TextareaOnKeyboardheightchangeEvent = _CustomEvent<_TextareaOnKeyboardheightchangeDetail>
 /** 键盘高度变化时触发 */
 interface _TextareaOnKeyboardheightchange {
-    (event: _TextareaOnKeyboardheightchangeEvent): void;
+    (event: _TextareaOnKeyboardheightchangeEvent): void
 }
 /** 多行输入框属性 */
 type _TextareaProps = Partial<{
     /** 输入框的内容 */
-    value: string;
+    value: string
     /** 输入框为空时占位符 */
-    placeholder: string;
+    placeholder: string
     /** 指定 placeholder 的样式 */
-    placeholderStyle: string;
+    placeholderStyle: string
     /**
      * 指定 placeholder 的样式类
      *
      * 默认为 textarea-placeholder
      */
-    placeholderClass: string;
+    placeholderClass: string
     /**
      * 是否禁用
      *
      * 默认为 false
      */
-    disabled: boolean;
+    disabled: boolean
     /**
      * 最大输入长度，设置为 -1 的时候不限制最大长度
      *
      * 默认为 140
      */
-    maxlength: number;
+    maxlength: number
     /**
      * 是否获取焦点
      *
      * 默认为 false
      */
-    focus: boolean;
+    focus: boolean
     /**
      * 是否自动聚焦，拉起键盘
      *
      * 默认为 false
      */
-    autoFocus: boolean;
+    autoFocus: boolean
     /**
      * 是否自动增高
      *
@@ -4259,13 +4259,13 @@ type _TextareaProps = Partial<{
      *
      * 默认为 false
      */
-    autoHeight: boolean;
+    autoHeight: boolean
     /**
      * 如果 textarea 在 position: fixed 的区域内，需要指定为 true
      *
      * 默认为 false
      */
-    fixed: boolean;
+    fixed: boolean
     /**
      * 指定光标与键盘的距离
      *
@@ -4275,9 +4275,9 @@ type _TextareaProps = Partial<{
      *
      * 默认为 0
      */
-    cursorSpacing: number;
+    cursorSpacing: number
     /** 指定 focus 时的光标位置 */
-    cursor: number;
+    cursor: number
     /**
      * 设置键盘右下角按钮的文字
      *
@@ -4293,55 +4293,55 @@ type _TextareaProps = Partial<{
      *
      * 默认为 done
      */
-    confirmType: _TextareaConfirmType;
+    confirmType: _TextareaConfirmType
     /**
      * 点击键盘右下角按钮时是否保持键盘不收起
      *
      * 默认为 false
      */
-    confirmHold: boolean;
+    confirmHold: boolean
     /**
      * 是否显示键盘上方带有”完成“按钮那一栏
      *
      * 默认为 true
      */
-    showConfirmBar: boolean;
+    showConfirmBar: boolean
     /**
      * 光标起始位置，自动聚焦时有效，需与 selection-end 搭配使用
      *
      * 默认为 -1
      */
-    selectionStart: number;
+    selectionStart: number
     /**
      * 光标结束位置，自动聚焦时有效，需与 selection-start 搭配使用
      *
      * 默认为 -1
      */
-    selectionEnd: number;
+    selectionEnd: number
     /**
      * 键盘弹起时，是否自动上推页面
      *
      * 默认为 true
      */
-    adjustPosition: boolean;
+    adjustPosition: boolean
     /**
      * 是否去掉 iOS 下的默认内边距
      *
      * 默认为 false
      */
-    disableDefaultPadding: boolean;
+    disableDefaultPadding: boolean
     /**
      * 聚焦时点击页面的时候是否不收起键盘
      *
      * 默认为 false
      */
-    holdKeyboard: boolean;
+    holdKeyboard: boolean
     /**
      * 键盘收起时是否自动失焦
      *
      * 默认为 false
      */
-    autoBlur: boolean;
+    autoBlur: boolean
     /**
      * 是否忽略组件内对文本合成系统事件的处理
      *
@@ -4349,29 +4349,29 @@ type _TextareaProps = Partial<{
      *
      * 默认为 true
      */
-    ignoreCompositionEvent: boolean;
+    ignoreCompositionEvent: boolean
     /** 聚焦时触发 */
-    onFocus: _TextareaOnFocus;
+    onFocus: _TextareaOnFocus
     /** 失焦时触发 */
-    onBlur: _TextareaOnBlur;
+    onBlur: _TextareaOnBlur
     /** 输入框行数变化时触发 */
-    onLinechange: _TextareaOnLinechange;
+    onLinechange: _TextareaOnLinechange
     /** 输入时触发 */
-    onInput: _TextareaOnInput;
+    onInput: _TextareaOnInput
     /** 点击完成按钮时触发 */
-    onConfirm: _TextareaOnConfirm;
+    onConfirm: _TextareaOnConfirm
     /** 键盘高度变化时触发 */
-    onKeyboardheightchange: _TextareaOnKeyboardheightchange;
-}>;
+    onKeyboardheightchange: _TextareaOnKeyboardheightchange
+}>
 /** 多行输入框 */
-type _Textarea = _Component<_TextareaProps>;
+type _Textarea = _Component<_TextareaProps>
 /** 多行输入框实例 */
-type _TextareaInstance = InstanceType<_Textarea>;
+type _TextareaInstance = InstanceType<_Textarea>
 
 declare global {
     namespace UniHelper {
         /** 输入框内容 */
-        type TextareaValue = _TextareaValue;
+        type TextareaValue = _TextareaValue
         /**
          * 设置键盘右下角按钮的文字
          *
@@ -4385,62 +4385,62 @@ declare global {
          *
          * done 完成
          */
-        type TextareaConfirmType = _TextareaConfirmType;
+        type TextareaConfirmType = _TextareaConfirmType
         interface TextareaOnFocusDetail extends _TextareaOnFocusDetail {
         }
-        type TextareaOnFocusEvent = _TextareaOnFocusEvent;
+        type TextareaOnFocusEvent = _TextareaOnFocusEvent
         /** 聚焦时触发 */
         interface TextareaOnFocus extends _TextareaOnFocus {
         }
         interface TextareaOnBlurDetail extends _TextareaOnBlurDetail {
         }
-        type TextareaOnBlurEvent = _TextareaOnBlurEvent;
+        type TextareaOnBlurEvent = _TextareaOnBlurEvent
         /** 失焦时触发 */
         interface TextareaOnBlur extends _TextareaOnBlur {
         }
         interface TextareaOnLinechangeDetail extends _TextareaOnLinechangeDetail {
         }
-        type TextareaOnLinechangeEvent = _TextareaOnLinechangeEvent;
+        type TextareaOnLinechangeEvent = _TextareaOnLinechangeEvent
         /** 输入框行数变化时触发 */
         interface TextareaOnLinechange extends _TextareaOnLinechange {
         }
         interface TextareaOnInputDetail extends _TextareaOnInputDetail {
         }
-        type TextareaOnInputEvent = _TextareaOnInputEvent;
+        type TextareaOnInputEvent = _TextareaOnInputEvent
         /** 输入时触发 */
         interface TextareaOnInput extends _TextareaOnInput {
         }
         interface TextareaOnConfirmDetail extends _TextareaOnConfirmDetail {
         }
-        type TextareaOnConfirmEvent = _TextareaOnConfirmEvent;
+        type TextareaOnConfirmEvent = _TextareaOnConfirmEvent
         /** 点击完成按钮时触发 */
         interface TextareaOnConfirm extends _TextareaOnConfirm {
         }
         interface TextareaOnKeyboardheightchangeDetail extends _TextareaOnKeyboardheightchangeDetail {
         }
-        type TextareaOnKeyboardheightchangeEvent = _TextareaOnKeyboardheightchangeEvent;
+        type TextareaOnKeyboardheightchangeEvent = _TextareaOnKeyboardheightchangeEvent
         /** 键盘高度变化时触发 */
         interface TextareaOnKeyboardheightchange extends _TextareaOnKeyboardheightchange {
         }
         /** 多行输入框属性 */
-        type TextareaProps = _TextareaProps;
+        type TextareaProps = _TextareaProps
         /** 多行输入框 */
-        type Textarea = _Textarea;
+        type Textarea = _Textarea
         /** 多行输入框实例 */
-        type TextareaInstance = _TextareaInstance;
+        type TextareaInstance = _TextareaInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 多行输入框 */
-        Textarea: _Textarea;
+        Textarea: _Textarea
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 多行输入框 */
-            textarea: _Textarea;
+            textarea: _Textarea
         }
     }
 }
@@ -4448,7 +4448,7 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 多行输入框 */
-            textarea: _Textarea;
+            textarea: _Textarea
         }
     }
 }
@@ -4468,7 +4468,7 @@ declare module 'vue3/jsx-runtime' {
  *
  * exit 退出小程序，target="miniProgram"时生效
  */
-type _NavigatorOpenType = 'navigate' | 'redirect' | 'switchTab' | 'reLaunch' | 'navigateBack' | 'exit';
+type _NavigatorOpenType = 'navigate' | 'redirect' | 'switchTab' | 'reLaunch' | 'navigateBack' | 'exit'
 /**
  * 窗口的显示/关闭的动画类型
  *
@@ -4476,7 +4476,7 @@ type _NavigatorOpenType = 'navigate' | 'redirect' | 'switchTab' | 'reLaunch' | '
  *
  * 默认为 pop-in 显示、pop-out 关闭
  */
-type _NavigatorAnimationType = 'slide-in-right' | 'slide-out-right' | 'slide-in-left' | 'slide-out-left' | 'slide-in-top' | 'slide-out-top' | 'slide-in-bottom' | 'slide-out-bottom' | 'pop-in' | 'pop-out' | 'fade-in' | 'fade-out' | 'zoom-in' | 'zoom-out' | 'zoom-fade-in' | 'zoom-fade-out' | 'none';
+type _NavigatorAnimationType = 'slide-in-right' | 'slide-out-right' | 'slide-in-left' | 'slide-out-left' | 'slide-in-top' | 'slide-out-top' | 'slide-in-bottom' | 'slide-out-bottom' | 'pop-in' | 'pop-out' | 'fade-in' | 'fade-out' | 'zoom-in' | 'zoom-out' | 'zoom-fade-in' | 'zoom-fade-out' | 'none'
 /**
  * 在哪个目标上发生跳转
  *
@@ -4484,7 +4484,7 @@ type _NavigatorAnimationType = 'slide-in-right' | 'slide-out-right' | 'slide-in-
  *
  * miniProgram 其它小程序
  */
-type _NavigatorTarget = 'self' | 'miniProgram';
+type _NavigatorTarget = 'self' | 'miniProgram'
 /**
  * 要打开的小程序版本
  *
@@ -4500,7 +4500,7 @@ type _NavigatorTarget = 'self' | 'miniProgram';
  *
  * 默认为 release
  */
-type _NavigatorVersion = 'develop' | 'trial' | 'release';
+type _NavigatorVersion = 'develop' | 'trial' | 'release'
 /** 页面跳转属性 */
 type _NavigatorProps = Partial<{
     /**
@@ -4510,7 +4510,7 @@ type _NavigatorProps = Partial<{
      *
      * 例子：../first/first、/pages/first/first
      */
-    url: string;
+    url: string
     /**
      * 跳转方式
      *
@@ -4528,7 +4528,7 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 navigate
      */
-    openType: _NavigatorOpenType;
+    openType: _NavigatorOpenType
     /**
      * 回退的层数
      *
@@ -4536,7 +4536,7 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 1
      */
-    delta: number;
+    delta: number
     /**
      * 窗口的显示/关闭的动画类型
      *
@@ -4544,7 +4544,7 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 pop-in 显示、pop-out 关闭
      */
-    animationType: _NavigatorAnimationType;
+    animationType: _NavigatorAnimationType
     /**
      * 窗口的显示/关闭动画的持续时间
      *
@@ -4552,7 +4552,7 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 300
      */
-    animationDuration: number;
+    animationDuration: number
     /**
      * 指定点击时的样式类
      *
@@ -4560,13 +4560,13 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 navigator-hover
      */
-    hoverClass: string;
+    hoverClass: string
     /**
      * 指定是否阻止本节点的祖先节点出现点击态
      *
      * 默认为 false
      */
-    hoverStopPropagation: boolean;
+    hoverStopPropagation: boolean
     /**
      * 按住后多久出现点击态
      *
@@ -4574,7 +4574,7 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 50
      */
-    hoverStartTime: number;
+    hoverStartTime: number
     /**
      * 手指松开后点击态保留时间
      *
@@ -4582,7 +4582,7 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 600
      */
-    hoverStayTime: number;
+    hoverStayTime: number
     /**
      * 在哪个目标上发生跳转
      *
@@ -4592,25 +4592,25 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 self
      */
-    target: _NavigatorTarget;
+    target: _NavigatorTarget
     /**
      * 要打开的小程序 appId
      *
      * target="miniProgram" 时有效
      */
-    appId: string;
+    appId: string
     /**
      * 打开的页面路径，如果为空则打开首页
      *
      * target="miniProgram" 时有效
      */
-    path: string;
+    path: string
     /**
      * 需要传递给目标应用的数据
      *
      * target="miniProgram" 时有效
      */
-    extraData: _AnyRecord;
+    extraData: _AnyRecord
     /**
      * 要打开的小程序版本
      *
@@ -4626,14 +4626,14 @@ type _NavigatorProps = Partial<{
      *
      * 默认为 release
      */
-    version: _NavigatorVersion;
+    version: _NavigatorVersion
     /**
      * 当传递该参数后，可以不传 app-id 和 path
      *
      * target="miniProgram" 时有效
      */
-    shortLink: string;
-}>;
+    shortLink: string
+}>
 /**
  * 页面跳转组件
  *
@@ -4641,9 +4641,9 @@ type _NavigatorProps = Partial<{
  *
  * 目标页面必须在 pages.json 中注册
  */
-type _Navigator = _Component<_NavigatorProps>;
+type _Navigator = _Component<_NavigatorProps>
 /** 页面跳转组件实例 */
-type _NavigatorInstance = InstanceType<_Navigator>;
+type _NavigatorInstance = InstanceType<_Navigator>
 
 declare global {
     namespace UniHelper {
@@ -4662,7 +4662,7 @@ declare global {
          *
          * exit 退出小程序，target="miniProgram"时生效
          */
-        type NavigatorOpenType = _NavigatorOpenType;
+        type NavigatorOpenType = _NavigatorOpenType
         /**
          * 窗口的显示/关闭的动画类型
          *
@@ -4670,7 +4670,7 @@ declare global {
          *
          * 默认为 pop-in 显示、pop-out 关闭
          */
-        type NavigatorAnimationType = _NavigatorAnimationType;
+        type NavigatorAnimationType = _NavigatorAnimationType
         /**
          * 在哪个目标上发生跳转
          *
@@ -4678,7 +4678,7 @@ declare global {
          *
          * miniProgram 其它小程序
          */
-        type NavigatorTarget = _NavigatorTarget;
+        type NavigatorTarget = _NavigatorTarget
         /**
          * 要打开的小程序版本
          *
@@ -4694,9 +4694,9 @@ declare global {
          *
          * 默认为 release
          */
-        type NavigatorVersion = _NavigatorVersion;
+        type NavigatorVersion = _NavigatorVersion
         /** 页面跳转属性 */
-        type NavigatorProps = _NavigatorProps;
+        type NavigatorProps = _NavigatorProps
         /**
          * 页面跳转组件
          *
@@ -4704,9 +4704,9 @@ declare global {
          *
          * 目标页面必须在 pages.json 中注册
          */
-        type Navigator = _Navigator;
+        type Navigator = _Navigator
         /** 页面跳转组件实例 */
-        type NavigatorInstance = _NavigatorInstance;
+        type NavigatorInstance = _NavigatorInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -4718,7 +4718,7 @@ declare module '@vue/runtime-core' {
          *
          * 目标页面必须在 pages.json 中注册
          */
-        Navigator: _Navigator;
+        Navigator: _Navigator
     }
 }
 
@@ -4734,61 +4734,61 @@ interface _AudioOnErrorDetail {
      *
      * 4 不合适资源
      */
-    errMsg: 1 | 2 | 3 | 4;
+    errMsg: 1 | 2 | 3 | 4
 }
-type _AudioOnErrorEvent = _CustomEvent<_AudioOnErrorDetail>;
+type _AudioOnErrorEvent = _CustomEvent<_AudioOnErrorDetail>
 /** 发生错误时触发 */
 interface _AudioOnError {
-    (event: _AudioOnErrorEvent): void;
+    (event: _AudioOnErrorEvent): void
 }
-type _AudioOnPlayEvent = _BaseEvent;
+type _AudioOnPlayEvent = _BaseEvent
 /** 开始/继续播放时触发 */
 interface _AudioOnPlay {
-    (event: _AudioOnPlayEvent): void;
+    (event: _AudioOnPlayEvent): void
 }
-type _AudioOnPauseEvent = _BaseEvent;
+type _AudioOnPauseEvent = _BaseEvent
 /** 暂停播放时触发 */
 interface _AudioOnPause {
-    (event: _AudioOnPauseEvent): void;
+    (event: _AudioOnPauseEvent): void
 }
 interface _AudioOnTimeupdateDetail {
-    currentTime: number;
-    duration: number;
+    currentTime: number
+    duration: number
 }
-type _AudioOnTimeupdateEvent = _CustomEvent<_AudioOnTimeupdateDetail>;
+type _AudioOnTimeupdateEvent = _CustomEvent<_AudioOnTimeupdateDetail>
 /** 播放进度改变时触发 */
 interface _AudioOnTimeupdate {
-    (event: _AudioOnTimeupdateEvent): void;
+    (event: _AudioOnTimeupdateEvent): void
 }
-type _AudioOnEndedEvent = _BaseEvent;
+type _AudioOnEndedEvent = _BaseEvent
 /** 播放到末尾时触发 */
 interface _AudioOnEnded {
-    (event: _AudioOnEndedEvent): void;
+    (event: _AudioOnEndedEvent): void
 }
 /** 音频属性 */
 type _AudioProps = Partial<{
     /** audio 组件的唯一标识符 */
-    id: string;
+    id: string
     /** 要播放音频的资源地址 */
-    src: string;
+    src: string
     /**
      * 是否循环播放
      *
      * 默认为 false
      */
-    loop: boolean;
+    loop: boolean
     /**
      * 是否显示默认控件
      *
      * 默认为 false
      */
-    controls: boolean;
+    controls: boolean
     /**
      * 默认控件上的音频封面的图片资源地址
      *
      * 如果 controls 值为 false 则无效
      */
-    poster: string;
+    poster: string
     /**
      * 默认控件上的音频名字
      *
@@ -4796,7 +4796,7 @@ type _AudioProps = Partial<{
      *
      * 默认为“未知音频”
      */
-    name: string;
+    name: string
     /**
      * 默认控件上的作者名字
      *
@@ -4804,68 +4804,68 @@ type _AudioProps = Partial<{
      *
      * 默认为“未知作者”
      */
-    author: string;
+    author: string
     /** 发生错误时触发 */
-    onError: _AudioOnError;
+    onError: _AudioOnError
     /** 开始/继续播放时触发 */
-    onPlay: _AudioOnPlay;
+    onPlay: _AudioOnPlay
     /** 暂停播放时触发 */
-    onPause: _AudioOnPause;
+    onPause: _AudioOnPause
     /** 播放进度改变时触发 */
-    onTimeupdate: _AudioOnTimeupdate;
+    onTimeupdate: _AudioOnTimeupdate
     /** 播放到末尾时触发 */
-    onEnded: _AudioOnEnded;
-}>;
+    onEnded: _AudioOnEnded
+}>
 /** 音频 */
-type _Audio = _Component<_AudioProps>;
+type _Audio = _Component<_AudioProps>
 /** 音频实例 */
-type _AudioInstance = InstanceType<_Audio>;
+type _AudioInstance = InstanceType<_Audio>
 
 declare global {
     namespace UniHelper {
         interface AudioOnErrorDetail extends _AudioOnErrorDetail {
         }
-        type AudioOnErrorEvent = _AudioOnErrorEvent;
+        type AudioOnErrorEvent = _AudioOnErrorEvent
         /** 发生错误时触发 */
         interface AudioOnError extends _AudioOnError {
         }
-        type AudioOnPlayEvent = _AudioOnPlayEvent;
+        type AudioOnPlayEvent = _AudioOnPlayEvent
         /** 开始/继续播放时触发 */
         interface AudioOnPlay extends _AudioOnPlay {
         }
-        type AudioOnPauseEvent = _AudioOnPauseEvent;
+        type AudioOnPauseEvent = _AudioOnPauseEvent
         /** 暂停播放时触发 */
         interface AudioOnPause extends _AudioOnPause {
         }
         interface AudioOnTimeupdateDetail extends _AudioOnTimeupdateDetail {
         }
-        type AudioOnTimeupdateEvent = _AudioOnTimeupdateEvent;
+        type AudioOnTimeupdateEvent = _AudioOnTimeupdateEvent
         /** 播放进度改变时触发 */
         interface AudioOnTimeupdate extends _AudioOnTimeupdate {
         }
-        type AudioOnEndedEvent = _AudioOnEndedEvent;
+        type AudioOnEndedEvent = _AudioOnEndedEvent
         /** 播放到末尾时触发 */
         interface AudioOnEnded extends _AudioOnEnded {
         }
         /** 音频属性 */
-        type AudioProps = _AudioProps;
+        type AudioProps = _AudioProps
         /** 音频 */
-        type Audio = _Audio;
+        type Audio = _Audio
         /** 音频实例 */
-        type AudioInstance = _AudioInstance;
+        type AudioInstance = _AudioInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 音频 */
-        Audio: _Audio;
+        Audio: _Audio
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 音频 */
-            audio: _Audio;
+            audio: _Audio
         }
     }
 }
@@ -4873,7 +4873,7 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 音频 */
-            audio: _Audio;
+            audio: _Audio
         }
     }
 }
@@ -4885,7 +4885,7 @@ declare module 'vue3/jsx-runtime' {
  *
  * scanCode 扫码
  */
-type _CameraMode = 'normal' | 'scanCode';
+type _CameraMode = 'normal' | 'scanCode'
 /**
  * 分辨率，不支持动态修改
  *
@@ -4895,7 +4895,7 @@ type _CameraMode = 'normal' | 'scanCode';
  *
  * high 高
  */
-type _CameraResolution = 'low' | 'medium' | 'high';
+type _CameraResolution = 'low' | 'medium' | 'high'
 /**
  * 摄像头朝向
  *
@@ -4903,7 +4903,7 @@ type _CameraResolution = 'low' | 'medium' | 'high';
  *
  * back 后置摄像头
  */
-type _CameraDevicePosition = 'front' | 'back';
+type _CameraDevicePosition = 'front' | 'back'
 /**
  * 闪光灯
  *
@@ -4913,7 +4913,7 @@ type _CameraDevicePosition = 'front' | 'back';
  *
  * off 关闭
  */
-type _CameraFlash = 'auto' | 'on' | 'off';
+type _CameraFlash = 'auto' | 'on' | 'off'
 /**
  * 期望的相机帧数据尺寸
  *
@@ -4923,33 +4923,33 @@ type _CameraFlash = 'auto' | 'on' | 'off';
  *
  * large 大
  */
-type _CameraFrameSize = 'small' | 'medium' | 'large';
-type _CameraOnStopEvent = _BaseEvent;
+type _CameraFrameSize = 'small' | 'medium' | 'large'
+type _CameraOnStopEvent = _BaseEvent
 /** 摄像头在非正常终止时触发 */
 interface _CameraOnStop {
-    (event: _CameraOnStopEvent): void;
+    (event: _CameraOnStopEvent): void
 }
-type _CameraOnErrorEvent = _BaseEvent;
+type _CameraOnErrorEvent = _BaseEvent
 /** 用户不允许使用摄像头时触发 */
 interface _CameraOnError {
-    (event: _BaseEvent): void;
+    (event: _BaseEvent): void
 }
 interface _CameraOnInitdoneDetail {
-    maxZoom: number;
+    maxZoom: number
 }
-type _CameraOnInitdoneEvent = _CustomEvent<_CameraOnInitdoneDetail>;
+type _CameraOnInitdoneEvent = _CustomEvent<_CameraOnInitdoneDetail>
 /** 相机初始化完成时触发 */
 interface _CameraOnInitdone {
-    (event: _CameraOnInitdoneEvent): void;
+    (event: _CameraOnInitdoneEvent): void
 }
-type _CameraOnScancodeEvent = _BaseEvent;
+type _CameraOnScancodeEvent = _BaseEvent
 /**
  * 扫码识别成功时触发
  *
  * mode="scanCode" 时有效
  */
 interface _CameraOnScancode {
-    (event: _CameraOnScancodeEvent): void;
+    (event: _CameraOnScancodeEvent): void
 }
 /** 页面内嵌的区域相机组件属性 */
 type _CameraProps = Partial<{
@@ -4962,7 +4962,7 @@ type _CameraProps = Partial<{
      *
      * 默认为 normal
      */
-    mode: _CameraMode;
+    mode: _CameraMode
     /**
      * 分辨率，不支持动态修改
      *
@@ -4974,7 +4974,7 @@ type _CameraProps = Partial<{
      *
      * 默认为 medium
      */
-    resolution: _CameraResolution;
+    resolution: _CameraResolution
     /**
      * 摄像头朝向
      *
@@ -4984,7 +4984,7 @@ type _CameraProps = Partial<{
      *
      * 默认为 back
      */
-    devicePosition: _CameraDevicePosition;
+    devicePosition: _CameraDevicePosition
     /**
      * 闪光灯
      *
@@ -4996,7 +4996,7 @@ type _CameraProps = Partial<{
      *
      * 默认为 auto
      */
-    flash: _CameraFlash;
+    flash: _CameraFlash
     /**
      * 期望的相机帧数据尺寸
      *
@@ -5008,24 +5008,24 @@ type _CameraProps = Partial<{
      *
      * 默认为 medium
      */
-    frameSize: _CameraFrameSize;
+    frameSize: _CameraFrameSize
     /** 摄像头在非正常终止时触发 */
-    onStop: _CameraOnStop;
+    onStop: _CameraOnStop
     /** 用户不允许使用摄像头时触发 */
-    onError: _CameraOnError;
+    onError: _CameraOnError
     /** 相机初始化完成时触发 */
-    onInitdone: _CameraOnInitdone;
+    onInitdone: _CameraOnInitdone
     /**
      * 扫码识别成功时触发
      *
      * mode="scanCode" 时有效
      */
-    onScancode: _CameraOnScancode;
-}>;
+    onScancode: _CameraOnScancode
+}>
 /** 页面内嵌的区域相机组件 */
-type _Camera = _Component<_CameraProps>;
+type _Camera = _Component<_CameraProps>
 /** 页面内嵌的区域相机组件实例 */
-type _CameraInstance = InstanceType<_Camera>;
+type _CameraInstance = InstanceType<_Camera>
 
 declare global {
     namespace UniHelper {
@@ -5036,7 +5036,7 @@ declare global {
          *
          * scanCode 扫码
          */
-        type CameraMode = _CameraMode;
+        type CameraMode = _CameraMode
         /**
          * 分辨率，不支持动态修改
          *
@@ -5046,7 +5046,7 @@ declare global {
          *
          * high 高
          */
-        type CameraResolution = _CameraResolution;
+        type CameraResolution = _CameraResolution
         /**
          * 摄像头朝向
          *
@@ -5054,7 +5054,7 @@ declare global {
          *
          * back 后置摄像头
          */
-        type CameraDevicePosition = _CameraDevicePosition;
+        type CameraDevicePosition = _CameraDevicePosition
         /**
          * 闪光灯
          *
@@ -5064,7 +5064,7 @@ declare global {
          *
          * off 关闭
          */
-        type CameraFlash = _CameraFlash;
+        type CameraFlash = _CameraFlash
         /**
          * 期望的相机帧数据尺寸
          *
@@ -5074,22 +5074,22 @@ declare global {
          *
          * large 大
          */
-        type CameraFrameSize = _CameraFrameSize;
-        type CameraOnStopEvent = _CameraOnStopEvent;
+        type CameraFrameSize = _CameraFrameSize
+        type CameraOnStopEvent = _CameraOnStopEvent
         /** 摄像头在非正常终止时触发 */
         interface CameraOnStop extends _CameraOnStop {
         }
-        type CameraOnErrorEvent = _CameraOnErrorEvent;
+        type CameraOnErrorEvent = _CameraOnErrorEvent
         /** 用户不允许使用摄像头时触发 */
         interface CameraOnError extends _CameraOnError {
         }
         interface CameraOnInitdoneDetail extends _CameraOnInitdoneDetail {
         }
-        type CameraOnInitdoneEvent = _CameraOnInitdoneEvent;
+        type CameraOnInitdoneEvent = _CameraOnInitdoneEvent
         /** 相机初始化完成时触发 */
         interface CameraOnInitdone extends _CameraOnInitdone {
         }
-        type CameraOnScancodeEvent = _CameraOnScancodeEvent;
+        type CameraOnScancodeEvent = _CameraOnScancodeEvent
         /**
          * 扫码识别成功时触发
          *
@@ -5098,17 +5098,17 @@ declare global {
         interface CameraOnScancode extends _CameraOnScancode {
         }
         /** 页面内嵌的区域相机组件属性 */
-        type CameraProps = _CameraProps;
+        type CameraProps = _CameraProps
         /** 页面内嵌的区域相机组件 */
-        type Camera = _Camera;
+        type Camera = _Camera
         /** 页面内嵌的区域相机组件实例 */
-        type CameraInstance = _CameraInstance;
+        type CameraInstance = _CameraInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 页面内嵌的区域相机组件 */
-        Camera: _Camera;
+        Camera: _Camera
     }
 }
 
@@ -5143,11 +5143,11 @@ declare module '@vue/runtime-core' {
  *
  * bottom right 不缩放图片，只显示图片的右下边区域
  */
-type _ImageMode = 'scaleToFill' | 'aspectFit' | 'aspectFill' | 'widthFix' | 'heightFix' | 'top' | 'bottom' | 'center' | 'left' | 'right' | 'top left' | 'top right' | 'bottom left' | 'bottom right';
-type _ImageOnErrorEvent = _BaseEvent;
+type _ImageMode = 'scaleToFill' | 'aspectFit' | 'aspectFill' | 'widthFix' | 'heightFix' | 'top' | 'bottom' | 'center' | 'left' | 'right' | 'top left' | 'top right' | 'bottom left' | 'bottom right'
+type _ImageOnErrorEvent = _BaseEvent
 /** 图片加载错误时触发 */
 interface _ImageOnError {
-    (event: _ImageOnErrorEvent): void;
+    (event: _ImageOnErrorEvent): void
 }
 interface _ImageOnLoadDetail {
     /**
@@ -5155,23 +5155,23 @@ interface _ImageOnLoadDetail {
      *
      * 单位为 px
      */
-    width: string;
+    width: string
     /**
      * 图片高度
      *
      * 单位为 px
      */
-    height: string;
+    height: string
 }
-type _ImageOnLoadEvent = _CustomEvent<_ImageOnLoadDetail>;
+type _ImageOnLoadEvent = _CustomEvent<_ImageOnLoadDetail>
 /** 图片加载完毕时触发 */
 interface _ImageOnLoad {
-    (event: _ImageOnLoadEvent): void;
+    (event: _ImageOnLoadEvent): void
 }
 /** 图片属性 */
 type _ImageProps = Partial<{
     /** 图片资源地址 */
-    src: string;
+    src: string
     /**
      * 图片裁剪、缩放的模式
      *
@@ -5205,7 +5205,7 @@ type _ImageProps = Partial<{
      *
      * 默认为 scaleToFill
      */
-    mode: _ImageMode;
+    mode: _ImageMode
     /**
      * 是否开启图片懒加载
      *
@@ -5213,40 +5213,40 @@ type _ImageProps = Partial<{
      *
      * 默认为 false
      */
-    lazyLoad: boolean;
+    lazyLoad: boolean
     /**
      * 是否使用图片显示动画效果
      *
      * 默认为 true
      */
-    fadeShow: boolean;
+    fadeShow: boolean
     /**
      * 在系统不支持 webp 的情况下是否单独启用 webp
      *
      * 默认为 false
      */
-    webp: boolean;
+    webp: boolean
     /**
      * 是否开启长按图片显示识别小程序码菜单
      *
      * 默认为 false
      */
-    showMenuByLongpress: boolean;
+    showMenuByLongpress: boolean
     /**
      * 是否能拖动图片
      *
      * 默认为 true
      */
-    draggable: boolean;
+    draggable: boolean
     /** 图片加载错误时触发 */
-    onError: _ImageOnError;
+    onError: _ImageOnError
     /** 图片加载完毕时触发 */
-    onLoad: _ImageOnLoad;
-}>;
+    onLoad: _ImageOnLoad
+}>
 /** 图片 */
-type _Image = _Component<_ImageProps>;
+type _Image = _Component<_ImageProps>
 /** 图片实例 */
-type _ImageInstance = InstanceType<_Image>;
+type _ImageInstance = InstanceType<_Image>
 
 declare global {
     namespace UniHelper {
@@ -5281,36 +5281,36 @@ declare global {
          *
          * bottom right 不缩放图片，只显示图片的右下边区域
          */
-        type ImageMode = _ImageMode;
-        type ImageOnErrorEvent = _ImageOnErrorEvent;
+        type ImageMode = _ImageMode
+        type ImageOnErrorEvent = _ImageOnErrorEvent
         /** 图片加载错误时触发 */
         interface ImageOnError extends _ImageOnError {
         }
         interface ImageOnLoadDetail extends _ImageOnLoadDetail {
         }
-        type ImageOnLoadEvent = _ImageOnLoadEvent;
+        type ImageOnLoadEvent = _ImageOnLoadEvent
         /** 图片加载完毕时触发 */
         interface ImageOnLoad extends _ImageOnLoad {
         }
         /** 图片属性 */
-        type ImageProps = _ImageProps;
+        type ImageProps = _ImageProps
         /** 图片 */
-        type Image = _Image;
+        type Image = _Image
         /** 图片实例 */
-        type ImageInstance = _ImageInstance;
+        type ImageInstance = _ImageInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 图片 */
-        Image: _Image;
+        Image: _Image
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 图片 */
-            image: _Image;
+            image: _Image
         }
     }
 }
@@ -5318,7 +5318,7 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 图片 */
-            image: _Image;
+            image: _Image
         }
     }
 }
@@ -5326,15 +5326,15 @@ declare module 'vue3/jsx-runtime' {
 /** 弹幕 */
 interface _VideoDanmu {
     /** 弹幕文本 */
-    text: string;
+    text: string
     /** 弹幕颜色 */
-    color: string;
+    color: string
     /**
      * 弹幕出现时间
      *
      * 单位为 s
      */
-    time: number;
+    time: number
 }
 /**
  * 设置全屏时视频的方向，不指定则根据宽高比自动判断
@@ -5345,7 +5345,7 @@ interface _VideoDanmu {
  *
  * -90 屏幕顺时针 90 度
  */
-type _VideoDirection = 0 | 90 | -90;
+type _VideoDirection = 0 | 90 | -90
 /**
  * 当视频大小与 video 容器大小不一致时，视频的表现形式
  *
@@ -5355,7 +5355,7 @@ type _VideoDirection = 0 | 90 | -90;
  *
  * cover 覆盖
  */
-type _VideoObjectFit = 'contain' | 'fill' | 'cover';
+type _VideoObjectFit = 'contain' | 'fill' | 'cover'
 /**
  * 播放按钮的位置
  *
@@ -5363,7 +5363,7 @@ type _VideoObjectFit = 'contain' | 'fill' | 'cover';
  *
  * center 视频中间
  */
-type _VideoPlayBtnPosition = 'bottom' | 'center';
+type _VideoPlayBtnPosition = 'bottom' | 'center'
 /**
  * 解码器选择
  *
@@ -5371,7 +5371,7 @@ type _VideoPlayBtnPosition = 'bottom' | 'center';
  *
  * software 软件解码
  */
-type _VideoCodec = 'hardware' | 'software';
+type _VideoCodec = 'hardware' | 'software'
 /**
  * 移动网络提醒样式
  *
@@ -5379,7 +5379,7 @@ type _VideoCodec = 'hardware' | 'software';
  *
  * 1 提醒
  */
-type _VideoMobilenetHintType = 0 | 1;
+type _VideoMobilenetHintType = 0 | 1
 /**
  * 播放策略
  *
@@ -5389,171 +5389,171 @@ type _VideoMobilenetHintType = 0 | 1;
  *
  * 2 M3U8 优化模式，增加缓冲区大小，提升视频加载速度和流畅度，可能会降低首屏展现速度，适用于 M3U8 在线播放的场景
  */
-type _VideoPlayStrategy = 0 | 1 | 2;
-type _VideoOnPlayEvent = _BaseEvent;
+type _VideoPlayStrategy = 0 | 1 | 2
+type _VideoOnPlayEvent = _BaseEvent
 /** 开始/继续播放时触发 */
 interface _VideoOnPlay {
-    (event: _VideoOnPlayEvent): void;
+    (event: _VideoOnPlayEvent): void
 }
-type _VideoOnPauseEvent = _BaseEvent;
+type _VideoOnPauseEvent = _BaseEvent
 /** 暂停播放时触发 */
 interface _VideoOnPause {
-    (event: _VideoOnPauseEvent): void;
+    (event: _VideoOnPauseEvent): void
 }
-type _VideoOnEndedEvent = _BaseEvent;
+type _VideoOnEndedEvent = _BaseEvent
 /** 播放到末尾时触发 */
 interface _VideoOnEnded {
-    (event: _VideoOnEndedEvent): void;
+    (event: _VideoOnEndedEvent): void
 }
 interface _VideoOnTimeupdateDetail {
-    currentTime: number;
-    duration: number;
+    currentTime: number
+    duration: number
 }
-type _VideoOnTimeupdateEvent = _CustomEvent<_VideoOnTimeupdateDetail>;
+type _VideoOnTimeupdateEvent = _CustomEvent<_VideoOnTimeupdateDetail>
 /**
  * 播放进度变化时触发
  *
  * 250ms 一次
  */
 interface _VideoOnTimeupdate {
-    (event: _VideoOnTimeupdateEvent): void;
+    (event: _VideoOnTimeupdateEvent): void
 }
 interface _VideoOnFullscreenchangeDetail {
-    fullScreen: boolean;
-    direction: _VideoDirection;
+    fullScreen: boolean
+    direction: _VideoDirection
 }
-type _VideoOnFullscreenchangeEvent = _CustomEvent<_VideoOnFullscreenchangeDetail>;
+type _VideoOnFullscreenchangeEvent = _CustomEvent<_VideoOnFullscreenchangeDetail>
 /** 视频进入和退出全屏时触发 */
 interface _VideoOnFullscreenchange {
-    (event: _VideoOnFullscreenchangeEvent): void;
+    (event: _VideoOnFullscreenchangeEvent): void
 }
-type _VideoOnWaitingEvent = _BaseEvent;
+type _VideoOnWaitingEvent = _BaseEvent
 /** 视频缓冲时触发 */
 interface _VideoOnWaiting {
-    (event: _VideoOnWaitingEvent): void;
+    (event: _VideoOnWaitingEvent): void
 }
-type _VideoOnErrorEvent = _BaseEvent;
+type _VideoOnErrorEvent = _BaseEvent
 /** 视频播放出错时触发 */
 interface _VideoOnError {
-    (event: _VideoOnErrorEvent): void;
+    (event: _VideoOnErrorEvent): void
 }
 interface _VideoOnProgressDetail {
-    buffered: number;
+    buffered: number
 }
-type _VideoOnProgressEvent = _CustomEvent<_VideoOnProgressDetail>;
+type _VideoOnProgressEvent = _CustomEvent<_VideoOnProgressDetail>
 /** 加载进度变化时触发 */
 interface _VideoOnProgress {
-    (event: _VideoOnProgressEvent): void;
+    (event: _VideoOnProgressEvent): void
 }
-type _VideoOnLoadeddataEvent = _BaseEvent;
+type _VideoOnLoadeddataEvent = _BaseEvent
 /** 视频资源开始加载时触发 */
 interface _VideoOnLoadeddata {
-    (event: _VideoOnLoadeddataEvent): void;
+    (event: _VideoOnLoadeddataEvent): void
 }
-type _VideoOnLoadstartEvent = _BaseEvent;
+type _VideoOnLoadstartEvent = _BaseEvent
 /** 开始加载数据时触发 */
 interface _VideoOnLoadstart {
-    (event: _VideoOnLoadstartEvent): void;
+    (event: _VideoOnLoadstartEvent): void
 }
-type _VideoOnSeekedEvent = _BaseEvent;
+type _VideoOnSeekedEvent = _BaseEvent
 /** 拖动进度条结束时触发 */
 interface _VideoOnSeeked {
-    (event: _VideoOnSeekedEvent): void;
+    (event: _VideoOnSeekedEvent): void
 }
-type _VideoOnSeekingEvent = _BaseEvent;
+type _VideoOnSeekingEvent = _BaseEvent
 /** 拖动进度条时触发 */
 interface _VideoOnSeeking {
-    (event: _VideoOnSeekingEvent): void;
+    (event: _VideoOnSeekingEvent): void
 }
 interface _VideoOnLoadedmetadataDetail {
-    width: number;
-    height: number;
-    duration: number;
+    width: number
+    height: number
+    duration: number
 }
-type _VideoOnLoadedmetadataEvent = _CustomEvent<_VideoOnLoadedmetadataDetail>;
+type _VideoOnLoadedmetadataEvent = _CustomEvent<_VideoOnLoadedmetadataDetail>
 /** 视频元数据加载完成时触发 */
 interface _VideoOnLoadedmetadata {
-    (event: _VideoOnLoadedmetadataEvent): void;
+    (event: _VideoOnLoadedmetadataEvent): void
 }
 interface _VideoOnFullscreenclickDetail {
-    screenX: number;
-    screenY: number;
-    screenWidth: number;
-    screenHeight: number;
+    screenX: number
+    screenY: number
+    screenWidth: number
+    screenHeight: number
 }
-type _VideoOnFullscreenclickEvent = _CustomEvent<_VideoOnFullscreenclickDetail>;
+type _VideoOnFullscreenclickEvent = _CustomEvent<_VideoOnFullscreenclickDetail>
 /** 视频播放全屏播放点击时触发 */
 interface _VideoOnFullscreenclick {
-    (event: _VideoOnFullscreenclickEvent): void;
+    (event: _VideoOnFullscreenclickEvent): void
 }
 interface _VideoOnControlstoggleDetail {
-    show: boolean;
+    show: boolean
 }
-type _VideoOnControlstoggleEvent = _CustomEvent<_VideoOnControlstoggleDetail>;
+type _VideoOnControlstoggleEvent = _CustomEvent<_VideoOnControlstoggleDetail>
 /** 切换 controls 显示隐藏时触发 */
 interface _VideoOnControlstoggle {
-    (event: _VideoOnControlstoggleEvent): void;
+    (event: _VideoOnControlstoggleEvent): void
 }
 /** 视频播放组件属性 */
 type _VideoProps = Partial<{
     /** 要播放视频的资源地址 */
-    src: string;
+    src: string
     /**
      * 是否自动播放
      *
      * 默认为 false
      */
-    autoplay: boolean;
+    autoplay: boolean
     /**
      * 是否循环播放
      *
      * 默认为 false
      */
-    loop: boolean;
+    loop: boolean
     /**
      * 是否静音播放
      *
      * 默认为 false
      */
-    muted: boolean;
+    muted: boolean
     /**
      * 指定视频初始播放位置
      *
      * 单位为 s
      */
-    initialTime: number;
+    initialTime: number
     /**
      * 指定视频长度
      *
      * 单位为 s
      */
-    duration: number;
+    duration: number
     /**
      * 是否显示默认播放控件（播放/暂停按钮、播放进度、时间）
      *
      * 默认为 true
      */
-    controls: boolean;
+    controls: boolean
     /** 弹幕列表 */
-    danmuList: _VideoDanmu[];
+    danmuList: _VideoDanmu[]
     /**
      * 是否显示弹幕按钮，不支持动态修改
      *
      * 默认为 false
      */
-    danmuBtn: boolean;
+    danmuBtn: boolean
     /**
      * 是否展示弹幕，不支持动态修改
      *
      * 默认为 false
      */
-    enableDanmu: boolean;
+    enableDanmu: boolean
     /**
      * 在非全屏模式下，是否开启亮度与音量调节手势
      *
      * 默认为 false
      */
-    pageGesture: boolean;
+    pageGesture: boolean
     /**
      * 设置全屏时视频的方向，不指定则根据宽高比自动判断
      *
@@ -5565,43 +5565,43 @@ type _VideoProps = Partial<{
      *
      * 默认根据宽高比自动判断
      */
-    direction: _VideoDirection;
+    direction: _VideoDirection
     /**
      * 若不设置，宽度大于 240 时才会显示
      *
      * 默认为 true
      */
-    showProgress: boolean;
+    showProgress: boolean
     /**
      * 是否显示全屏按钮
      *
      * 默认为 true
      */
-    showFullscreenBtn: boolean;
+    showFullscreenBtn: boolean
     /**
      * 是否显示视频底部控制栏的播放按钮
      *
      * 默认为 true
      */
-    showPlayBtn: boolean;
+    showPlayBtn: boolean
     /**
      * 是否显示视频中间的播放按钮
      *
      * 默认为 true
      */
-    showCenterPlayBtn: boolean;
+    showCenterPlayBtn: boolean
     /**
      * 是否显示 loading 控件
      *
      * 默认为 true
      */
-    showLoading: boolean;
+    showLoading: boolean
     /**
      * 是否开启控制进度的手势
      *
      * 默认为 true
      */
-    enableProgressGesture: boolean;
+    enableProgressGesture: boolean
     /**
      * 当视频大小与 video 容器大小不一致时，视频的表现形式
      *
@@ -5613,21 +5613,21 @@ type _VideoProps = Partial<{
      *
      * 默认为 contain
      */
-    objectFit: _VideoObjectFit;
+    objectFit: _VideoObjectFit
     /**
      * 视频封面的图片网络资源地址
      *
      * 如果 controls 值为 false 则无效
      */
-    poster: string;
+    poster: string
     /**
      * 是否显示静音按钮
      *
      * @decs 默认为 false
      */
-    showMuteBtn: boolean;
+    showMuteBtn: boolean
     /** 视频的标题，全屏时在顶部展示 */
-    title: string;
+    title: string
     /**
      * 播放按钮的位置
      *
@@ -5637,7 +5637,7 @@ type _VideoProps = Partial<{
      *
      * 默认为 bottom
      */
-    playBtnPosition: _VideoPlayBtnPosition;
+    playBtnPosition: _VideoPlayBtnPosition
     /**
      * 移动网络提醒样式
      *
@@ -5647,39 +5647,39 @@ type _VideoProps = Partial<{
      *
      * 默认为 1
      */
-    mobilenetHintType: _VideoMobilenetHintType;
+    mobilenetHintType: _VideoMobilenetHintType
     /**
      * 是否开启播放手势，即双击切换播放、暂停
      *
      * 默认为 false
      */
-    enablePlayGesture: boolean;
+    enablePlayGesture: boolean
     /**
      * 当跳转到其它小程序页面时，是否自动暂停本页面的视频
      *
      * 默认为 true
      */
-    autoPauseIfNavigate: boolean;
+    autoPauseIfNavigate: boolean
     /**
      * 当跳转到其它微信原生页面时，是否自动暂停本页面的视频
      *
      * 默认为 true
      */
-    autoPauseIfOpenNative: boolean;
+    autoPauseIfOpenNative: boolean
     /**
      * 在非全屏模式下，是否开启亮度与音量调节手势（同 page-gesture）
      *
      * 默认为 false
      */
-    vslideGesture: boolean;
+    vslideGesture: boolean
     /**
      * 在全屏模式下，是否开启亮度与音量调节手势
      *
      * 默认为 true
      */
-    vslideGestureInFullscreen: boolean;
+    vslideGestureInFullscreen: boolean
     /** 视频前贴广告单元ID */
-    adUnitId: string;
+    adUnitId: string
     /**
      * 用于给搜索等场景作为视频封面展示
      *
@@ -5687,7 +5687,7 @@ type _VideoProps = Partial<{
      *
      * 只支持网络地址
      */
-    posterForCrawler: string;
+    posterForCrawler: string
     /**
      * 解码器选择
      *
@@ -5697,13 +5697,13 @@ type _VideoProps = Partial<{
      *
      * 默认为 hardware
      */
-    codec: _VideoCodec;
+    codec: _VideoCodec
     /**
      * 是否对 http、https 视频源开启本地缓存
      *
      * 默认为 true
      */
-    httpCache: boolean;
+    httpCache: boolean
     /**
      * 播放策略
      *
@@ -5715,52 +5715,52 @@ type _VideoProps = Partial<{
      *
      * 默认为 0
      */
-    playStrategy: _VideoPlayStrategy;
+    playStrategy: _VideoPlayStrategy
     /** HTTP 请求 Header */
-    header: _AnyRecord;
+    header: _AnyRecord
     /** 开始/继续播放时触发 */
-    onPlay: _VideoOnPlay;
+    onPlay: _VideoOnPlay
     /** 暂停播放时触发 */
-    onPause: _VideoOnPause;
+    onPause: _VideoOnPause
     /** 播放到末尾时触发 */
-    onEnded: _VideoOnEnded;
+    onEnded: _VideoOnEnded
     /**
      * 播放进度变化时触发
      *
      * 250ms 一次
      */
-    onTimeupdate: _VideoOnTimeupdate;
+    onTimeupdate: _VideoOnTimeupdate
     /** 视频进入和退出全屏时触发 */
-    onFullscreenchange: _VideoOnFullscreenchange;
+    onFullscreenchange: _VideoOnFullscreenchange
     /** 视频缓冲时触发 */
-    onWaiting: _VideoOnWaiting;
+    onWaiting: _VideoOnWaiting
     /** 视频播放出错时触发 */
-    onError: _VideoOnError;
+    onError: _VideoOnError
     /** 加载进度变化时触发 */
-    onProgress: _VideoOnProgress;
+    onProgress: _VideoOnProgress
     /** 视频资源开始加载时触发 */
-    onLoadeddata: _VideoOnLoadeddata;
+    onLoadeddata: _VideoOnLoadeddata
     /** 开始加载数据时触发 */
-    onLoadstart: _VideoOnLoadstart;
+    onLoadstart: _VideoOnLoadstart
     /** 拖动进度条结束时触发 */
-    onSeeked: _VideoOnSeeked;
+    onSeeked: _VideoOnSeeked
     /** 拖动进度条时触发 */
-    onSeeking: _VideoOnSeeking;
+    onSeeking: _VideoOnSeeking
     /** 视频元数据加载完成时触发 */
-    onLoadedmetadata: _VideoOnLoadedmetadata;
+    onLoadedmetadata: _VideoOnLoadedmetadata
     /** 视频播放全屏播放点击时触发 */
-    onFullscreenclick: _VideoOnFullscreenclick;
+    onFullscreenclick: _VideoOnFullscreenclick
     /** 切换 controls 显示隐藏时触发 */
-    onControlstoggle: _VideoOnControlstoggle;
-}>;
+    onControlstoggle: _VideoOnControlstoggle
+}>
 /**
  * 视频播放组件
  *
  * 默认宽度 300px、高度 225px，可通过 css 设置宽高
  */
-type _Video = _Component<_VideoProps>;
+type _Video = _Component<_VideoProps>
 /** 视频播放组件实例 */
-type _VideoInstance = InstanceType<_Video>;
+type _VideoInstance = InstanceType<_Video>
 
 declare global {
     namespace UniHelper {
@@ -5776,7 +5776,7 @@ declare global {
          *
          * -90 屏幕顺时针 90 度
          */
-        type VideoDirection = _VideoDirection;
+        type VideoDirection = _VideoDirection
         /**
          * 当视频大小与 video 容器大小不一致时，视频的表现形式
          *
@@ -5786,7 +5786,7 @@ declare global {
          *
          * cover 覆盖
          */
-        type VideoObjectFit = _VideoObjectFit;
+        type VideoObjectFit = _VideoObjectFit
         /**
          * 播放按钮的位置
          *
@@ -5794,7 +5794,7 @@ declare global {
          *
          * center 视频中间
          */
-        type VideoPlayBtnPosition = _VideoPlayBtnPosition;
+        type VideoPlayBtnPosition = _VideoPlayBtnPosition
         /**
          * 解码器选择
          *
@@ -5802,7 +5802,7 @@ declare global {
          *
          * software 软件解码
          */
-        type VideoCodec = _VideoCodec;
+        type VideoCodec = _VideoCodec
         /**
          * 移动网络提醒样式
          *
@@ -5810,7 +5810,7 @@ declare global {
          *
          * 1 提醒
          */
-        type VideoMobilenetHintType = _VideoMobilenetHintType;
+        type VideoMobilenetHintType = _VideoMobilenetHintType
         /**
          * 播放策略
          *
@@ -5820,22 +5820,22 @@ declare global {
          *
          * 2 M3U8 优化模式，增加缓冲区大小，提升视频加载速度和流畅度，可能会降低首屏展现速度，适用于 M3U8 在线播放的场景
          */
-        type VideoPlayStrategy = _VideoPlayStrategy;
-        type VideoOnPlayEvent = _VideoOnPlayEvent;
+        type VideoPlayStrategy = _VideoPlayStrategy
+        type VideoOnPlayEvent = _VideoOnPlayEvent
         /** 开始/继续播放时触发 */
         interface VideoOnPlay extends _VideoOnPlay {
         }
-        type VideoOnPauseEvent = _VideoOnPauseEvent;
+        type VideoOnPauseEvent = _VideoOnPauseEvent
         /** 暂停播放时触发 */
         interface VideoOnPause extends _VideoOnPause {
         }
-        type VideoOnEndedEvent = _VideoOnEndedEvent;
+        type VideoOnEndedEvent = _VideoOnEndedEvent
         /** 播放到末尾时触发 */
         interface VideoOnEnded extends _VideoOnEnded {
         }
         interface VideoOnTimeupdateDetail extends _VideoOnTimeupdateDetail {
         }
-        type VideoOnTimeupdateEvent = _VideoOnTimeupdateEvent;
+        type VideoOnTimeupdateEvent = _VideoOnTimeupdateEvent
         /**
          * 播放进度变化时触发，
          *
@@ -5845,68 +5845,68 @@ declare global {
         }
         interface VideoOnFullscreenchangeDetail extends _VideoOnFullscreenchangeDetail {
         }
-        type VideoOnFullscreenchangeEvent = _VideoOnFullscreenchangeEvent;
+        type VideoOnFullscreenchangeEvent = _VideoOnFullscreenchangeEvent
         /** 视频进入和退出全屏时触发 */
         interface VideoOnFullscreenchange extends _VideoOnFullscreenchange {
         }
-        type VideoOnWaitingEvent = _VideoOnWaitingEvent;
+        type VideoOnWaitingEvent = _VideoOnWaitingEvent
         /** 视频缓冲时触发 */
         interface VideoOnWaiting extends _VideoOnWaiting {
         }
-        type VideoOnErrorEvent = _VideoOnErrorEvent;
+        type VideoOnErrorEvent = _VideoOnErrorEvent
         /** 视频播放出错时触发 */
         interface VideoOnError extends _VideoOnError {
         }
         interface VideoOnProgressDetail extends _VideoOnProgressDetail {
         }
-        type VideoOnProgressEvent = _VideoOnProgressEvent;
+        type VideoOnProgressEvent = _VideoOnProgressEvent
         /** 加载进度变化时触发 */
         interface VideoOnProgress extends _VideoOnProgress {
         }
-        type VideoOnLoadeddataEvent = _VideoOnLoadeddataEvent;
+        type VideoOnLoadeddataEvent = _VideoOnLoadeddataEvent
         /** 视频资源开始加载时触发 */
         interface VideoOnLoadeddata extends _VideoOnLoadeddata {
         }
-        type VideoOnLoadstartEvent = _VideoOnLoadstartEvent;
+        type VideoOnLoadstartEvent = _VideoOnLoadstartEvent
         /** 开始加载数据时触发 */
         interface VideoOnLoadstart extends _VideoOnLoadstart {
         }
-        type VideoOnSeekedEvent = _VideoOnSeekedEvent;
+        type VideoOnSeekedEvent = _VideoOnSeekedEvent
         /** 拖动进度条结束时触发 */
         interface VideoOnSeeked extends _VideoOnSeeked {
         }
-        type VideoOnSeekingEvent = _VideoOnSeekingEvent;
+        type VideoOnSeekingEvent = _VideoOnSeekingEvent
         /** 拖动进度条时触发 */
         interface VideoOnSeeking extends _VideoOnSeeking {
         }
         interface VideoOnLoadedmetadataDetail extends _VideoOnLoadedmetadataDetail {
         }
-        type VideoOnLoadedmetadataEvent = _VideoOnLoadedmetadataEvent;
+        type VideoOnLoadedmetadataEvent = _VideoOnLoadedmetadataEvent
         /** 视频元数据加载完成时触发 */
         interface VideoOnLoadedmetadata extends _VideoOnLoadedmetadata {
         }
         interface VideoOnFullscreenclickDetail extends _VideoOnFullscreenclickDetail {
         }
-        type VideoOnFullscreenclickEvent = _VideoOnFullscreenclickEvent;
+        type VideoOnFullscreenclickEvent = _VideoOnFullscreenclickEvent
         /** 视频播放全屏播放点击时触发 */
         interface VideoOnFullscreenclick extends _VideoOnFullscreenclick {
         }
         interface VideoOnControlstoggleDetail extends _VideoOnControlstoggleDetail {
         }
-        type VideoOnControlstoggleEvent = _VideoOnControlstoggleEvent;
+        type VideoOnControlstoggleEvent = _VideoOnControlstoggleEvent
         /** 切换 controls 显示隐藏时触发 */
         interface VideoOnControlstoggle extends _VideoOnControlstoggle {
         }
         /** 视频播放组件属性 */
-        type VideoProps = _VideoProps;
+        type VideoProps = _VideoProps
         /**
          * 视频播放组件
          *
          * 默认宽度 300px、高度 225px，可通过 css 设置宽高
          */
-        type Video = _Video;
+        type Video = _Video
         /** 视频播放组件实例 */
-        type VideoInstance = _VideoInstance;
+        type VideoInstance = _VideoInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -5916,7 +5916,7 @@ declare module '@vue/runtime-core' {
          *
          * 默认宽度 300px、高度 225px，可通过 css 设置宽高
          */
-        Video: _Video;
+        Video: _Video
     }
 }
 declare global {
@@ -5927,7 +5927,7 @@ declare global {
              *
              * 默认宽度 300px、高度 225px，可通过 css 设置宽高
              */
-            video: _Video;
+            video: _Video
         }
     }
 }
@@ -5939,7 +5939,7 @@ declare module 'vue3/jsx-runtime' {
              *
              * 默认宽度 300px、高度 225px，可通过 css 设置宽高
              */
-            video: _Video;
+            video: _Video
         }
     }
 }
@@ -5951,7 +5951,7 @@ declare module 'vue3/jsx-runtime' {
  *
  * @dec live 直播
  */
-type _LivePlayerMode = 'live' | 'RTC';
+type _LivePlayerMode = 'live' | 'RTC'
 /**
  * 画面方向
  *
@@ -5959,7 +5959,7 @@ type _LivePlayerMode = 'live' | 'RTC';
  *
  * horizontal 横向
  */
-type _LivePlayerOrientation = 'vertical' | 'horizontal';
+type _LivePlayerOrientation = 'vertical' | 'horizontal'
 /**
  * 填充模式
  *
@@ -5967,7 +5967,7 @@ type _LivePlayerOrientation = 'vertical' | 'horizontal';
  *
  * fillCrop 图像铺满屏幕，超出显示区域的部分将被截掉
  */
-type _LivePlayerObjectFit = 'contain' | 'fillCrop';
+type _LivePlayerObjectFit = 'contain' | 'fillCrop'
 /**
  * 声音输出方式
  *
@@ -5977,7 +5977,7 @@ type _LivePlayerObjectFit = 'contain' | 'fillCrop';
  *
  * 默认为 speaker
  */
-type _LivePlayerSoundMode = 'speaker' | 'ear';
+type _LivePlayerSoundMode = 'speaker' | 'ear'
 /**
  * 设置小窗模式
  *
@@ -5985,7 +5985,7 @@ type _LivePlayerSoundMode = 'speaker' | 'ear';
  *
  * pop 路由 pop 时触发小窗
  */
-type _LivePlayerPictureInPictureMode = 'push' | 'pop';
+type _LivePlayerPictureInPictureMode = 'push' | 'pop'
 /**
  * 状态码
  *
@@ -6035,7 +6035,7 @@ type _LivePlayerPictureInPictureMode = 'push' | 'pop';
  *
  * 3005 RTMP 读/写失败
  */
-type _LivePlayerCode = 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 | -2301 | -2302 | 2101 | 2102 | 2103 | 2104 | 2105 | 2106 | 2107 | 2108 | 3001 | 3002 | 3003 | 3005;
+type _LivePlayerCode = 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 | -2301 | -2302 | 2101 | 2102 | 2103 | 2104 | 2105 | 2106 | 2107 | 2108 | 3001 | 3002 | 3003 | 3005
 /** 网络状态 */
 interface _LivePlayerInfo {
     /**
@@ -6043,61 +6043,61 @@ interface _LivePlayerInfo {
      *
      * 单位为 kbps
      */
-    videoBitrate?: number;
+    videoBitrate?: number
     /**
      * 当前音频编/码器输出的比特率
      *
      * 单位为 kbps
      */
-    audioBitrate?: number;
+    audioBitrate?: number
     /** 当前视频帧率 */
-    videoFPS?: number;
+    videoFPS?: number
     /**
      * 当前视频 GOP，也就是每两个关键帧 I 帧间隔时长
      *
      * 单位为 s
      */
-    videoGOP?: number;
+    videoGOP?: number
     /** 当前的发送/接收速度 */
-    netSpeed?: number;
+    netSpeed?: number
     /** 网络抖动情况，抖动越大，网络越不稳定 */
-    netJitter?: number;
+    netJitter?: number
     /** 网络质量 */
-    netQualityLevel?: number;
+    netQualityLevel?: number
     /** 视频画面的宽度 */
-    videoWidth?: number;
+    videoWidth?: number
     /** 视频画面的高度 */
-    videoHeight?: number;
+    videoHeight?: number
     /**
      * 缓冲的视频总时长
      *
      * 单位为 ms
      */
-    videoCache?: number;
+    videoCache?: number
     /**
      * 缓冲的音频总时长
      *
      * 单位为 ms
      */
-    audioCache?: number;
+    audioCache?: number
     /** 解码器中缓存的视频帧数 (Android 端硬解码时存在） */
-    vDecCacheSize?: number;
+    vDecCacheSize?: number
     /** 缓冲的总视频帧数，该数值越大，播放延迟越高 */
-    vSumCacheSize?: number;
+    vSumCacheSize?: number
     /**
      * 音画同步错位时间（播放），此数值越小，音画同步越好
      *
      * 单位为 ms
      */
-    avPlayInterval?: number;
+    avPlayInterval?: number
     /**
      * 音画同步错位时间（网络），此数值越小，音画同步越好
      *
      * @decs 单位为 ms
      */
-    avRecvInterval?: number;
+    avRecvInterval?: number
     /** 音频缓冲时长阈值，缓冲超过该阈值后，播放器会开始调控延时 */
-    audioCacheThreshold?: number;
+    audioCacheThreshold?: number
 }
 interface _LivePlayerOnStatechangeDetail {
     /**
@@ -6149,52 +6149,52 @@ interface _LivePlayerOnStatechangeDetail {
      *
      * 3005 RTMP 读/写失败
      */
-    code: _LivePlayerCode;
+    code: _LivePlayerCode
 }
-type _LivePlayerOnStatechangeEvent = _CustomEvent<_LivePlayerOnStatechangeDetail>;
+type _LivePlayerOnStatechangeEvent = _CustomEvent<_LivePlayerOnStatechangeDetail>
 /** 播放状态变化时触发 */
 interface _LivePlayerOnStatechange {
-    (event: _LivePlayerOnStatechangeEvent): void;
+    (event: _LivePlayerOnStatechangeEvent): void
 }
 interface _LivePlayerOnNetstatusDetail {
     /** 网络状态 */
-    info: _LivePlayerInfo;
+    info: _LivePlayerInfo
 }
-type _LivePlayerOnNetstatusEvent = _CustomEvent<_LivePlayerOnNetstatusDetail>;
+type _LivePlayerOnNetstatusEvent = _CustomEvent<_LivePlayerOnNetstatusDetail>
 /** 网络状态变化时触发 */
 interface _LivePlayerOnNetstatus {
-    (event: _LivePlayerOnNetstatusEvent): void;
+    (event: _LivePlayerOnNetstatusEvent): void
 }
 interface _LivePlayerOnFullscreenchangeDetail {
-    direction: _LivePlayerOrientation;
-    fullScreen: boolean;
+    direction: _LivePlayerOrientation
+    fullScreen: boolean
 }
-type _LivePlayerOnFullscreenchangeEvent = _CustomEvent<_LivePlayerOnFullscreenchangeDetail>;
+type _LivePlayerOnFullscreenchangeEvent = _CustomEvent<_LivePlayerOnFullscreenchangeDetail>
 /** 全屏变化时触发 */
 interface _LivePlayerOnFullscreenchange {
-    (event: _LivePlayerOnFullscreenchangeEvent): void;
+    (event: _LivePlayerOnFullscreenchangeEvent): void
 }
-type _LivePlayerOnAudiovolumenotifyEvent = _BaseEvent;
+type _LivePlayerOnAudiovolumenotifyEvent = _BaseEvent
 /** 播放音量变化时触发 */
 interface _LivePlayerOnAudiovolumenotify {
-    (event: _LivePlayerOnAudiovolumenotifyEvent): void;
+    (event: _LivePlayerOnAudiovolumenotifyEvent): void
 }
-type _LivePlayerOnEnterpictureinpictureEvent = _BaseEvent;
+type _LivePlayerOnEnterpictureinpictureEvent = _BaseEvent
 /** 播放器进入小窗时触发 */
 interface _LivePlayerOnEnterpictureinpicture {
-    (event: _LivePlayerOnEnterpictureinpictureEvent): void;
+    (event: _LivePlayerOnEnterpictureinpictureEvent): void
 }
-type _LivePlayerOnLeavepictureinpictureEvent = _BaseEvent;
+type _LivePlayerOnLeavepictureinpictureEvent = _BaseEvent
 /** 播放器退出小窗时触发 */
 interface _LivePlayerOnLeavepictureinpicture {
-    (event: _LivePlayerOnLeavepictureinpictureEvent): void;
+    (event: _LivePlayerOnLeavepictureinpictureEvent): void
 }
 /** 实时音视频播放（直播拉流）属性 */
 type _LivePlayerProps = Partial<{
     /** 唯一标志符 */
-    id: string;
+    id: string
     /** 音视频地址 */
-    src: string;
+    src: string
     /**
      * 实时模式
      *
@@ -6204,19 +6204,19 @@ type _LivePlayerProps = Partial<{
      *
      * @dec live 直播
      */
-    mode: _LivePlayerMode;
+    mode: _LivePlayerMode
     /**
      * 是否自动播放
      *
      * 默认为 false
      */
-    autoplay: boolean;
+    autoplay: boolean
     /**
      * 是否静音
      *
      * 默认为 false
      */
-    muted: boolean;
+    muted: boolean
     /**
      * 画面方向
      *
@@ -6226,7 +6226,7 @@ type _LivePlayerProps = Partial<{
      *
      * 默认为 vertical
      */
-    orientation: _LivePlayerOrientation;
+    orientation: _LivePlayerOrientation
     /**
      * 填充模式
      *
@@ -6236,13 +6236,13 @@ type _LivePlayerProps = Partial<{
      *
      * 默认为 contain
      */
-    objectFit: _LivePlayerObjectFit;
+    objectFit: _LivePlayerObjectFit
     /**
      * 进入后台时是否静音
      *
      * 默认为 false
      */
-    backgroundMute: boolean;
+    backgroundMute: boolean
     /**
      * 声音输出方式
      *
@@ -6252,7 +6252,7 @@ type _LivePlayerProps = Partial<{
      *
      * 默认为 speaker
      */
-    soundMode: _LivePlayerSoundMode;
+    soundMode: _LivePlayerSoundMode
     /**
      * 最小缓冲区
      *
@@ -6260,7 +6260,7 @@ type _LivePlayerProps = Partial<{
      *
      * 默认为 1
      */
-    minCache: number;
+    minCache: number
     /**
      * 最大缓冲区
      *
@@ -6268,26 +6268,26 @@ type _LivePlayerProps = Partial<{
      *
      * 默认为 3
      */
-    maxCache: number;
+    maxCache: number
     /** 设置小窗模式，空字符串或通过数组形式设置多种模式 */
-    pictureInPictureMode: _LivePlayerPictureInPictureMode | _LivePlayerPictureInPictureMode[];
+    pictureInPictureMode: _LivePlayerPictureInPictureMode | _LivePlayerPictureInPictureMode[]
     /** 播放状态变化时触发 */
-    onStatechange: _LivePlayerOnStatechange;
+    onStatechange: _LivePlayerOnStatechange
     /** 网络状态变化时触发 */
-    onNetstatus: _LivePlayerOnNetstatus;
+    onNetstatus: _LivePlayerOnNetstatus
     /** 全屏变化时触发 */
-    onFullscreenchange: _LivePlayerOnFullscreenchange;
+    onFullscreenchange: _LivePlayerOnFullscreenchange
     /** 播放音量变化时触发 */
-    onAudiovolumenotify: _LivePlayerOnAudiovolumenotify;
+    onAudiovolumenotify: _LivePlayerOnAudiovolumenotify
     /** 播放器进入小窗时触发 */
-    onEnterpictureinpicture: _LivePlayerOnEnterpictureinpicture;
+    onEnterpictureinpicture: _LivePlayerOnEnterpictureinpicture
     /** 播放器退出小窗时触发 */
-    onLeavepictureinpicture: _LivePlayerOnLeavepictureinpicture;
-}>;
+    onLeavepictureinpicture: _LivePlayerOnLeavepictureinpicture
+}>
 /** 实时音视频播放（直播拉流） */
-type _LivePlayer = _Component<_LivePlayerProps>;
+type _LivePlayer = _Component<_LivePlayerProps>
 /** 实时音视频播放（直播拉流）实例 */
-type _LivePlayerInstance = InstanceType<_LivePlayer>;
+type _LivePlayerInstance = InstanceType<_LivePlayer>
 
 declare global {
     namespace UniHelper {
@@ -6298,7 +6298,7 @@ declare global {
          *
          * @dec live 直播
          */
-        type LivePlayerMode = _LivePlayerMode;
+        type LivePlayerMode = _LivePlayerMode
         /**
          * 画面方向
          *
@@ -6306,7 +6306,7 @@ declare global {
          *
          * horizontal 横向
          */
-        type LivePlayerOrientation = _LivePlayerOrientation;
+        type LivePlayerOrientation = _LivePlayerOrientation
         /**
          * 填充模式
          *
@@ -6314,7 +6314,7 @@ declare global {
          *
          * fillCrop 图像铺满屏幕，超出显示区域的部分将被截掉
          */
-        type LivePlayerObjectFit = _LivePlayerObjectFit;
+        type LivePlayerObjectFit = _LivePlayerObjectFit
         /**
          * 声音输出方式
          *
@@ -6324,7 +6324,7 @@ declare global {
          *
          * 默认为 speaker
          */
-        type LivePlayerSoundMode = _LivePlayerSoundMode;
+        type LivePlayerSoundMode = _LivePlayerSoundMode
         /**
          * 设置小窗模式
          *
@@ -6332,7 +6332,7 @@ declare global {
          *
          * pop 路由 pop 时触发小窗
          */
-        type LivePlayerPictureInPictureMode = _LivePlayerPictureInPictureMode;
+        type LivePlayerPictureInPictureMode = _LivePlayerPictureInPictureMode
         /**
          * 状态码
          *
@@ -6382,52 +6382,52 @@ declare global {
          *
          * 3005 RTMP 读/写失败
          */
-        type LivePlayerCode = _LivePlayerCode;
+        type LivePlayerCode = _LivePlayerCode
         /** 网络状态 */
         interface LivePlayerInfo extends _LivePlayerInfo {
         }
         interface LivePlayerOnStatechangeDetail extends _LivePlayerOnStatechangeDetail {
         }
-        type LivePlayerOnStatechangeEvent = _LivePlayerOnStatechangeEvent;
+        type LivePlayerOnStatechangeEvent = _LivePlayerOnStatechangeEvent
         /** 播放状态变化时触发 */
         interface LivePlayerOnStatechange extends _LivePlayerOnStatechange {
         }
         interface LivePlayerOnNetstatusDetail extends _LivePlayerOnNetstatusDetail {
         }
-        type LivePlayerOnNetstatusEvent = _LivePlayerOnNetstatusEvent;
+        type LivePlayerOnNetstatusEvent = _LivePlayerOnNetstatusEvent
         /** 网络状态变化时触发 */
         interface LivePlayerOnNetstatus extends _LivePlayerOnNetstatus {
         }
         interface LivePlayerOnFullscreenchangeDetail extends _LivePlayerOnFullscreenchangeDetail {
         }
-        type LivePlayerOnFullscreenchangeEvent = _LivePlayerOnFullscreenchangeEvent;
+        type LivePlayerOnFullscreenchangeEvent = _LivePlayerOnFullscreenchangeEvent
         /** 全屏变化时触发 */
         interface LivePlayerOnFullscreenchange extends _LivePlayerOnFullscreenchange {
         }
-        type LivePlayerOnAudiovolumenotifyEvent = _LivePlayerOnAudiovolumenotifyEvent;
+        type LivePlayerOnAudiovolumenotifyEvent = _LivePlayerOnAudiovolumenotifyEvent
         /** 播放音量变化时触发 */
         interface LivePlayerOnAudiovolumenotify extends _LivePlayerOnAudiovolumenotify {
         }
-        type LivePlayerOnEnterpictureinpictureEvent = _LivePlayerOnEnterpictureinpictureEvent;
+        type LivePlayerOnEnterpictureinpictureEvent = _LivePlayerOnEnterpictureinpictureEvent
         /** 播放器进入小窗时触发 */
         interface LivePlayerOnEnterpictureinpicture extends _LivePlayerOnEnterpictureinpicture {
         }
-        type LivePlayerOnLeavepictureinpictureEvent = _LivePlayerOnLeavepictureinpictureEvent;
+        type LivePlayerOnLeavepictureinpictureEvent = _LivePlayerOnLeavepictureinpictureEvent
         /** 播放器退出小窗时触发 */
         interface LivePlayerOnLeavepictureinpicture extends _LivePlayerOnLeavepictureinpicture {
         }
         /** 实时音视频播放（直播拉流）属性 */
-        type LivePlayerProps = _LivePlayerProps;
+        type LivePlayerProps = _LivePlayerProps
         /** 实时音视频播放（直播拉流） */
-        type LivePlayer = _LivePlayer;
+        type LivePlayer = _LivePlayer
         /** 实时音视频播放（直播拉流）实例 */
-        type LivePlayerInstance = _LivePlayerInstance;
+        type LivePlayerInstance = _LivePlayerInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 实时音视频播放（直播拉流） */
-        LivePlayer: _LivePlayer;
+        LivePlayer: _LivePlayer
     }
 }
 
@@ -6440,7 +6440,7 @@ declare module '@vue/runtime-core' {
  *
  * FHD 超清
  */
-type _LivePusherMode = 'SD' | 'HD' | 'FHD';
+type _LivePusherMode = 'SD' | 'HD' | 'FHD'
 /**
  * 画面方向
  *
@@ -6448,7 +6448,7 @@ type _LivePusherMode = 'SD' | 'HD' | 'FHD';
  *
  * horizontal 横向
  */
-type _LivePusherOrientation = 'vertical' | 'horizontal';
+type _LivePusherOrientation = 'vertical' | 'horizontal'
 /**
  * 音质
  *
@@ -6456,7 +6456,7 @@ type _LivePusherOrientation = 'vertical' | 'horizontal';
  *
  * low 低音质 16KHz
  */
-type _LivePusherAudioQuality = 'high' | 'low';
+type _LivePusherAudioQuality = 'high' | 'low'
 /**
  * 使用的摄像头
  *
@@ -6464,7 +6464,7 @@ type _LivePusherAudioQuality = 'high' | 'low';
  *
  * back 后置摄像头
  */
-type _LivePusherDevicePosition = 'front' | 'back';
+type _LivePusherDevicePosition = 'front' | 'back'
 /**
  * 控制本地预览画面是否镜像
  *
@@ -6474,7 +6474,7 @@ type _LivePusherDevicePosition = 'front' | 'back';
  *
  * disable 前后置摄像头均不镜像
  */
-type _LivePusherLocalMirror = 'auto' | 'enable' | 'disable';
+type _LivePusherLocalMirror = 'auto' | 'enable' | 'disable'
 /**
  * 音频混响类型
  *
@@ -6494,7 +6494,7 @@ type _LivePusherLocalMirror = 'auto' | 'enable' | 'disable';
  *
  * 7 磁性
  */
-type _LivePusherAudioReverbType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type _LivePusherAudioReverbType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 /**
  * 音量类型
  *
@@ -6504,7 +6504,7 @@ type _LivePusherAudioReverbType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
  *
  * voicecall 通话音量
  */
-type _LivePusherAudioVolumeType = 'auto' | 'media' | 'voicecall';
+type _LivePusherAudioVolumeType = 'auto' | 'media' | 'voicecall'
 /**
  * 状态码
  *
@@ -6570,7 +6570,7 @@ type _LivePusherAudioVolumeType = 'auto' | 'media' | 'voicecall';
  *
  * 3005 RTMP 读/写失败
  */
-type _LivePusherCode = 1001 | 1002 | 1003 | 1004 | 1005 | 1006 | 1007 | 1008 | -1301 | -1302 | -1303 | -1304 | -1305 | -1306 | -1307 | -1308 | -1309 | -1310 | -1311 | -1312 | 1101 | 1102 | 1103 | 1104 | 1105 | 1106 | 3001 | 3002 | 3003 | 3004 | 3005;
+type _LivePusherCode = 1001 | 1002 | 1003 | 1004 | 1005 | 1006 | 1007 | 1008 | -1301 | -1302 | -1303 | -1304 | -1305 | -1306 | -1307 | -1308 | -1309 | -1310 | -1311 | -1312 | 1101 | 1102 | 1103 | 1104 | 1105 | 1106 | 3001 | 3002 | 3003 | 3004 | 3005
 /** 网络状态 */
 interface _LivePusherInfo {
     /**
@@ -6638,51 +6638,51 @@ interface _LivePusherInfo {
      *
      * 3005 RTMP 读/写失败
      */
-    code?: _LivePusherCode;
+    code?: _LivePusherCode
     /** 具体的网络状态信息 */
-    message?: string;
+    message?: string
     /**
      * 当前视频编/码器输出的比特率
      *
      * 单位为 kbps
      */
-    videoBitrate?: number;
+    videoBitrate?: number
     /**
      * 当前音频编/码器输出的比特率
      *
      * 单位为 kbps
      */
-    audioBitrate?: number;
+    audioBitrate?: number
     /** 当前视频帧率 */
-    videoFPS?: number;
+    videoFPS?: number
     /**
      * 当前视频 GOP，也就是每两个关键帧 I 帧间隔时长
      *
      * 单位为 s
      */
-    videoGOP?: number;
+    videoGOP?: number
     /** 当前的发送/接收速度 */
-    netSpeed?: number;
+    netSpeed?: number
     /** 网络抖动情况，抖动越大，网络越不稳定 */
-    netJitter?: number;
+    netJitter?: number
     /** 网络质量 */
-    netQualityLevel?: number;
+    netQualityLevel?: number
     /** 视频画面的宽度 */
-    videoWidth?: number;
+    videoWidth?: number
     /** 视频画面的高度 */
-    videoHeight?: number;
+    videoHeight?: number
     /**
      * 缓冲的视频总时长
      *
      * 单位为 ms
      */
-    videoCache?: number;
+    videoCache?: number
     /**
      * 缓冲的音频总时长
      *
      * 单位为 ms
      */
-    audioCache?: number;
+    audioCache?: number
 }
 /**
  * 错误状态码
@@ -6695,7 +6695,7 @@ interface _LivePusherInfo {
  *
  * 10004 等待画面资源（waiting-image）加载失败
  */
-type _LiverPusherErrCode = 10_001 | 10_002 | 10_003 | 10_004;
+type _LiverPusherErrCode = 10_001 | 10_002 | 10_003 | 10_004
 interface _LivePusherOnStatechangeDetail {
     /**
      * 状态码
@@ -6762,21 +6762,21 @@ interface _LivePusherOnStatechangeDetail {
      *
      * 3005 RTMP 读/写失败
      */
-    code: _LivePusherCode;
+    code: _LivePusherCode
 }
-type _LivePusherOnStatechangeEvent = _CustomEvent<_LivePusherOnStatechangeDetail>;
+type _LivePusherOnStatechangeEvent = _CustomEvent<_LivePusherOnStatechangeDetail>
 /** 播放状态变化时触发 */
 interface _LivePusherOnStatechange {
-    (event: _LivePusherOnStatechangeEvent): void;
+    (event: _LivePusherOnStatechangeEvent): void
 }
 interface _LivePusherOnNetstatusDetail {
     /** 网络状态 */
-    info: _LivePusherInfo;
+    info: _LivePusherInfo
 }
-type _LivePusherOnNetstatusEvent = _CustomEvent<_LivePusherOnNetstatusDetail>;
+type _LivePusherOnNetstatusEvent = _CustomEvent<_LivePusherOnNetstatusDetail>
 /** 网络状态变化时触发 */
 interface _LivePusherOnNetstatus {
-    (event: _LivePusherOnNetstatusEvent): void;
+    (event: _LivePusherOnNetstatusEvent): void
 }
 interface _LivePusherOnErrorDetail {
     /**
@@ -6790,38 +6790,38 @@ interface _LivePusherOnErrorDetail {
      *
      * 10004 等待画面资源（waiting-image）加载失败
      */
-    errCode: _LiverPusherErrCode;
+    errCode: _LiverPusherErrCode
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _LivePusherOnErrorEvent = _CustomEvent<_LivePusherOnErrorDetail>;
+type _LivePusherOnErrorEvent = _CustomEvent<_LivePusherOnErrorDetail>
 /** 渲染错误时触发 */
 interface _LivePusherOnError {
-    (event: _LivePusherOnErrorEvent): void;
+    (event: _LivePusherOnErrorEvent): void
 }
-type _LivePusherOnBgmstartEvent = _BaseEvent;
+type _LivePusherOnBgmstartEvent = _BaseEvent
 /** 背景音开始播放时触发 */
 interface _LivePusherOnBgmstart {
-    (event: _LivePusherOnBgmstartEvent): void;
+    (event: _LivePusherOnBgmstartEvent): void
 }
 interface _LivePusherOnBgmprogressDetail {
-    progress: number;
-    duration: number;
+    progress: number
+    duration: number
 }
-type _LivePusherOnBgmprogressEvent = _CustomEvent<_LivePusherOnBgmprogressDetail>;
+type _LivePusherOnBgmprogressEvent = _CustomEvent<_LivePusherOnBgmprogressDetail>
 /** 背景音进度变化时触发 */
 interface _LivePusherOnBgmprogress {
-    (event: _LivePusherOnBgmprogressEvent): void;
+    (event: _LivePusherOnBgmprogressEvent): void
 }
-type _LivePusherOnBgmcompleteEvent = _BaseEvent;
+type _LivePusherOnBgmcompleteEvent = _BaseEvent
 /** 背景音播放完成时触发 */
 interface _LivePusherOnBgmcomplete {
-    (event: _LivePusherOnBgmcompleteEvent): void;
+    (event: _LivePusherOnBgmcompleteEvent): void
 }
 /** 实时音视频录制（直播推流）属性 */
 type _LivePusherProps = Partial<{
     /** 推流地址，支持 RTMP 协议 */
-    url: string;
+    url: string
     /**
      * 推流视频模式
      *
@@ -6833,37 +6833,37 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 SD
      */
-    mode: _LivePusherMode;
+    mode: _LivePusherMode
     /**
      * 是否自动推流
      *
      * 默认为 false
      */
-    autopush: boolean;
+    autopush: boolean
     /**
      * 视频宽高比例
      *
      * 默认为 3:2
      */
-    aspect: number;
+    aspect: number
     /**
      * 是否静音
      *
      * 默认为 false
      */
-    muted: boolean;
+    muted: boolean
     /**
      * 是否开启摄像头
      *
      * 默认为 true
      */
-    enableCamera: boolean;
+    enableCamera: boolean
     /**
      * 自动聚焦
      *
      * 默认为 true
      */
-    autoFocus: boolean;
+    autoFocus: boolean
     /**
      * 美颜
      *
@@ -6871,7 +6871,7 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 0
      */
-    beauty: number;
+    beauty: number
     /**
      * 美白
      *
@@ -6879,7 +6879,7 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 0
      */
-    whiteness: number;
+    whiteness: number
     /**
      * 画面方向
      *
@@ -6889,19 +6889,19 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 vertical
      */
-    orientation: _LivePusherOrientation;
+    orientation: _LivePusherOrientation
     /**
      * 最小码率
      *
      * 默认为 200
      */
-    minBitrate: number;
+    minBitrate: number
     /**
      * 最大码率
      *
      * 默认为 1000
      */
-    maxBitrate: number;
+    maxBitrate: number
     /**
      * 音质
      *
@@ -6911,17 +6911,17 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 high
      */
-    audioQuality: _LivePusherAudioQuality;
+    audioQuality: _LivePusherAudioQuality
     /** 进入后台时推流的等待画面 */
-    waitingImage: string;
+    waitingImage: string
     /** 等待画面资源的 MD5 值 */
-    waitingImageMd5: string;
+    waitingImageMd5: string
     /**
      * 是否调整焦距
      *
      * 默认为 false
      */
-    zoom: boolean;
+    zoom: boolean
     /**
      * 使用的摄像头
      *
@@ -6931,19 +6931,19 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 front
      */
-    devicePosition: _LivePusherDevicePosition;
+    devicePosition: _LivePusherDevicePosition
     /**
      * 进入后台时是否静音
      *
      * 默认为 false
      */
-    backgroundMute: boolean;
+    backgroundMute: boolean
     /**
      * 设置推流画面是否镜像，产生的效果在 live-player 呈现
      *
      * 默认为 false
      */
-    remoteMirror: boolean;
+    remoteMirror: boolean
     /**
      * 控制本地预览画面是否镜像
      *
@@ -6955,7 +6955,7 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 auto
      */
-    localMirror: _LivePusherLocalMirror;
+    localMirror: _LivePusherLocalMirror
     /**
      * 音频混响类型
      *
@@ -6977,25 +6977,25 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 0
      */
-    audioReverbType: _LivePusherAudioReverbType;
+    audioReverbType: _LivePusherAudioReverbType
     /**
      * 是否开启麦克风
      *
      * 默认为 true
      */
-    enableMic: boolean;
+    enableMic: boolean
     /**
      * 是否开启音频自动增益
      *
      * 默认为 false
      */
-    enableAgc: boolean;
+    enableAgc: boolean
     /**
      * 是否开启音频噪声抑制
      *
      * 默认为 false
      */
-    enableAns: boolean;
+    enableAns: boolean
     /**
      * 音量类型
      *
@@ -7007,24 +7007,24 @@ type _LivePusherProps = Partial<{
      *
      * 默认为 auto
      */
-    audioVolumeType: _LivePusherAudioVolumeType;
+    audioVolumeType: _LivePusherAudioVolumeType
     /** 播放状态变化时触发 */
-    onStatechange: _LivePusherOnStatechange;
+    onStatechange: _LivePusherOnStatechange
     /** 网络状态变化时触发 */
-    onNetstatus: _LivePusherOnNetstatus;
+    onNetstatus: _LivePusherOnNetstatus
     /** 渲染错误时触发 */
-    onError: _LivePusherOnError;
+    onError: _LivePusherOnError
     /** 背景音开始播放时触发 */
-    onBgmstart: _LivePusherOnBgmstart;
+    onBgmstart: _LivePusherOnBgmstart
     /** 背景音进度变化时触发 */
-    onBgmprogress: _LivePusherOnBgmprogress;
+    onBgmprogress: _LivePusherOnBgmprogress
     /** 背景音播放完成时触发 */
-    onBgmcomplete: _LivePusherOnBgmcomplete;
-}>;
+    onBgmcomplete: _LivePusherOnBgmcomplete
+}>
 /** 实时音视频录制（直播推流） */
-type _LivePusher = _Component<_LivePusherProps>;
+type _LivePusher = _Component<_LivePusherProps>
 /** 实时音视频录制（直播推流）实例 */
-type _LivePusherInstance = InstanceType<_LivePusher>;
+type _LivePusherInstance = InstanceType<_LivePusher>
 
 declare global {
     namespace UniHelper {
@@ -7037,7 +7037,7 @@ declare global {
          *
          * FHD 超清
          */
-        type LivePusherMode = _LivePusherMode;
+        type LivePusherMode = _LivePusherMode
         /**
          * 画面方向
          *
@@ -7045,7 +7045,7 @@ declare global {
          *
          * horizontal 横向
          */
-        type LivePusherOrientation = _LivePusherOrientation;
+        type LivePusherOrientation = _LivePusherOrientation
         /**
          * 音质
          *
@@ -7053,7 +7053,7 @@ declare global {
          *
          * low 低音质 16KHz
          */
-        type LivePusherAudioQuality = _LivePusherAudioQuality;
+        type LivePusherAudioQuality = _LivePusherAudioQuality
         /**
          * 使用的摄像头
          *
@@ -7061,7 +7061,7 @@ declare global {
          *
          * back 后置摄像头
          */
-        type LivePusherDevicePosition = _LivePusherDevicePosition;
+        type LivePusherDevicePosition = _LivePusherDevicePosition
         /**
          * 控制本地预览画面是否镜像
          *
@@ -7071,7 +7071,7 @@ declare global {
          *
          * disable 前后置摄像头均不镜像
          */
-        type LivePusherLocalMirror = _LivePusherLocalMirror;
+        type LivePusherLocalMirror = _LivePusherLocalMirror
         /**
          * 音频混响类型
          *
@@ -7091,7 +7091,7 @@ declare global {
          *
          * 7 磁性
          */
-        type LivePusherAudioReverbType = _LivePusherAudioReverbType;
+        type LivePusherAudioReverbType = _LivePusherAudioReverbType
         /**
          * 音量类型
          *
@@ -7101,7 +7101,7 @@ declare global {
          *
          * voicecall 通话音量
          */
-        type LivePusherAudioVolumeType = _LivePusherAudioVolumeType;
+        type LivePusherAudioVolumeType = _LivePusherAudioVolumeType
         /**
          * 状态码
          *
@@ -7167,7 +7167,7 @@ declare global {
          *
          * 3005 RTMP 读/写失败
          */
-        type LivePusherCode = _LivePusherCode;
+        type LivePusherCode = _LivePusherCode
         /** 网络状态 */
         interface LivePusherInfo extends _LivePusherInfo {
         }
@@ -7182,56 +7182,56 @@ declare global {
          *
          * 10004 等待画面资源（waiting-image）加载失败
          */
-        type LiverPusherErrCode = _LiverPusherErrCode;
+        type LiverPusherErrCode = _LiverPusherErrCode
         interface LivePusherOnStatechangeDetail extends _LivePusherOnStatechangeDetail {
         }
-        type LivePusherOnStatechangeEvent = _LivePusherOnStatechangeEvent;
+        type LivePusherOnStatechangeEvent = _LivePusherOnStatechangeEvent
         /** 播放状态变化时触发 */
         interface LivePusherOnStatechange extends _LivePusherOnStatechange {
         }
         interface LivePusherOnNetstatusDetail extends _LivePusherOnNetstatusDetail {
         }
-        type LivePusherOnNetstatusEvent = _LivePusherOnNetstatusEvent;
+        type LivePusherOnNetstatusEvent = _LivePusherOnNetstatusEvent
         /** 网络状态变化时触发 */
         interface LivePusherOnNetstatus extends _LivePusherOnNetstatus {
         }
         interface LivePusherOnErrorDetail extends _LivePusherOnErrorDetail {
         }
-        type LivePusherOnErrorEvent = _LivePusherOnErrorEvent;
+        type LivePusherOnErrorEvent = _LivePusherOnErrorEvent
         /** 渲染错误时触发 */
         interface LivePusherOnError extends _LivePusherOnError {
         }
-        type LivePusherOnBgmstartEvent = _LivePusherOnBgmstartEvent;
+        type LivePusherOnBgmstartEvent = _LivePusherOnBgmstartEvent
         /** 背景音开始播放时触发 */
         interface LivePusherOnBgmstart extends _LivePusherOnBgmstart {
         }
         interface LivePusherOnBgmprogressDetail extends _LivePusherOnBgmprogressDetail {
         }
-        type LivePusherOnBgmprogressEvent = _LivePusherOnBgmprogressEvent;
+        type LivePusherOnBgmprogressEvent = _LivePusherOnBgmprogressEvent
         /** 背景音进度变化时触发 */
         interface LivePusherOnBgmprogress extends _LivePusherOnBgmprogress {
         }
-        type LivePusherOnBgmcompleteEvent = _LivePusherOnBgmcompleteEvent;
+        type LivePusherOnBgmcompleteEvent = _LivePusherOnBgmcompleteEvent
         /** 背景音播放完成时触发 */
         interface LivePusherOnBgmcomplete extends _LivePusherOnBgmcomplete {
         }
         /** 实时音视频录制（直播推流）属性 */
-        type LivePusherProps = _LivePusherProps;
+        type LivePusherProps = _LivePusherProps
         /** 实时音视频录制（直播推流） */
-        type LivePusher = _LivePusher;
+        type LivePusher = _LivePusher
         /** 实时音视频录制（直播推流）实例 */
-        type LivePusherInstance = _LivePusherInstance;
+        type LivePusherInstance = _LivePusherInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 实时音视频录制（直播推流） */
-        LivePusher: _LivePusher;
+        LivePusher: _LivePusher
     }
 }
 
 /** 显示方式 */
-type _MapDisplay = 'BYCLICK' | 'ALWAYS';
+type _MapDisplay = 'BYCLICK' | 'ALWAYS'
 /**
  * 文本对齐方式
  *
@@ -7241,27 +7241,27 @@ type _MapDisplay = 'BYCLICK' | 'ALWAYS';
  *
  * center 居中对齐
  */
-type _MapTextAlign = 'left' | 'right' | 'center';
+type _MapTextAlign = 'left' | 'right' | 'center'
 /** 气泡 */
 interface _MapCallout {
     /** 文本 */
-    content: string;
+    content: string
     /** 文本颜色 */
-    color: string;
+    color: string
     /** 文字大小 */
-    fontSize: number;
+    fontSize: number
     /** 边框圆角 */
-    borderRadius: number;
+    borderRadius: number
     /** 边框宽度 */
-    borderWidth: number;
+    borderWidth: number
     /** 边框颜色 */
-    borderColor: string;
+    borderColor: string
     /** 背景色 */
-    bgColor: string;
+    bgColor: string
     /** 文本边缘留白 */
-    padding: number;
+    padding: number
     /** 显示方式 */
-    display: _MapDisplay;
+    display: _MapDisplay
     /**
      * 文本对齐方式
      *
@@ -7271,45 +7271,45 @@ interface _MapCallout {
      *
      * center 居中对齐
      */
-    textAlign: _MapTextAlign;
+    textAlign: _MapTextAlign
 }
 /** 自定义气泡 */
 interface _MapCustomCallout {
     /** 显示方式 */
-    display: _MapDisplay;
+    display: _MapDisplay
     /** 横向偏移量，向右为正数 */
-    anchorX: number;
+    anchorX: number
     /** 纵向偏移量，向下为正数 */
-    anchorY: number;
+    anchorY: number
 }
 /** 标签 */
 interface _MapLabel {
     /** 文本 */
-    content: string;
+    content: string
     /** 文本颜色 */
-    color: string;
+    color: string
     /** 文字大小 */
-    fontSize: number;
+    fontSize: number
     /** 横坐标，原点是 marker 对应的经纬度 */
-    x: number;
+    x: number
     /** 纵坐标，原点是 marker 对应的经纬度 */
-    y: number;
+    y: number
     /** 横向偏移量，向右为正数 */
-    anchorX: number;
+    anchorX: number
     /** 纵向偏移量，向下为正数 */
-    anchorY: number;
+    anchorY: number
     /** 边框圆角 */
-    borderRadius: number;
+    borderRadius: number
     /** 边框宽度 */
-    borderWidth: number;
+    borderWidth: number
     /** 边框颜色 */
-    borderColor: string;
+    borderColor: string
     /** 背景色 */
-    bgColor: string;
+    bgColor: string
     /** 文本边缘留白 */
-    padding: number;
+    padding: number
     /** 显示方式 */
-    display: _MapDisplay;
+    display: _MapDisplay
     /**
      * 文本对齐方式
      *
@@ -7319,17 +7319,17 @@ interface _MapLabel {
      *
      * center 居中对齐
      */
-    textAlign: _MapTextAlign;
+    textAlign: _MapTextAlign
     /** 自定义气泡 */
-    customCallout: _MapCustomCallout;
+    customCallout: _MapCustomCallout
     /** 无障碍访问，元素的额外描述 */
-    ariaLabel: string;
+    ariaLabel: string
     /**
      * 是否参与点聚合
      *
      * 默认为 false
      */
-    joinCluster: boolean;
+    joinCluster: boolean
 }
 /** 锚点 */
 interface _MapAnchor {
@@ -7338,26 +7338,26 @@ interface _MapAnchor {
      *
      * 取值范围为 0 - 1
      */
-    x: number;
+    x: number
     /**
      * 纵向
      *
      * 取值范围为 0 - 1
      */
-    y: number;
+    y: number
 }
 /**
  * 纬度
  *
  * 取值范围为 -90 - 90
  */
-type _MapLatitude = number;
+type _MapLatitude = number
 /**
  * 经度
  *
  * 取值范围为 -180 - 180
  */
-type _MapLongitude = number;
+type _MapLongitude = number
 /** 经纬度点 */
 interface _MapPoint {
     /**
@@ -7365,13 +7365,13 @@ interface _MapPoint {
      *
      * 取值范围为 -90 - 90
      */
-    latitude: _MapLatitude;
+    latitude: _MapLatitude
     /**
      * 经度
      *
      * 取值范围为 -180 - 180
      */
-    longitude: _MapLongitude;
+    longitude: _MapLongitude
 }
 /**
  * 压盖关系
@@ -7382,7 +7382,7 @@ interface _MapPoint {
  *
  * aboveroads 显示在道路之上楼块之下
  */
-type _MapLevel = 'abovelabels' | 'abovebuildings' | 'aboveroads';
+type _MapLevel = 'abovelabels' | 'abovebuildings' | 'aboveroads'
 /**
  * 主题
  *
@@ -7394,7 +7394,7 @@ type _MapLevel = 'abovelabels' | 'abovebuildings' | 'aboveroads';
  *
  * satellite 卫星图
  */
-type _MapTheme = 'normal' | 'satellite';
+type _MapTheme = 'normal' | 'satellite'
 /**
  * 标记点 ID
  *
@@ -7402,7 +7402,7 @@ type _MapTheme = 'normal' | 'satellite';
  *
  * 最大限制 9 位数
  */
-type _MapMarkerId = number;
+type _MapMarkerId = number
 /** 标记点 */
 interface _MapMarker {
     /**
@@ -7412,31 +7412,31 @@ interface _MapMarker {
      *
      * 最大限制 9 位数
      */
-    id: _MapMarkerId;
+    id: _MapMarkerId
     /**
      * 纬度
      *
      * 取值范围为 -90 - 90
      */
-    latitude: _MapLatitude;
+    latitude: _MapLatitude
     /**
      * 经度
      *
      * 取值范围为 -180 - 180
      */
-    longitude: _MapLongitude;
+    longitude: _MapLongitude
     /**
      * 标注点名
      *
      * 点击时显示，callout 存在时将被忽略
      */
-    title: string;
+    title: string
     /**
      * 图标路径
      *
      * 项目目录下的图片路径，支持相对路径和临时路径
      */
-    iconPath: string;
+    iconPath: string
     /**
      * 顺时针旋转角度
      *
@@ -7444,7 +7444,7 @@ interface _MapMarker {
      *
      * 默认为 0
      */
-    rotate: number;
+    rotate: number
     /**
      * 透明度
      *
@@ -7452,60 +7452,60 @@ interface _MapMarker {
      *
      * 默认为 1
      */
-    alpha: number;
+    alpha: number
     /**
      * 图标宽度
      *
      * 默认为实际宽度
      */
-    width: number;
+    width: number
     /**
      * 图标高度
      *
      * 默认为实际高度
      */
-    height: number;
+    height: number
     /** 自定义标记点上方的气泡窗口 */
-    callout: _MapCallout;
+    callout: _MapCallout
     /** 为标记点旁边增加标签 */
-    label: _MapLabel;
+    label: _MapLabel
     /**
      * 经纬度在标注图标的锚点
      *
      * 默认为 { x: 0.5, y: 1 } 底边中点
      */
-    anchor: _MapAnchor;
+    anchor: _MapAnchor
     /** 自定义点聚合簇效果时使用 */
-    clusterId: number;
+    clusterId: number
     /** 自定义气泡窗口 */
-    customCallout: _MapCustomCallout;
+    customCallout: _MapCustomCallout
     /** 无障碍访问，（属性）元素的额外描述 */
-    ariaLabel: string;
+    ariaLabel: string
 }
 /** 路线 */
 interface _MapPolyline {
     /** 经纬度点数组 */
-    points: _MapPoint[];
+    points: _MapPoint[]
     /**
      * 十六进制颜色
      *
      * colorList 不存在时有效
      */
-    color: string;
+    color: string
     /** 线的宽度 */
-    width: number;
+    width: number
     /**
      * 是否虚线
      *
      * 默认为 false
      */
-    dottedLine: boolean;
+    dottedLine: boolean
     /**
      * 是否带箭头
      *
      * 默认为 false
      */
-    arrowLine: boolean;
+    arrowLine: boolean
     /**
      * 箭头图标路径
      *
@@ -7513,17 +7513,17 @@ interface _MapPolyline {
      *
      * arrowLine 为 true 时有效
      */
-    arrowIconPath: string;
+    arrowIconPath: string
     /** 线的边框颜色 */
-    borderColor: string;
+    borderColor: string
     /** 线的宽度 */
-    borderWidth: number;
+    borderWidth: number
     /**
      * 彩虹线
      *
      * 存在时忽略 color
      */
-    colorList: string[];
+    colorList: string[]
     /**
      * 压盖关系
      *
@@ -7533,20 +7533,20 @@ interface _MapPolyline {
      *
      * aboveroads 显示在道路之上楼块之下
      */
-    level: _MapLevel;
+    level: _MapLevel
 }
 /** 多边形 */
 interface _MapPolygon {
     /** 经纬度点数组 */
-    points: _MapPoint[];
+    points: _MapPoint[]
     /** 描边宽度 */
-    strokeWidth: number;
+    strokeWidth: number
     /** 十六进制描边颜色 */
-    strokeColor: string;
+    strokeColor: string
     /** 十六进制填充颜色 */
-    fillColor: string;
+    fillColor: string
     /** z 轴数值 */
-    zIndex: number;
+    zIndex: number
     /**
      * 压盖关系
      *
@@ -7556,7 +7556,7 @@ interface _MapPolygon {
      *
      * aboveroads 显示在道路之上楼块之下
      */
-    level: _MapLevel;
+    level: _MapLevel
 }
 /** 圆 */
 interface _MapCircle {
@@ -7565,21 +7565,21 @@ interface _MapCircle {
      *
      * 取值范围为 -90 - 90
      */
-    latitude: _MapLatitude;
+    latitude: _MapLatitude
     /**
      * 经度
      *
      * 取值范围为 -180 - 180
      */
-    longitude: _MapLongitude;
+    longitude: _MapLongitude
     /** 十六进制描边颜色 */
-    color: string;
+    color: string
     /** 十六进制填充颜色 */
-    fillColor: string;
+    fillColor: string
     /** 半径 */
-    radius: number;
+    radius: number
     /** 描边宽度 */
-    strokeWidth: number;
+    strokeWidth: number
     /**
      * 压盖关系
      *
@@ -7589,7 +7589,7 @@ interface _MapCircle {
      *
      * aboveroads 显示在道路之上楼块之下
      */
-    level: _MapLevel;
+    level: _MapLevel
 }
 /** 控件在地图的位置 */
 interface _MapPosition {
@@ -7598,32 +7598,32 @@ interface _MapPosition {
      *
      * 默认为 0
      */
-    left: number;
+    left: number
     /**
      * 距离地图的上边界多远
      *
      * 默认为 0
      */
-    top: number;
+    top: number
     /**
      * 控件宽度
      *
      * 默认为控件宽度
      */
-    width: number;
+    width: number
     /**
      * 控件高度
      *
      * 默认为图片高度
      */
-    height: number;
+    height: number
 }
 /**
  * 控件 ID
  *
  * 在控件点击事件回调中会返回
  */
-type _MapControlId = number;
+type _MapControlId = number
 /** 控件 */
 interface _MapControl {
     /**
@@ -7631,21 +7631,21 @@ interface _MapControl {
      *
      * 在控件点击事件回调中会返回
      */
-    id: _MapControlId;
+    id: _MapControlId
     /** 控件在地图的位置 */
-    position: _MapPosition;
+    position: _MapPosition
     /**
      * 图标路径
      *
      * 项目目录下的图片路径，支持相对路径和临时路径
      */
-    iconPath: string;
+    iconPath: string
     /**
      * 是否可点击
      *
      * 默认不可点击
      */
-    clickable: boolean;
+    clickable: boolean
 }
 interface _MapOnMarkertapDetail {
     /**
@@ -7653,12 +7653,12 @@ interface _MapOnMarkertapDetail {
      *
      * 最大限制 9 位数
      */
-    markerId: _MapMarkerId;
+    markerId: _MapMarkerId
 }
-type _MapOnMarkertapEvent = _CustomEvent<_MapOnMarkertapDetail>;
+type _MapOnMarkertapEvent = _CustomEvent<_MapOnMarkertapDetail>
 /** 点击标记点时触发 */
 interface _MapOnMarkertap {
-    (event: _MapOnMarkertapEvent): void;
+    (event: _MapOnMarkertapEvent): void
 }
 interface _MapOnLabeltapDetail {
     /**
@@ -7666,12 +7666,12 @@ interface _MapOnLabeltapDetail {
      *
      * 最大限制 9 位数
      */
-    markerId: _MapMarkerId;
+    markerId: _MapMarkerId
 }
-type _MapOnLabeltapEvent = _CustomEvent<_MapOnLabeltapDetail>;
+type _MapOnLabeltapEvent = _CustomEvent<_MapOnLabeltapDetail>
 /** 点击 label 时触发 */
 interface _MapOnLabeltap {
-    (event: _MapOnLabeltapEvent): void;
+    (event: _MapOnLabeltapEvent): void
 }
 interface _MapOnCallouttapDetail {
     /**
@@ -7679,36 +7679,36 @@ interface _MapOnCallouttapDetail {
      *
      * 最大限制 9 位数
      */
-    markerId: _MapMarkerId;
+    markerId: _MapMarkerId
 }
-type _MapOnCallouttapEvent = _CustomEvent<_MapOnCallouttapDetail>;
+type _MapOnCallouttapEvent = _CustomEvent<_MapOnCallouttapDetail>
 /** 点击标记点对应的气泡时触发 */
 interface _MapOnCallouttap {
-    (event: _MapOnCallouttapEvent): void;
+    (event: _MapOnCallouttapEvent): void
 }
 interface _MapOnControltapDetail {
     /** 控件 ID */
-    controlId: _MapControlId;
+    controlId: _MapControlId
 }
-type _MapOnControltapEvent = _CustomEvent<_MapOnControltapDetail>;
+type _MapOnControltapEvent = _CustomEvent<_MapOnControltapDetail>
 /** 点击控件时触发 */
 interface _MapOnControltap {
-    (event: _MapOnControltapEvent): void;
+    (event: _MapOnControltapEvent): void
 }
-type _MapOnRegionchangeEvent = _BaseEvent;
+type _MapOnRegionchangeEvent = _BaseEvent
 /** 视野发生变化时触发 */
 interface _MapOnRegionchange {
-    (event: _MapOnRegionchangeEvent): void;
+    (event: _MapOnRegionchangeEvent): void
 }
-type _MapOnTapEvent = _BaseEvent;
+type _MapOnTapEvent = _BaseEvent
 /** 点击地图时触发 */
 interface _MapOnTap {
-    (event: _MapOnTapEvent): void;
+    (event: _MapOnTapEvent): void
 }
-type _MapOnUpdatedEvent = _BaseEvent;
+type _MapOnUpdatedEvent = _BaseEvent
 /** 地图渲染更新完成时触发 */
 interface _MapOnUpdated {
-    (event: _MapOnUpdatedEvent): void;
+    (event: _MapOnUpdatedEvent): void
 }
 interface _MapOnAnchorpointtapDetail {
     /**
@@ -7716,39 +7716,39 @@ interface _MapOnAnchorpointtapDetail {
      *
      * 取值范围为 -90 - 90
      */
-    latitude: _MapLatitude;
+    latitude: _MapLatitude
     /**
      * 经度
      *
      * 取值范围为 -180 - 180
      */
-    longitude: _MapLongitude;
+    longitude: _MapLongitude
 }
-type _MapOnAnchorpointtapEvent = _CustomEvent<_MapOnAnchorpointtapDetail>;
+type _MapOnAnchorpointtapEvent = _CustomEvent<_MapOnAnchorpointtapDetail>
 /** 点击定位标时触发 */
 interface _MapOnAnchorpointtap {
-    (event: _MapOnAnchorpointtapEvent): void;
+    (event: _MapOnAnchorpointtapEvent): void
 }
 interface _MapOnPoitapDetail {
     /** 名称 */
-    name: string;
+    name: string
     /**
      * 纬度
      *
      * 取值范围为 -90 - 90
      */
-    latitude: _MapLatitude;
+    latitude: _MapLatitude
     /**
      * 经度
      *
      * 取值范围为 -180 - 180
      */
-    longitude: _MapLongitude;
+    longitude: _MapLongitude
 }
-type _MapOnPoitapEvent = _CustomEvent<_MapOnPoitapDetail>;
+type _MapOnPoitapEvent = _CustomEvent<_MapOnPoitapDetail>
 /** 点击地图 poi 点时触发 */
 interface _MapOnPoitap {
-    (event: _MapOnPoitapEvent): void;
+    (event: _MapOnPoitapEvent): void
 }
 /** 地图属性 */
 type _MapProps = Partial<{
@@ -7757,19 +7757,19 @@ type _MapProps = Partial<{
      *
      * 取值范围为 -90 - 90
      */
-    latitude: _MapLatitude;
+    latitude: _MapLatitude
     /**
      * 中心经度
      *
      * 取值范围为 -180 - 180
      */
-    longitude: _MapLongitude;
+    longitude: _MapLongitude
     /**
      * 缩放级别
      *
      * 默认为 16
      */
-    scale: number;
+    scale: number
     /**
      * 主题
      *
@@ -7783,137 +7783,137 @@ type _MapProps = Partial<{
      *
      * 默认为 normal
      */
-    theme: _MapTheme;
+    theme: _MapTheme
     /**
      * 最小缩放级别
      *
      * 默认为 3
      */
-    minScale: number;
+    minScale: number
     /**
      * 最大缩放级别
      *
      * 默认为 20
      */
-    maxScale: number;
+    maxScale: number
     /**
      * 个性化地图配置的 style，不支持动态修改
      *
      * 默认为 1
      */
-    layerStyle: string | number;
+    layerStyle: string | number
     /** 标记点数组 */
-    markers: _MapMarker[];
+    markers: _MapMarker[]
     /** 路线 */
-    polyline: _MapPolyline[];
+    polyline: _MapPolyline[]
     /** 圆 */
-    circles: _MapCircle[];
+    circles: _MapCircle[]
     /** 控件 */
-    controls: _MapControl[];
+    controls: _MapControl[]
     /** 缩放视野以包含所有给定的坐标点 */
-    includePoints: _MapPoint[];
+    includePoints: _MapPoint[]
     /**
      * 是否显示 3D 楼块
      *
      * 默认为 false
      */
-    enable3D: boolean;
+    enable3D: boolean
     /**
      * 是否显示指南针
      *
      * 默认为 false
      */
-    showCompass: boolean;
+    showCompass: boolean
     /**
      * 是否支持缩放
      *
      * 默认为 true
      */
-    enableZoom: boolean;
+    enableZoom: boolean
     /**
      * 是否支持拖动
      *
      * 默认为 true
      */
-    enableScroll: boolean;
+    enableScroll: boolean
     /**
      * 是否支持旋转
      *
      * 默认为 false
      */
-    enableRotate: boolean;
+    enableRotate: boolean
     /**
      * 是否开启俯视
      *
      * 默认为 false
      */
-    enableOverlooking: boolean;
+    enableOverlooking: boolean
     /**
      * 是否开启卫星图
      *
      * 默认为 false
      */
-    enableSatellite: boolean;
+    enableSatellite: boolean
     /**
      * 是否开启实时路况
      *
      * 默认为 false
      */
-    enableTraffic: boolean;
+    enableTraffic: boolean
     /**
      * 是否展示 POI 点
      *
      * 默认为 false
      */
-    enablePoi: boolean;
+    enablePoi: boolean
     /**
      * 是否展示建筑物
      *
      * 默认为 false
      */
-    enableBuilding: boolean;
+    enableBuilding: boolean
     /**
      * 是否显示带有方向的当前定位点
      *
      * 默认为 false
      */
-    showLocation: boolean;
+    showLocation: boolean
     /** 多边形 */
-    polygons: _MapPolygon[];
+    polygons: _MapPolygon[]
     /**
      * 是否展示室内地图
      *
      * 默认为 false
      */
-    enableIndoorMap: boolean;
+    enableIndoorMap: boolean
     /** 点击标记点时触发 */
-    onMarkertap: _MapOnMarkertap;
+    onMarkertap: _MapOnMarkertap
     /** 点击 label 时触发 */
-    onLabeltap: _MapOnLabeltap;
+    onLabeltap: _MapOnLabeltap
     /** 点击标记点对应的气泡时触发 */
-    onCallouttap: _MapOnCallouttap;
+    onCallouttap: _MapOnCallouttap
     /** 点击控件时触发 */
-    onControltap: _MapOnControltap;
+    onControltap: _MapOnControltap
     /** 视野发生变化时触发 */
-    onRegionchange: _MapOnRegionchange;
+    onRegionchange: _MapOnRegionchange
     /** 点击地图时触发 */
-    onTap: _MapOnTap;
+    onTap: _MapOnTap
     /** 地图渲染更新完成时触发 */
-    onUpdated: _MapOnUpdated;
+    onUpdated: _MapOnUpdated
     /** 点击定位标时触发 */
-    onAnchorpointtap: _MapOnAnchorpointtap;
+    onAnchorpointtap: _MapOnAnchorpointtap
     /** 点击地图 poi 点时触发 */
-    onPoitap: _MapOnPoitap;
-}>;
+    onPoitap: _MapOnPoitap
+}>
 /** 地图组件，用于展示地图 */
-type _Map = _Component<_MapProps>;
+type _Map = _Component<_MapProps>
 /** 地图组件实例 */
-type _MapInstance = InstanceType<_Map>;
+type _MapInstance = InstanceType<_Map>
 
 declare global {
     namespace UniHelper {
         /** 显示方式 */
-        type MapDisplay = _MapDisplay;
+        type MapDisplay = _MapDisplay
         /**
          * 文本对齐方式
          *
@@ -7923,7 +7923,7 @@ declare global {
          *
          * center 居中对齐
          */
-        type MapTextAlign = _MapTextAlign;
+        type MapTextAlign = _MapTextAlign
         /** 气泡 */
         interface MapCallout extends _MapCallout {
         }
@@ -7941,13 +7941,13 @@ declare global {
          *
          * 取值范围为 -90 - 90
          */
-        type MapLatitude = _MapLatitude;
+        type MapLatitude = _MapLatitude
         /**
          * 经度
          *
          * 取值范围为 -180 - 180
          */
-        type MapLongitude = _MapLongitude;
+        type MapLongitude = _MapLongitude
         /** 经纬度点 */
         interface MapPoint extends _MapPoint {
         }
@@ -7960,7 +7960,7 @@ declare global {
          *
          * aboveroads 显示在道路之上楼块之下
          */
-        type MapLevel = _MapLevel;
+        type MapLevel = _MapLevel
         /**
          * 主题
          *
@@ -7972,7 +7972,7 @@ declare global {
          *
          * satellite 卫星图
          */
-        type MapTheme = _MapTheme;
+        type MapTheme = _MapTheme
         /**
          * 标记点 ID
          *
@@ -7980,7 +7980,7 @@ declare global {
          *
          * 最大限制 9 位数
          */
-        type MapMarkerId = _MapMarkerId;
+        type MapMarkerId = _MapMarkerId
         /** 标记点 */
         interface MapMarker extends _MapMarker {
         }
@@ -8001,77 +8001,77 @@ declare global {
          *
          * 在控件点击事件回调中会返回
          */
-        type MapControlId = _MapControlId;
+        type MapControlId = _MapControlId
         /** 控件 */
         interface MapControl extends _MapControl {
         }
         interface MapOnMarkertapDetail extends _MapOnMarkertapDetail {
         }
-        type MapOnMarkertapEvent = _MapOnMarkertapEvent;
+        type MapOnMarkertapEvent = _MapOnMarkertapEvent
         /** 点击标记点时触发 */
         interface MapOnMarkertap extends _MapOnMarkertap {
         }
         interface MapOnLabeltapDetail extends _MapOnLabeltapDetail {
         }
-        type MapOnLabeltapEvent = _MapOnLabeltapEvent;
+        type MapOnLabeltapEvent = _MapOnLabeltapEvent
         /** 点击 label 时触发 */
         interface MapOnLabeltap extends _MapOnLabeltap {
         }
         interface MapOnCallouttapDetail extends _MapOnCallouttapDetail {
         }
-        type MapOnCallouttapEvent = _MapOnCallouttapEvent;
+        type MapOnCallouttapEvent = _MapOnCallouttapEvent
         /** 点击标记点对应的气泡时触发 */
         interface MapOnCallouttap extends _MapOnCallouttap {
         }
         interface MapOnControltapDetail extends _MapOnControltapDetail {
         }
-        type MapOnControltapEvent = _MapOnControltapEvent;
+        type MapOnControltapEvent = _MapOnControltapEvent
         /** 点击控件时触发 */
         interface MapOnControltap extends _MapOnControltap {
         }
-        type MapOnRegionchangeEvent = _MapOnRegionchangeEvent;
+        type MapOnRegionchangeEvent = _MapOnRegionchangeEvent
         /** 视野发生变化时触发 */
         interface MapOnRegionchange extends _MapOnRegionchange {
         }
-        type MapOnTapEvent = _MapOnTapEvent;
+        type MapOnTapEvent = _MapOnTapEvent
         /** 点击地图时触发 */
         interface MapOnTap extends _MapOnTap {
         }
-        type MapOnUpdatedEvent = _MapOnUpdatedEvent;
+        type MapOnUpdatedEvent = _MapOnUpdatedEvent
         /** 地图渲染更新完成时触发 */
         interface MapOnUpdated extends _MapOnUpdated {
         }
         interface MapOnAnchorpointtapDetail extends _MapOnAnchorpointtapDetail {
         }
-        type MapOnAnchorpointtapEvent = _MapOnAnchorpointtapEvent;
+        type MapOnAnchorpointtapEvent = _MapOnAnchorpointtapEvent
         /** 点击定位标时触发 */
         interface MapOnAnchorpointtap extends _MapOnAnchorpointtap {
         }
         interface MapOnPoitapDetail extends _MapOnPoitapDetail {
         }
-        type MapOnPoitapEvent = _MapOnPoitapEvent;
+        type MapOnPoitapEvent = _MapOnPoitapEvent
         /** 点击地图 poi 点时触发 */
         interface MapOnPoitap extends _MapOnPoitap {
         }
         /** 地图属性 */
-        type MapProps = _MapProps;
+        type MapProps = _MapProps
         /** 地图组件，用于展示地图 */
-        type Map = _Map;
+        type Map = _Map
         /** 地图组件实例 */
-        type MapInstance = _MapInstance;
+        type MapInstance = _MapInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 地图组件，用于展示地图 */
-        Map: _Map;
+        Map: _Map
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 地图组件，用于展示地图 */
-            map: _Map;
+            map: _Map
         }
     }
 }
@@ -8079,132 +8079,132 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 地图组件，用于展示地图 */
-            map: _Map;
+            map: _Map
         }
     }
 }
 
 /** 类型 */
-type _CanvasType = '2d' | 'webgl';
-type _CanvasOnTouchstartEvent = _TouchCanvasEvent;
+type _CanvasType = '2d' | 'webgl'
+type _CanvasOnTouchstartEvent = _TouchCanvasEvent
 /** 手指触摸动作开始时触发 */
 interface _CanvasOnTouchstart {
-    (event: _CanvasOnTouchstartEvent): void;
+    (event: _CanvasOnTouchstartEvent): void
 }
-type _CanvasOnTouchmoveEvent = _TouchCanvasEvent;
+type _CanvasOnTouchmoveEvent = _TouchCanvasEvent
 /** 手指触摸后移动时触发 */
 interface _CanvasOnTouchmove {
-    (event: _CanvasOnTouchmoveEvent): void;
+    (event: _CanvasOnTouchmoveEvent): void
 }
-type _CanvasOnTouchendEvent = _TouchCanvasEvent;
+type _CanvasOnTouchendEvent = _TouchCanvasEvent
 /** 手指触摸动作结束时触发 */
 interface _CanvasOnTouchend {
-    (event: _CanvasOnTouchendEvent): void;
+    (event: _CanvasOnTouchendEvent): void
 }
-type _CanvasOnTouchcancelEvent = _TouchCanvasEvent;
+type _CanvasOnTouchcancelEvent = _TouchCanvasEvent
 /** 手指触摸动作被打断时触发 */
 interface _CanvasOnTouchcancel {
-    (event: _CanvasOnTouchcancelEvent): void;
+    (event: _CanvasOnTouchcancelEvent): void
 }
-type _CanvasOnLongtapEvent = _BaseEvent;
+type _CanvasOnLongtapEvent = _BaseEvent
 /** 手指长按 500ms 之后触发，触发了长按事件后进行移动不会触发屏幕的滚动 */
 interface _CanvasOnLongtap {
-    (event: _CanvasOnLongtapEvent): void;
+    (event: _CanvasOnLongtapEvent): void
 }
 interface _CanvasOnErrorDetail {
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _CanvasOnErrorEvent = CustomEvent<_CanvasOnErrorDetail>;
+type _CanvasOnErrorEvent = CustomEvent<_CanvasOnErrorDetail>
 /** 发生错误时触发 */
 interface _CanvasOnError {
-    (event: _CanvasOnErrorEvent): void;
+    (event: _CanvasOnErrorEvent): void
 }
 /** 画布属性 */
 type _CanvasProps = Partial<{
     /** 类型 */
-    type: _CanvasType;
+    type: _CanvasType
     /** 唯一标识符 */
-    canvasId: string;
+    canvasId: string
     /**
      * 当在 canvas 中移动时且有绑定手势事件时，是否禁止屏幕滚动以及下拉刷新
      *
      * 默认为 false
      */
-    disableScroll: boolean;
+    disableScroll: boolean
     /**
      * 是否启用高清处理
      *
      * 默认为 true
      */
-    hidpi: boolean;
+    hidpi: boolean
     /** 手指触摸动作开始时触发 */
-    onTouchstart: _CanvasOnTouchstart;
+    onTouchstart: _CanvasOnTouchstart
     /** 手指触摸后移动时触发 */
-    onTouchmove: _CanvasOnTouchmove;
+    onTouchmove: _CanvasOnTouchmove
     /** 手指触摸动作结束时触发 */
-    onTouchend: _CanvasOnTouchend;
+    onTouchend: _CanvasOnTouchend
     /** 手指触摸动作被打断时触发 */
-    onTouchcancel: _CanvasOnTouchcancel;
+    onTouchcancel: _CanvasOnTouchcancel
     /** 手指长按 500ms 之后触发，触发了长按事件后进行移动不会触发屏幕的滚动 */
-    onLongtap: _CanvasOnLongtap;
+    onLongtap: _CanvasOnLongtap
     /** 发生错误时触发 */
-    onError: _CanvasOnError;
-}>;
+    onError: _CanvasOnError
+}>
 /** 画布 */
-type _Canvas = _Component<_CanvasProps>;
+type _Canvas = _Component<_CanvasProps>
 /** 画布实例 */
-type _CanvasInstance = InstanceType<_Canvas>;
+type _CanvasInstance = InstanceType<_Canvas>
 
 declare global {
     namespace UniHelper {
         /** 类型 */
-        type CanvasType = _CanvasType;
-        type CanvasOnTouchstartEvent = _CanvasOnTouchstartEvent;
+        type CanvasType = _CanvasType
+        type CanvasOnTouchstartEvent = _CanvasOnTouchstartEvent
         /** 手指触摸动作开始时触发 */
         interface CanvasOnTouchstart extends _CanvasOnTouchstart {
         }
-        type CanvasOnTouchmoveEvent = _CanvasOnTouchmoveEvent;
+        type CanvasOnTouchmoveEvent = _CanvasOnTouchmoveEvent
         /** 手指触摸后移动时触发 */
         interface CanvasOnTouchmove extends _CanvasOnTouchmove {
         }
-        type CanvasOnTouchendEvent = _CanvasOnTouchendEvent;
+        type CanvasOnTouchendEvent = _CanvasOnTouchendEvent
         /** 手指触摸动作结束时触发 */
         interface CanvasOnTouchend extends _CanvasOnTouchend {
         }
-        type CanvasOnTouchcancelEvent = _CanvasOnTouchcancelEvent;
+        type CanvasOnTouchcancelEvent = _CanvasOnTouchcancelEvent
         /** 手指触摸动作被打断时触发 */
         interface CanvasOnTouchcancel extends _CanvasOnTouchcancel {
         }
-        type CanvasOnLongtapEvent = _CanvasOnLongtapEvent;
+        type CanvasOnLongtapEvent = _CanvasOnLongtapEvent
         /** 手指长按 500ms 之后触发，触发了长按事件后进行移动不会触发屏幕的滚动 */
         interface CanvasOnLongtap extends _CanvasOnLongtap {
         }
         interface CanvasOnErrorDetail extends _CanvasOnErrorDetail {
         }
-        type CanvasOnErrorEvent = _CanvasOnErrorEvent;
+        type CanvasOnErrorEvent = _CanvasOnErrorEvent
         /** 发生错误时触发 */
         interface CanvasOnError extends _CanvasOnError {
         }
         /** 画布属性 */
-        type CanvasProps = _CanvasProps;
+        type CanvasProps = _CanvasProps
         /** 画布 */
-        type Canvas = _Canvas;
+        type Canvas = _Canvas
         /** 画布实例 */
-        type CanvasInstance = _CanvasInstance;
+        type CanvasInstance = _CanvasInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 画布 */
-        Canvas: _Canvas;
+        Canvas: _Canvas
     }
 }
 declare global {
     namespace JSX {
         interface IntrinsicElements {
             /** 画布 */
-            canvas: _Canvas;
+            canvas: _Canvas
         }
     }
 }
@@ -8212,7 +8212,7 @@ declare module 'vue3/jsx-runtime' {
     namespace JSX {
         interface IntrinsicElements {
             /** 画布 */
-            canvas: _Canvas;
+            canvas: _Canvas
         }
     }
 }
@@ -8229,43 +8229,43 @@ interface _WebViewStyles {
      * 默认为 { color: '#00ff00' }
      */
     progress: boolean | {
-        color: string;
-    };
+        color: string
+    }
 }
 interface _WebViewOnMessageDetail {
-    data: any[];
+    data: any[]
 }
-type _WebViewOnMessageEvent = _CustomEvent<_WebViewOnMessageDetail>;
+type _WebViewOnMessageEvent = _CustomEvent<_WebViewOnMessageDetail>
 /** 网页向应用 postMessage 时，会在特定时机（后退、组件销毁、分享）触发并收到消息 */
 interface _WebViewOnMessage {
-    (event: _WebViewOnMessageEvent): void;
+    (event: _WebViewOnMessageEvent): void
 }
-type _WebViewOnOnPostMessageEvent = _BaseEvent;
+type _WebViewOnOnPostMessageEvent = _BaseEvent
 /** 网页向应用实时 postMessage */
 interface _WebViewOnOnPostMessage {
-    (event: _WebViewOnOnPostMessageEvent): void;
+    (event: _WebViewOnOnPostMessageEvent): void
 }
 /** Web 浏览器组件属性 */
 type _WebViewProps = Partial<{
     /** 指向网页的链接 */
-    src: string;
+    src: string
     /** 用于为 iframe 指定其特征策略 */
-    allow: string;
+    allow: string
     /** 该属性对呈现在 iframe 框架中的内容启用一些额外的限制条件 */
-    sandbox: string;
+    sandbox: string
     /** 样式 */
-    webviewStyles: _WebViewStyles;
+    webviewStyles: _WebViewStyles
     /** 是否自动更新当前页面标题 */
-    updateTitle: boolean;
+    updateTitle: boolean
     /** 网页向应用 postMessage 时，会在特定时机（后退、组件销毁、分享）触发并收到消息 */
-    onMessage: _WebViewOnMessage;
+    onMessage: _WebViewOnMessage
     /** 网页向应用实时 postMessage */
-    onOnPostMessage: _WebViewOnOnPostMessage;
-}>;
+    onOnPostMessage: _WebViewOnOnPostMessage
+}>
 /** Web 浏览器组件，可承载网页 */
-type _WebView = _Component<_WebViewProps>;
+type _WebView = _Component<_WebViewProps>
 /** Web 浏览器组件实例 */
-type _WebViewInstance = InstanceType<_WebView>;
+type _WebViewInstance = InstanceType<_WebView>
 
 declare global {
     namespace UniHelper {
@@ -8274,56 +8274,56 @@ declare global {
         }
         interface WebViewOnMessageDetail extends _WebViewOnMessageDetail {
         }
-        type WebViewOnMessageEvent = _WebViewOnMessageEvent;
+        type WebViewOnMessageEvent = _WebViewOnMessageEvent
         /** 网页向应用 postMessage 时，会在特定时机（后退、组件销毁、分享）触发并收到消息 */
         interface WebViewOnMessage extends _WebViewOnMessage {
         }
-        type WebViewOnOnPostMessageEvent = _WebViewOnOnPostMessageEvent;
+        type WebViewOnOnPostMessageEvent = _WebViewOnOnPostMessageEvent
         /** 网页向应用实时 postMessage */
         interface WebViewOnOnPostMessage extends _WebViewOnOnPostMessage {
         }
         /** Web 浏览器组件属性 */
-        type WebViewProps = _WebViewProps;
+        type WebViewProps = _WebViewProps
         /** Web 浏览器组件，可承载网页 */
-        type WebView = _WebView;
+        type WebView = _WebView
         /** Web 浏览器组件实例 */
-        type WebViewInstance = _WebViewInstance;
+        type WebViewInstance = _WebViewInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** Web 浏览器组件，可承载网页 */
-        WebView: _WebView;
+        WebView: _WebView
     }
 }
 
-type _AdOnLoadEvent = _BaseEvent;
+type _AdOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdOnLoad {
-    (event: _AdOnLoadEvent): void;
+    (event: _AdOnLoadEvent): void
 }
 interface _AdOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdOnErrorEvent = _CustomEvent<_AdOnErrorDetail>;
+type _AdOnErrorEvent = _CustomEvent<_AdOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdOnError {
-    (event: _AdOnErrorEvent): void;
+    (event: _AdOnErrorEvent): void
 }
-type _AdOnCloseEvent = _BaseEvent;
+type _AdOnCloseEvent = _BaseEvent
 /** 广告关闭的回调 */
 interface _AdOnClose {
-    (event: _AdOnCloseEvent): void;
+    (event: _AdOnCloseEvent): void
 }
 /** 信息流广告属性 */
 type _AdProps = Partial<{
     /** APP 广告位 id */
-    adpid: string;
+    adpid: string
     /** 广告单元 id，可在小程序管理后台的流量主模块新建 */
-    unitId: string;
+    unitId: string
     /**
      * 广告自动刷新的间隔时间，必须大于等于 30
      *
@@ -8331,25 +8331,25 @@ type _AdProps = Partial<{
      *
      * 单位为 s
      */
-    adIntervals: number;
+    adIntervals: number
     /** 广告数据，优先级高于 adpid */
-    data: _AnyRecord;
+    data: _AnyRecord
     /** 小程序应用 ID */
-    appid: string;
+    appid: string
     /** 小程序广告位 ID */
-    apid: string;
+    apid: string
     /**
      * type 为 feeds 时广告左边距，必须大于 0
      *
      * 单位为 px
      */
-    adLeft: number;
+    adLeft: number
     /**
      * type 为 feeds 时广告上边距，必须大于 0
      *
      * 单位为 px
      */
-    adTop: number;
+    adTop: number
     /**
      * type 为 feeds 时广告宽度，最大值为屏幕宽度，最小值为 265
      *
@@ -8357,77 +8357,77 @@ type _AdProps = Partial<{
      *
      * 默认为 100%
      */
-    adWidth: number;
+    adWidth: number
     /**
      * type 为 feeds 时广告高度，最大值为 160，最小值为 85
      *
      * 单位为 px
      */
-    adHeight: number;
+    adHeight: number
     /** 广告类型 */
-    type: string;
+    type: string
     /** 广告加载成功的回调 */
-    onLoad: _AdOnLoad;
+    onLoad: _AdOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdOnError;
+    onError: _AdOnError
     /** 广告关闭的回调 */
-    onClose: _AdOnClose;
-}>;
+    onClose: _AdOnClose
+}>
 /** 信息流广告 */
-type _Ad = _Component<_AdProps>;
+type _Ad = _Component<_AdProps>
 /** 信息流广告实例 */
-type _AdInstance = InstanceType<_Ad>;
+type _AdInstance = InstanceType<_Ad>
 
 declare global {
     namespace UniHelper {
-        type AdOnLoadEvent = _AdOnLoadEvent;
+        type AdOnLoadEvent = _AdOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdOnLoad extends _AdOnLoad {
         }
         interface AdOnErrorDetail extends _AdOnErrorDetail {
         }
-        type AdOnErrorEvent = _AdOnErrorEvent;
+        type AdOnErrorEvent = _AdOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdOnError extends _AdOnError {
         }
-        type AdOnCloseEvent = _AdOnCloseEvent;
+        type AdOnCloseEvent = _AdOnCloseEvent
         /** 广告关闭的回调 */
         interface AdOnClose extends _AdOnClose {
         }
         /** 信息流广告属性 */
-        type AdProps = _AdProps;
+        type AdProps = _AdProps
         /** 信息流广告 */
-        type Ad = _Ad;
+        type Ad = _Ad
         /** 信息流广告实例 */
-        type AdInstance = _AdInstance;
+        type AdInstance = _AdInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 信息流广告 */
-        Ad: _Ad;
+        Ad: _Ad
     }
 }
 
-type _AdContentPageOnLoadEvent = _BaseEvent;
+type _AdContentPageOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdContentPageOnLoad {
-    (event: _AdContentPageOnLoadEvent): void;
+    (event: _AdContentPageOnLoadEvent): void
 }
 interface _AdContentPageOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdContentPageOnErrorEvent = _CustomEvent<_AdContentPageOnErrorDetail>;
+type _AdContentPageOnErrorEvent = _CustomEvent<_AdContentPageOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdContentPageOnError {
-    (event: _AdContentPageOnErrorEvent): void;
+    (event: _AdContentPageOnErrorEvent): void
 }
 interface _AdContentPageOnStartDetail {
     /** 广告唯一标识 */
-    id: string;
+    id: string
     /**
      * 广告类型
      *
@@ -8441,18 +8441,18 @@ interface _AdContentPageOnStartDetail {
      *
      * 4 直播
      */
-    type: 0 | 1 | 2 | 3 | 4;
+    type: 0 | 1 | 2 | 3 | 4
     /** 视频总时长 */
-    duration: number;
+    duration: number
 }
-type _AdContentPageOnStartEvent = _CustomEvent<_AdContentPageOnStartDetail>;
+type _AdContentPageOnStartEvent = _CustomEvent<_AdContentPageOnStartDetail>
 /** 广告开始播放时触发 */
 interface _AdContentPageOnStart {
-    (event: _AdContentPageOnStartEvent): void;
+    (event: _AdContentPageOnStartEvent): void
 }
 interface _AdContentPageOnPauseDetail {
     /** 广告唯一标识 */
-    id: string;
+    id: string
     /**
      * 广告类型
      *
@@ -8466,18 +8466,18 @@ interface _AdContentPageOnPauseDetail {
      *
      * 4 直播
      */
-    type: 0 | 1 | 2 | 3 | 4;
+    type: 0 | 1 | 2 | 3 | 4
     /** 视频总时长 */
-    duration: number;
+    duration: number
 }
-type _AdContentPageOnPauseEvent = _CustomEvent<_AdContentPageOnPauseDetail>;
+type _AdContentPageOnPauseEvent = _CustomEvent<_AdContentPageOnPauseDetail>
 /** 广告暂停播放时触发 */
 interface _AdContentPageOnPause {
-    (event: _AdContentPageOnPauseEvent): void;
+    (event: _AdContentPageOnPauseEvent): void
 }
 interface _AdContentPageOnResumeDetail {
     /** 广告唯一标识 */
-    id: string;
+    id: string
     /**
      * 广告类型
      *
@@ -8491,18 +8491,18 @@ interface _AdContentPageOnResumeDetail {
      *
      * 4 直播
      */
-    type: 0 | 1 | 2 | 3 | 4;
+    type: 0 | 1 | 2 | 3 | 4
     /** 视频总时长 */
-    duration: number;
+    duration: number
 }
-type _AdContentPageOnResumeEvent = _CustomEvent<_AdContentPageOnResumeDetail>;
+type _AdContentPageOnResumeEvent = _CustomEvent<_AdContentPageOnResumeDetail>
 /** 广告恢复播放时触发 */
 interface _AdContentPageOnResume {
-    (event: _AdContentPageOnResumeEvent): void;
+    (event: _AdContentPageOnResumeEvent): void
 }
 interface _AdContentPageOnCompleteDetail {
     /** 广告唯一标识 */
-    id: string;
+    id: string
     /**
      * 广告类型
      *
@@ -8516,453 +8516,453 @@ interface _AdContentPageOnCompleteDetail {
      *
      * 4 直播
      */
-    type: 0 | 1 | 2 | 3 | 4;
+    type: 0 | 1 | 2 | 3 | 4
     /** 视频总时长 */
-    duration: number;
+    duration: number
 }
-type _AdContentPageOnCompleteEvent = _CustomEvent<_AdContentPageOnCompleteDetail>;
+type _AdContentPageOnCompleteEvent = _CustomEvent<_AdContentPageOnCompleteDetail>
 /** 广告完成播放时触发 */
 interface _AdContentPageOnComplete {
-    (event: _AdContentPageOnCompleteEvent): void;
+    (event: _AdContentPageOnCompleteEvent): void
 }
 /** 短视频内容联盟广告属性 */
 type _AdContentPageProps = Partial<{
     /** APP 广告位 id */
-    adpid: string;
+    adpid: string
     /** 广告加载成功的回调 */
-    onLoad: _AdContentPageOnLoad;
+    onLoad: _AdContentPageOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdContentPageOnError;
+    onError: _AdContentPageOnError
     /** 广告开始播放时触发 */
-    onStart: _AdContentPageOnStart;
+    onStart: _AdContentPageOnStart
     /** 广告暂停播放时触发 */
-    onPause: _AdContentPageOnPause;
+    onPause: _AdContentPageOnPause
     /** 广告恢复播放时触发 */
-    onResume: _AdContentPageOnResume;
+    onResume: _AdContentPageOnResume
     /** 广告完成播放时触发 */
-    onComplete: _AdContentPageOnComplete;
-}>;
+    onComplete: _AdContentPageOnComplete
+}>
 /** 短视频内容联盟广告 */
-type _AdContentPage = _Component<_AdContentPageProps>;
+type _AdContentPage = _Component<_AdContentPageProps>
 /** 短视频内容联盟广告实例 */
-type _AdContentPageInstance = InstanceType<_AdContentPage>;
+type _AdContentPageInstance = InstanceType<_AdContentPage>
 
 declare global {
     namespace UniHelper {
-        type AdContentPageOnLoadEvent = _AdContentPageOnLoadEvent;
+        type AdContentPageOnLoadEvent = _AdContentPageOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdContentPageOnLoad extends _AdContentPageOnLoad {
         }
         interface AdContentPageOnErrorDetail extends _AdContentPageOnErrorDetail {
         }
-        type AdContentPageOnErrorEvent = _AdContentPageOnErrorEvent;
+        type AdContentPageOnErrorEvent = _AdContentPageOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdContentPageOnError extends _AdContentPageOnError {
         }
         interface AdContentPageOnStartDetail extends _AdContentPageOnStartDetail {
         }
-        type AdContentPageOnStartEvent = _AdContentPageOnStartEvent;
+        type AdContentPageOnStartEvent = _AdContentPageOnStartEvent
         /** 广告开始播放时触发 */
         interface AdContentPageOnStart extends _AdContentPageOnStart {
         }
         interface AdContentPageOnPauseDetail extends _AdContentPageOnPauseDetail {
         }
-        type AdContentPageOnPauseEvent = _AdContentPageOnPauseEvent;
+        type AdContentPageOnPauseEvent = _AdContentPageOnPauseEvent
         /** 广告暂停播放时触发 */
         interface AdContentPageOnPause extends _AdContentPageOnPause {
         }
         interface AdContentPageOnResumeDetail extends _AdContentPageOnResumeDetail {
         }
-        type AdContentPageOnResumeEvent = _AdContentPageOnResumeEvent;
+        type AdContentPageOnResumeEvent = _AdContentPageOnResumeEvent
         /** 广告恢复播放时触发 */
         interface AdContentPageOnResume extends _AdContentPageOnResume {
         }
         interface AdContentPageOnCompleteDetail extends _AdContentPageOnCompleteDetail {
         }
-        type AdContentPageOnCompleteEvent = _AdContentPageOnCompleteEvent;
+        type AdContentPageOnCompleteEvent = _AdContentPageOnCompleteEvent
         /** 广告完成播放时触发 */
         interface AdContentPageOnComplete extends _AdContentPageOnComplete {
         }
         /** 短视频内容联盟广告属性 */
-        type AdContentPageProps = _AdContentPageProps;
+        type AdContentPageProps = _AdContentPageProps
         /** 短视频内容联盟广告 */
-        type AdContentPage = _AdContentPage;
+        type AdContentPage = _AdContentPage
         /** 短视频内容联盟广告实例 */
-        type AdContentPageInstance = _AdContentPageInstance;
+        type AdContentPageInstance = _AdContentPageInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 短视频内容联盟广告 */
-        AdContentPage: _AdContentPage;
+        AdContentPage: _AdContentPage
     }
 }
 
-type _AdDrawOnLoadEvent = _BaseEvent;
+type _AdDrawOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdDrawOnLoad {
-    (event: _AdDrawOnLoadEvent): void;
+    (event: _AdDrawOnLoadEvent): void
 }
 interface _AdDrawOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdDrawOnErrorEvent = _CustomEvent<_AdDrawOnErrorDetail>;
+type _AdDrawOnErrorEvent = _CustomEvent<_AdDrawOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdDrawOnError {
-    (event: _AdDrawOnErrorEvent): void;
+    (event: _AdDrawOnErrorEvent): void
 }
 /** 沉浸视频流广告属性 */
 type _AdDrawProps = Partial<{
     /** APP 广告位 id */
-    adpid: string;
+    adpid: string
     /** 广告数据 */
-    data: _AnyRecord;
+    data: _AnyRecord
     /** 广告加载成功的回调 */
-    onLoad: _AdDrawOnLoad;
+    onLoad: _AdDrawOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdDrawOnError;
-}>;
+    onError: _AdDrawOnError
+}>
 /** 沉浸视频流广告 */
-type _AdDraw = _Component<_AdDrawProps>;
+type _AdDraw = _Component<_AdDrawProps>
 /** 沉浸视频流广告实例 */
-type _AdDrawInstance = InstanceType<_AdDraw>;
+type _AdDrawInstance = InstanceType<_AdDraw>
 
 declare global {
     namespace UniHelper {
-        type AdDrawOnLoadEvent = _AdDrawOnLoadEvent;
+        type AdDrawOnLoadEvent = _AdDrawOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdDrawOnLoad extends _AdDrawOnLoad {
         }
         interface AdDrawOnErrorDetail extends _AdDrawOnErrorDetail {
         }
-        type AdDrawOnErrorEvent = _AdDrawOnErrorEvent;
+        type AdDrawOnErrorEvent = _AdDrawOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdDrawOnError extends _AdDrawOnError {
         }
         /** 沉浸视频流广告属性 */
-        type AdDrawProps = _AdDrawProps;
+        type AdDrawProps = _AdDrawProps
         /** 沉浸视频流广告 */
-        type AdDraw = _AdDraw;
+        type AdDraw = _AdDraw
         /** 沉浸视频流广告实例 */
-        type AdDrawInstance = _AdDrawInstance;
+        type AdDrawInstance = _AdDrawInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 沉浸视频流广告 */
-        AdDraw: _AdDraw;
+        AdDraw: _AdDraw
     }
 }
 
-type _AdFullscreenVideoOnLoadEvent = _BaseEvent;
+type _AdFullscreenVideoOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdFullscreenVideoOnLoad {
-    (event: _AdFullscreenVideoOnLoadEvent): void;
+    (event: _AdFullscreenVideoOnLoadEvent): void
 }
 interface _AdFullscreenVideoOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdFullscreenVideoOnErrorEvent = _CustomEvent<_AdFullscreenVideoOnErrorDetail>;
+type _AdFullscreenVideoOnErrorEvent = _CustomEvent<_AdFullscreenVideoOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdFullscreenVideoOnError {
-    (event: _AdFullscreenVideoOnErrorEvent): void;
+    (event: _AdFullscreenVideoOnErrorEvent): void
 }
-type _AdFullscreenVideoOnCloseEvent = _BaseEvent;
+type _AdFullscreenVideoOnCloseEvent = _BaseEvent
 /** 广告关闭的回调 */
 interface _AdFullscreenVideoOnClose {
-    (event: _AdFullscreenVideoOnCloseEvent): void;
+    (event: _AdFullscreenVideoOnCloseEvent): void
 }
 /** 全屏视频广告属性 */
 type _AdFullscreenVideoProps = Partial<{
     /** APP 广告位 id */
-    adpid: string | number | (string | number)[];
+    adpid: string | number | (string | number)[]
     /**
      * 是否在页面就绪后加载广告数据
      *
      * 默认为 true
      */
-    preload: boolean;
+    preload: boolean
     /**
      * 是否自动加载下一条广告数据
      *
      * 默认为 false
      */
-    loadnext: boolean;
+    loadnext: boolean
     /** 广告加载成功的回调 */
-    onLoad: _AdFullscreenVideoOnLoad;
+    onLoad: _AdFullscreenVideoOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdFullscreenVideoOnError;
+    onError: _AdFullscreenVideoOnError
     /** 广告关闭的回调 */
-    onClose: _AdFullscreenVideoOnClose;
-}>;
+    onClose: _AdFullscreenVideoOnClose
+}>
 /** 全屏视频广告 */
-type _AdFullscreenVideo = _Component<_AdFullscreenVideoProps>;
+type _AdFullscreenVideo = _Component<_AdFullscreenVideoProps>
 /** 全屏视频广告实例 */
-type _AdFullscreenVideoInstance = InstanceType<_AdFullscreenVideo>;
+type _AdFullscreenVideoInstance = InstanceType<_AdFullscreenVideo>
 
 declare global {
     namespace UniHelper {
-        type AdFullscreenVideoOnLoadEvent = _AdFullscreenVideoOnLoadEvent;
+        type AdFullscreenVideoOnLoadEvent = _AdFullscreenVideoOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdFullscreenVideoOnLoad extends _AdFullscreenVideoOnLoad {
         }
         interface AdFullscreenVideoOnErrorDetail extends _AdFullscreenVideoOnErrorDetail {
         }
-        type AdFullscreenVideoOnErrorEvent = _AdFullscreenVideoOnErrorEvent;
+        type AdFullscreenVideoOnErrorEvent = _AdFullscreenVideoOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdFullscreenVideoOnError extends _AdFullscreenVideoOnError {
         }
-        type AdFullscreenVideoOnCloseEvent = _AdFullscreenVideoOnCloseEvent;
+        type AdFullscreenVideoOnCloseEvent = _AdFullscreenVideoOnCloseEvent
         /** 广告关闭的回调 */
         interface AdFullscreenVideoOnClose extends _AdFullscreenVideoOnClose {
         }
         /** 全屏视频广告属性 */
-        type AdFullscreenVideoProps = _AdFullscreenVideoProps;
+        type AdFullscreenVideoProps = _AdFullscreenVideoProps
         /** 全屏视频广告 */
-        type AdFullscreenVideo = _AdFullscreenVideo;
+        type AdFullscreenVideo = _AdFullscreenVideo
         /** 全屏视频广告实例 */
-        type AdFullscreenVideoInstance = _AdFullscreenVideoInstance;
+        type AdFullscreenVideoInstance = _AdFullscreenVideoInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 全屏视频广告 */
-        AdFullscreenVideo: _AdFullscreenVideo;
+        AdFullscreenVideo: _AdFullscreenVideo
     }
 }
 
-type _AdInteractiveOnLoadEvent = _BaseEvent;
+type _AdInteractiveOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdInteractiveOnLoad {
-    (event: _AdInteractiveOnLoadEvent): void;
+    (event: _AdInteractiveOnLoadEvent): void
 }
 interface _AdInteractiveOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdInteractiveOnErrorEvent = CustomEvent<_AdInteractiveOnErrorDetail>;
+type _AdInteractiveOnErrorEvent = CustomEvent<_AdInteractiveOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdInteractiveOnError {
-    (event: _AdInteractiveOnErrorEvent): void;
+    (event: _AdInteractiveOnErrorEvent): void
 }
 /** 互动广告属性 */
 type _AdInteractiveProps = Partial<{
     /** APP 广告位 id */
-    adpid: string;
+    adpid: string
     /** 点击广告后打开的页面路径 */
-    openPagePath: string;
+    openPagePath: string
     /** 广告加载成功的回调 */
-    onLoad: _AdInteractiveOnLoad;
+    onLoad: _AdInteractiveOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdInteractiveOnError;
-}>;
+    onError: _AdInteractiveOnError
+}>
 /** 互动广告 */
-type _AdInteractive = _Component<_AdInteractiveProps>;
+type _AdInteractive = _Component<_AdInteractiveProps>
 /** 互动广告实例 */
-type _AdInteractiveInstance = InstanceType<_AdInteractive>;
+type _AdInteractiveInstance = InstanceType<_AdInteractive>
 
 declare global {
     namespace UniHelper {
-        type AdInteractiveOnLoadEvent = _AdInteractiveOnLoadEvent;
+        type AdInteractiveOnLoadEvent = _AdInteractiveOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdInteractiveOnLoad extends _AdInteractiveOnLoad {
         }
         interface AdInteractiveOnErrorDetail extends _AdInteractiveOnErrorDetail {
         }
-        type AdInteractiveOnErrorEvent = _AdInteractiveOnErrorEvent;
+        type AdInteractiveOnErrorEvent = _AdInteractiveOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdInteractiveOnError extends _AdInteractiveOnError {
         }
         /** 互动广告属性 */
-        type AdInteractiveProps = _AdInteractiveProps;
+        type AdInteractiveProps = _AdInteractiveProps
         /** 互动广告 */
-        type AdInteractive = _AdInteractive;
+        type AdInteractive = _AdInteractive
         /** 互动广告实例 */
-        type AdInteractiveInstance = _AdInteractiveInstance;
+        type AdInteractiveInstance = _AdInteractiveInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 互动广告 */
-        AdInteractive: _AdInteractive;
+        AdInteractive: _AdInteractive
     }
 }
 
-type _AdInterstitialOnLoadEvent = _BaseEvent;
+type _AdInterstitialOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdInterstitialOnLoad {
-    (event: _AdInterstitialOnLoadEvent): void;
+    (event: _AdInterstitialOnLoadEvent): void
 }
 interface _AdInterstitialOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdInterstitialOnErrorEvent = _CustomEvent<_AdInterstitialOnErrorDetail>;
+type _AdInterstitialOnErrorEvent = _CustomEvent<_AdInterstitialOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdInterstitialOnError {
-    (event: _AdInterstitialOnErrorEvent): void;
+    (event: _AdInterstitialOnErrorEvent): void
 }
-type _AdInterstitialOnCloseEvent = _BaseEvent;
+type _AdInterstitialOnCloseEvent = _BaseEvent
 /** 广告关闭的回调 */
 interface _AdInterstitialOnClose {
-    (event: _AdInterstitialOnCloseEvent): void;
+    (event: _AdInterstitialOnCloseEvent): void
 }
 /** 插屏广告属性 */
 type _AdInterstitialProps = Partial<{
     /** APP 广告位 id */
-    adpid: string | number | (string | number)[];
+    adpid: string | number | (string | number)[]
     /**
      * 是否在页面就绪后加载广告数据
      *
      * 默认为 true
      */
-    preload: boolean;
+    preload: boolean
     /**
      * 是否自动加载下一条广告数据
      *
      * 默认为 false
      */
-    loadnext: boolean;
+    loadnext: boolean
     /** 广告加载成功的回调 */
-    onLoad: _AdInterstitialOnLoad;
+    onLoad: _AdInterstitialOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdInterstitialOnError;
+    onError: _AdInterstitialOnError
     /** 广告关闭的回调 */
-    onClose: _AdInterstitialOnClose;
-}>;
+    onClose: _AdInterstitialOnClose
+}>
 /** 插屏广告 */
-type _AdInterstitial = _Component<_AdInterstitialProps>;
+type _AdInterstitial = _Component<_AdInterstitialProps>
 /** 插屏广告实例 */
-type _AdInterstitialInstance = InstanceType<_AdInterstitial>;
+type _AdInterstitialInstance = InstanceType<_AdInterstitial>
 
 declare global {
     namespace UniHelper {
-        type AdInterstitialOnLoadEvent = _AdInterstitialOnLoadEvent;
+        type AdInterstitialOnLoadEvent = _AdInterstitialOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdInterstitialOnLoad extends _AdInterstitialOnLoad {
         }
         interface AdInterstitialOnErrorDetail extends _AdInterstitialOnErrorDetail {
         }
-        type AdInterstitialOnErrorEvent = _AdInterstitialOnErrorEvent;
+        type AdInterstitialOnErrorEvent = _AdInterstitialOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdInterstitialOnError extends _AdInterstitialOnError {
         }
-        type AdInterstitialOnCloseEvent = _AdInterstitialOnCloseEvent;
+        type AdInterstitialOnCloseEvent = _AdInterstitialOnCloseEvent
         /** 广告关闭的回调 */
         interface AdInterstitialOnClose extends _AdInterstitialOnClose {
         }
         /** 插屏广告属性 */
-        type AdInterstitialProps = _AdInterstitialProps;
+        type AdInterstitialProps = _AdInterstitialProps
         /** 插屏广告 */
-        type AdInterstitial = _AdInterstitial;
+        type AdInterstitial = _AdInterstitial
         /** 插屏广告实例 */
-        type AdInterstitialInstance = _AdInterstitialInstance;
+        type AdInterstitialInstance = _AdInterstitialInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 插屏广告 */
-        AdInterstitial: _AdInterstitial;
+        AdInterstitial: _AdInterstitial
     }
 }
 
 /** 服务器回调透传数据 */
 interface _AdRewardedVideoUrlCallback {
-    userId: string;
-    extra: string;
+    userId: string
+    extra: string
 }
-type _AdRewardedVideoOnLoadEvent = _BaseEvent;
+type _AdRewardedVideoOnLoadEvent = _BaseEvent
 /** 广告加载成功的回调 */
 interface _AdRewardedVideoOnLoad {
-    (event: _AdRewardedVideoOnLoadEvent): void;
+    (event: _AdRewardedVideoOnLoadEvent): void
 }
 interface _AdRewardedVideoOnErrorDetail {
     /** 错误码 */
-    errCode: number;
+    errCode: number
     /** 错误信息 */
-    errMsg: string;
+    errMsg: string
 }
-type _AdRewardedVideoOnErrorEvent = _CustomEvent<_AdRewardedVideoOnErrorDetail>;
+type _AdRewardedVideoOnErrorEvent = _CustomEvent<_AdRewardedVideoOnErrorDetail>
 /** 广告加载失败的回调 */
 interface _AdRewardedVideoOnError {
-    (event: _AdRewardedVideoOnErrorEvent): void;
+    (event: _AdRewardedVideoOnErrorEvent): void
 }
-type _AdRewardedVideoOnCloseEvent = _BaseEvent;
+type _AdRewardedVideoOnCloseEvent = _BaseEvent
 /** 广告关闭的回调 */
 interface _AdRewardedVideoOnClose {
-    (event: _AdRewardedVideoOnCloseEvent): void;
+    (event: _AdRewardedVideoOnCloseEvent): void
 }
 /** 激励视频广告属性 */
 type _AdRewardedVideoProps = Partial<{
     /** APP 广告位 id */
-    adpid: string | number | (string | number)[];
+    adpid: string | number | (string | number)[]
     /**
      * 是否在页面就绪后加载广告数据
      *
      * 默认为 true
      */
-    preload: boolean;
+    preload: boolean
     /**
      * 是否自动加载下一条广告数据
      *
      * 默认为 false
      */
-    loadnext: boolean;
+    loadnext: boolean
     /** 服务器回调透传数据 */
-    urlCallback: _AdRewardedVideoUrlCallback;
+    urlCallback: _AdRewardedVideoUrlCallback
     /** 广告加载成功的回调 */
-    onLoad: _AdRewardedVideoOnLoad;
+    onLoad: _AdRewardedVideoOnLoad
     /** 广告加载失败的回调 */
-    onError: _AdRewardedVideoOnError;
+    onError: _AdRewardedVideoOnError
     /** 广告关闭的回调 */
-    onClose: _AdRewardedVideoOnClose;
-}>;
+    onClose: _AdRewardedVideoOnClose
+}>
 /** 激励视频广告 */
-type _AdRewardedVideo = _Component<_AdRewardedVideoProps>;
+type _AdRewardedVideo = _Component<_AdRewardedVideoProps>
 /** 激励视频广告实例 */
-type _AdRewardedVideoInstance = InstanceType<_AdRewardedVideo>;
+type _AdRewardedVideoInstance = InstanceType<_AdRewardedVideo>
 
 declare global {
     namespace UniHelper {
         /** 服务器回调透传数据 */
         interface AdRewardedVideoUrlCallback extends _AdRewardedVideoUrlCallback {
         }
-        type AdRewardedVideoOnLoadEvent = _AdRewardedVideoOnLoadEvent;
+        type AdRewardedVideoOnLoadEvent = _AdRewardedVideoOnLoadEvent
         /** 广告加载成功的回调 */
         interface AdRewardedVideoOnLoad extends _AdRewardedVideoOnLoad {
         }
         interface AdRewardedVideoOnErrorDetail extends _AdRewardedVideoOnErrorDetail {
         }
-        type AdRewardedVideoOnErrorEvent = _AdRewardedVideoOnErrorEvent;
+        type AdRewardedVideoOnErrorEvent = _AdRewardedVideoOnErrorEvent
         /** 广告加载失败的回调 */
         interface AdRewardedVideoOnError extends _AdRewardedVideoOnError {
         }
-        type AdRewardedVideoOnCloseEvent = _AdRewardedVideoOnCloseEvent;
+        type AdRewardedVideoOnCloseEvent = _AdRewardedVideoOnCloseEvent
         /** 广告关闭的回调 */
         interface AdRewardedVideoOnClose extends _AdRewardedVideoOnClose {
         }
         /** 激励视频广告属性 */
-        type AdRewardedVideoProps = _AdRewardedVideoProps;
+        type AdRewardedVideoProps = _AdRewardedVideoProps
         /** 激励视频广告 */
-        type AdRewardedVideo = _AdRewardedVideo;
+        type AdRewardedVideo = _AdRewardedVideo
         /** 激励视频广告实例 */
-        type AdRewardedVideoInstance = _AdRewardedVideoInstance;
+        type AdRewardedVideoInstance = _AdRewardedVideoInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 激励视频广告 */
-        AdRewardedVideo: _AdRewardedVideo;
+        AdRewardedVideo: _AdRewardedVideo
     }
 }
 
@@ -8973,28 +8973,28 @@ declare module '@vue/runtime-core' {
  *
  * light 亮色
  */
-type _PageMetaBackgroundTextStyle = 'dark' | 'light';
+type _PageMetaBackgroundTextStyle = 'dark' | 'light'
 interface _PageMetaOnResizeDetail {
-    windowWidth: number;
-    windowHeight: number;
+    windowWidth: number
+    windowHeight: number
 }
-type _PageMetaOnResizeEvent = _CustomEvent<_PageMetaOnResizeDetail>;
+type _PageMetaOnResizeEvent = _CustomEvent<_PageMetaOnResizeDetail>
 /** 页面尺寸变化时触发 */
 interface _PageMetaOnResize {
-    (event: _PageMetaOnResizeEvent): void;
+    (event: _PageMetaOnResizeEvent): void
 }
 interface _PageMetaOnScrollDetail {
-    scrollTop: number;
+    scrollTop: number
 }
-type _PageMetaOnScrollEvent = _CustomEvent<_PageMetaOnScrollDetail>;
+type _PageMetaOnScrollEvent = _CustomEvent<_PageMetaOnScrollDetail>
 /** 页面滚动时触发 */
 interface _PageMetaOnScroll {
-    (event: _PageMetaOnScrollEvent): void;
+    (event: _PageMetaOnScrollEvent): void
 }
-type _PageMetaOnScrolldoneEvent = _BaseEvent;
+type _PageMetaOnScrolldoneEvent = _BaseEvent
 /** 通过改变 scroll-top 属性来使页面滚动，页面滚动结束后触发 */
 interface _PageMetaOnScrolldone {
-    (event: _PageMetaOnScrolldoneEvent): void;
+    (event: _PageMetaOnScrolldoneEvent): void
 }
 /** 页面属性配置节点属性 */
 type _PageMetaProps = Partial<{
@@ -9005,46 +9005,46 @@ type _PageMetaProps = Partial<{
      *
      * light 亮色
      */
-    backgroundTextStyle: _PageMetaBackgroundTextStyle;
+    backgroundTextStyle: _PageMetaBackgroundTextStyle
     /** 窗口的背景色 */
-    backgroundColor: string;
+    backgroundColor: string
     /** 顶部窗口的十六进制背景色，仅 iOS 支持 */
-    backgroundColorTop: string;
+    backgroundColorTop: string
     /** 底部窗口的十六进制背景色，仅 iOS 支持 */
-    backgroundColorBottom: string;
+    backgroundColorBottom: string
     /**
      * 滚动位置，在被设置时页面会滚动到对应位置
      *
      * 单位为 px / rpx
      */
-    scrollTop: string;
+    scrollTop: string
     /**
      * 滚动动画时长
      *
      * 默认为 300
      */
-    scrollDuration: number;
+    scrollDuration: number
     /**
      * 页面根节点样式
      *
      * 页面根节点是所有页面节点的祖先节点，相当于 HTML 中的 body 节点
      */
-    pageStyle: string;
+    pageStyle: string
     /** 页面的根字体大小 */
-    rootFontSize: string;
+    rootFontSize: string
     /**
      * 是否开启自动下拉刷新
      *
      * 默认为 false
      */
-    enablePullDownRefresh: boolean;
+    enablePullDownRefresh: boolean
     /** 页面尺寸变化时触发 */
-    onResize: _PageMetaOnResize;
+    onResize: _PageMetaOnResize
     /** 页面滚动时触发 */
-    onScroll: _PageMetaOnScroll;
+    onScroll: _PageMetaOnScroll
     /** 通过改变 scroll-top 属性来使页面滚动，页面滚动结束后触发 */
-    onScrolldone: _PageMetaOnScrolldone;
-}>;
+    onScrolldone: _PageMetaOnScrolldone
+}>
 /**
  * 页面属性配置节点，用于指定页面的一些属性、监听页面事件
  *
@@ -9052,9 +9052,9 @@ type _PageMetaProps = Partial<{
  *
  * 只能是页面内的第一个节点
  */
-type _PageMeta = _Component<_PageMetaProps>;
+type _PageMeta = _Component<_PageMetaProps>
 /** 页面属性配置节点实例 */
-type _PageMetaInstance = InstanceType<_PageMeta>;
+type _PageMetaInstance = InstanceType<_PageMeta>
 
 declare global {
     namespace UniHelper {
@@ -9065,25 +9065,25 @@ declare global {
          *
          * light 亮色
          */
-        type PageMetaBackgroundTextStyle = _PageMetaBackgroundTextStyle;
+        type PageMetaBackgroundTextStyle = _PageMetaBackgroundTextStyle
         interface PageMetaOnResizeDetail extends _PageMetaOnResizeDetail {
         }
-        type PageMetaOnResizeEvent = _PageMetaOnResizeEvent;
+        type PageMetaOnResizeEvent = _PageMetaOnResizeEvent
         /** 页面尺寸变化时触发 */
         interface PageMetaOnResize extends _PageMetaOnResize {
         }
         interface PageMetaOnScrollDetail extends _PageMetaOnScrollDetail {
         }
-        type PageMetaOnScrollEvent = _PageMetaOnScrollEvent;
+        type PageMetaOnScrollEvent = _PageMetaOnScrollEvent
         /** 页面滚动时触发 */
         interface PageMetaOnScroll extends _PageMetaOnScroll {
         }
-        type PageMetaOnScrolldoneEvent = _PageMetaOnScrolldoneEvent;
+        type PageMetaOnScrolldoneEvent = _PageMetaOnScrolldoneEvent
         /** 通过改变 scroll-top 属性来使页面滚动，页面滚动结束后触发 */
         interface PageMetaOnScrolldone extends _PageMetaOnScrolldone {
         }
         /** 页面属性配置节点属性 */
-        type PageMetaProps = _PageMetaProps;
+        type PageMetaProps = _PageMetaProps
         /**
          * 页面属性配置节点，用于指定页面的一些属性、监听页面事件
          *
@@ -9091,9 +9091,9 @@ declare global {
          *
          * 只能是页面内的第一个节点
          */
-        type PageMeta = _PageMeta;
+        type PageMeta = _PageMeta
         /** 页面属性配置节点实例 */
-        type PageMetaInstance = _PageMetaInstance;
+        type PageMetaInstance = _PageMetaInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -9105,7 +9105,7 @@ declare module '@vue/runtime-core' {
          *
          * 只能是页面内的第一个节点
          */
-        PageMeta: _PageMeta;
+        PageMeta: _PageMeta
     }
 }
 
@@ -9116,7 +9116,7 @@ declare module '@vue/runtime-core' {
  *
  * ellipsis 超出显示区域时尾部显示省略标记
  */
-type _NavigationBarSubtitleOverflow = 'clip' | 'ellipsis';
+type _NavigationBarSubtitleOverflow = 'clip' | 'ellipsis'
 /**
  * 标题对齐方式
  *
@@ -9126,7 +9126,7 @@ type _NavigationBarSubtitleOverflow = 'clip' | 'ellipsis';
  *
  * auto 自动
  */
-type _NavigationBarTitleAlign = 'center' | 'left' | 'auto';
+type _NavigationBarTitleAlign = 'center' | 'left' | 'auto'
 /**
  * 背景图片重复方式
  *
@@ -9140,7 +9140,7 @@ type _NavigationBarTitleAlign = 'center' | 'left' | 'auto';
  *
  * no-repeat 背景图片在垂直方向和水平方向都拉伸
  */
-type _NavigationBarBackgroundRepeat = 'repeat' | 'repeat-x' | 'repeat-y' | 'no-repeat';
+type _NavigationBarBackgroundRepeat = 'repeat' | 'repeat-x' | 'repeat-y' | 'no-repeat'
 /**
  * 高斯模糊标题栏的风格
  *
@@ -9152,15 +9152,15 @@ type _NavigationBarBackgroundRepeat = 'repeat' | 'repeat-x' | 'repeat-y' | 'no-r
  *
  * none 无模糊效果
  */
-type _NavigationBarBlurEffect = 'none' | 'dark' | 'extralight' | 'light';
+type _NavigationBarBlurEffect = 'none' | 'dark' | 'extralight' | 'light'
 /** 导航条前景颜色值，包括按钮、标题、状态栏的颜色 */
-type _NavigationFrontColor = '#ffffff' | '#000000';
+type _NavigationFrontColor = '#ffffff' | '#000000'
 /** 改变导航栏颜色时的动画方式 */
-type _NavigationBarColorAnimationTimingFunc = 'linear' | 'easeIn' | 'easeOut' | 'easeInOut';
+type _NavigationBarColorAnimationTimingFunc = 'linear' | 'easeIn' | 'easeOut' | 'easeInOut'
 /** 页面导航条配置节点属性 */
 type _NavigationBarProps = Partial<{
     /** 导航条标题 */
-    title: string;
+    title: string
     /**
      * 标题图标
      *
@@ -9170,13 +9170,13 @@ type _NavigationBarProps = Partial<{
      *
      * 设置后标题将居左显示
      */
-    titleIcon: string;
+    titleIcon: string
     /**
      * 标题图标圆角
      *
      * 单位为 px
      */
-    titleIconRadius: string;
+    titleIconRadius: string
     /**
      * 副标题文字内容
      *
@@ -9184,7 +9184,7 @@ type _NavigationBarProps = Partial<{
      *
      * 设置副标题后将居左显示
      */
-    subtitleText: string;
+    subtitleText: string
     /**
      * 副标题文字字体大小
      *
@@ -9192,13 +9192,13 @@ type _NavigationBarProps = Partial<{
      *
      * 默认为 12px
      */
-    subtitleSize: string;
+    subtitleSize: string
     /**
      * 副标题文字颜色
      *
      * 默认为主标题文字颜色
      */
-    subtitleColor: string;
+    subtitleColor: string
     /**
      * 副标题文字超出显示区域时处理方式
      *
@@ -9208,7 +9208,7 @@ type _NavigationBarProps = Partial<{
      *
      * 默认为 ellipsis
      */
-    subtitleOverflow: _NavigationBarSubtitleOverflow;
+    subtitleOverflow: _NavigationBarSubtitleOverflow
     /**
      * 标题对齐方式
      *
@@ -9220,13 +9220,13 @@ type _NavigationBarProps = Partial<{
      *
      * 默认 Android left，iOS center
      */
-    titleAlign: _NavigationBarTitleAlign;
+    titleAlign: _NavigationBarTitleAlign
     /**
      * 背景图片
      *
      * 支持本地文件路径、相对路径、渐变色
      */
-    backgroundImage: string;
+    backgroundImage: string
     /**
      * 背景图片重复方式
      *
@@ -9242,7 +9242,7 @@ type _NavigationBarProps = Partial<{
      *
      * 默认为 no-repeat
      */
-    backgroundRepeat: _NavigationBarBackgroundRepeat;
+    backgroundRepeat: _NavigationBarBackgroundRepeat
     /**
      * 高斯模糊标题栏的风格
      *
@@ -9256,34 +9256,34 @@ type _NavigationBarProps = Partial<{
      *
      * 默认为 none
      */
-    blurEffect: _NavigationBarBlurEffect;
+    blurEffect: _NavigationBarBlurEffect
     /**
      * 是否在导航条显示 loading 加载提示
      *
      * 默认为 false
      */
-    loading: boolean;
+    loading: boolean
     /** 导航条前景颜色值，包括按钮、标题、状态栏的颜色 */
-    frontColor: _NavigationFrontColor;
+    frontColor: _NavigationFrontColor
     /** 导航条背景颜色值 */
-    backgroundColor: string;
+    backgroundColor: string
     /**
      * 改变导航栏颜色时的动画时长
      *
      * 默认为 0
      */
-    colorAnimationDuration: number;
+    colorAnimationDuration: number
     /** 改变导航栏颜色时的动画方式 */
-    colorAnimationTimingFunc: _NavigationBarColorAnimationTimingFunc;
-}>;
+    colorAnimationTimingFunc: _NavigationBarColorAnimationTimingFunc
+}>
 /**
  * 页面导航条配置节点，用于指定导航栏的一些属性
  *
  * 只能是 page-meta 组件内的第一个节点，需要配合 page-meta 一同使用
  */
-type _NavigationBar = _Component<_NavigationBarProps>;
+type _NavigationBar = _Component<_NavigationBarProps>
 /** 页面导航条配置节点实例 */
-type _NavigationBarInstance = InstanceType<_NavigationBar>;
+type _NavigationBarInstance = InstanceType<_NavigationBar>
 
 declare global {
     namespace UniHelper {
@@ -9294,7 +9294,7 @@ declare global {
          *
          * ellipsis 超出显示区域时尾部显示省略标记
          */
-        type NavigationBarSubtitleOverflow = _NavigationBarSubtitleOverflow;
+        type NavigationBarSubtitleOverflow = _NavigationBarSubtitleOverflow
         /**
          * 标题对齐方式
          *
@@ -9304,7 +9304,7 @@ declare global {
          *
          * auto 自动
          */
-        type NavigationBarTitleAlign = _NavigationBarTitleAlign;
+        type NavigationBarTitleAlign = _NavigationBarTitleAlign
         /**
          * 背景图片重复方式
          *
@@ -9318,7 +9318,7 @@ declare global {
          *
          * no-repeat 背景图片在垂直方向和水平方向都拉伸
          */
-        type NavigationBarBackgroundRepeat = _NavigationBarBackgroundRepeat;
+        type NavigationBarBackgroundRepeat = _NavigationBarBackgroundRepeat
         /**
          * 高斯模糊标题栏的风格
          *
@@ -9330,21 +9330,21 @@ declare global {
          *
          * none 无模糊效果
          */
-        type NavigationBarBlurEffect = _NavigationBarBlurEffect;
+        type NavigationBarBlurEffect = _NavigationBarBlurEffect
         /** 导航条前景颜色值，包括按钮、标题、状态栏的颜色 */
-        type NavigationFrontColor = _NavigationFrontColor;
+        type NavigationFrontColor = _NavigationFrontColor
         /** 改变导航栏颜色时的动画方式 */
-        type NavigationBarColorAnimationTimingFunc = _NavigationBarColorAnimationTimingFunc;
+        type NavigationBarColorAnimationTimingFunc = _NavigationBarColorAnimationTimingFunc
         /** 页面导航条配置节点属性 */
-        type NavigationBarProps = _NavigationBarProps;
+        type NavigationBarProps = _NavigationBarProps
         /**
          * 页面导航条配置节点，用于指定导航栏的一些属性
          *
          * 只能是 page-meta 组件内的第一个节点，需要配合 page-meta 一同使用
          */
-        type NavigationBar = _NavigationBar;
+        type NavigationBar = _NavigationBar
         /** 页面导航条配置节点实例 */
-        type NavigationBarInstance = _NavigationBarInstance;
+        type NavigationBarInstance = _NavigationBarInstance
     }
 }
 declare module '@vue/runtime-core' {
@@ -9354,7 +9354,7 @@ declare module '@vue/runtime-core' {
          *
          * 只能是 page-meta 组件内的第一个节点，需要配合 page-meta 一同使用
          */
-        NavigationBar: _NavigationBar;
+        NavigationBar: _NavigationBar
     }
 }
 
@@ -9365,18 +9365,18 @@ declare module '@vue/runtime-core' {
  *
  * horizontal 横向
  */
-type _CustomTabBarDirection = 'vertical' | 'horizontal';
+type _CustomTabBarDirection = 'vertical' | 'horizontal'
 interface _CustomTabBarOnOnTabItemTapDetail {
     /** 被点击 tabItem 的序号，从 0 开始 */
-    index: number;
+    index: number
     /** 被点击 tabItem 的页面路径 */
-    pagePath: string;
+    pagePath: string
     /** 被点击 tabItem 的按钮文字 */
-    text: string;
+    text: string
 }
 /** 点击事件 */
 interface _CustomTabBarOnOnTabItemTap {
-    (detail: _CustomTabBarOnOnTabItemTapDetail): void;
+    (detail: _CustomTabBarOnOnTabItemTapDetail): void
 }
 /** 自定义 tabBar 组件属性 */
 type _CustomTabBarProps = Partial<{
@@ -9389,26 +9389,26 @@ type _CustomTabBarProps = Partial<{
      *
      * 默认为 horizontal
      */
-    direction: _CustomTabBarDirection;
+    direction: _CustomTabBarDirection
     /**
      * 是否显示 icon
      *
      * 默认为 false
      */
-    showIcon: boolean;
+    showIcon: boolean
     /**
      * 选中的 tabBar 选项索引值
      *
      * 默认为 0
      */
-    selected: number;
+    selected: number
     /** 点击事件 */
-    onOnTabItemTap: _CustomTabBarOnOnTabItemTap;
-}>;
+    onOnTabItemTap: _CustomTabBarOnOnTabItemTap
+}>
 /** 自定义 tabBar 组件 */
-type _CustomTabBar = _Component<_CustomTabBarProps>;
+type _CustomTabBar = _Component<_CustomTabBarProps>
 /** 自定义 tabBar 组件实例 */
-type _CustomTabBarInstance = InstanceType<_CustomTabBar>;
+type _CustomTabBarInstance = InstanceType<_CustomTabBar>
 
 declare global {
     namespace UniHelper {
@@ -9419,25 +9419,25 @@ declare global {
          *
          * horizontal 横向
          */
-        type CustomTabBarDirection = _CustomTabBarDirection;
+        type CustomTabBarDirection = _CustomTabBarDirection
         interface CustomTabBarOnOnTabItemTapDetail extends _CustomTabBarOnOnTabItemTapDetail {
         }
         /** 点击事件 */
         interface CustomTabBarOnOnTabItemTap extends _CustomTabBarOnOnTabItemTap {
         }
         /** 自定义 tabBar 组件属性 */
-        type CustomTabBarProps = _CustomTabBarProps;
+        type CustomTabBarProps = _CustomTabBarProps
         /** 自定义 tabBar 组件 */
-        type CustomTabBar = _CustomTabBar;
+        type CustomTabBar = _CustomTabBar
         /** 自定义 tabBar 组件实例 */
-        type CustomTabBarInstance = _CustomTabBarInstance;
+        type CustomTabBarInstance = _CustomTabBarInstance
     }
 }
 declare module '@vue/runtime-core' {
     interface GlobalComponents {
         /** 自定义 tabBar 组件 */
-        CustomTabBar: _CustomTabBar;
+        CustomTabBar: _CustomTabBar
     }
 }
 
-export { _Ad as Ad, _AdContentPage as AdContentPage, _AdContentPageInstance as AdContentPageInstance, _AdContentPageOnComplete as AdContentPageOnComplete, _AdContentPageOnCompleteDetail as AdContentPageOnCompleteDetail, _AdContentPageOnCompleteEvent as AdContentPageOnCompleteEvent, _AdContentPageOnError as AdContentPageOnError, _AdContentPageOnErrorDetail as AdContentPageOnErrorDetail, _AdContentPageOnErrorEvent as AdContentPageOnErrorEvent, _AdContentPageOnLoad as AdContentPageOnLoad, _AdContentPageOnLoadEvent as AdContentPageOnLoadEvent, _AdContentPageOnPause as AdContentPageOnPause, _AdContentPageOnPauseDetail as AdContentPageOnPauseDetail, _AdContentPageOnPauseEvent as AdContentPageOnPauseEvent, _AdContentPageOnResume as AdContentPageOnResume, _AdContentPageOnResumeDetail as AdContentPageOnResumeDetail, _AdContentPageOnResumeEvent as AdContentPageOnResumeEvent, _AdContentPageOnStart as AdContentPageOnStart, _AdContentPageOnStartDetail as AdContentPageOnStartDetail, _AdContentPageOnStartEvent as AdContentPageOnStartEvent, _AdContentPageProps as AdContentPageProps, _AdDraw as AdDraw, _AdDrawInstance as AdDrawInstance, _AdDrawOnError as AdDrawOnError, _AdDrawOnErrorDetail as AdDrawOnErrorDetail, _AdDrawOnErrorEvent as AdDrawOnErrorEvent, _AdDrawOnLoad as AdDrawOnLoad, _AdDrawOnLoadEvent as AdDrawOnLoadEvent, _AdDrawProps as AdDrawProps, _AdFullscreenVideo as AdFullscreenVideo, _AdFullscreenVideoInstance as AdFullscreenVideoInstance, _AdFullscreenVideoOnClose as AdFullscreenVideoOnClose, _AdFullscreenVideoOnCloseEvent as AdFullscreenVideoOnCloseEvent, _AdFullscreenVideoOnError as AdFullscreenVideoOnError, _AdFullscreenVideoOnErrorDetail as AdFullscreenVideoOnErrorDetail, _AdFullscreenVideoOnErrorEvent as AdFullscreenVideoOnErrorEvent, _AdFullscreenVideoOnLoad as AdFullscreenVideoOnLoad, _AdFullscreenVideoOnLoadEvent as AdFullscreenVideoOnLoadEvent, _AdFullscreenVideoProps as AdFullscreenVideoProps, _AdInstance as AdInstance, _AdInteractive as AdInteractive, _AdInteractiveInstance as AdInteractiveInstance, _AdInteractiveOnError as AdInteractiveOnError, _AdInteractiveOnErrorDetail as AdInteractiveOnErrorDetail, _AdInteractiveOnErrorEvent as AdInteractiveOnErrorEvent, _AdInteractiveOnLoad as AdInteractiveOnLoad, _AdInteractiveOnLoadEvent as AdInteractiveOnLoadEvent, _AdInteractiveProps as AdInteractiveProps, _AdInterstitial as AdInterstitial, _AdInterstitialInstance as AdInterstitialInstance, _AdInterstitialOnClose as AdInterstitialOnClose, _AdInterstitialOnCloseEvent as AdInterstitialOnCloseEvent, _AdInterstitialOnError as AdInterstitialOnError, _AdInterstitialOnErrorDetail as AdInterstitialOnErrorDetail, _AdInterstitialOnErrorEvent as AdInterstitialOnErrorEvent, _AdInterstitialOnLoad as AdInterstitialOnLoad, _AdInterstitialOnLoadEvent as AdInterstitialOnLoadEvent, _AdInterstitialProps as AdInterstitialProps, _AdOnClose as AdOnClose, _AdOnCloseEvent as AdOnCloseEvent, _AdOnError as AdOnError, _AdOnErrorDetail as AdOnErrorDetail, _AdOnErrorEvent as AdOnErrorEvent, _AdOnLoad as AdOnLoad, _AdOnLoadEvent as AdOnLoadEvent, _AdProps as AdProps, _AdRewardedVideo as AdRewardedVideo, _AdRewardedVideoInstance as AdRewardedVideoInstance, _AdRewardedVideoOnClose as AdRewardedVideoOnClose, _AdRewardedVideoOnCloseEvent as AdRewardedVideoOnCloseEvent, _AdRewardedVideoOnError as AdRewardedVideoOnError, _AdRewardedVideoOnErrorDetail as AdRewardedVideoOnErrorDetail, _AdRewardedVideoOnErrorEvent as AdRewardedVideoOnErrorEvent, _AdRewardedVideoOnLoad as AdRewardedVideoOnLoad, _AdRewardedVideoOnLoadEvent as AdRewardedVideoOnLoadEvent, _AdRewardedVideoProps as AdRewardedVideoProps, _AdRewardedVideoUrlCallback as AdRewardedVideoUrlCallback, _AnyRecord as AnyRecord, _Audio as Audio, _AudioInstance as AudioInstance, _AudioOnEnded as AudioOnEnded, _AudioOnEndedEvent as AudioOnEndedEvent, _AudioOnError as AudioOnError, _AudioOnErrorDetail as AudioOnErrorDetail, _AudioOnErrorEvent as AudioOnErrorEvent, _AudioOnPause as AudioOnPause, _AudioOnPauseEvent as AudioOnPauseEvent, _AudioOnPlay as AudioOnPlay, _AudioOnPlayEvent as AudioOnPlayEvent, _AudioOnTimeupdate as AudioOnTimeupdate, _AudioOnTimeupdateDetail as AudioOnTimeupdateDetail, _AudioOnTimeupdateEvent as AudioOnTimeupdateEvent, _AudioProps as AudioProps, _BaseEvent as BaseEvent, _BaseTouchEvent as BaseTouchEvent, _Button as Button, _ButtonFormType as ButtonFormType, _ButtonInstance as ButtonInstance, _ButtonLang as ButtonLang, _ButtonOnAddgroupapp as ButtonOnAddgroupapp, _ButtonOnAddgroupappEvent as ButtonOnAddgroupappEvent, _ButtonOnChooseaddress as ButtonOnChooseaddress, _ButtonOnChooseaddressEvent as ButtonOnChooseaddressEvent, _ButtonOnChooseavatar as ButtonOnChooseavatar, _ButtonOnChooseavatarEvent as ButtonOnChooseavatarEvent, _ButtonOnChooseinvoicetitle as ButtonOnChooseinvoicetitle, _ButtonOnChooseinvoicetitleEvent as ButtonOnChooseinvoicetitleEvent, _ButtonOnError as ButtonOnError, _ButtonOnErrorEvent as ButtonOnErrorEvent, _ButtonOnGetphonenumber as ButtonOnGetphonenumber, _ButtonOnGetphonenumberDetail as ButtonOnGetphonenumberDetail, _ButtonOnGetphonenumberEvent as ButtonOnGetphonenumberEvent, _ButtonOnLaunchapp as ButtonOnLaunchapp, _ButtonOnLaunchappEvent as ButtonOnLaunchappEvent, _ButtonOnLogin as ButtonOnLogin, _ButtonOnLoginEvent as ButtonOnLoginEvent, _ButtonOnOpensetting as ButtonOnOpensetting, _ButtonOnOpensettingDetail as ButtonOnOpensettingDetail, _ButtonOnOpensettingEvent as ButtonOnOpensettingEvent, _ButtonOnSubscribe as ButtonOnSubscribe, _ButtonOnSubscribeEvent as ButtonOnSubscribeEvent, _ButtonOpenType as ButtonOpenType, _ButtonProps as ButtonProps, _ButtonSize as ButtonSize, _ButtonType as ButtonType, _Camera as Camera, _CameraDevicePosition as CameraDevicePosition, _CameraFlash as CameraFlash, _CameraFrameSize as CameraFrameSize, _CameraInstance as CameraInstance, _CameraMode as CameraMode, _CameraOnError as CameraOnError, _CameraOnErrorEvent as CameraOnErrorEvent, _CameraOnInitdone as CameraOnInitdone, _CameraOnInitdoneDetail as CameraOnInitdoneDetail, _CameraOnInitdoneEvent as CameraOnInitdoneEvent, _CameraOnScancode as CameraOnScancode, _CameraOnScancodeEvent as CameraOnScancodeEvent, _CameraOnStop as CameraOnStop, _CameraOnStopEvent as CameraOnStopEvent, _CameraProps as CameraProps, _CameraResolution as CameraResolution, _Canvas as Canvas, _CanvasInstance as CanvasInstance, _CanvasOnError as CanvasOnError, _CanvasOnErrorDetail as CanvasOnErrorDetail, _CanvasOnErrorEvent as CanvasOnErrorEvent, _CanvasOnLongtap as CanvasOnLongtap, _CanvasOnLongtapEvent as CanvasOnLongtapEvent, _CanvasOnTouchcancel as CanvasOnTouchcancel, _CanvasOnTouchcancelEvent as CanvasOnTouchcancelEvent, _CanvasOnTouchend as CanvasOnTouchend, _CanvasOnTouchendEvent as CanvasOnTouchendEvent, _CanvasOnTouchmove as CanvasOnTouchmove, _CanvasOnTouchmoveEvent as CanvasOnTouchmoveEvent, _CanvasOnTouchstart as CanvasOnTouchstart, _CanvasOnTouchstartEvent as CanvasOnTouchstartEvent, _CanvasProps as CanvasProps, _CanvasType as CanvasType, _Checkbox as Checkbox, _CheckboxGroup as CheckboxGroup, _CheckboxGroupInstance as CheckboxGroupInstance, _CheckboxGroupOnChange as CheckboxGroupOnChange, _CheckboxGroupOnChangeDetail as CheckboxGroupOnChangeDetail, _CheckboxGroupOnChangeEvent as CheckboxGroupOnChangeEvent, _CheckboxGroupProps as CheckboxGroupProps, _CheckboxInstance as CheckboxInstance, _CheckboxProps as CheckboxProps, _CheckboxValue as CheckboxValue, _Component as Component, _CoverImage as CoverImage, _CoverImageInstance as CoverImageInstance, _CoverImageOnError as CoverImageOnError, _CoverImageOnErrorEvent as CoverImageOnErrorEvent, _CoverImageOnLoad as CoverImageOnLoad, _CoverImageOnLoadEvent as CoverImageOnLoadEvent, _CoverImageProps as CoverImageProps, _CoverView as CoverView, _CoverViewInstance as CoverViewInstance, _CoverViewProps as CoverViewProps, _CustomEvent as CustomEvent, _CustomTabBar as CustomTabBar, _CustomTabBarDirection as CustomTabBarDirection, _CustomTabBarInstance as CustomTabBarInstance, _CustomTabBarOnOnTabItemTap as CustomTabBarOnOnTabItemTap, _CustomTabBarOnOnTabItemTapDetail as CustomTabBarOnOnTabItemTapDetail, _CustomTabBarProps as CustomTabBarProps, _DatePickerFields as DatePickerFields, _DatePickerOnCancel as DatePickerOnCancel, _DatePickerOnCancelEvent as DatePickerOnCancelEvent, _DatePickerOnChange as DatePickerOnChange, _DatePickerOnChangeDetail as DatePickerOnChangeDetail, _DatePickerOnChangeEvent as DatePickerOnChangeEvent, _DatePickerProps as DatePickerProps, _DatePickerValue as DatePickerValue, _Editor as Editor, _EditorInstance as EditorInstance, _EditorOnBlur as EditorOnBlur, _EditorOnBlurDetail as EditorOnBlurDetail, _EditorOnBlurEvent as EditorOnBlurEvent, _EditorOnFocus as EditorOnFocus, _EditorOnFocusDetail as EditorOnFocusDetail, _EditorOnFocusEvent as EditorOnFocusEvent, _EditorOnInput as EditorOnInput, _EditorOnInputDetail as EditorOnInputDetail, _EditorOnInputEvent as EditorOnInputEvent, _EditorOnReady as EditorOnReady, _EditorOnReadyEvent as EditorOnReadyEvent, _EditorOnStatuschange as EditorOnStatuschange, _EditorOnStatuschangeEvent as EditorOnStatuschangeEvent, _EditorProps as EditorProps, _EventTarget as EventTarget, _Form as Form, _FormInstance as FormInstance, _FormOnReset as FormOnReset, _FormOnResetEvent as FormOnResetEvent, _FormOnSubmit as FormOnSubmit, _FormOnSubmitDetail as FormOnSubmitDetail, _FormOnSubmitDetailValue as FormOnSubmitDetailValue, _FormOnSubmitEvent as FormOnSubmitEvent, _FormProps as FormProps, _Icon as Icon, _IconInstance as IconInstance, _IconProps as IconProps, _Image as Image, _ImageInstance as ImageInstance, _ImageMode as ImageMode, _ImageOnError as ImageOnError, _ImageOnErrorEvent as ImageOnErrorEvent, _ImageOnLoad as ImageOnLoad, _ImageOnLoadDetail as ImageOnLoadDetail, _ImageOnLoadEvent as ImageOnLoadEvent, _ImageProps as ImageProps, _Input as Input, _InputConfirmType as InputConfirmType, _InputInputMode as InputInputMode, _InputInstance as InputInstance, _InputOnBlur as InputOnBlur, _InputOnBlurDetail as InputOnBlurDetail, _InputOnBlurEvent as InputOnBlurEvent, _InputOnConfirm as InputOnConfirm, _InputOnConfirmDetail as InputOnConfirmDetail, _InputOnConfirmEvent as InputOnConfirmEvent, _InputOnFocus as InputOnFocus, _InputOnFocusDetail as InputOnFocusDetail, _InputOnFocusEvent as InputOnFocusEvent, _InputOnInput as InputOnInput, _InputOnInputDetail as InputOnInputDetail, _InputOnInputEvent as InputOnInputEvent, _InputOnKeyboardheightchange as InputOnKeyboardheightchange, _InputOnKeyboardheightchangeDetail as InputOnKeyboardheightchangeDetail, _InputOnKeyboardheightchangeEvent as InputOnKeyboardheightchangeEvent, _InputProps as InputProps, _InputTextContentType as InputTextContentType, _InputType as InputType, _InputValue as InputValue, _Label as Label, _LabelInstance as LabelInstance, _LabelProps as LabelProps, _LivePlayer as LivePlayer, _LivePlayerCode as LivePlayerCode, _LivePlayerInfo as LivePlayerInfo, _LivePlayerInstance as LivePlayerInstance, _LivePlayerMode as LivePlayerMode, _LivePlayerObjectFit as LivePlayerObjectFit, _LivePlayerOnAudiovolumenotify as LivePlayerOnAudiovolumenotify, _LivePlayerOnAudiovolumenotifyEvent as LivePlayerOnAudiovolumenotifyEvent, _LivePlayerOnEnterpictureinpicture as LivePlayerOnEnterpictureinpicture, _LivePlayerOnEnterpictureinpictureEvent as LivePlayerOnEnterpictureinpictureEvent, _LivePlayerOnFullscreenchange as LivePlayerOnFullscreenchange, _LivePlayerOnFullscreenchangeDetail as LivePlayerOnFullscreenchangeDetail, _LivePlayerOnFullscreenchangeEvent as LivePlayerOnFullscreenchangeEvent, _LivePlayerOnLeavepictureinpicture as LivePlayerOnLeavepictureinpicture, _LivePlayerOnLeavepictureinpictureEvent as LivePlayerOnLeavepictureinpictureEvent, _LivePlayerOnNetstatus as LivePlayerOnNetstatus, _LivePlayerOnNetstatusDetail as LivePlayerOnNetstatusDetail, _LivePlayerOnNetstatusEvent as LivePlayerOnNetstatusEvent, _LivePlayerOnStatechange as LivePlayerOnStatechange, _LivePlayerOnStatechangeDetail as LivePlayerOnStatechangeDetail, _LivePlayerOnStatechangeEvent as LivePlayerOnStatechangeEvent, _LivePlayerOrientation as LivePlayerOrientation, _LivePlayerPictureInPictureMode as LivePlayerPictureInPictureMode, _LivePlayerProps as LivePlayerProps, _LivePlayerSoundMode as LivePlayerSoundMode, _LivePusher as LivePusher, _LivePusherAudioQuality as LivePusherAudioQuality, _LivePusherAudioReverbType as LivePusherAudioReverbType, _LivePusherAudioVolumeType as LivePusherAudioVolumeType, _LivePusherCode as LivePusherCode, _LivePusherDevicePosition as LivePusherDevicePosition, _LivePusherInfo as LivePusherInfo, _LivePusherInstance as LivePusherInstance, _LivePusherLocalMirror as LivePusherLocalMirror, _LivePusherMode as LivePusherMode, _LivePusherOnBgmcomplete as LivePusherOnBgmcomplete, _LivePusherOnBgmcompleteEvent as LivePusherOnBgmcompleteEvent, _LivePusherOnBgmprogress as LivePusherOnBgmprogress, _LivePusherOnBgmprogressDetail as LivePusherOnBgmprogressDetail, _LivePusherOnBgmprogressEvent as LivePusherOnBgmprogressEvent, _LivePusherOnBgmstart as LivePusherOnBgmstart, _LivePusherOnBgmstartEvent as LivePusherOnBgmstartEvent, _LivePusherOnError as LivePusherOnError, _LivePusherOnErrorDetail as LivePusherOnErrorDetail, _LivePusherOnErrorEvent as LivePusherOnErrorEvent, _LivePusherOnNetstatus as LivePusherOnNetstatus, _LivePusherOnNetstatusDetail as LivePusherOnNetstatusDetail, _LivePusherOnNetstatusEvent as LivePusherOnNetstatusEvent, _LivePusherOnStatechange as LivePusherOnStatechange, _LivePusherOnStatechangeDetail as LivePusherOnStatechangeDetail, _LivePusherOnStatechangeEvent as LivePusherOnStatechangeEvent, _LivePusherOrientation as LivePusherOrientation, _LivePusherProps as LivePusherProps, _LiverPusherErrCode as LiverPusherErrCode, _Map as Map, _MapAnchor as MapAnchor, _MapCallout as MapCallout, _MapCircle as MapCircle, _MapControl as MapControl, _MapControlId as MapControlId, _MapCustomCallout as MapCustomCallout, _MapDisplay as MapDisplay, _MapInstance as MapInstance, _MapLabel as MapLabel, _MapLatitude as MapLatitude, _MapLevel as MapLevel, _MapLongitude as MapLongitude, _MapMarker as MapMarker, _MapMarkerId as MapMarkerId, _MapOnAnchorpointtap as MapOnAnchorpointtap, _MapOnAnchorpointtapDetail as MapOnAnchorpointtapDetail, _MapOnAnchorpointtapEvent as MapOnAnchorpointtapEvent, _MapOnCallouttap as MapOnCallouttap, _MapOnCallouttapDetail as MapOnCallouttapDetail, _MapOnCallouttapEvent as MapOnCallouttapEvent, _MapOnControltap as MapOnControltap, _MapOnControltapDetail as MapOnControltapDetail, _MapOnControltapEvent as MapOnControltapEvent, _MapOnLabeltap as MapOnLabeltap, _MapOnLabeltapDetail as MapOnLabeltapDetail, _MapOnLabeltapEvent as MapOnLabeltapEvent, _MapOnMarkertap as MapOnMarkertap, _MapOnMarkertapDetail as MapOnMarkertapDetail, _MapOnMarkertapEvent as MapOnMarkertapEvent, _MapOnPoitap as MapOnPoitap, _MapOnPoitapDetail as MapOnPoitapDetail, _MapOnPoitapEvent as MapOnPoitapEvent, _MapOnRegionchange as MapOnRegionchange, _MapOnRegionchangeEvent as MapOnRegionchangeEvent, _MapOnTap as MapOnTap, _MapOnTapEvent as MapOnTapEvent, _MapOnUpdated as MapOnUpdated, _MapOnUpdatedEvent as MapOnUpdatedEvent, _MapPoint as MapPoint, _MapPolygon as MapPolygon, _MapPolyline as MapPolyline, _MapPosition as MapPosition, _MapProps as MapProps, _MapTextAlign as MapTextAlign, _MapTheme as MapTheme, _MatchMedia as MatchMedia, _MatchMediaInstance as MatchMediaInstance, _MatchMediaOrientation as MatchMediaOrientation, _MatchMediaProps as MatchMediaProps, _MovableArea as MovableArea, _MovableAreaInstance as MovableAreaInstance, _MovableAreaProps as MovableAreaProps, _MovableView as MovableView, _MovableViewDirection as MovableViewDirection, _MovableViewInstance as MovableViewInstance, _MovableViewOnChange as MovableViewOnChange, _MovableViewOnChangeDetail as MovableViewOnChangeDetail, _MovableViewOnChangeEvent as MovableViewOnChangeEvent, _MovableViewOnScale as MovableViewOnScale, _MovableViewOnScaleDetail as MovableViewOnScaleDetail, _MovableViewOnScaleEvent as MovableViewOnScaleEvent, _MovableViewProps as MovableViewProps, _MovableViewSource as MovableViewSource, _MultiSelectorPickerOnCancel as MultiSelectorPickerOnCancel, _MultiSelectorPickerOnCancelEvent as MultiSelectorPickerOnCancelEvent, _MultiSelectorPickerOnChange as MultiSelectorPickerOnChange, _MultiSelectorPickerOnChangeDetail as MultiSelectorPickerOnChangeDetail, _MultiSelectorPickerOnChangeEvent as MultiSelectorPickerOnChangeEvent, _MultiSelectorPickerOnColumnchange as MultiSelectorPickerOnColumnchange, _MultiSelectorPickerOnColumnchangeDetail as MultiSelectorPickerOnColumnchangeDetail, _MultiSelectorPickerOnColumnchangeEvent as MultiSelectorPickerOnColumnchangeEvent, _MultiSelectorPickerProps as MultiSelectorPickerProps, _MultiSelectorPickerRange as MultiSelectorPickerRange, _MultiSelectorPickerValue as MultiSelectorPickerValue, _MultiSelectorPickerValueElement as MultiSelectorPickerValueElement, _NavigationBar as NavigationBar, _NavigationBarBackgroundRepeat as NavigationBarBackgroundRepeat, _NavigationBarBlurEffect as NavigationBarBlurEffect, _NavigationBarColorAnimationTimingFunc as NavigationBarColorAnimationTimingFunc, _NavigationBarInstance as NavigationBarInstance, _NavigationBarProps as NavigationBarProps, _NavigationBarSubtitleOverflow as NavigationBarSubtitleOverflow, _NavigationBarTitleAlign as NavigationBarTitleAlign, _NavigationFrontColor as NavigationFrontColor, _Navigator as Navigator, _NavigatorAnimationType as NavigatorAnimationType, _NavigatorInstance as NavigatorInstance, _NavigatorOpenType as NavigatorOpenType, _NavigatorProps as NavigatorProps, _NavigatorTarget as NavigatorTarget, _NavigatorVersion as NavigatorVersion, _PageMeta as PageMeta, _PageMetaBackgroundTextStyle as PageMetaBackgroundTextStyle, _PageMetaInstance as PageMetaInstance, _PageMetaOnResize as PageMetaOnResize, _PageMetaOnResizeDetail as PageMetaOnResizeDetail, _PageMetaOnResizeEvent as PageMetaOnResizeEvent, _PageMetaOnScroll as PageMetaOnScroll, _PageMetaOnScrollDetail as PageMetaOnScrollDetail, _PageMetaOnScrollEvent as PageMetaOnScrollEvent, _PageMetaOnScrolldone as PageMetaOnScrolldone, _PageMetaOnScrolldoneEvent as PageMetaOnScrolldoneEvent, _PageMetaProps as PageMetaProps, _Picker as Picker, _PickerInstance as PickerInstance, _PickerProps as PickerProps, _PickerValue as PickerValue, _PickerView as PickerView, _PickerViewColumn as PickerViewColumn, _PickerViewColumnInstance as PickerViewColumnInstance, _PickerViewColumnProps as PickerViewColumnProps, _PickerViewInstance as PickerViewInstance, _PickerViewOnChange as PickerViewOnChange, _PickerViewOnChangeDetail as PickerViewOnChangeDetail, _PickerViewOnChangeEvent as PickerViewOnChangeEvent, _PickerViewOnPickend as PickerViewOnPickend, _PickerViewOnPickendEvent as PickerViewOnPickendEvent, _PickerViewOnPickstart as PickerViewOnPickstart, _PickerViewOnPickstartEvent as PickerViewOnPickstartEvent, _PickerViewProps as PickerViewProps, _PickerViewValue as PickerViewValue, _PickerViewValueElement as PickerViewValueElement, _Progress as Progress, _ProgressActiveMode as ProgressActiveMode, _ProgressInstance as ProgressInstance, _ProgressOnActiveend as ProgressOnActiveend, _ProgressOnActiveendEvent as ProgressOnActiveendEvent, _ProgressProps as ProgressProps, _Radio as Radio, _RadioGroup as RadioGroup, _RadioGroupInstance as RadioGroupInstance, _RadioGroupOnChange as RadioGroupOnChange, _RadioGroupOnChangeDetail as RadioGroupOnChangeDetail, _RadioGroupOnChangeEvent as RadioGroupOnChangeEvent, _RadioGroupProps as RadioGroupProps, _RadioInstance as RadioInstance, _RadioProps as RadioProps, _RadioValue as RadioValue, _RegionPickerLevel as RegionPickerLevel, _RegionPickerOnCancel as RegionPickerOnCancel, _RegionPickerOnCancelEvent as RegionPickerOnCancelEvent, _RegionPickerOnChange as RegionPickerOnChange, _RegionPickerOnChangeDetail as RegionPickerOnChangeDetail, _RegionPickerOnChangeEvent as RegionPickerOnChangeEvent, _RegionPickerProps as RegionPickerProps, _RegionPickerValue as RegionPickerValue, _RegionPickerValueElement as RegionPickerValueElement, _RichText as RichText, _RichTextInstance as RichTextInstance, _RichTextNode as RichTextNode, _RichTextNodeNode as RichTextNodeNode, _RichTextNodes as RichTextNodes, _RichTextOnItemclick as RichTextOnItemclick, _RichTextOnItemclickEvent as RichTextOnItemclickEvent, _RichTextProps as RichTextProps, _RichTextSpace as RichTextSpace, _RichTextTextNode as RichTextTextNode, _ScrollView as ScrollView, _ScrollViewInstance as ScrollViewInstance, _ScrollViewOnRefresherabort as ScrollViewOnRefresherabort, _ScrollViewOnRefresherabortEvent as ScrollViewOnRefresherabortEvent, _ScrollViewOnRefresherpulling as ScrollViewOnRefresherpulling, _ScrollViewOnRefresherpullingEvent as ScrollViewOnRefresherpullingEvent, _ScrollViewOnRefresherrefresh as ScrollViewOnRefresherrefresh, _ScrollViewOnRefresherrefreshEvent as ScrollViewOnRefresherrefreshEvent, _ScrollViewOnRefresherrestore as ScrollViewOnRefresherrestore, _ScrollViewOnRefresherrestoreEvent as ScrollViewOnRefresherrestoreEvent, _ScrollViewOnScroll as ScrollViewOnScroll, _ScrollViewOnScrollDetail as ScrollViewOnScrollDetail, _ScrollViewOnScrollEvent as ScrollViewOnScrollEvent, _ScrollViewOnScrolltolower as ScrollViewOnScrolltolower, _ScrollViewOnScrolltolowerEvent as ScrollViewOnScrolltolowerEvent, _ScrollViewOnScrolltoupper as ScrollViewOnScrolltoupper, _ScrollViewOnScrolltoupperEvent as ScrollViewOnScrolltoupperEvent, _ScrollViewProps as ScrollViewProps, _ScrollViewRefresherDefaultStyle as ScrollViewRefresherDefaultStyle, _SelectorPickerOnCancel as SelectorPickerOnCancel, _SelectorPickerOnCancelEvent as SelectorPickerOnCancelEvent, _SelectorPickerOnChange as SelectorPickerOnChange, _SelectorPickerOnChangeDetail as SelectorPickerOnChangeDetail, _SelectorPickerOnChangeEvent as SelectorPickerOnChangeEvent, _SelectorPickerProps as SelectorPickerProps, _SelectorPickerRange as SelectorPickerRange, _SelectorPickerSelectorType as SelectorPickerSelectorType, _SelectorPickerValue as SelectorPickerValue, _Slider as Slider, _SliderInstance as SliderInstance, _SliderOnChange as SliderOnChange, _SliderOnChangeDetail as SliderOnChangeDetail, _SliderOnChangeEvent as SliderOnChangeEvent, _SliderOnChanging as SliderOnChanging, _SliderOnChangingDetail as SliderOnChangingDetail, _SliderOnChangingEvent as SliderOnChangingEvent, _SliderProps as SliderProps, _SliderValue as SliderValue, _Swiper as Swiper, _SwiperEasingFunction as SwiperEasingFunction, _SwiperInstance as SwiperInstance, _SwiperItem as SwiperItem, _SwiperItemInstance as SwiperItemInstance, _SwiperItemProps as SwiperItemProps, _SwiperOnAnimationfinish as SwiperOnAnimationfinish, _SwiperOnAnimationfinishDetail as SwiperOnAnimationfinishDetail, _SwiperOnAnimationfinishEvent as SwiperOnAnimationfinishEvent, _SwiperOnChange as SwiperOnChange, _SwiperOnChangeDetail as SwiperOnChangeDetail, _SwiperOnChangeEvent as SwiperOnChangeEvent, _SwiperOnTransition as SwiperOnTransition, _SwiperOnTransitionDetail as SwiperOnTransitionDetail, _SwiperOnTransitionEvent as SwiperOnTransitionEvent, _SwiperProps as SwiperProps, _SwiperSource as SwiperSource, _Switch as Switch, _SwitchChecked as SwitchChecked, _SwitchInstance as SwitchInstance, _SwitchOnChange as SwitchOnChange, _SwitchOnChangeDetail as SwitchOnChangeDetail, _SwitchOnChangeEvent as SwitchOnChangeEvent, _SwitchProps as SwitchProps, _SwitchType as SwitchType, _Text as Text, _TextInstance as TextInstance, _TextProps as TextProps, _TextSpace as TextSpace, _Textarea as Textarea, _TextareaConfirmType as TextareaConfirmType, _TextareaInstance as TextareaInstance, _TextareaOnBlur as TextareaOnBlur, _TextareaOnBlurDetail as TextareaOnBlurDetail, _TextareaOnBlurEvent as TextareaOnBlurEvent, _TextareaOnConfirm as TextareaOnConfirm, _TextareaOnConfirmDetail as TextareaOnConfirmDetail, _TextareaOnConfirmEvent as TextareaOnConfirmEvent, _TextareaOnFocus as TextareaOnFocus, _TextareaOnFocusDetail as TextareaOnFocusDetail, _TextareaOnFocusEvent as TextareaOnFocusEvent, _TextareaOnInput as TextareaOnInput, _TextareaOnInputDetail as TextareaOnInputDetail, _TextareaOnInputEvent as TextareaOnInputEvent, _TextareaOnKeyboardheightchange as TextareaOnKeyboardheightchange, _TextareaOnKeyboardheightchangeDetail as TextareaOnKeyboardheightchangeDetail, _TextareaOnKeyboardheightchangeEvent as TextareaOnKeyboardheightchangeEvent, _TextareaOnLinechange as TextareaOnLinechange, _TextareaOnLinechangeDetail as TextareaOnLinechangeDetail, _TextareaOnLinechangeEvent as TextareaOnLinechangeEvent, _TextareaProps as TextareaProps, _TextareaValue as TextareaValue, _TimePickerOnCancel as TimePickerOnCancel, _TimePickerOnCancelEvent as TimePickerOnCancelEvent, _TimePickerOnChange as TimePickerOnChange, _TimePickerOnChangeDetail as TimePickerOnChangeDetail, _TimePickerOnChangeEvent as TimePickerOnChangeEvent, _TimePickerProps as TimePickerProps, _TimePickerValue as TimePickerValue, _TouchCanvasDetail as TouchCanvasDetail, _TouchCanvasEvent as TouchCanvasEvent, _TouchDetail as TouchDetail, _TouchEvent as TouchEvent, _Video as Video, _VideoCodec as VideoCodec, _VideoDanmu as VideoDanmu, _VideoDirection as VideoDirection, _VideoInstance as VideoInstance, _VideoMobilenetHintType as VideoMobilenetHintType, _VideoObjectFit as VideoObjectFit, _VideoOnControlstoggle as VideoOnControlstoggle, _VideoOnControlstoggleDetail as VideoOnControlstoggleDetail, _VideoOnControlstoggleEvent as VideoOnControlstoggleEvent, _VideoOnEnded as VideoOnEnded, _VideoOnEndedEvent as VideoOnEndedEvent, _VideoOnError as VideoOnError, _VideoOnErrorEvent as VideoOnErrorEvent, _VideoOnFullscreenchange as VideoOnFullscreenchange, _VideoOnFullscreenchangeDetail as VideoOnFullscreenchangeDetail, _VideoOnFullscreenchangeEvent as VideoOnFullscreenchangeEvent, _VideoOnFullscreenclick as VideoOnFullscreenclick, _VideoOnFullscreenclickDetail as VideoOnFullscreenclickDetail, _VideoOnFullscreenclickEvent as VideoOnFullscreenclickEvent, _VideoOnLoadeddata as VideoOnLoadeddata, _VideoOnLoadeddataEvent as VideoOnLoadeddataEvent, _VideoOnLoadedmetadata as VideoOnLoadedmetadata, _VideoOnLoadedmetadataDetail as VideoOnLoadedmetadataDetail, _VideoOnLoadedmetadataEvent as VideoOnLoadedmetadataEvent, _VideoOnLoadstart as VideoOnLoadstart, _VideoOnLoadstartEvent as VideoOnLoadstartEvent, _VideoOnPause as VideoOnPause, _VideoOnPauseEvent as VideoOnPauseEvent, _VideoOnPlay as VideoOnPlay, _VideoOnPlayEvent as VideoOnPlayEvent, _VideoOnProgress as VideoOnProgress, _VideoOnProgressDetail as VideoOnProgressDetail, _VideoOnProgressEvent as VideoOnProgressEvent, _VideoOnSeeked as VideoOnSeeked, _VideoOnSeekedEvent as VideoOnSeekedEvent, _VideoOnSeeking as VideoOnSeeking, _VideoOnSeekingEvent as VideoOnSeekingEvent, _VideoOnTimeupdate as VideoOnTimeupdate, _VideoOnTimeupdateDetail as VideoOnTimeupdateDetail, _VideoOnTimeupdateEvent as VideoOnTimeupdateEvent, _VideoOnWaiting as VideoOnWaiting, _VideoOnWaitingEvent as VideoOnWaitingEvent, _VideoPlayBtnPosition as VideoPlayBtnPosition, _VideoPlayStrategy as VideoPlayStrategy, _VideoProps as VideoProps, _View as View, _ViewInstance as ViewInstance, _ViewProps as ViewProps, _WebView as WebView, _WebViewInstance as WebViewInstance, _WebViewOnMessage as WebViewOnMessage, _WebViewOnMessageDetail as WebViewOnMessageDetail, _WebViewOnMessageEvent as WebViewOnMessageEvent, _WebViewOnOnPostMessage as WebViewOnOnPostMessage, _WebViewOnOnPostMessageEvent as WebViewOnOnPostMessageEvent, _WebViewProps as WebViewProps, _WebViewStyles as WebViewStyles };
+export { _Ad as Ad, _AdContentPage as AdContentPage, _AdContentPageInstance as AdContentPageInstance, _AdContentPageOnComplete as AdContentPageOnComplete, _AdContentPageOnCompleteDetail as AdContentPageOnCompleteDetail, _AdContentPageOnCompleteEvent as AdContentPageOnCompleteEvent, _AdContentPageOnError as AdContentPageOnError, _AdContentPageOnErrorDetail as AdContentPageOnErrorDetail, _AdContentPageOnErrorEvent as AdContentPageOnErrorEvent, _AdContentPageOnLoad as AdContentPageOnLoad, _AdContentPageOnLoadEvent as AdContentPageOnLoadEvent, _AdContentPageOnPause as AdContentPageOnPause, _AdContentPageOnPauseDetail as AdContentPageOnPauseDetail, _AdContentPageOnPauseEvent as AdContentPageOnPauseEvent, _AdContentPageOnResume as AdContentPageOnResume, _AdContentPageOnResumeDetail as AdContentPageOnResumeDetail, _AdContentPageOnResumeEvent as AdContentPageOnResumeEvent, _AdContentPageOnStart as AdContentPageOnStart, _AdContentPageOnStartDetail as AdContentPageOnStartDetail, _AdContentPageOnStartEvent as AdContentPageOnStartEvent, _AdContentPageProps as AdContentPageProps, _AdDraw as AdDraw, _AdDrawInstance as AdDrawInstance, _AdDrawOnError as AdDrawOnError, _AdDrawOnErrorDetail as AdDrawOnErrorDetail, _AdDrawOnErrorEvent as AdDrawOnErrorEvent, _AdDrawOnLoad as AdDrawOnLoad, _AdDrawOnLoadEvent as AdDrawOnLoadEvent, _AdDrawProps as AdDrawProps, _AdFullscreenVideo as AdFullscreenVideo, _AdFullscreenVideoInstance as AdFullscreenVideoInstance, _AdFullscreenVideoOnClose as AdFullscreenVideoOnClose, _AdFullscreenVideoOnCloseEvent as AdFullscreenVideoOnCloseEvent, _AdFullscreenVideoOnError as AdFullscreenVideoOnError, _AdFullscreenVideoOnErrorDetail as AdFullscreenVideoOnErrorDetail, _AdFullscreenVideoOnErrorEvent as AdFullscreenVideoOnErrorEvent, _AdFullscreenVideoOnLoad as AdFullscreenVideoOnLoad, _AdFullscreenVideoOnLoadEvent as AdFullscreenVideoOnLoadEvent, _AdFullscreenVideoProps as AdFullscreenVideoProps, _AdInstance as AdInstance, _AdInteractive as AdInteractive, _AdInteractiveInstance as AdInteractiveInstance, _AdInteractiveOnError as AdInteractiveOnError, _AdInteractiveOnErrorDetail as AdInteractiveOnErrorDetail, _AdInteractiveOnErrorEvent as AdInteractiveOnErrorEvent, _AdInteractiveOnLoad as AdInteractiveOnLoad, _AdInteractiveOnLoadEvent as AdInteractiveOnLoadEvent, _AdInteractiveProps as AdInteractiveProps, _AdInterstitial as AdInterstitial, _AdInterstitialInstance as AdInterstitialInstance, _AdInterstitialOnClose as AdInterstitialOnClose, _AdInterstitialOnCloseEvent as AdInterstitialOnCloseEvent, _AdInterstitialOnError as AdInterstitialOnError, _AdInterstitialOnErrorDetail as AdInterstitialOnErrorDetail, _AdInterstitialOnErrorEvent as AdInterstitialOnErrorEvent, _AdInterstitialOnLoad as AdInterstitialOnLoad, _AdInterstitialOnLoadEvent as AdInterstitialOnLoadEvent, _AdInterstitialProps as AdInterstitialProps, _AdOnClose as AdOnClose, _AdOnCloseEvent as AdOnCloseEvent, _AdOnError as AdOnError, _AdOnErrorDetail as AdOnErrorDetail, _AdOnErrorEvent as AdOnErrorEvent, _AdOnLoad as AdOnLoad, _AdOnLoadEvent as AdOnLoadEvent, _AdProps as AdProps, _AdRewardedVideo as AdRewardedVideo, _AdRewardedVideoInstance as AdRewardedVideoInstance, _AdRewardedVideoOnClose as AdRewardedVideoOnClose, _AdRewardedVideoOnCloseEvent as AdRewardedVideoOnCloseEvent, _AdRewardedVideoOnError as AdRewardedVideoOnError, _AdRewardedVideoOnErrorDetail as AdRewardedVideoOnErrorDetail, _AdRewardedVideoOnErrorEvent as AdRewardedVideoOnErrorEvent, _AdRewardedVideoOnLoad as AdRewardedVideoOnLoad, _AdRewardedVideoOnLoadEvent as AdRewardedVideoOnLoadEvent, _AdRewardedVideoProps as AdRewardedVideoProps, _AdRewardedVideoUrlCallback as AdRewardedVideoUrlCallback, _AnyRecord as AnyRecord, _Audio as Audio, _AudioInstance as AudioInstance, _AudioOnEnded as AudioOnEnded, _AudioOnEndedEvent as AudioOnEndedEvent, _AudioOnError as AudioOnError, _AudioOnErrorDetail as AudioOnErrorDetail, _AudioOnErrorEvent as AudioOnErrorEvent, _AudioOnPause as AudioOnPause, _AudioOnPauseEvent as AudioOnPauseEvent, _AudioOnPlay as AudioOnPlay, _AudioOnPlayEvent as AudioOnPlayEvent, _AudioOnTimeupdate as AudioOnTimeupdate, _AudioOnTimeupdateDetail as AudioOnTimeupdateDetail, _AudioOnTimeupdateEvent as AudioOnTimeupdateEvent, _AudioProps as AudioProps, _BaseEvent as BaseEvent, _BaseTouchEvent as BaseTouchEvent, _Button as Button, _ButtonFormType as ButtonFormType, _ButtonInstance as ButtonInstance, _ButtonLang as ButtonLang, _ButtonOnAddgroupapp as ButtonOnAddgroupapp, _ButtonOnAddgroupappEvent as ButtonOnAddgroupappEvent, _ButtonOnChooseaddress as ButtonOnChooseaddress, _ButtonOnChooseaddressEvent as ButtonOnChooseaddressEvent, _ButtonOnChooseavatar as ButtonOnChooseavatar, _ButtonOnChooseavatarEvent as ButtonOnChooseavatarEvent, _ButtonOnChooseinvoicetitle as ButtonOnChooseinvoicetitle, _ButtonOnChooseinvoicetitleEvent as ButtonOnChooseinvoicetitleEvent, _ButtonOnError as ButtonOnError, _ButtonOnErrorEvent as ButtonOnErrorEvent, _ButtonOnGetphonenumber as ButtonOnGetphonenumber, _ButtonOnGetphonenumberDetail as ButtonOnGetphonenumberDetail, _ButtonOnGetphonenumberEvent as ButtonOnGetphonenumberEvent, _ButtonOnLaunchapp as ButtonOnLaunchapp, _ButtonOnLaunchappEvent as ButtonOnLaunchappEvent, _ButtonOnLogin as ButtonOnLogin, _ButtonOnLoginEvent as ButtonOnLoginEvent, _ButtonOnOpensetting as ButtonOnOpensetting, _ButtonOnOpensettingDetail as ButtonOnOpensettingDetail, _ButtonOnOpensettingEvent as ButtonOnOpensettingEvent, _ButtonOnSubscribe as ButtonOnSubscribe, _ButtonOnSubscribeEvent as ButtonOnSubscribeEvent, _ButtonOpenType as ButtonOpenType, _ButtonProps as ButtonProps, _ButtonSize as ButtonSize, _ButtonType as ButtonType, _Camera as Camera, _CameraDevicePosition as CameraDevicePosition, _CameraFlash as CameraFlash, _CameraFrameSize as CameraFrameSize, _CameraInstance as CameraInstance, _CameraMode as CameraMode, _CameraOnError as CameraOnError, _CameraOnErrorEvent as CameraOnErrorEvent, _CameraOnInitdone as CameraOnInitdone, _CameraOnInitdoneDetail as CameraOnInitdoneDetail, _CameraOnInitdoneEvent as CameraOnInitdoneEvent, _CameraOnScancode as CameraOnScancode, _CameraOnScancodeEvent as CameraOnScancodeEvent, _CameraOnStop as CameraOnStop, _CameraOnStopEvent as CameraOnStopEvent, _CameraProps as CameraProps, _CameraResolution as CameraResolution, _Canvas as Canvas, _CanvasInstance as CanvasInstance, _CanvasOnError as CanvasOnError, _CanvasOnErrorDetail as CanvasOnErrorDetail, _CanvasOnErrorEvent as CanvasOnErrorEvent, _CanvasOnLongtap as CanvasOnLongtap, _CanvasOnLongtapEvent as CanvasOnLongtapEvent, _CanvasOnTouchcancel as CanvasOnTouchcancel, _CanvasOnTouchcancelEvent as CanvasOnTouchcancelEvent, _CanvasOnTouchend as CanvasOnTouchend, _CanvasOnTouchendEvent as CanvasOnTouchendEvent, _CanvasOnTouchmove as CanvasOnTouchmove, _CanvasOnTouchmoveEvent as CanvasOnTouchmoveEvent, _CanvasOnTouchstart as CanvasOnTouchstart, _CanvasOnTouchstartEvent as CanvasOnTouchstartEvent, _CanvasProps as CanvasProps, _CanvasType as CanvasType, _Checkbox as Checkbox, _CheckboxGroup as CheckboxGroup, _CheckboxGroupInstance as CheckboxGroupInstance, _CheckboxGroupOnChange as CheckboxGroupOnChange, _CheckboxGroupOnChangeDetail as CheckboxGroupOnChangeDetail, _CheckboxGroupOnChangeEvent as CheckboxGroupOnChangeEvent, _CheckboxGroupProps as CheckboxGroupProps, _CheckboxInstance as CheckboxInstance, _CheckboxProps as CheckboxProps, _CheckboxValue as CheckboxValue, _Component as Component, _CoverImage as CoverImage, _CoverImageInstance as CoverImageInstance, _CoverImageOnError as CoverImageOnError, _CoverImageOnErrorEvent as CoverImageOnErrorEvent, _CoverImageOnLoad as CoverImageOnLoad, _CoverImageOnLoadEvent as CoverImageOnLoadEvent, _CoverImageProps as CoverImageProps, _CoverView as CoverView, _CoverViewInstance as CoverViewInstance, _CoverViewProps as CoverViewProps, _CustomEvent as CustomEvent, _CustomTabBar as CustomTabBar, _CustomTabBarDirection as CustomTabBarDirection, _CustomTabBarInstance as CustomTabBarInstance, _CustomTabBarOnOnTabItemTap as CustomTabBarOnOnTabItemTap, _CustomTabBarOnOnTabItemTapDetail as CustomTabBarOnOnTabItemTapDetail, _CustomTabBarProps as CustomTabBarProps, _DatePickerFields as DatePickerFields, _DatePickerOnCancel as DatePickerOnCancel, _DatePickerOnCancelEvent as DatePickerOnCancelEvent, _DatePickerOnChange as DatePickerOnChange, _DatePickerOnChangeDetail as DatePickerOnChangeDetail, _DatePickerOnChangeEvent as DatePickerOnChangeEvent, _DatePickerProps as DatePickerProps, _DatePickerValue as DatePickerValue, _Editor as Editor, _EditorInstance as EditorInstance, _EditorOnBlur as EditorOnBlur, _EditorOnBlurDetail as EditorOnBlurDetail, _EditorOnBlurEvent as EditorOnBlurEvent, _EditorOnFocus as EditorOnFocus, _EditorOnFocusDetail as EditorOnFocusDetail, _EditorOnFocusEvent as EditorOnFocusEvent, _EditorOnInput as EditorOnInput, _EditorOnInputDetail as EditorOnInputDetail, _EditorOnInputEvent as EditorOnInputEvent, _EditorOnReady as EditorOnReady, _EditorOnReadyEvent as EditorOnReadyEvent, _EditorOnStatuschange as EditorOnStatuschange, _EditorOnStatuschangeEvent as EditorOnStatuschangeEvent, _EditorProps as EditorProps, _EventTarget as EventTarget, _Form as Form, _FormInstance as FormInstance, _FormOnReset as FormOnReset, _FormOnResetEvent as FormOnResetEvent, _FormOnSubmit as FormOnSubmit, _FormOnSubmitDetail as FormOnSubmitDetail, _FormOnSubmitDetailValue as FormOnSubmitDetailValue, _FormOnSubmitEvent as FormOnSubmitEvent, _FormProps as FormProps, _Icon as Icon, _IconInstance as IconInstance, _IconProps as IconProps, _Image as Image, _ImageInstance as ImageInstance, _ImageMode as ImageMode, _ImageOnError as ImageOnError, _ImageOnErrorEvent as ImageOnErrorEvent, _ImageOnLoad as ImageOnLoad, _ImageOnLoadDetail as ImageOnLoadDetail, _ImageOnLoadEvent as ImageOnLoadEvent, _ImageProps as ImageProps, _Input as Input, _InputConfirmType as InputConfirmType, _InputInputMode as InputInputMode, _InputInstance as InputInstance, _InputOnBlur as InputOnBlur, _InputOnBlurDetail as InputOnBlurDetail, _InputOnBlurEvent as InputOnBlurEvent, _InputOnConfirm as InputOnConfirm, _InputOnConfirmDetail as InputOnConfirmDetail, _InputOnConfirmEvent as InputOnConfirmEvent, _InputOnFocus as InputOnFocus, _InputOnFocusDetail as InputOnFocusDetail, _InputOnFocusEvent as InputOnFocusEvent, _InputOnInput as InputOnInput, _InputOnInputDetail as InputOnInputDetail, _InputOnInputEvent as InputOnInputEvent, _InputOnKeyboardheightchange as InputOnKeyboardheightchange, _InputOnKeyboardheightchangeDetail as InputOnKeyboardheightchangeDetail, _InputOnKeyboardheightchangeEvent as InputOnKeyboardheightchangeEvent, _InputProps as InputProps, _InputTextContentType as InputTextContentType, _InputType as InputType, _InputValue as InputValue, _Label as Label, _LabelInstance as LabelInstance, _LabelProps as LabelProps, _LivePlayer as LivePlayer, _LivePlayerCode as LivePlayerCode, _LivePlayerInfo as LivePlayerInfo, _LivePlayerInstance as LivePlayerInstance, _LivePlayerMode as LivePlayerMode, _LivePlayerObjectFit as LivePlayerObjectFit, _LivePlayerOnAudiovolumenotify as LivePlayerOnAudiovolumenotify, _LivePlayerOnAudiovolumenotifyEvent as LivePlayerOnAudiovolumenotifyEvent, _LivePlayerOnEnterpictureinpicture as LivePlayerOnEnterpictureinpicture, _LivePlayerOnEnterpictureinpictureEvent as LivePlayerOnEnterpictureinpictureEvent, _LivePlayerOnFullscreenchange as LivePlayerOnFullscreenchange, _LivePlayerOnFullscreenchangeDetail as LivePlayerOnFullscreenchangeDetail, _LivePlayerOnFullscreenchangeEvent as LivePlayerOnFullscreenchangeEvent, _LivePlayerOnLeavepictureinpicture as LivePlayerOnLeavepictureinpicture, _LivePlayerOnLeavepictureinpictureEvent as LivePlayerOnLeavepictureinpictureEvent, _LivePlayerOnNetstatus as LivePlayerOnNetstatus, _LivePlayerOnNetstatusDetail as LivePlayerOnNetstatusDetail, _LivePlayerOnNetstatusEvent as LivePlayerOnNetstatusEvent, _LivePlayerOnStatechange as LivePlayerOnStatechange, _LivePlayerOnStatechangeDetail as LivePlayerOnStatechangeDetail, _LivePlayerOnStatechangeEvent as LivePlayerOnStatechangeEvent, _LivePlayerOrientation as LivePlayerOrientation, _LivePlayerPictureInPictureMode as LivePlayerPictureInPictureMode, _LivePlayerProps as LivePlayerProps, _LivePlayerSoundMode as LivePlayerSoundMode, _LivePusher as LivePusher, _LivePusherAudioQuality as LivePusherAudioQuality, _LivePusherAudioReverbType as LivePusherAudioReverbType, _LivePusherAudioVolumeType as LivePusherAudioVolumeType, _LivePusherCode as LivePusherCode, _LivePusherDevicePosition as LivePusherDevicePosition, _LivePusherInfo as LivePusherInfo, _LivePusherInstance as LivePusherInstance, _LivePusherLocalMirror as LivePusherLocalMirror, _LivePusherMode as LivePusherMode, _LivePusherOnBgmcomplete as LivePusherOnBgmcomplete, _LivePusherOnBgmcompleteEvent as LivePusherOnBgmcompleteEvent, _LivePusherOnBgmprogress as LivePusherOnBgmprogress, _LivePusherOnBgmprogressDetail as LivePusherOnBgmprogressDetail, _LivePusherOnBgmprogressEvent as LivePusherOnBgmprogressEvent, _LivePusherOnBgmstart as LivePusherOnBgmstart, _LivePusherOnBgmstartEvent as LivePusherOnBgmstartEvent, _LivePusherOnError as LivePusherOnError, _LivePusherOnErrorDetail as LivePusherOnErrorDetail, _LivePusherOnErrorEvent as LivePusherOnErrorEvent, _LivePusherOnNetstatus as LivePusherOnNetstatus, _LivePusherOnNetstatusDetail as LivePusherOnNetstatusDetail, _LivePusherOnNetstatusEvent as LivePusherOnNetstatusEvent, _LivePusherOnStatechange as LivePusherOnStatechange, _LivePusherOnStatechangeDetail as LivePusherOnStatechangeDetail, _LivePusherOnStatechangeEvent as LivePusherOnStatechangeEvent, _LivePusherOrientation as LivePusherOrientation, _LivePusherProps as LivePusherProps, _LiverPusherErrCode as LiverPusherErrCode, _Map as Map, _MapAnchor as MapAnchor, _MapCallout as MapCallout, _MapCircle as MapCircle, _MapControl as MapControl, _MapControlId as MapControlId, _MapCustomCallout as MapCustomCallout, _MapDisplay as MapDisplay, _MapInstance as MapInstance, _MapLabel as MapLabel, _MapLatitude as MapLatitude, _MapLevel as MapLevel, _MapLongitude as MapLongitude, _MapMarker as MapMarker, _MapMarkerId as MapMarkerId, _MapOnAnchorpointtap as MapOnAnchorpointtap, _MapOnAnchorpointtapDetail as MapOnAnchorpointtapDetail, _MapOnAnchorpointtapEvent as MapOnAnchorpointtapEvent, _MapOnCallouttap as MapOnCallouttap, _MapOnCallouttapDetail as MapOnCallouttapDetail, _MapOnCallouttapEvent as MapOnCallouttapEvent, _MapOnControltap as MapOnControltap, _MapOnControltapDetail as MapOnControltapDetail, _MapOnControltapEvent as MapOnControltapEvent, _MapOnLabeltap as MapOnLabeltap, _MapOnLabeltapDetail as MapOnLabeltapDetail, _MapOnLabeltapEvent as MapOnLabeltapEvent, _MapOnMarkertap as MapOnMarkertap, _MapOnMarkertapDetail as MapOnMarkertapDetail, _MapOnMarkertapEvent as MapOnMarkertapEvent, _MapOnPoitap as MapOnPoitap, _MapOnPoitapDetail as MapOnPoitapDetail, _MapOnPoitapEvent as MapOnPoitapEvent, _MapOnRegionchange as MapOnRegionchange, _MapOnRegionchangeEvent as MapOnRegionchangeEvent, _MapOnTap as MapOnTap, _MapOnTapEvent as MapOnTapEvent, _MapOnUpdated as MapOnUpdated, _MapOnUpdatedEvent as MapOnUpdatedEvent, _MapPoint as MapPoint, _MapPolygon as MapPolygon, _MapPolyline as MapPolyline, _MapPosition as MapPosition, _MapProps as MapProps, _MapTextAlign as MapTextAlign, _MapTheme as MapTheme, _MatchMedia as MatchMedia, _MatchMediaInstance as MatchMediaInstance, _MatchMediaOrientation as MatchMediaOrientation, _MatchMediaProps as MatchMediaProps, _MovableArea as MovableArea, _MovableAreaInstance as MovableAreaInstance, _MovableAreaProps as MovableAreaProps, _MovableView as MovableView, _MovableViewDirection as MovableViewDirection, _MovableViewInstance as MovableViewInstance, _MovableViewOnChange as MovableViewOnChange, _MovableViewOnChangeDetail as MovableViewOnChangeDetail, _MovableViewOnChangeEvent as MovableViewOnChangeEvent, _MovableViewOnScale as MovableViewOnScale, _MovableViewOnScaleDetail as MovableViewOnScaleDetail, _MovableViewOnScaleEvent as MovableViewOnScaleEvent, _MovableViewProps as MovableViewProps, _MovableViewSource as MovableViewSource, _MultiSelectorPickerOnCancel as MultiSelectorPickerOnCancel, _MultiSelectorPickerOnCancelEvent as MultiSelectorPickerOnCancelEvent, _MultiSelectorPickerOnChange as MultiSelectorPickerOnChange, _MultiSelectorPickerOnChangeDetail as MultiSelectorPickerOnChangeDetail, _MultiSelectorPickerOnChangeEvent as MultiSelectorPickerOnChangeEvent, _MultiSelectorPickerOnColumnchange as MultiSelectorPickerOnColumnchange, _MultiSelectorPickerOnColumnchangeDetail as MultiSelectorPickerOnColumnchangeDetail, _MultiSelectorPickerOnColumnchangeEvent as MultiSelectorPickerOnColumnchangeEvent, _MultiSelectorPickerProps as MultiSelectorPickerProps, _MultiSelectorPickerRange as MultiSelectorPickerRange, _MultiSelectorPickerValue as MultiSelectorPickerValue, _MultiSelectorPickerValueElement as MultiSelectorPickerValueElement, _NavigationBar as NavigationBar, _NavigationBarBackgroundRepeat as NavigationBarBackgroundRepeat, _NavigationBarBlurEffect as NavigationBarBlurEffect, _NavigationBarColorAnimationTimingFunc as NavigationBarColorAnimationTimingFunc, _NavigationBarInstance as NavigationBarInstance, _NavigationBarProps as NavigationBarProps, _NavigationBarSubtitleOverflow as NavigationBarSubtitleOverflow, _NavigationBarTitleAlign as NavigationBarTitleAlign, _NavigationFrontColor as NavigationFrontColor, _Navigator as Navigator, _NavigatorAnimationType as NavigatorAnimationType, _NavigatorInstance as NavigatorInstance, _NavigatorOpenType as NavigatorOpenType, _NavigatorProps as NavigatorProps, _NavigatorTarget as NavigatorTarget, _NavigatorVersion as NavigatorVersion, _PageMeta as PageMeta, _PageMetaBackgroundTextStyle as PageMetaBackgroundTextStyle, _PageMetaInstance as PageMetaInstance, _PageMetaOnResize as PageMetaOnResize, _PageMetaOnResizeDetail as PageMetaOnResizeDetail, _PageMetaOnResizeEvent as PageMetaOnResizeEvent, _PageMetaOnScroll as PageMetaOnScroll, _PageMetaOnScrollDetail as PageMetaOnScrollDetail, _PageMetaOnScrollEvent as PageMetaOnScrollEvent, _PageMetaOnScrolldone as PageMetaOnScrolldone, _PageMetaOnScrolldoneEvent as PageMetaOnScrolldoneEvent, _PageMetaProps as PageMetaProps, _Picker as Picker, _PickerInstance as PickerInstance, _PickerProps as PickerProps, _PickerValue as PickerValue, _PickerView as PickerView, _PickerViewColumn as PickerViewColumn, _PickerViewColumnInstance as PickerViewColumnInstance, _PickerViewColumnProps as PickerViewColumnProps, _PickerViewInstance as PickerViewInstance, _PickerViewOnChange as PickerViewOnChange, _PickerViewOnChangeDetail as PickerViewOnChangeDetail, _PickerViewOnChangeEvent as PickerViewOnChangeEvent, _PickerViewOnPickend as PickerViewOnPickend, _PickerViewOnPickendEvent as PickerViewOnPickendEvent, _PickerViewOnPickstart as PickerViewOnPickstart, _PickerViewOnPickstartEvent as PickerViewOnPickstartEvent, _PickerViewProps as PickerViewProps, _PickerViewValue as PickerViewValue, _PickerViewValueElement as PickerViewValueElement, _Progress as Progress, _ProgressActiveMode as ProgressActiveMode, _ProgressInstance as ProgressInstance, _ProgressOnActiveend as ProgressOnActiveend, _ProgressOnActiveendEvent as ProgressOnActiveendEvent, _ProgressProps as ProgressProps, _Radio as Radio, _RadioGroup as RadioGroup, _RadioGroupInstance as RadioGroupInstance, _RadioGroupOnChange as RadioGroupOnChange, _RadioGroupOnChangeDetail as RadioGroupOnChangeDetail, _RadioGroupOnChangeEvent as RadioGroupOnChangeEvent, _RadioGroupProps as RadioGroupProps, _RadioInstance as RadioInstance, _RadioProps as RadioProps, _RadioValue as RadioValue, _RegionPickerLevel as RegionPickerLevel, _RegionPickerOnCancel as RegionPickerOnCancel, _RegionPickerOnCancelEvent as RegionPickerOnCancelEvent, _RegionPickerOnChange as RegionPickerOnChange, _RegionPickerOnChangeDetail as RegionPickerOnChangeDetail, _RegionPickerOnChangeEvent as RegionPickerOnChangeEvent, _RegionPickerProps as RegionPickerProps, _RegionPickerValue as RegionPickerValue, _RegionPickerValueElement as RegionPickerValueElement, _RichText as RichText, _RichTextInstance as RichTextInstance, _RichTextNode as RichTextNode, _RichTextNodeNode as RichTextNodeNode, _RichTextNodes as RichTextNodes, _RichTextOnItemclick as RichTextOnItemclick, _RichTextOnItemclickEvent as RichTextOnItemclickEvent, _RichTextProps as RichTextProps, _RichTextSpace as RichTextSpace, _RichTextTextNode as RichTextTextNode, _ScrollView as ScrollView, _ScrollViewInstance as ScrollViewInstance, _ScrollViewOnRefresherabort as ScrollViewOnRefresherabort, _ScrollViewOnRefresherabortEvent as ScrollViewOnRefresherabortEvent, _ScrollViewOnRefresherpulling as ScrollViewOnRefresherpulling, _ScrollViewOnRefresherpullingEvent as ScrollViewOnRefresherpullingEvent, _ScrollViewOnRefresherrefresh as ScrollViewOnRefresherrefresh, _ScrollViewOnRefresherrefreshEvent as ScrollViewOnRefresherrefreshEvent, _ScrollViewOnRefresherrestore as ScrollViewOnRefresherrestore, _ScrollViewOnRefresherrestoreEvent as ScrollViewOnRefresherrestoreEvent, _ScrollViewOnScroll as ScrollViewOnScroll, _ScrollViewOnScrollDetail as ScrollViewOnScrollDetail, _ScrollViewOnScrollEvent as ScrollViewOnScrollEvent, _ScrollViewOnScrolltolower as ScrollViewOnScrolltolower, _ScrollViewOnScrolltolowerEvent as ScrollViewOnScrolltolowerEvent, _ScrollViewOnScrolltoupper as ScrollViewOnScrolltoupper, _ScrollViewOnScrolltoupperEvent as ScrollViewOnScrolltoupperEvent, _ScrollViewProps as ScrollViewProps, _ScrollViewRefresherDefaultStyle as ScrollViewRefresherDefaultStyle, _SelectorPickerOnCancel as SelectorPickerOnCancel, _SelectorPickerOnCancelEvent as SelectorPickerOnCancelEvent, _SelectorPickerOnChange as SelectorPickerOnChange, _SelectorPickerOnChangeDetail as SelectorPickerOnChangeDetail, _SelectorPickerOnChangeEvent as SelectorPickerOnChangeEvent, _SelectorPickerProps as SelectorPickerProps, _SelectorPickerRange as SelectorPickerRange, _SelectorPickerSelectorType as SelectorPickerSelectorType, _SelectorPickerValue as SelectorPickerValue, _Slider as Slider, _SliderInstance as SliderInstance, _SliderOnChange as SliderOnChange, _SliderOnChangeDetail as SliderOnChangeDetail, _SliderOnChangeEvent as SliderOnChangeEvent, _SliderOnChanging as SliderOnChanging, _SliderOnChangingDetail as SliderOnChangingDetail, _SliderOnChangingEvent as SliderOnChangingEvent, _SliderProps as SliderProps, _SliderValue as SliderValue, _Swiper as Swiper, _SwiperEasingFunction as SwiperEasingFunction, _SwiperInstance as SwiperInstance, _SwiperItem as SwiperItem, _SwiperItemInstance as SwiperItemInstance, _SwiperItemProps as SwiperItemProps, _SwiperOnAnimationfinish as SwiperOnAnimationfinish, _SwiperOnAnimationfinishDetail as SwiperOnAnimationfinishDetail, _SwiperOnAnimationfinishEvent as SwiperOnAnimationfinishEvent, _SwiperOnChange as SwiperOnChange, _SwiperOnChangeDetail as SwiperOnChangeDetail, _SwiperOnChangeEvent as SwiperOnChangeEvent, _SwiperOnTransition as SwiperOnTransition, _SwiperOnTransitionDetail as SwiperOnTransitionDetail, _SwiperOnTransitionEvent as SwiperOnTransitionEvent, _SwiperProps as SwiperProps, _SwiperSource as SwiperSource, _Switch as Switch, _SwitchChecked as SwitchChecked, _SwitchInstance as SwitchInstance, _SwitchOnChange as SwitchOnChange, _SwitchOnChangeDetail as SwitchOnChangeDetail, _SwitchOnChangeEvent as SwitchOnChangeEvent, _SwitchProps as SwitchProps, _SwitchType as SwitchType, _Text as Text, _TextInstance as TextInstance, _TextProps as TextProps, _TextSpace as TextSpace, _Textarea as Textarea, _TextareaConfirmType as TextareaConfirmType, _TextareaInstance as TextareaInstance, _TextareaOnBlur as TextareaOnBlur, _TextareaOnBlurDetail as TextareaOnBlurDetail, _TextareaOnBlurEvent as TextareaOnBlurEvent, _TextareaOnConfirm as TextareaOnConfirm, _TextareaOnConfirmDetail as TextareaOnConfirmDetail, _TextareaOnConfirmEvent as TextareaOnConfirmEvent, _TextareaOnFocus as TextareaOnFocus, _TextareaOnFocusDetail as TextareaOnFocusDetail, _TextareaOnFocusEvent as TextareaOnFocusEvent, _TextareaOnInput as TextareaOnInput, _TextareaOnInputDetail as TextareaOnInputDetail, _TextareaOnInputEvent as TextareaOnInputEvent, _TextareaOnKeyboardheightchange as TextareaOnKeyboardheightchange, _TextareaOnKeyboardheightchangeDetail as TextareaOnKeyboardheightchangeDetail, _TextareaOnKeyboardheightchangeEvent as TextareaOnKeyboardheightchangeEvent, _TextareaOnLinechange as TextareaOnLinechange, _TextareaOnLinechangeDetail as TextareaOnLinechangeDetail, _TextareaOnLinechangeEvent as TextareaOnLinechangeEvent, _TextareaProps as TextareaProps, _TextareaValue as TextareaValue, _TimePickerOnCancel as TimePickerOnCancel, _TimePickerOnCancelEvent as TimePickerOnCancelEvent, _TimePickerOnChange as TimePickerOnChange, _TimePickerOnChangeDetail as TimePickerOnChangeDetail, _TimePickerOnChangeEvent as TimePickerOnChangeEvent, _TimePickerProps as TimePickerProps, _TimePickerValue as TimePickerValue, _TouchCanvasDetail as TouchCanvasDetail, _TouchCanvasEvent as TouchCanvasEvent, _TouchDetail as TouchDetail, _TouchEvent as TouchEvent, _Video as Video, _VideoCodec as VideoCodec, _VideoDanmu as VideoDanmu, _VideoDirection as VideoDirection, _VideoInstance as VideoInstance, _VideoMobilenetHintType as VideoMobilenetHintType, _VideoObjectFit as VideoObjectFit, _VideoOnControlstoggle as VideoOnControlstoggle, _VideoOnControlstoggleDetail as VideoOnControlstoggleDetail, _VideoOnControlstoggleEvent as VideoOnControlstoggleEvent, _VideoOnEnded as VideoOnEnded, _VideoOnEndedEvent as VideoOnEndedEvent, _VideoOnError as VideoOnError, _VideoOnErrorEvent as VideoOnErrorEvent, _VideoOnFullscreenchange as VideoOnFullscreenchange, _VideoOnFullscreenchangeDetail as VideoOnFullscreenchangeDetail, _VideoOnFullscreenchangeEvent as VideoOnFullscreenchangeEvent, _VideoOnFullscreenclick as VideoOnFullscreenclick, _VideoOnFullscreenclickDetail as VideoOnFullscreenclickDetail, _VideoOnFullscreenclickEvent as VideoOnFullscreenclickEvent, _VideoOnLoadeddata as VideoOnLoadeddata, _VideoOnLoadeddataEvent as VideoOnLoadeddataEvent, _VideoOnLoadedmetadata as VideoOnLoadedmetadata, _VideoOnLoadedmetadataDetail as VideoOnLoadedmetadataDetail, _VideoOnLoadedmetadataEvent as VideoOnLoadedmetadataEvent, _VideoOnLoadstart as VideoOnLoadstart, _VideoOnLoadstartEvent as VideoOnLoadstartEvent, _VideoOnPause as VideoOnPause, _VideoOnPauseEvent as VideoOnPauseEvent, _VideoOnPlay as VideoOnPlay, _VideoOnPlayEvent as VideoOnPlayEvent, _VideoOnProgress as VideoOnProgress, _VideoOnProgressDetail as VideoOnProgressDetail, _VideoOnProgressEvent as VideoOnProgressEvent, _VideoOnSeeked as VideoOnSeeked, _VideoOnSeekedEvent as VideoOnSeekedEvent, _VideoOnSeeking as VideoOnSeeking, _VideoOnSeekingEvent as VideoOnSeekingEvent, _VideoOnTimeupdate as VideoOnTimeupdate, _VideoOnTimeupdateDetail as VideoOnTimeupdateDetail, _VideoOnTimeupdateEvent as VideoOnTimeupdateEvent, _VideoOnWaiting as VideoOnWaiting, _VideoOnWaitingEvent as VideoOnWaitingEvent, _VideoPlayBtnPosition as VideoPlayBtnPosition, _VideoPlayStrategy as VideoPlayStrategy, _VideoProps as VideoProps, _View as View, _ViewInstance as ViewInstance, _ViewProps as ViewProps, _WebView as WebView, _WebViewInstance as WebViewInstance, _WebViewOnMessage as WebViewOnMessage, _WebViewOnMessageDetail as WebViewOnMessageDetail, _WebViewOnMessageEvent as WebViewOnMessageEvent, _WebViewOnOnPostMessage as WebViewOnOnPostMessage, _WebViewOnOnPostMessageEvent as WebViewOnOnPostMessageEvent, _WebViewProps as WebViewProps, _WebViewStyles as WebViewStyles }

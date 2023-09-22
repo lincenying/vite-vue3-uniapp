@@ -7,12 +7,6 @@ interface Props {
     title?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-    title: 'title',
-})
-
-const { title } = toRefs(props)
-
 defineOptions({
     name: 'EmptyComponents',
     // #ifdef MP-WEIXIN
@@ -21,4 +15,10 @@ defineOptions({
     },
     // #endif
 })
+
+const props = withDefaults(defineProps<Props>(), {
+    title: 'title',
+})
+
+const { title } = toRefs(props)
 </script>

@@ -35,10 +35,6 @@
 <script setup lang="ts">
 import type { LayoutDataType } from '~/types'
 
-defineProps<{
-    className: string
-}>()
-
 defineOptions({
     name: 'Layout',
     // #ifdef MP-WEIXIN
@@ -47,6 +43,10 @@ defineOptions({
     },
     // #endif
 })
+
+defineProps<{
+    className: string
+}>()
 
 let safeAreaInsetRight = $ref(false)
 // #ifdef MP-WEIXIN

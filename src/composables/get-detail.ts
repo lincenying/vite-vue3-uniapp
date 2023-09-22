@@ -15,7 +15,6 @@ interface DataDetail<T, K> {
  * @param url api请求地址
  * @param params api请求参数
  * @param needLoginFn 接口返回401时执行函数
- * @returns
  */
 export function useDetail<T, K extends object = object>(url: string, params?: K, needLoginFn: AnyFn = () => {}) {
     const apiParams = params ?? {} as K

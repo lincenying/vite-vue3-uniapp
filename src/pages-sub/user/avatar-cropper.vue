@@ -221,7 +221,7 @@ export default {
             })
         },
         uploadTap() {
-            // eslint-disable-next-line @typescript-eslint/no-this-alias
+            // eslint-disable-next-line ts/no-this-alias
             const self = this
             uni.chooseImage({
                 count: 1, // 默认9

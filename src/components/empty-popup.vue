@@ -13,15 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-const { modelValue } = defineProps<{
-    modelValue: boolean
-}>()
-
-const emits = defineEmits<{
-    (event: 'update:modelValue', palyload: boolean): void
-    (event: 'close', palyload: boolean): void
-}>()
-
 defineOptions({
     name: 'EmptyPopup',
     // #ifdef MP-WEIXIN
@@ -30,6 +21,15 @@ defineOptions({
     },
     // #endif
 })
+
+const { modelValue } = defineProps<{
+    modelValue: boolean
+}>()
+
+const emits = defineEmits<{
+    (event: 'update:modelValue', palyload: boolean): void
+    (event: 'close', palyload: boolean): void
+}>()
 
 let showBasic = $ref(modelValue)
 

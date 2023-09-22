@@ -20,6 +20,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
+    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
