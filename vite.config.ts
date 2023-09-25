@@ -10,14 +10,10 @@ import UniPages from '@uni-helper/vite-plugin-uni-pages'
 
 // import VueDevTools from 'vite-plugin-vue-devtools'
 
-import DefineOptions from 'unplugin-vue-define-options/vite'
-import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
-import DefineProps from '@vue-macros/define-props/vite'
-import DefinePropsRefs from '@vue-macros/define-props-refs/vite'
-
 import Css from './vite.config.css'
 import Build from './vite.config.build'
 import Components from './vite.config.components'
+import Macros from './vite.config.macros'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
@@ -50,6 +46,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             }),
 
             ...Components(),
+            ...Macros(),
 
             /**
              * unocss
@@ -65,27 +62,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             // VueDevTools(),
 
             uni(),
-
-            /**
-             * Reactivity Transform
-             * @see https://vue-macros.sxzz.moe/zh-CN/features/reactivity-transform.html
-             */
-            ReactivityTransform(),
-            /**
-             * defineOptions
-             * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-options.html
-             */
-            DefineOptions(),
-            /**
-             * defineProps
-             * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-props.html
-             */
-            DefineProps(),
-            /**
-             * definePropsRefs
-             * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-props-refs.html
-             */
-            DefinePropsRefs(),
         ],
     }
 })
