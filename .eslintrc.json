@@ -1,8 +1,0 @@
-{
-  "extends": ["@lincy", "@unocss", "./.eslintrc-auto-import.json"],
-  "globals": {
-  },
-  "rules": {
-    "@unocss/order": "off"
-  }
-}
