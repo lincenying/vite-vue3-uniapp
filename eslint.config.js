@@ -1,10 +1,10 @@
 const fs = require('node:fs')
-const eslintConfig = require('@lincy/eslint-config').default
+const lincy = require('@lincy/eslint-config').lincy
 const plugin = require('@unocss/eslint-plugin')
 
 const autoImport = JSON.parse(fs.readFileSync('./.eslintrc-auto-import.json'))
 
-const config = eslintConfig(
+const config = lincy(
     undefined,
     {
         plugins: {
