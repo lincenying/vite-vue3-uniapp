@@ -55,7 +55,10 @@ const imageListData = [
 interface ApiParams { page: number; limit: number; by: string; cache: string }
 
 const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('api/frontend/article/list', {
-    limit: 20, by: 'visit', cache: 'true', page: 1,
+    limit: 20,
+    by: 'visit',
+    cache: 'true',
+    page: 1,
 })
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({

@@ -144,10 +144,13 @@ getDetail()
 在`src/composables/get-lists.ts`中封装了`useLists`方法, 让你所有上拉加载, 下拉刷新几行代码就搞定, 如:
 
 ```ts
-interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number}
+interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number }
 
 const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/frontend/article/list', {
-    limit: 20, by: 'visit', cache: 'true', page: 1,
+    limit: 20,
+    by: 'visit',
+    cache: 'true',
+    page: 1,
 })
 ```
 如上面代码, 只需要将接口相关参数传入接口, 返回的参数中,

@@ -38,7 +38,10 @@ const customLoadMoreText: LoadmoreText = {
 interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number }
 
 const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/frontend/article/list', {
-    limit: 20, by: 'visit', cache: 'true', page: 1,
+    limit: 20,
+    by: 'visit',
+    cache: 'true',
+    page: 1,
 })
 
 apiParams.value.xxx = 1

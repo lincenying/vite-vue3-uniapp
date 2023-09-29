@@ -36,24 +36,23 @@ function useDark() {
  */
 export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     get(_, name) {
-        return (obj: Obj) =>
-            new Promise((resolve, reject) => {
-                try {
-                    // @ts-expect-error 通过吧
-                    uni[name]({
-                        ...obj,
-                        success: (ret: any) => {
-                            resolve(ret)
-                        },
-                        fail: (err: any) => {
-                            reject(err)
-                        },
-                    })
-                }
-                catch (error) {
-                    showToast(`${String(name)}: 方法不存在...`)
-                }
-            })
+        return (obj: Obj) => new Promise((resolve, reject) => {
+            try {
+                // @ts-expect-error 通过吧
+                uni[name]({
+                    ...obj,
+                    success: (ret: any) => {
+                        resolve(ret)
+                    },
+                    fail: (err: any) => {
+                        reject(err)
+                    },
+                })
+            }
+            catch (error) {
+                showToast(`${String(name)}: 方法不存在...`)
+            }
+        })
     },
 })
 
