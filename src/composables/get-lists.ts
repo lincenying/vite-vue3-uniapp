@@ -74,6 +74,7 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
 
     return {
         ...toRefs(listData),
+        /** 请求方法 */
         getData,
     }
 }
