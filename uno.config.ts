@@ -1,6 +1,6 @@
-import unoUniappConfig from '@lincy/base-config/src/uno.uniapp.config'
+import { uniappConfig } from '@lincy/base-config'
 
-export default unoUniappConfig({
+export default uniappConfig({
     baseFontSize: 1,
     unti: 'rpx',
 })

@@ -60,7 +60,7 @@
     "@iconify-json/line-md": "^1.1.33",
     "@iconify-json/mdi": "^1.1.54",
     "@iconify-json/svg-spinners": "^1.1.2",
-    "@lincy/base-config": "^0.1.1",
+    "@lincy/base-config": "^1.0.0",
     "@lincy/eslint-config": "^3.5.1",
     "@lincy/stylelint-config": "^1.15.10",
     "@lincy/uniapp-ui-resolver": "^1.1.0",

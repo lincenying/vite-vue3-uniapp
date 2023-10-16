@@ -98,8 +98,8 @@ devDependencies:
     specifier: ^1.1.2
     version: 1.1.2
   '@lincy/base-config':
-    specifier: ^0.1.1
-    version: 0.1.1(postcss@8.4.31)(vite@4.4.11)
+    specifier: ^1.0.0
+    version: 1.0.0(postcss@8.4.31)(vite@4.4.11)
   '@lincy/eslint-config':
     specifier: ^3.5.1
     version: 3.5.1(eslint@8.51.0)(typescript@5.2.2)(vitest@0.34.6)
@@ -4032,8 +4032,8 @@ packages:
       async-validator: 4.2.5
     dev: false
 
-  /@lincy/base-config@0.1.1(postcss@8.4.31)(vite@4.4.11):
-    resolution: {integrity: sha512-082HkRISc81JZRgeBQDMXLCcWGR7BV2Zgmsh951yRydS+AQLrGlYz2mi5ADEZQn9OvpGAcsXe5/eUzw1Y3NIgQ==}
+  /@lincy/base-config@1.0.0(postcss@8.4.31)(vite@4.4.11):
+    resolution: {integrity: sha512-HG30VZdc7qw3CtSHDsW+ktR+JM2eYZvBsHYkqWv8dGMLGl5H0LvudP0s0kPeu9YozGqgCEiDTXn3NEm1Sm7tDA==}
     dependencies:
       unocss: 0.56.5(postcss@8.4.31)(vite@4.4.11)
       unocss-applet: 0.5.5
