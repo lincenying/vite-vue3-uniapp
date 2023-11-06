@@ -2,6 +2,10 @@
 
 Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI + Pinia + Vite + TS + Unocss)
 
+> [!重要]
+> 注意: 升级依赖时, 请不要升级`@vueuse/core`和`pinia`, 这两个依赖需要`vue3.3`的支持, 但是`uniapp`目前还不支持`vue3.3`
+
+
 - Rem 适配
 - 自动引入UI库组件/项目组件/函数等
 - Pinia 状态管理
@@ -251,6 +255,6 @@ https://unocss.dev/
 
 ## eslint/stylelint/prettierrc/vue-tsc
 
-根目录下的`.eslintrc.json`、`.stylelintrc.json`、`.prettier`内置了 lint 规则，帮助你规范地开发代码，有助于提高团队的代码质量和协作性，可以根据团队的规则进行修改
+根目录下的`eslint.config.js`、`.stylelintrc.json`、`.prettier`内置了 lint 规则，帮助你规范地开发代码，有助于提高团队的代码质量和协作性，可以根据团队的规则进行修改
 
 注意: `prettier`只在编辑器层面, 在`eslint`中并没有添加`prettier`插件
