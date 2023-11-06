@@ -1,6 +1,6 @@
 # Uniapp Vue3 项目模板
 
-Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI + Pinia + Vite + TS + Unocss)
+Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI/wot-design-uni + Pinia + Vite + TS + Unocss)
 
 > [!重要]
 > 注意: 升级依赖时, 请不要升级`@vueuse/core`和`pinia`, 这两个依赖需要`vue3.3`的支持, 但是`uniapp`目前还不支持`vue3.3`
@@ -37,7 +37,7 @@ Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI + Pinia + Vite + TS + 
 
 前者能自动引入vue, vue-router, vueuse等提供的方法, 而无需一遍遍的`import`
 
-后者能自动引入UI组件, 及项目被定义的组件, 也不用一遍遍的`import`, 脚手架默认使用TuNiaoUI, 因为这个UI库对Ts支持比较好
+后者能自动引入UI组件, 及项目被定义的组件, 也不用一遍遍的`import`, 脚手架默认使用`TuNiaoUI`和`wot-design-uni`, 因为这个UI组件库对Ts支持比较好
 
 详细配置见: `vite.config.components.ts`
 
@@ -48,6 +48,22 @@ https://vue3.tuniaokj.com/zh-CN/
 https://github.com/antfu/unplugin-auto-import#readme
 
 https://github.com/antfu/unplugin-vue-components#readme
+
+#### UI组件库
+
+项目配置了两个UI组件库, 分别是:
+https://github.com/Moonofweisheng/wot-design-uni
+https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
+
+两个UI组件库可以混用, 也可以知选择其一使用, 影响不大, 如果想删除另外一个, 那么只需要在`src/App.vue`中
+```vue
+<style lang="scss">
+@import '@tuniao/tn-style/dist/uniapp/index.css';
+@import 'wot-design-uni/components/common/abstracts/variable.scss';
+@import './assets/scss/style.scss';
+</style>
+```
+保留对应的`scss`引入即可, 其他地方无需改动
 
 ## Pinia 状态管理
 vue 官方出品的, 比vuex更好用的状态管理
