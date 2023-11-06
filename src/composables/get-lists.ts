@@ -18,6 +18,7 @@ interface ListsReactive<T, K> {
  * 获取类似带分页的列表接口
  * @param url api请求地址
  * @param params api请求参数
+ * @desc 第二个类型可以不传, 但是如果传的话, 必须要包含有 { page: number }
  */
 export function useLists<T, K extends PageType = PageType>(url: string, params?: K) {
     const apiParams = params ?? { page: 1 } as K
