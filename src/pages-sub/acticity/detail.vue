@@ -2,7 +2,7 @@
     <layout class-name="wrap-tab layout-img BoxRouter">
         <template #header-slot>header-slot 插槽</template>
         <div v-if="dataDetail" bg="#fff" border-rd-16px p-24px>
-            <rich-text :nodes="dataDetail.html" />
+            <rich-text :nodes="dataDetail.c_content" />
         </div>
     </layout>
 </template>
@@ -18,7 +18,7 @@ defineOptions({
 
 const { id } = $(definePropsRefs<{ id: string }>())
 
-const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>('api/frontend/article/item', { id })
+const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`api/article/detail/${id}`)
 
 console.log($$(id))
 console.log(apiParams.value)

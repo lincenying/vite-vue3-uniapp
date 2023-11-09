@@ -2,35 +2,33 @@
  * 文章详情
  */
 export interface Article {
-    _id: string
-    /** * 文章标题 */
-    title: string
-    /** * 文章内容: markdown */
-    content: string
-    /** * 文章内容: html */
-    html: string
-    /** * 文章导航 */
-    toc: string
-    /** * 分类ID */
-    category: string
-    /** * 分类名称 */
-    category_name: string
-    /** * 访问数 */
-    visit: number
-    /** * 点赞数 */
-    like: number
-    /** * 评论数 */
-    comment_count: number
-    /** * 发布时间 */
-    creat_date: string
-    /** * 编辑时间 */
-    update_date: string
-    /** * 是否删除: 0: 正常 | 1: 删除 */
-    is_delete: number
-    /** * 发布时间戳 */
-    timestamp: number
-    /** * 点赞用户ID列表 */
-    likes: string[]
-    /** * 登录用户是否已点赞 */
-    like_status?: boolean
+    c_id: number
+    c_title: string
+    c_intro: string
+    c_content: string
+    c_cateid: number
+    c_allcateid: string
+    c_group: number
+    c_type: number
+    c_pass?: any
+    c_img: string
+    c_down: string
+    c_free?: any
+    c_cb: number
+    c_view: number
+    c_posttime: string
+    c_lasttime?: any
+    c_user: string
+    c_userid: number
+    c_isshow: number
+    c_istop: number
+    c_iscatetop: number
+    c_favnum: number
+    c_upnum: number
+    c_downnum: number
+    c_disk?: any
+    c_buynum: number
+    c_errnum: number
+    c_last: string
+    c_spider: number
 }

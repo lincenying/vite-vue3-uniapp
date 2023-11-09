@@ -46,7 +46,7 @@ declare interface ResponseData<T> {
  *  hasNext: number | boolean
     hasPrev: number | boolean
     total: number
-    list: T
+    data: T
  * }
  * ```
  */

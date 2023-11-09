@@ -2,11 +2,11 @@
     <layout class-name="wrap-tab layout-img ActivityRouter">
         <TnListItem
             v-for="(item, index) in dataLists" :key="index" right-icon="right"
-            @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"
+            @click="router.push(`/pages-sub/acticity/detail?id=${item.c_id}`)"
         >
             <div flex--c>
                 <TnIcon name="tree" />
-                <div ml-10px class="tn-text-ellipsis-1">{{ item.title }}</div>
+                <div ml-10px class="tn-text-ellipsis-1">{{ item.c_title }}</div>
             </div>
         </TnListItem>
         <div pb-10px pt-30px>
@@ -35,12 +35,10 @@ const customLoadMoreText: LoadmoreText = {
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
 
-interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number }
+interface ApiParams { page: number; limit: number; xxx?: number }
 
-const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/frontend/article/list', {
+const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/article/lists', {
     limit: 20,
-    by: 'visit',
-    cache: 'true',
     page: 1,
 })
 

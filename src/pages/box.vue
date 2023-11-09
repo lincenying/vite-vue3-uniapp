@@ -52,12 +52,10 @@ const imageListData = [
     'https://resource.tuniaokj.com/images/album/xiong9.jpg',
 ]
 
-interface ApiParams { page: number; limit: number; by: string; cache: string }
+interface ApiParams { page: number; per_page: number }
 
-const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('api/frontend/article/list', {
-    limit: 20,
-    by: 'visit',
-    cache: 'true',
+const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('api/article/lists', {
+    per_page: 20,
     page: 1,
 })
 
