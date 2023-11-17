@@ -38,6 +38,10 @@ defineOptions({
     name: 'BoxRouter',
 })
 
+useHead({
+    title: 'Box',
+})
+
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ data: string[] }>()
 
 const imageListData = [

@@ -66,6 +66,10 @@ defineOptions({
     name: 'IndexRouter',
 })
 
+useHead({
+    title: 'Home',
+})
+
 let popupShow = $ref(false)
 
 const checked = $ref(0)

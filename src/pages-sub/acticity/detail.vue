@@ -35,6 +35,10 @@ provide(dataReloadKey, async () => {
     await getData()
     uni.hideLoading()
 })
+
+useHead({
+    title: computed(() => dataDetail.value?.c_title || ''),
+})
 </script>
 
 <route lang="json">

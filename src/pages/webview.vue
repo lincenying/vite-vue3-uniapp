@@ -6,5 +6,10 @@
 defineOptions({
     name: 'WebviewRouter',
 })
+
 const { url } = defineProps<{ url: string }>()
+
+useHead({
+    title: 'WebView',
+})
 </script>

@@ -42,6 +42,10 @@ defineOptions({
     name: 'UserLogin',
 })
 
+useHead({
+    title: 'Login',
+})
+
 const userStore = useUserStore()
 
 let needMobile = $ref(false)

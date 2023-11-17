@@ -13,6 +13,10 @@ defineOptions({
     name: 'UserRouter',
 })
 
+useHead({
+    title: 'User',
+})
+
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     dataIsLoaded: true,
     hasData: false,

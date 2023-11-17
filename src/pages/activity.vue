@@ -25,6 +25,10 @@ defineOptions({
     name: 'ActivityRouter',
 })
 
+useHead({
+    title: 'Activity',
+})
+
 const customLoadMoreText: LoadmoreText = {
     loadmore: '还有内容呢',
     loading: '等等，数据正在赶来',

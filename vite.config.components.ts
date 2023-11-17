@@ -26,6 +26,7 @@ export default (): PluginOption[] => ([
                 '@lincy/utils': ['deepClone', 'deepMerge', 'deepEqual'],
                 '@lincy/vue-reuse-template': ['createReusableTemplate'],
                 'pinia': ['defineStore', 'storeToRefs'],
+                '@unhead/vue': ['useHead'],
                 '@dcloudio/uni-app': [
                     'onLaunch',
                     'onShow',

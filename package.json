@@ -65,6 +65,7 @@
     "@lincy/stylelint-config": "^1.15.10",
     "@lincy/uniapp-ui-resolver": "^1.1.1",
     "@types/node": "^20.9.1",
+    "@unhead/vue": "^1.8.4",
     "@uni-helper/uni-app-types": "^0.5.12",
     "@uni-helper/vite-plugin-uni-components": "^0.0.8",
     "@uni-helper/vite-plugin-uni-pages": "^0.2.12",

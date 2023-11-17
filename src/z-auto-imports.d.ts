@@ -83,6 +83,7 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDetail: typeof import('./composables/get-detail')['useDetail']
+  const useHead: typeof import('@unhead/vue')['useHead']
   const useList: typeof import('./composables/get-list')['useList']
   const useLists: typeof import('./composables/get-lists')['useLists']
   const useLockFn: typeof import('./composables/index')['useLockFn']
@@ -183,6 +184,7 @@ declare module 'vue' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDetail: UnwrapRef<typeof import('./composables/get-detail')['useDetail']>
+    readonly useHead: UnwrapRef<typeof import('@unhead/vue')['useHead']>
     readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
@@ -277,6 +279,7 @@ declare module '@vue/runtime-core' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDetail: UnwrapRef<typeof import('./composables/get-detail')['useDetail']>
+    readonly useHead: UnwrapRef<typeof import('@unhead/vue')['useHead']>
     readonly useList: UnwrapRef<typeof import('./composables/get-list')['useList']>
     readonly useLists: UnwrapRef<typeof import('./composables/get-lists')['useLists']>
     readonly useLockFn: UnwrapRef<typeof import('./composables/index')['useLockFn']>
