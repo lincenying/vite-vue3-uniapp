@@ -1,4 +1,3 @@
-import { sleep } from '@lincy/utils'
 import type { UnwrapRef } from 'vue'
 
 interface PageType {
@@ -36,7 +35,6 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
             return
 
         listData.loadStatus = 'loading'
-        await sleep(1000)
         const { code, data } = await $api.get<ResDataLists<T[]>>(listData.apiUrl, listData.apiParams)
         if (code === 200) {
             if (listData.apiParams.page === 1)

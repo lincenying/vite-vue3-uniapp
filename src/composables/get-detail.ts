@@ -1,4 +1,3 @@
-import { sleep } from '@lincy/utils'
 import type { UnwrapRef } from 'vue'
 
 interface DataDetail<T, K> {
@@ -28,7 +27,6 @@ export function useDetail<T, K extends object = object>(url: string, params?: K,
     })
 
     async function getData() {
-        await sleep(1000)
         const { code, data } = await $api.get<T>(dataDetail.apiUrl, dataDetail.apiParams)
         if (code === 200) {
             dataDetail.dataDetail = data
