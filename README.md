@@ -166,7 +166,7 @@ getDetail()
 ```ts
 interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number }
 
-const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/frontend/article/list', {
+const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('/frontend/article/list', {
     limit: 20,
     by: 'visit',
     cache: 'true',

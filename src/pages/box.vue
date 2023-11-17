@@ -54,7 +54,7 @@ const imageListData = [
 
 interface ApiParams { page: number; per_page: number }
 
-const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('api/article/lists', {
+const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('/article/lists', {
     per_page: 20,
     page: 1,
 })

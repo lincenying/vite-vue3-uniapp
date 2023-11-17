@@ -37,7 +37,7 @@ const customLoadMoreText: LoadmoreText = {
 
 interface ApiParams { page: number; limit: number; xxx?: number }
 
-const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('api/article/lists', {
+const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('/article/lists', {
     limit: 20,
     page: 1,
 })

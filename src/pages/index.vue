@@ -85,7 +85,7 @@ const pageStyle = computed(() => {
     return 'overflow: inherit'
 })
 
-const { dataIsLoaded, dataLists, getData } = useLists<Article>('api/article/lists')
+const { dataIsLoaded, dataLists, getData } = useLists<Article>('/article/lists')
 
 watch(() => checked2, (val) => {
     if (val)
