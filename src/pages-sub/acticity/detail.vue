@@ -18,7 +18,7 @@ defineOptions({
 
 const { id } = $(definePropsRefs<{ id: string }>())
 
-const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`api/article/detail/${id}`)
+const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id}`)
 
 console.log($$(id))
 console.log(apiParams.value)
