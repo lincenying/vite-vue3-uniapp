@@ -1,3 +1,5 @@
+import type { LayoutOtherDataType } from '~/types'
+
 export const isDark = useDark()
 export const toggleDark = () => isDark.value = !isDark.value
 
@@ -188,14 +190,14 @@ export function ObjectToArray(obj: any, _key = 'pid', _value = 0) {
     return result
 }
 
-export const defaultShowBar = {
+export const defaultShowBar: LayoutOtherDataType = {
     showTopBar: false,
     showTopBarPlaceholder: true,
     topBarBgColor: 'none',
     showTopBarBackBtn: false,
 }
 
-export const defaultHideBar = {
+export const defaultHideBar: LayoutOtherDataType = {
     showTopBar: true,
     showTopBarPlaceholder: false,
     topBarBgColor: 'none',
