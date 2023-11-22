@@ -1,5 +1,6 @@
 {
   "name": "vite-uniapp-vue3",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@8.7.4",
@@ -52,7 +53,6 @@
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
-    "@dcloudio/uni-automator": "3.0.0-3090620231104002",
     "@dcloudio/uni-cli-shared": "3.0.0-3090620231104002",
     "@dcloudio/uni-stacktracey": "3.0.0-3090620231104002",
     "@dcloudio/vite-plugin-uni": "3.0.0-3090620231104002",

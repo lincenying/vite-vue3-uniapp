@@ -1,8 +1,10 @@
-const fs = require('node:fs')
-const lincy = require('@lincy/eslint-config').lincy
-const plugin = require('@unocss/eslint-plugin')
+import { readFile } from 'node:fs/promises'
+import lincy from '@lincy/eslint-config'
+import plugin from '@unocss/eslint-plugin'
 
-const autoImport = JSON.parse(fs.readFileSync('./.eslintrc-auto-import.json'))
+const autoImport = JSON.parse(
+    await readFile(new URL('./.eslintrc-auto-import.json', import.meta.url)),
+)
 
 const config = lincy(
     undefined,
@@ -11,7 +13,7 @@ const config = lincy(
             '@unocss': plugin,
         },
         rules: {
-            ...plugin.configs.recommended.rules,
+            '@unocss/order-attributify': 'warn',
             '@unocss/order': 'off',
         },
     },
@@ -31,4 +33,4 @@ const config = lincy(
     },
 )
 
-module.exports = config
+export default config

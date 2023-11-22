@@ -32,7 +32,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             },
         },
         optimizeDeps: {
-            include: [],
+            include: [
+                '@lincy/async-validation',
+                '@lincy/vue-reuse-template',
+                '@lincy/utils',
+            ],
         },
         plugins: [
             /**
@@ -62,7 +66,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              */
             // VueDevTools(),
 
-            uni(),
+            // @ts-expect-error missing types
+            uni.default(),
         ],
     }
 })
