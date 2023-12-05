@@ -5,20 +5,20 @@ Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI/wot-design-uni + Pinia
 > [!重要]
 > 注意: 升级依赖时, 请不要升级`@vueuse/core`和`pinia`, 这两个依赖需要`vue3.3`的支持, 但是`uniapp`目前还不支持`vue3.3`
 
-
-- Rem 适配
-- 自动引入UI库组件/项目组件/函数等
-- Pinia 状态管理
-- 自动生成路由
-- Api封装
-- 列表封装: useLists
-- 开发环境配置proxy跨域
-- Unocss
-- eslint/stylelint/prettierrc/vue-tsc
+-   Rem 适配
+-   自动引入UI库组件/项目组件/函数等
+-   Pinia 状态管理
+-   自动生成路由
+-   Api封装
+-   列表封装: useLists
+-   开发环境配置proxy跨域
+-   Unocss
+-   eslint/stylelint/prettierrc/vue-tsc
 
 运行方法参考 uni-app 官方文档：[运行、发布uni-app](https://uniapp.dcloud.net.cn/quickstart-cli.html#%E8%BF%90%E8%A1%8C%E3%80%81%E5%8F%91%E5%B8%83uni-app)
 
 ## Rem 适配
+
 设计稿相关参数配置见: `src/design.config.ts`, 按UI给的设计稿, 修改即可
 
 设计稿宽度: `designWidth`
@@ -56,6 +56,7 @@ https://github.com/Moonofweisheng/wot-design-uni
 https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
 
 两个UI组件库可以混用, 也可以知选择其一使用, 影响不大, 如果想删除另外一个, 那么只需要在`src/App.vue`中
+
 ```vue
 <style lang="scss">
 @import '@tuniao/tn-style/dist/uniapp/index.css';
@@ -63,9 +64,11 @@ https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
 @import './assets/scss/style.scss';
 </style>
 ```
+
 保留对应的`scss`引入即可, 其他地方无需改动
 
 ## Pinia 状态管理
+
 vue 官方出品的, 比vuex更好用的状态管理
 
 使用方法:
@@ -109,6 +112,7 @@ export const useUserStore = defineStore('userInfo', () => {
 const userStore = useUserStore()
 userStore.setGlobalLoading(true)
 ```
+
 即可, 因为配置了`unplugin-auto-import`, 所以根本无需要`import`, 你只需要直接把文件名改成驼峰的方式, 直接当函数使用即可
 
 注意: 直接用文件名当函数名, 只有代码是用`export default`导出时可用, 如果是用`export const xxx`, `export function xxx {}` 这样导出的, 那么直接使用xxx作为方法名即可
@@ -116,19 +120,17 @@ userStore.setGlobalLoading(true)
 具体可以看`src/z-auto-imports.d.ts`为你生成了那些方法, 这里的方法都可以直接使用, 而无需`import`
 
 ## 自动生成路由
+
 路由使用了`@uni-helper/vite-plugin-uni-pages`插件, 只需要在对应目录创建vue文件, 会自动生成路由, 还可以在路由组件直接定义`pages.json`里的信息, 如:
 
 ```html
 <route lang="json">
-{
-    "style": {
-        "navigationStyle": "custom",
-        "enablePullDownRefresh": true
-    }
-}
+    { "style": { "navigationStyle": "custom", "enablePullDownRefresh": true } }
 </route>
 ```
+
 将会在pages.json变为:
+
 ```json
 {
   "path": "pages/activity",
@@ -139,9 +141,11 @@ userStore.setGlobalLoading(true)
   }
 }
 ```
+
 相关文档: https://github.com/uni-helper/vite-plugin-uni-pages
 
 ## Api封装
+
 使用axios重新封装, 并使用`fant-axios-adapter`将小程序的api适配一致
 
 `src/api/index.ts`封装了`get, post, put, delete`4中常用的方法, 分别对应4种method, 而`$api`为全局方法, 可以在任何`.vue`页面, 直接使用`$api.get/post/put/delete`
@@ -149,6 +153,7 @@ userStore.setGlobalLoading(true)
 接口默认判断code=200 || status=200为正常返回, 如果后端接口不是用code或者status作为判断, 那么需要在`src/api/index.ts`做对应修改
 
 如:
+
 ```ts
 let detail: NullAble<Article> = null
 async function getDetail() {
@@ -161,6 +166,7 @@ getDetail()
 ```
 
 ## 列表封装: useLists
+
 在`src/composables/get-lists.ts`中封装了`useLists`方法, 让你所有上拉加载, 下拉刷新几行代码就搞定, 如:
 
 ```ts
@@ -173,20 +179,24 @@ const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Art
     page: 1,
 })
 ```
+
 如上面代码, 只需要将接口相关参数传入接口, 返回的参数中,
 
-- `dataIsLoaded`为接口是否请求完成(响应式的Ref数据),
-- `apiParams`为传入参数(响应式的Ref数据),
-- `dataList`为数据列表(响应式的Ref数据),
-- `getData`为请求列表的方法,
-- `loadStatus`为分页状态(响应式的Ref数据), 可能的值为: 'loading' | 'loadmore' | 'nomore'
+-   `dataIsLoaded`为接口是否请求完成(响应式的Ref数据),
+-   `apiParams`为传入参数(响应式的Ref数据),
+-   `dataList`为数据列表(响应式的Ref数据),
+-   `getData`为请求列表的方法,
+-   `loadStatus`为分页状态(响应式的Ref数据), 可能的值为: 'loading' | 'loadmore' | 'nomore'
 
 模板代码为:
+
 ```html
 <template>
     <div>
         <TnListItem
-            v-for="(item, index) in dataLists" :key="index" right-icon="right"
+            v-for="(item, index) in dataLists"
+            :key="index"
+            right-icon="right"
             @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"
         >
             <div flex--c>
@@ -195,12 +205,15 @@ const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Art
             </div>
         </TnListItem>
         <div pb-10px pt-30px>
-            <TnLoadmore :status="loadStatus" loading-icon-mode="flower" color="#999" />
+            <TnLoadmore
+                :status="loadStatus"
+                loading-icon-mode="flower"
+                color="#999"
+            />
         </div>
     </div>
 </template>
 ```
-
 
 如果你需要做搜索, 或者切换分类什么的, 也很简单, 假设我现在需要修改by的值,然后重新请求接口, 那么只需要:
 
@@ -211,9 +224,11 @@ function changeBy(by: string) {
     getData()
 }
 ```
+
 先更新apiParams里的相关参数, 然后重新请求接口即可
 
 当然也可以新增参数, 不过需要在ts类型里先定义好
+
 ```ts
 function addParams() {
     apiParams.value.xxx = 1
@@ -223,6 +238,7 @@ function addParams() {
 ```
 
 接口默认返回数据接口为:
+
 ```
 {
     data: {
@@ -237,11 +253,13 @@ function addParams() {
     info?: string
 }
 ```
+
 如果你用的接口返回数据结构不一样, 需要在`src/composables/get-lists.ts`稍做修改
 
 另外还有还有`get-list`和`get-detail`, 分别对应无分页的列表及详情页, 使用方法基本一致
 
 ## 开发环境配置proxy跨域
+
 ```
 {
     server: {
@@ -256,9 +274,11 @@ function addParams() {
     },
 }
 ```
+
 详见: `vite.config.build.ts`
 
 ## Unocss
+
 unocss是一个及时/按需/原子化的css引擎, 项目中也做了相关配置, 可直接使用
 
 配置见:

@@ -7,7 +7,15 @@ const autoImport = JSON.parse(
 )
 
 const config = lincy(
-    undefined,
+    {
+        formatters: {
+            css: false,
+            graphql: true,
+            html: true,
+            markdown: true,
+            toml: false,
+        },
+    },
     {
         plugins: {
             '@unocss': plugin,
