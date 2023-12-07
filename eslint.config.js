@@ -8,21 +8,13 @@ const autoImport = JSON.parse(
 
 const config = lincy(
     {
+        unocss: true,
         formatters: {
             css: false,
             graphql: true,
             html: true,
             markdown: true,
             toml: false,
-        },
-    },
-    {
-        plugins: {
-            '@unocss': plugin,
-        },
-        rules: {
-            '@unocss/order-attributify': 'warn',
-            '@unocss/order': 'off',
         },
     },
     {
