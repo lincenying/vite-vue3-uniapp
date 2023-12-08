@@ -1,8 +1,5 @@
 {
   "prettier.enable": true,
-  "files.associations": {
-    "*.css": "postcss"
-  },
   /**
    * 解决 unocss @apply 警告问题
    * @see https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-1979394
@@ -17,8 +14,9 @@
 
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never",
+    "source.fixAll.stylelint": "explicit"
   },
 
   // Silent the stylistic rules in you IDE, but still auto fix them
@@ -50,5 +48,11 @@
     "json",
     "jsonc",
     "yaml"
+  ],
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "postcss",
+    "less"
   ]
 }
