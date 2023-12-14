@@ -63,7 +63,7 @@
     "@iconify-json/svg-spinners": "^1.1.2",
     "@lincy/base-config": "^1.0.1",
     "@lincy/eslint-config": "^4.2.3",
-    "@lincy/stylelint-config": "^1.17.2",
+    "@lincy/stylelint-config": "^1.17.3",
     "@lincy/uniapp-ui-resolver": "^1.1.1",
     "@types/node": "^20.10.4",
     "@unhead/vue": "^1.8.9",

@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 :root {
     --design-width: #{$vmDesignWidth}px;
@@ -64,7 +64,7 @@ page {
     }
 
     &.layout-img {
-        background: #fefaec url("http://cdn.mmxiaowu.com/upload/layout-home-bg.png") no-repeat;
+        background: #fefaec url('http://cdn.mmxiaowu.com/upload/layout-home-bg.png') no-repeat;
         background-size: cover;
     }
 
@@ -77,12 +77,12 @@ page {
     }
 
     &.layout-invite {
-        background: #fefaec url("http://cdn.mmxiaowu.com/upload/invite-bg.png") no-repeat;
+        background: #fefaec url('http://cdn.mmxiaowu.com/upload/invite-bg.png') no-repeat;
         background-size: contain;
     }
 
     &.layout-laird {
-        background: #fefaec url("http://cdn.mmxiaowu.com/upload/laird-bg-2.png") no-repeat;
+        background: #fefaec url('http://cdn.mmxiaowu.com/upload/laird-bg-2.png') no-repeat;
         background-size: contain;
     }
 }

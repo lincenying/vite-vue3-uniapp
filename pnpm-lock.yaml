@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^4.2.3
     version: 4.2.3(@unocss/eslint-plugin@0.58.0)(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint@8.55.0)(typescript@5.3.3)
   '@lincy/stylelint-config':
-    specifier: ^1.17.2
-    version: 1.17.2(postcss@8.4.32)(stylelint@16.0.2)
+    specifier: ^1.17.3
+    version: 1.17.3(postcss@8.4.32)(stylelint@16.0.2)
   '@lincy/uniapp-ui-resolver':
     specifier: ^1.1.1
     version: 1.1.1
@@ -3940,8 +3940,8 @@ packages:
       - vitest
     dev: true
 
-  /@lincy/stylelint-config@1.17.2(postcss@8.4.32)(stylelint@16.0.2):
-    resolution: {integrity: sha512-M6N9RoPsjFpdQ22x3gegrurHZ/nfkz1X2kUDmUvu6ejxFNtvB/tBCxRgYCHF3V88zIUrGIweiP206cIb5LU0gg==}
+  /@lincy/stylelint-config@1.17.3(postcss@8.4.32)(stylelint@16.0.2):
+    resolution: {integrity: sha512-8hlffMkFvTrBBx4Zjq/wVEMBZts2YIm2RlNbtJhfi811HZVpmYNB5GWnLtVOElisRTwI6VGeCbwdZciFo3beeA==}
     peerDependencies:
       stylelint: ^16.0.2
     dependencies:
