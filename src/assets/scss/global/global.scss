@@ -21,7 +21,8 @@ body {
     background: #fff;
 }
 
-div, span {
+div,
+span {
     box-sizing: border-box;
 }
 
@@ -32,7 +33,8 @@ div, span {
 }
 
 /* #endif */
-view, text {
+view,
+text {
     box-sizing: border-box;
 }
 
@@ -50,7 +52,7 @@ page {
     overflow: hidden;
     box-sizing: border-box;
     color: #000;
-    background: #FEFAEC;
+    background: #fefaec;
 
     &.wrap-tab {
         min-height: calc(100vh - var(--window-bottom));
@@ -62,7 +64,7 @@ page {
     }
 
     &.layout-img {
-        background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/layout-home-bg.png') no-repeat;
+        background: #fefaec url("http://cdn.mmxiaowu.com/upload/layout-home-bg.png") no-repeat;
         background-size: cover;
     }
 
@@ -71,16 +73,16 @@ page {
     }
 
     &.layout-gray {
-        background: #F0F0F0;
+        background: #f0f0f0;
     }
 
     &.layout-invite {
-        background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/invite-bg.png') no-repeat;
+        background: #fefaec url("http://cdn.mmxiaowu.com/upload/invite-bg.png") no-repeat;
         background-size: contain;
     }
 
     &.layout-laird {
-        background: #FEFAEC url('http://cdn.mmxiaowu.com/upload/laird-bg-2.png') no-repeat;
+        background: #fefaec url("http://cdn.mmxiaowu.com/upload/laird-bg-2.png") no-repeat;
         background-size: contain;
     }
 }
@@ -130,7 +132,8 @@ page {
     border: none;
     outline: none;
 
-    &::before, &::after {
+    &::before,
+    &::after {
         display: none;
     }
 }
@@ -159,4 +162,3 @@ page {
 .fade-leave-to {
     opacity: 0;
 }
-
