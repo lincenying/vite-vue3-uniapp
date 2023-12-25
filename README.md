@@ -17,6 +17,17 @@ Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI/wot-design-uni + Pinia
 
 运行方法参考 uni-app 官方文档：[运行、发布uni-app](https://uniapp.dcloud.net.cn/quickstart-cli.html#%E8%BF%90%E8%A1%8C%E3%80%81%E5%8F%91%E5%B8%83uni-app)
 
+## Variations
+
+-   [vite-nuxt3](https://github.com/lincenying/vite-nuxt3) - Nuxt3 + Vite 入门模板
+-   [vite-uniapp-vue3](https://github.com/lincenying/vite-uniapp-vue3) - Uniapp3 + Vite 入门模板
+-   [vite-react-mobx-ssr](https://github.com/lincenying/vite-react-mobx-ssr) - React + Mobx + Vite + SSR 入门模板
+-   [vite-react-mobx](https://github.com/lincenying/vite-react-mobx) - React + Mobx + Vite 入门模板
+-   [vite-react-redux](https://github.com/lincenying/vite-react-redux) - React + Redux + Vite 入门模板
+-   [vite-vue3-h5-ssr](https://github.com/lincenying/vite-vue3-h5-ssr) - Vue3 + Vant + Vite + SSR 入门模板
+-   [vite-vue3-h5](https://github.com/lincenying/vite-vue3-h5) - Vue3 + Vant + Vite 入门模板
+-   [vite-vue3-admin](https://github.com/lincenying/vite-vue3-admin) - Vue3 + ElementPlus + Vite 管理后台入
+
 ## Rem 适配
 
 设计稿相关参数配置见: `src/design.config.ts`, 按UI给的设计稿, 修改即可

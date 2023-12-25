@@ -50,7 +50,7 @@
     "unhead": "^1.8.9",
     "vue": "^3.3.13",
     "we-cropper": "^1.4.0",
-    "wot-design-uni": "^0.2.0"
+    "wot-design-uni": "^0.2.1"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
