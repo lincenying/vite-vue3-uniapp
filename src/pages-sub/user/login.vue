@@ -152,7 +152,10 @@ provide(dataReloadKey, async () => {
 })
 </script>
 
-<route lang="yaml">
-style:
-  navigationStyle: custom
+<route lang="json">
+{
+    "style": {
+        "navigationStyle": "custom"
+    }
+}
 </route>

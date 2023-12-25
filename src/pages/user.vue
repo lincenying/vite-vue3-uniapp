@@ -1,8 +1,10 @@
 <template>
     <layout class-name="wrap-tab layout-img UserRouter">
-        <div p-24px>4444</div>
-        <TnButton type="warning">1</TnButton>
-        <TnLoading show type="primary" mode="circle" />
+        <div p-40px>4444</div>
+        <div flex--c gap-10px>
+            <TnButton type="warning">这是个按钮</TnButton>
+            <TnLoading show animation type="primary" mode="flower" size="40" />
+        </div>
     </layout>
 </template>
 
@@ -17,21 +19,27 @@ useHead({
     title: 'User',
 })
 
+let hasData = $ref(false)
+
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     dataIsLoaded: true,
-    hasData: false,
-    showEmptySlot: true,
+    hasData,
+    showEmptySlot: !hasData,
     topBarTitle: '我的',
     ...defaultShowBar,
 })))
 provide(dataReloadKey, async () => {
     showLoading()
     // await getData()
+    hasData = true
     uni.hideLoading()
 })
 </script>
 
-<route lang="yaml">
-style:
-  navigationStyle: custom
+<route lang="json">
+{
+    "style": {
+        "navigationStyle": "custom"
+    }
+}
 </route>

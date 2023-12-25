@@ -1,6 +1,8 @@
 <template>
     <layout class-name="wrap-tab layout-img BoxRouter">
-        <template #header-slot>header-slot 插槽</template>
+        <template #header-slot>
+            <div p-24px text-center class="pb-0!">header-slot 插槽</div>
+        </template>
         <div v-if="dataDetail" bg="#fff" border-rd-16px p-24px>
             <rich-text :nodes="dataDetail.c_content" />
         </div>

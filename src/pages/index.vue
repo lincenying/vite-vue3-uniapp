@@ -2,7 +2,6 @@
     <page-meta :page-style="pageStyle" />
     <div class="init-top" />
     <layout class-name="wrap-tab layout-img IndexRouter">
-        <empty-components />
         <div h-420px w-full>
             <TnSwiper v-model="currentSwiperIndex" :data="swiperData" loop autoplay>
                 <template #default="{ data }">
@@ -45,6 +44,7 @@
         <div>
             <wd-button>主要按钮</wd-button>
             <wd-loading color="green" type="outline" />
+            <TnLoading show animation type="primary" mode="circle" />
         </div>
 
         <div flex-bc>
@@ -154,7 +154,10 @@ provide(dataReloadKey, async () => {
 })
 </script>
 
-<route lang="yaml">
-style:
-  navigationStyle: custom
+<route lang="json">
+{
+    "style": {
+        "navigationStyle": "custom"
+    }
+}
 </route>

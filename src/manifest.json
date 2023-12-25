@@ -48,7 +48,11 @@
     }
   },
   "h5": {
-    "darkmode": true
+    "darkmode": true,
+    "async": {
+      "delay": 2000,
+      "timeout": 10000
+    }
   },
   /* 快应用特有相关 */
   "quickapp": {},

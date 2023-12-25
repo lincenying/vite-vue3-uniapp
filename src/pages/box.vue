@@ -56,10 +56,10 @@ const imageListData = [
     'https://resource.tuniaokj.com/images/album/xiong9.jpg',
 ]
 
-interface ApiParams { page: number; per_page: number }
+interface ApiParams { page: number; limit: number }
 
 const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('/article/lists', {
-    per_page: 20,
+    limit: 20,
     page: 1,
 })
 
@@ -77,7 +77,10 @@ provide(dataReloadKey, async () => {
 })
 </script>
 
-<route lang="yaml">
-style:
-  navigationStyle: custom
+<route lang="json">
+{
+    "style": {
+        "navigationStyle": "custom"
+    }
+}
 </route>
