@@ -44,11 +44,11 @@
     "@tuniao/tnui-vue3-uniapp": "^1.0.17",
     "@uni-helper/uni-use": "^0.17.1",
     "@vueuse/core": "^9.13.0",
-    "axios": "^1.6.2",
+    "axios": "^1.6.3",
     "fant-axios-adapter": "^0.0.6",
     "pinia": "2.0.36",
     "unhead": "^1.8.9",
-    "vue": "^3.3.13",
+    "vue": "^3.4.3",
     "we-cropper": "^1.4.0",
     "wot-design-uni": "^0.2.5"
   },
