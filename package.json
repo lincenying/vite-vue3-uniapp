@@ -44,13 +44,13 @@
     "@tuniao/tnui-vue3-uniapp": "^1.0.20",
     "@uni-helper/uni-use": "^0.19.6",
     "@vueuse/core": "^9.13.0",
-    "axios": "^1.6.6",
+    "axios": "^1.6.7",
     "fant-axios-adapter": "^0.0.6",
     "pinia": "2.0.36",
     "unhead": "^1.8.10",
     "vue": "3.4.3",
     "we-cropper": "^1.4.0",
-    "wot-design-uni": "^0.2.18"
+    "wot-design-uni": "^0.2.22"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
@@ -58,35 +58,35 @@
     "@dcloudio/uni-stacktracey": "3.0.0-3090920231225001",
     "@dcloudio/vite-plugin-uni": "3.0.0-3090920231225001",
     "@iconify-json/carbon": "^1.1.28",
-    "@iconify-json/line-md": "^1.1.33",
+    "@iconify-json/line-md": "^1.1.35",
     "@iconify-json/mdi": "^1.1.64",
     "@iconify-json/svg-spinners": "^1.1.2",
     "@lincy/base-config": "^1.1.0",
     "@lincy/eslint-config": "^4.2.5",
     "@lincy/stylelint-config": "^1.17.4",
     "@lincy/uniapp-ui-resolver": "^1.1.1",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.16",
     "@unhead/vue": "^1.8.10",
     "@uni-helper/uni-app-types": "^0.5.12",
     "@uni-helper/vite-plugin-uni-components": "^0.0.8",
     "@uni-helper/vite-plugin-uni-pages": "^0.2.12",
-    "@unocss/eslint-plugin": "^0.58.3",
+    "@unocss/eslint-plugin": "^0.58.4",
     "@vue-macros/volar": "^0.18.11",
     "eslint": "^8.56.0",
     "eslint-plugin-format": "^0.1.0",
-    "lint-staged": "^15.2.0",
+    "lint-staged": "^15.2.1",
     "miniprogram-api-typings": "^3.12.2",
-    "pnpm": "^8.14.3",
+    "pnpm": "^8.15.1",
     "postcss-px-to-viewport-8-plugin": "^1.2.3",
     "sass": "^1.70.0",
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.3.3",
-    "unocss": "^0.58.3",
+    "unocss": "^0.58.4",
     "unocss-applet": "^0.7.8",
-    "unplugin-auto-import": "^0.17.4",
+    "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
-    "unplugin-vue-macros": "2.7.7",
-    "vite": "^4.5.0",
+    "unplugin-vue-macros": "2.7.10",
+    "vite": "^5.0.12",
     "vue-tsc": "^1.8.27"
   },
   "simple-git-hooks": {
@@ -95,6 +95,7 @@
   "lint-staged": {
     "*.{ts,tsx,vue}": [
       "eslint --fix"
-    ]
+    ],
+    "*.{css,scss}": "stylelint --fix"
   }
 }
