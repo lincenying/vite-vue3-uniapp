@@ -38,7 +38,7 @@ function useDark() {
  */
 export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     get(_, name) {
-        return (obj: Obj) => new Promise((resolve, reject) => {
+        return (obj: Objable) => new Promise((resolve, reject) => {
             try {
                 // @ts-expect-error 通过吧
                 uni[name]({

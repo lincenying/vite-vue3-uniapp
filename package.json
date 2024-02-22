@@ -10,7 +10,7 @@
     "dev:app-android": "uni -p app-android",
     "dev:app-ios": "uni -p app-ios",
     "dev:custom": "uni -p",
-    "serve": "VITE_CJS_TRACE=true uni",
+    "serve": "uni",
     "dev:h5": "uni",
     "dev:h5:ssr": "uni --ssr",
     "dev:mp-weixin": "uni -p mp-weixin",
@@ -24,7 +24,7 @@
     "up": "pnpm up --latest --interactive \"!@dcloudio*\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:ts": "vue-tsc --noEmit --skipLibCheck",
+    "lint:ts": "vue-tsc --noEmit",
     "lint:css": "stylelint '**/*.{css,scss}' --fix",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "npx simple-git-hooks"
