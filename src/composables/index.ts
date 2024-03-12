@@ -58,7 +58,7 @@ export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     },
 })
 
-type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
+type ToastIcon = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
 
 /**
  * 封装uni.showToast
@@ -67,7 +67,7 @@ type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
  * @param duration 延迟时间
  * @description 文档: [http://uniapp.dcloud.io/api/ui/prompt?id=showtoast](http://uniapp.dcloud.io/api/ui/prompt?id=showtoast)
  */
-export function showToast(title: string, icon: ToastIocn = 'none', duration = 2000) {
+export function showToast(title: string, icon: ToastIcon = 'none', duration = 2000) {
     uni.showToast({
         title,
         icon,
