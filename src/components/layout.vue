@@ -8,7 +8,7 @@
             :safe-area-inset-right="safeAreaInsetRight"
             :fixed="true" frosted index-url="/pages/index"
         >
-            <text font-600 text="32px #333">{{ layoutData.topBarTitle }}</text>
+            <text font-600 text="32px hex-333">{{ layoutData.topBarTitle }}</text>
         </TnNavbar>
         <!-- 导航条:结束 -->
         <!-- 不显示导航条时占位:开始 -->

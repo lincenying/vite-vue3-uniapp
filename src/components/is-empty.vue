@@ -10,10 +10,10 @@
         </TnEmpty>
     </div>
     <template v-else-if="!layoutData.hasData">
-        <div mt-200px flex--c flex-auto flex-col @click="dataReload">
+        <div mt-200px flex="-c auto col" @click="dataReload">
             <image :src="layoutData.emptySlotImg || defaultImg" h-470px w-470px />
-            <div font-500 lh-44px text="32px #c39f35">{{ layoutData.emptySlotText || '暂无相关数据' }}</div>
-            <div lh-44px text="26px #999">点击刷新</div>
+            <div font-500 lh-44px text="32px hex-c39f35">{{ layoutData.emptySlotText || '暂无相关数据' }}</div>
+            <div lh-44px text="26px hex-999">点击刷新</div>
         </div>
         <slot />
     </template>

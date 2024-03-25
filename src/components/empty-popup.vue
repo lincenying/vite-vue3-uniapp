@@ -27,8 +27,8 @@ const { modelValue } = defineProps<{
 }>()
 
 const emits = defineEmits<{
-    (event: 'update:modelValue', palyload: boolean): void
-    (event: 'close', palyload: boolean): void
+    (e: 'update:modelValue', palyload: boolean): void
+    (e: 'close', palyload: boolean): void
 }>()
 
 let showBasic = $ref(modelValue)
