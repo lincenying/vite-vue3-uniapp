@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter } from 'vue'
 
-export function useScroll(watchData: MaybeRefOrGetter[]) {
+export function useAutoScroll(watchData: MaybeRefOrGetter[]) {
     let initTop = $ref(0)
     let scrollTop = $ref(0)
 

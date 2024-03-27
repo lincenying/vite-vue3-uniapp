@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import defaultImg from '@/static/no-data.png'
+import defaultImg from '@/assets/images/no-data.png'
 import type { LayoutDataType } from '~/types'
 
 defineOptions({

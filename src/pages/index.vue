@@ -11,7 +11,7 @@
                 </template>
             </TnSwiper>
         </div>
-        <div bg="#fff" mt-24px border-rd-16px p-24px>
+        <div bg="hex-fff" mt-24px border-rd-16px p-24px>
             <TnForm ref="formRef" :model="formData" :rules="formRules" label-width="140">
                 <TnFormItem label="用户名" prop="username">
                     <TnInput v-model="formData.username" size="sm" />
@@ -78,7 +78,7 @@ const heart = $ref(0)
 const radioed = $ref(0)
 
 // #ifdef H5
-useScroll([
+useAutoScroll([
     () => popupShow,
 ])
 // #endif

@@ -12,11 +12,7 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "node",
-      "vite/client",
-      "@dcloudio/types",
-      "unplugin-vue-macros/macros-global",
-      "miniprogram-api-typings"
+      "node"
     ],
     "allowJs": true,
     "strict": true,

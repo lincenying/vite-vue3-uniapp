@@ -6,7 +6,7 @@
                 <TnCheckbox v-model="agreeValue" checked-shape="circle" active-color="#c39f35">
                     <div lh-36px text="font-500 26px #333">
                         我已阅读并同意
-                        <text text="#c39f35" @click.stop="router.push('/pages-sub/user/agreement')">《用户使用协议》</text>
+                        <text text="hex-c39f35" @click.stop="router.push('/pages-sub/user/agreement')">《用户使用协议》</text>
                     </div>
                 </TnCheckbox>
             </div>
@@ -20,7 +20,7 @@
         <TnPopup v-model="needMobile" open-direction="center" :overlay-closeable="false" bg-color="none" :z-index="20091">
             <div relative h-544px w-570px>
                 <image h-544px w-570px src="https://media.sammu.top/lohascity/user/need-login-bg.png" />
-                <div absolute left-0 top-0 h-full w-full flex--c flex-col>
+                <div absolute left-0 top-0 h-full w-full flex="-c col">
                     <div mt-300px text-28px font-500 lh-40px>为了购物方便,需要授权你的手机!</div>
                     <div mt-50px flex-cc>
                         <image h-96px w-231px src="https://media.sammu.top/lohascity/user/cancel.png" @click="needMobile = false" />
