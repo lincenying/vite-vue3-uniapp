@@ -106,6 +106,7 @@ declare global {
 // for vue template auto import
 import { UnwrapRef } from 'vue'
 declare module 'vue' {
+  interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('@/api')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -201,6 +202,7 @@ declare module 'vue' {
   }
 }
 declare module '@vue/runtime-core' {
+  interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('@/api')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>

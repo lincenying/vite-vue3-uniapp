@@ -132,8 +132,9 @@ export default {
         this.cropperOpt.width = this.width
         this.cropperOpt.height = this.height
         this.cropperOpt.pixelRatio = rectInfo.pixelRatio
-        if (option.destWidth)
+        if (option.destWidth) {
             this.destWidth = option.destWidth
+        }
         if (option.rectWidth) {
             const rectWidth = Number(option.rectWidth)
             this.cropperOpt.cut = {
@@ -144,8 +145,9 @@ export default {
             }
         }
         this.rectWidth = option.rectWidth
-        if (option.fileType)
+        if (option.fileType) {
             this.fileType = option.fileType
+        }
         // 初始化
         this.cropper = new WeCropper(this.cropperOpt)
             .on('ready', () => {

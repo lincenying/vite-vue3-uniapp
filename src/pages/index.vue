@@ -84,16 +84,18 @@ useScroll([
 // #endif
 
 const pageStyle = computed(() => {
-    if (popupShow)
+    if (popupShow) {
         return 'overflow: hidden; height: 100%'
+    }
     return 'overflow: inherit'
 })
 
 const { dataIsLoaded, dataLists, getData } = useLists<Article>('/article/lists')
 
 watch(() => checked2, (val) => {
-    if (val)
+    if (val) {
         popupShow = true
+    }
 })
 function onPopupClose(payload: boolean) {
     checked2 = payload
@@ -132,11 +134,12 @@ const formRules: FormRules = {
 /* 提交表单 */
 function submitForm() {
     formRef.value?.validate((valid) => {
-        if (valid)
+        if (valid) {
             showToast('提交成功', 'success')
-
-        else
+        }
+        else {
             showToast('表单校验失败')
+        }
     })
 }
 

@@ -20,10 +20,15 @@ defineOptions({
 
 const { id } = $(definePropsRefs<{ id: string }>())
 
-const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id}`)
+const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id}`, { id })
 
 console.log($$(id))
 console.log(apiParams.value)
+
+setTimeout(() => {
+    apiParams.value.id = '123'
+    getData()
+}, 5000)
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     dataIsLoaded: dataIsLoaded.value,

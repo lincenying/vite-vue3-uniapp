@@ -13,8 +13,9 @@ const baseConfig = {
     withCredentials: false,
 }
 
-if (import.meta.env.VITE_APP_ENV === 'production')
+if (import.meta.env.VITE_APP_ENV === 'production') {
     baseConfig.timeout = 300000
+}
 
 axios.defaults.adapter = uniAdapter as AxiosAdapter
 
@@ -36,8 +37,9 @@ axios.interceptors.response.use(
 )
 
 function checkStatus(response: AxiosResponse): ResponseData<any> {
-    if (response && (response.status === 200 || response.status === 304))
+    if (response && (response.status === 200 || response.status === 304)) {
         return response.data
+    }
 
     return {
         status: -404,
@@ -76,23 +78,23 @@ function checkCodeFn(data: ResponseData<any>) {
 /**
  * axios Api 封装
  * ```
-    get<T>(url: string, params?: Obj, header?: Obj, checkCode?: boolean): Promise<ResponseData<T>>
-    post<T>(url: string, data: Obj = {}, header: Obj = {}, checkCode?: boolean): Promise<ResponseData<T>>
-    put<T>(url: string, data: Obj = {}, header: Obj = {}, checkCode?: boolean): Promise<ResponseData<T>>
-    delete<T>(url: string, data: Obj = {}, header: Obj = {}, checkCode?: boolean): Promise<ResponseData<T>>
+    get<T>(url: string, params?: Objable, header?: Objable, checkCode?: boolean): Promise<ResponseData<T>>
+    post<T>(url: string, data: Objable = {}, header: Objable = {}, checkCode?: boolean): Promise<ResponseData<T>>
+    put<T>(url: string, data: Objable = {}, header: Objable = {}, checkCode?: boolean): Promise<ResponseData<T>>
+    delete<T>(url: string, data: Objable = {}, header: Objable = {}, checkCode?: boolean): Promise<ResponseData<T>>
  * ```
  */
 export const $api: ApiType = {
-    post(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
+    post(url: string, data: Objable = {}, header: Objable = {}, checkCode = true) {
         return this.RESTful(url, 'post', data, header, checkCode)
     },
-    get(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
+    get(url: string, data: Objable = {}, header: Objable = {}, checkCode = true) {
         return this.RESTful(url, 'get', data, header, checkCode)
     },
-    put(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
+    put(url: string, data: Objable = {}, header: Objable = {}, checkCode = true) {
         return this.RESTful(url, 'put', data, header, checkCode)
     },
-    delete(url: string, data: Obj = {}, header: Obj = {}, checkCode = true) {
+    delete(url: string, data: Objable = {}, header: Objable = {}, checkCode = true) {
         return this.RESTful(url, 'delete', data, header, checkCode)
     },
     async downFile(url, method = 'get', data) {
@@ -102,21 +104,25 @@ export const $api: ApiType = {
             method,
             url: import.meta.env.VITE_APP_API + url,
         }
-        if (method === 'get')
+        if (method === 'get') {
             config.params = data
-        else
+        }
+        else {
             config.data = data
+        }
 
-        if (url.includes('NoTimeout'))
+        if (url.includes('NoTimeout')) {
             config.timeout = 9999999
+        }
         const response = await axios(config)
         return response
     },
 
     async RESTful(url, method = 'get', data, header, checkCode) {
         const xhr = await this.$RESTful(url, method, data, header)
-        if (checkCode)
+        if (checkCode) {
             return checkCodeFn(xhr)
+        }
         return {
             ...xhr,
             code: xhr.code || xhr.status,
@@ -136,13 +142,16 @@ export const $api: ApiType = {
             url,
         }
 
-        if (method === 'get')
+        if (method === 'get') {
             config.params = data
-        else
+        }
+        else {
             config.data = data
+        }
 
-        if (url.includes('NoTimeout'))
+        if (url.includes('NoTimeout')) {
             config.timeout = 9999999
+        }
         const response = await axios(config)
         return checkStatus(response)
     },

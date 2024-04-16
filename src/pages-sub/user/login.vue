@@ -66,8 +66,9 @@ const agreeValue = $ref<boolean>(false)
 
 // 微信小程序登录
 async function onGotUserInfo() {
-    if (!agreeValue)
+    if (!agreeValue) {
         return showToast('请先同意用户使用协议')
+    }
 
     uni.showLoading({
         title: '正在登录',

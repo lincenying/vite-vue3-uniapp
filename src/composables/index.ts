@@ -101,13 +101,15 @@ export function showLoading(title: string = '加载中...', mask = true) {
 export function useLockFn(fn: AnyFn, autoUnlock: boolean | 'auto' = 'auto') {
     const lock = ref(false)
     return async (...args: any[]) => {
-        if (lock.value)
+        if (lock.value) {
             return
+        }
         lock.value = true
         try {
             const $return: any = await fn(...args)
-            if (autoUnlock === true || (autoUnlock === 'auto' && $return !== false))
+            if (autoUnlock === true || (autoUnlock === 'auto' && $return !== false)) {
                 lock.value = false
+            }
         }
         catch (e) {
             lock.value = false

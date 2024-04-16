@@ -102,8 +102,9 @@ export function useUniAppSystemRectInfo() {
             const rect = uni.getMenuButtonBoundingClientRect()
             height = statusBarHeight! + titleBarHeight!
             if ('optionMenuLeft' in rect) {
-                if (rect.optionMenuLeft)
+                if (rect.optionMenuLeft) {
                     navBarBoundingInfo.left = rect.optionMenuLeft as number
+                }
             }
 
             // #endif

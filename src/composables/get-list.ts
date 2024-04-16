@@ -1,10 +1,7 @@
-import type { UnwrapRef } from 'vue'
-
-interface ListReactive<T, K> {
+interface ListReactive<T> {
     dataIsLoaded: boolean
     dataLists: T[]
     apiUrl: string
-    apiParams: UnwrapRef<K>
     isRefresh: boolean
 }
 
@@ -13,23 +10,24 @@ interface ListReactive<T, K> {
  * @param url api请求地址
  * @param params api请求参数
  */
-export function useList<T, K extends object = object>(url: string, params?: K) {
-    const apiParams = params ?? {} as K
-    const listData: ListReactive<T, K> = reactive({
+export function useList<T, K extends Objable = object>(url: string, params?: K) {
+    const apiParams = ref(params ?? {}) as Ref<K>
+    const listData: ListReactive<T> = reactive({
         dataIsLoaded: false,
         dataLists: [],
         apiUrl: url,
-        apiParams,
         isRefresh: false,
     })
 
     async function getData() {
-        const { code, data } = await $api.get<T[]>(listData.apiUrl, listData.apiParams)
-        if (code === 200)
+        const { code, data } = await $api.get<T[]>(listData.apiUrl, apiParams.value)
+        if (code === 200) {
             listData.dataLists = [...data]
+        }
 
-        if (listData.isRefresh)
+        if (listData.isRefresh) {
             showToast('刷新成功!')
+        }
         listData.dataIsLoaded = true
     }
 
@@ -44,6 +42,7 @@ export function useList<T, K extends object = object>(url: string, params?: K) {
 
     return {
         ...toRefs(listData),
+        apiParams,
         getData,
     }
 }
