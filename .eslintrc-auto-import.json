@@ -311,6 +311,17 @@
     "watchTriggerable": true,
     "watchWithFilter": true,
     "whenever": true,
-    "useAutoScroll": true
+    "useAutoScroll": true,
+    "createTemplatePromise": true,
+    "injectLocal": true,
+    "provideLocal": true,
+    "useAnimate": true,
+    "useArrayDifference": true,
+    "useArrayIncludes": true,
+    "useClipboardItems": true,
+    "useParentElement": true,
+    "usePerformanceObserver": true,
+    "watchDeep": true,
+    "watchImmediate": true
   }
 }
