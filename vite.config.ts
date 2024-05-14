@@ -8,8 +8,6 @@ import Unocss from 'unocss/vite'
 
 import UniPages from '@uni-helper/vite-plugin-uni-pages'
 
-// import VueDevTools from 'vite-plugin-vue-devtools'
-
 import Css from './vite.config.css'
 import Build from './vite.config.build'
 import Components from './vite.config.components'
@@ -59,12 +57,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
              * see unocss.config.ts for config
              */
             Unocss(),
-
-            /**
-             * vite-plugin-vue-devtools 增强 Vue 开发者体验
-             * @see https://github.com/webfansplz/vite-plugin-vue-devtools
-             */
-            // VueDevTools(),
 
             // @ts-expect-error missing types
             uni.default(),

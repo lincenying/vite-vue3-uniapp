@@ -28,7 +28,7 @@ export interface UserInfo {
     /** 头像URL */
     avatar_url: string
     /** 会员等级信息 */
-    grade: Obj
+    grade: Objable
 }
 
 /** 当前用户详情 */

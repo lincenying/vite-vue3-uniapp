@@ -21,10 +21,9 @@ export default (): PluginOption[] => ([
         ],
         imports: [
             'vue',
+            '@vueuse/core',
             {
-                '@/api': ['$api'],
                 '@lincy/utils': ['deepClone', 'deepMerge', 'deepEqual'],
-                '@lincy/vue-reuse-template': ['createReusableTemplate'],
                 'pinia': ['defineStore', 'storeToRefs'],
                 '@unhead/vue': ['useHead'],
                 '@dcloudio/uni-app': [
@@ -40,8 +39,8 @@ export default (): PluginOption[] => ([
                 ],
             },
         ],
-        dts: 'src/z-auto-imports.d.ts',
-        dirs: ['src/components', 'src/composables', 'src/pinia'],
+        dts: 'src/auto-imports.d.ts',
+        dirs: ['src/components', 'src/composables', 'src/stores'],
 
         resolvers: [],
         defaultExportByFilename: false,
@@ -64,7 +63,7 @@ export default (): PluginOption[] => ([
             TuNiaoResolver(),
             wotDesignResolver(),
         ],
-        dts: 'src/z-components.d.ts',
+        dts: 'src/components.d.ts',
         directoryAsNamespace: true,
     }),
 ])

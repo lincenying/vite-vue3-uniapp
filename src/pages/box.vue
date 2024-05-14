@@ -8,7 +8,7 @@
             <view relative mb-30px flex flex-nowrap items-center>
                 <view
                     v-for="i in 16" :key="i" class="tn-bg-image"
-                    mr-40px flex shrink-0 grow-0 flex-col items-center
+                    mr-40px flex="~ shrink-0 grow-0 flex-col items-center"
                 >
                     <view
                         class="tn-bg-image tn-white_text"

@@ -6,7 +6,7 @@
         >
             <div flex--c>
                 <TnIcon name="tree" />
-                <div ml-10px class="tn-text-ellipsis-1">{{ item.c_title }}</div>
+                <div ml-10px line-1>{{ item.c_title }}</div>
             </div>
         </TnListItem>
         <div pb-10px pt-30px>

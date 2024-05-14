@@ -12,11 +12,7 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "node",
-      "vite/client",
-      "@dcloudio/types",
-      "unplugin-vue-macros/macros-global",
-      "miniprogram-api-typings"
+      "node"
     ],
     "allowJs": true,
     "strict": true,
@@ -28,6 +24,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["dist", "node_modules"],
 
   // uni-app Component type prompt

@@ -38,7 +38,7 @@ function useDark() {
  */
 export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     get(_, name) {
-        return (obj: Obj) => new Promise((resolve, reject) => {
+        return (obj: Objable) => new Promise((resolve, reject) => {
             try {
                 // @ts-expect-error 通过吧
                 uni[name]({
@@ -58,7 +58,7 @@ export const uniAsync = new Proxy({} as UniNamespace.Uni, {
     },
 })
 
-type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
+type ToastIcon = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
 
 /**
  * 封装uni.showToast
@@ -67,7 +67,7 @@ type ToastIocn = 'success' | 'loading' | 'error' | 'none' | 'fail' | 'exception'
  * @param duration 延迟时间
  * @description 文档: [http://uniapp.dcloud.io/api/ui/prompt?id=showtoast](http://uniapp.dcloud.io/api/ui/prompt?id=showtoast)
  */
-export function showToast(title: string, icon: ToastIocn = 'none', duration = 2000) {
+export function showToast(title: string, icon: ToastIcon = 'none', duration = 2000) {
     uni.showToast({
         title,
         icon,
@@ -91,11 +91,19 @@ export function showLoading(title: string = '加载中...', mask = true) {
  * 竞态锁
  * @param fn 回调函数
  * @param autoUnlock 是否自动解锁
- * @returns void
+ * @description
  * ```
  * autoUnlock === true 不管 fn 返回什么, 都自动解锁
  * autoUnlock === false 不管 fn 返回什么, 都不自动解锁
  * autoUnlock === 'auto' 当 fn 返回 false 时, 不自动解锁, 返回其他值时, 自动解锁
+ * ```
+ * @example
+ * ```
+ * const Fn = useLockFn(async (key) => {
+ *  console.log(key)
+ * }
+ *
+ * <div v-on:click="Fn(123)"></div>
  * ```
  */
 export function useLockFn(fn: AnyFn, autoUnlock: boolean | 'auto' = 'auto') {

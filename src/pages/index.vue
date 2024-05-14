@@ -11,7 +11,7 @@
                 </template>
             </TnSwiper>
         </div>
-        <div bg="#fff" mt-24px border-rd-16px p-24px>
+        <div bg="hex-fff" mt-24px border-rd-16px p-24px>
             <TnForm ref="formRef" :model="formData" :rules="formRules" label-width="140">
                 <TnFormItem label="用户名" prop="username">
                     <TnInput v-model="formData.username" size="sm" />
@@ -27,17 +27,17 @@
 
         <div flex--c>
             <div class="i-carbon:api" />
-            <div class="i-svg-spinners:ring-resize" text="60px #f90" />
-            <div v-if="checked === 0" class="i-mdi:checkbox-blank-circle-outline" text="60px #999" @click="checked = 1" />
-            <div v-else class="i-mdi:checkbox-marked-circle" text="60px #f90" @click="checked = 0" />
-            <div v-if="radioed === 0" class="i-mdi:checkbox-blank-outline" text="60px #999" @click="radioed = 1" />
-            <div v-else class="i-mdi:checkbox-intermediate" text="60px #f90" @click="radioed = 0" />
+            <div class="i-svg-spinners:ring-resize" text="60px hex-f90" />
+            <div v-if="checked === 0" class="i-mdi:checkbox-blank-circle-outline" text="60px hex-999" @click="checked = 1" />
+            <div v-else class="i-mdi:checkbox-marked-circle" text="60px hex-f90" @click="checked = 0" />
+            <div v-if="radioed === 0" class="i-mdi:checkbox-blank-outline" text="60px hex-999" @click="radioed = 1" />
+            <div v-else class="i-mdi:checkbox-intermediate" text="60px hex-f90" @click="radioed = 0" />
         </div>
 
         <div flex--c>
             <lcy-checkbox v-model="checked2" :font-size="40" icon-color="#f90">
-                <template #pre><div>请先同意协议</div></template>
-                <div>请先同意协议</div>
+                <template #pre><div>单选框前置文本</div></template>
+                <div>单选框后置文本</div>
             </lcy-checkbox>
         </div>
 
@@ -78,7 +78,7 @@ const heart = $ref(0)
 const radioed = $ref(0)
 
 // #ifdef H5
-useScroll([
+useAutoScroll([
     () => popupShow,
 ])
 // #endif

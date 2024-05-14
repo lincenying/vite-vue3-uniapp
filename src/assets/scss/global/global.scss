@@ -26,6 +26,7 @@ span {
     box-sizing: border-box;
 }
 
+// px2rpx 已将 .uni- 开头的类过滤转换, 所以直接写rpx单位
 .uni-tabbar {
     left: 50% !important;
     width: 750rpx !important;
@@ -40,6 +41,15 @@ text {
 
 page {
     box-sizing: border-box;
+}
+
+.line-2,
+[line-2=''],
+.line-3,
+[line-3=''],
+.line-4,
+[line-4=''] {
+    white-space: break-spaces;
 }
 
 .wrap {

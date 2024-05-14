@@ -2,7 +2,7 @@
     <layout class-name="wrap-tab layout-img UserRouter">
         <div p-40px>4444</div>
         <div flex--c gap-10px>
-            <TnButton type="warning">这是个按钮</TnButton>
+            <TnButton type="warning" @click="router.push('/pages-sub/user/login')">去登录</TnButton>
             <TnLoading show animation type="primary" mode="flower" size="40" />
         </div>
     </layout>

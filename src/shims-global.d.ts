@@ -13,11 +13,7 @@ declare type Arrayable<T> = T | T[]
 /**
  * 键为字符串, 值为 Any 的对象
  */
-declare type Objable = Record<string, any>
-/**
- * 键为字符串, 值为 T 的对象
- */
-declare type ObjableT<T> = Record<string, T>
+declare type Objable<T = any> = Record<string, T>
 /**
  * Function
  */
