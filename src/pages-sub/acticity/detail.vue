@@ -32,13 +32,16 @@ setTimeout(() => {
     getData()
 }, 5000)
 
-provide(layoutDataKey, computed<LayoutDataType>(() => ({
-    dataIsLoaded: dataIsLoaded.value,
-    hasData: !isEmpty(dataDetail.value),
-    showEmptySlot: !dataIsLoaded.value || !dataDetail.value,
-    topBarTitle: '详情',
-    ...defaultHideBar,
-})))
+provide(
+    layoutDataKey,
+    computed<LayoutDataType>(() => ({
+        dataIsLoaded: dataIsLoaded.value,
+        hasData: !isEmpty(dataDetail.value),
+        showEmptySlot: !dataIsLoaded.value || !dataDetail.value,
+        topBarTitle: '详情',
+        ...defaultHideBar,
+    })),
+)
 provide(dataReloadKey, async () => {
     showLoading()
     await getData()
