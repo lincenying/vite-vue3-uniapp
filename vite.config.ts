@@ -12,6 +12,7 @@ import Css from './vite.config.css'
 import Build from './vite.config.build'
 import Components from './vite.config.components'
 import Macros from './vite.config.macros'
+import { uniPolyfill } from './vite.config.uniapp'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
@@ -60,6 +61,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 
             // @ts-expect-error missing types
             uni.default(),
+
+            uniPolyfill(),
         ],
     }
 })
