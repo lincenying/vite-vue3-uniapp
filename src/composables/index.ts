@@ -51,7 +51,9 @@ export const uniAsync = new Proxy({} as UniNamespace.Uni, {
                     },
                 })
             }
-            catch (error) {
+            catch (error: unknown) {
+                const err = error as Error
+                console.log(err.message)
                 showToast(`${String(name)}: 方法不存在...`)
             }
         })

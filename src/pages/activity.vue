@@ -39,7 +39,11 @@ const customLoadMoreText: LoadmoreText = {
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
 
-interface ApiParams { page: number; limit: number; xxx?: number }
+interface ApiParams {
+    page: number
+    limit: number
+    xxx?: number
+}
 
 const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('/article/lists', {
     limit: 20,

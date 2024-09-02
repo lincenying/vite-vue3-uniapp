@@ -135,9 +135,7 @@ userStore.setGlobalLoading(true)
 路由使用了`@uni-helper/vite-plugin-uni-pages`插件, 只需要在对应目录创建vue文件, 会自动生成路由, 还可以在路由组件直接定义`pages.json`里的信息, 如:
 
 ```html
-<route lang="json">
-    { "style": { "navigationStyle": "custom", "enablePullDownRefresh": true } }
-</route>
+<route lang="json"> { "style": { "navigationStyle": "custom", "enablePullDownRefresh": true } } </route>
 ```
 
 将会在pages.json变为:
@@ -182,7 +180,13 @@ getDetail()
 在`src/composables/get-lists.ts`中封装了`useLists`方法, 让你所有上拉加载, 下拉刷新几行代码就搞定, 如:
 
 ```ts
-interface ApiParams { page: number; limit: number; by: string; cache: string; xxx?: number }
+interface ApiParams {
+    page: number
+    limit: number
+    by: string
+    cache: string
+    xxx?: number
+}
 
 const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Article, ApiParams>('/frontend/article/list', {
     limit: 20,
@@ -205,23 +209,14 @@ const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Art
 ```html
 <template>
     <div>
-        <TnListItem
-            v-for="(item, index) in dataLists"
-            :key="index"
-            right-icon="right"
-            @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)"
-        >
+        <TnListItem v-for="(item, index) in dataLists" :key="index" right-icon="right" @click="router.push(`/pages-sub/acticity/detail?id=${item._id}`)">
             <div flex--c>
                 <TnIcon name="tree" />
                 <div ml-10px class="tn-text-ellipsis-1">{{ item.title }}</div>
             </div>
         </TnListItem>
         <div pb-10px pt-30px>
-            <TnLoadmore
-                :status="loadStatus"
-                loading-icon-mode="flower"
-                color="#999"
-            />
+            <TnLoadmore :status="loadStatus" loading-icon-mode="flower" color="#999" />
         </div>
     </div>
 </template>
