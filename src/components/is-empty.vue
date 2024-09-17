@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts" setup>
-import defaultImg from '@/assets/images/no-data.png'
 import type { LayoutDataType } from '~/types'
+import defaultImg from '@/assets/images/no-data.png'
 
 defineOptions({
     name: 'IsEmpty',

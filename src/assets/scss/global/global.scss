@@ -19,11 +19,11 @@ body {
     line-height: 1;
     color: #000;
     background: #fff;
-}
 
-div,
-span {
-    box-sizing: border-box;
+    div,
+    span {
+        box-sizing: border-box;
+    }
 }
 
 // px2rpx 已将 .uni- 开头的类过滤转换, 所以直接写rpx单位

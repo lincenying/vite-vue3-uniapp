@@ -89,8 +89,8 @@ vue 官方出品的, 比vuex更好用的状态管理
 里面代码如下:
 
 ```ts
-import { defineStore } from 'pinia'
 import type { UserData, UserInfo } from '~/pages/user.types'
+import { defineStore } from 'pinia'
 
 interface State {
     userInfo: Nullable<UserInfo>

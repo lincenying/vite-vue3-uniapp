@@ -1,6 +1,6 @@
 <template>
     <page-meta :page-style="pageStyle" />
-    <div class="init-top" />
+    <view class="init-top" />
     <layout class-name="wrap-tab layout-img IndexRouter">
         <div h-420px w-full>
             <TnSwiper v-model="currentSwiperIndex" :data="swiperData" loop autoplay>
@@ -58,9 +58,9 @@
 
 <script setup lang="ts">
 import type { FormItemRule, FormRules, TnFormInstance } from '@tuniao/tnui-vue3-uniapp'
-import rules from '@lincy/async-validation'
 import type { Article } from './index.types'
 import type { LayoutDataType } from '~/types'
+import rules from '@lincy/async-validation'
 
 defineOptions({
     name: 'IndexRouter',

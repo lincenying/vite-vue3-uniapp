@@ -30,10 +30,10 @@
   // uni-app Component type prompt
   "vueCompilerOptions": {
     "nativeTags": ["div", "block", "component", "template", "slot"],
-    "target": 3, // or 2.7 for Vue 2
     "plugins": [
       "@vue-macros/volar/define-props-refs",
-      "@vue-macros/volar/define-props"
+      "@vue-macros/volar/define-props",
+      "@uni-helper/uni-app-types/volar-plugin"
     ]
   }
 }

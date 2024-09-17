@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { isEmpty } from '@lincy/utils'
 import type { Article } from '~/pages/index.types'
 import type { LayoutDataType } from '~/types'
+import { isEmpty } from '@lincy/utils'
 
 defineOptions({
     name: 'BoxRouter',

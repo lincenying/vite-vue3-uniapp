@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import type { UserData, UserInfo } from '~/pages/user.types'
+import { defineStore } from 'pinia'
 
 interface State {
     userInfo: Nullable<UserInfo>

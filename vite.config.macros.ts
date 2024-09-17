@@ -1,9 +1,9 @@
-import DefineOptions from 'unplugin-vue-define-options/vite'
-import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
+import type { PluginOption } from 'vite'
 import DefineProps from '@vue-macros/define-props/vite'
 import DefinePropsRefs from '@vue-macros/define-props-refs/vite'
+import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
 
-import type { PluginOption } from 'vite'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 export default (): PluginOption[] => ([
     /**

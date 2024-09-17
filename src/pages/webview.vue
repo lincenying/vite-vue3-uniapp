@@ -3,8 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import type { WebViewOnMessageEvent } from '~/uni-app-types'
-
 defineOptions({
     name: 'WebviewRouter',
 })
@@ -15,7 +13,7 @@ useHead({
     title: 'WebView',
 })
 
-function onMessage(event: WebViewOnMessageEvent) {
+function onMessage(event: { detail: { data: any } }) {
     const data = event.detail.data
     console.log(data)
 }

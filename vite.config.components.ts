@@ -1,8 +1,8 @@
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from '@uni-helper/vite-plugin-uni-components'
 import type { PluginOption } from 'vite'
-
 import { TuNiaoResolver, wotDesignResolver } from '@lincy/uniapp-ui-resolver'
+import Components from '@uni-helper/vite-plugin-uni-components'
+
+import AutoImport from 'unplugin-auto-import/vite'
 
 export default (): PluginOption[] => ([
     /**
