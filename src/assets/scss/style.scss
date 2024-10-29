@@ -1,7 +1,6 @@
-@import 'global/global';
-@import 'global/uni';
-@import 'global/ui';
-@import './pages/index';
-@import './pages/activity';
-@import './pages/box';
-@import './pages/user';
+@use 'global/uni';
+@use 'global/ui';
+@use './pages/index';
+@use './pages/activity';
+@use './pages/box';
+@use './pages/user';
