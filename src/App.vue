@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import '@tuniao/tn-style/dist/uniapp/index.css'
+import 'wot-design-uni/components/common/abstracts/variable.scss'
+import './assets/scss/global/global.scss'
+import './assets/scss/style.scss'
+
 onLaunch(async () => {
     const userStore = useUserStore()
     const token = ls.get<string>('token') || ''
@@ -7,10 +12,3 @@ onLaunch(async () => {
     }
 })
 </script>
-
-<style lang="scss">
-@import '@tuniao/tn-style/dist/uniapp/index.css';
-@import 'wot-design-uni/components/common/abstracts/variable.scss';
-@import './assets/scss/global/global.scss';
-@import './assets/scss/style.scss';
-</style>
