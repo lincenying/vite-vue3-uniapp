@@ -69,11 +69,12 @@ https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
 两个UI组件库可以混用, 也可以知选择其一使用, 影响不大, 如果想删除另外一个, 那么只需要在`src/App.vue`中
 
 ```vue
-<style lang="scss">
-@import '@tuniao/tn-style/dist/uniapp/index.css';
-@import 'wot-design-uni/components/common/abstracts/variable.scss';
-@import './assets/scss/style.scss';
-</style>
+<script setup lang="ts">
+import '@tuniao/tn-style/dist/uniapp/index.css'
+import 'wot-design-uni/components/common/abstracts/variable.scss'
+import './assets/scss/global/global.scss'
+import './assets/scss/style.scss'
+</script>
 ```
 
 保留对应的`scss`引入即可, 其他地方无需改动
