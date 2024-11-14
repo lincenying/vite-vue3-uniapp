@@ -1,13 +1,10 @@
 <template>
     <div v-if="!layoutData.dataIsLoaded" mt="40%">
-        <TnEmpty mode="data">
-            <template #icon>
-                <TnLoading show mode="flower" animation size="40px" />
+        <wd-status-tip mode="data" tip="加载中, 请稍等...">
+            <template #image>
+                <wd-loading size="40px" />
             </template>
-            <template #tips>
-                <div mt-15px>加载中, 请稍等...</div>
-            </template>
-        </TnEmpty>
+        </wd-status-tip>
     </div>
     <template v-else-if="!layoutData.hasData">
         <div mt-200px flex="-c auto col" @click="dataReload">

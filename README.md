@@ -66,18 +66,17 @@ https://github.com/antfu/unplugin-vue-components#readme
 https://github.com/Moonofweisheng/wot-design-uni
 https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
 
-两个UI组件库可以混用, 也可以知选择其一使用, 影响不大, 如果想删除另外一个, 那么只需要在`src/App.vue`中
+两个UI组件库可以混用, 也可以知选择其一使用, 影响不大,
+如果想删除tuniaoui, 那么只需要在`src/App.vue`中删除引入的css文件即可, 其他地方无需改动
+不想使用wot-design-uni, 无需做任何修改
 
 ```vue
 <script setup lang="ts">
 import '@tuniao/tn-style/dist/uniapp/index.css'
-import 'wot-design-uni/components/common/abstracts/variable.scss'
 import './assets/scss/global/global.scss'
 import './assets/scss/style.scss'
 </script>
 ```
-
-保留对应的`scss`引入即可, 其他地方无需改动
 
 ## Pinia 状态管理
 

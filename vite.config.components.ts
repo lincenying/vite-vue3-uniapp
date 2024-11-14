@@ -50,6 +50,7 @@ export default (): PluginOption[] => ([
      * unplugin-vue-components 按需引入组件
      * 注意：需注册至 uni 之前，否则不会生效
      * @see https://github.com/antfu/vite-plugin-components
+     * @see https://github.com/lincenying/uniapp-ui-resolver
      */
     Components({
         include: [
@@ -60,8 +61,8 @@ export default (): PluginOption[] => ([
         ],
         extensions: ['vue', 'tsx', 'jsx'],
         resolvers: [
-            // TuNiaoResolver(),
-            TuNiaoForkResolver(),
+            // TuNiaoResolver(), // 官方版TuNiaoUi
+            TuNiaoForkResolver(), // 个人Fork版的TuNiaoUi
             wotDesignResolver(),
         ],
         dts: 'src/components.d.ts',

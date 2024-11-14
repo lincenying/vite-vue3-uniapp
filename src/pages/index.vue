@@ -3,25 +3,18 @@
     <view class="init-top" />
     <layout class-name="wrap-tab layout-img IndexRouter">
         <div h-420px w-full>
-            <TnSwiper v-model="currentSwiperIndex" :data="swiperData" loop autoplay>
-                <template #default="{ data }">
-                    <view h-full w-full border-rd-30px>
-                        <image h-full w-full :src="data" mode="aspectFill" />
-                    </view>
-                </template>
-            </TnSwiper>
+            <wd-swiper v-model:current="currentSwiperIndex" :list="swiperData" autoplay loop></wd-swiper>
         </div>
         <div bg="hex-fff" mt-24px border-rd-16px p-24px>
-            <TnForm ref="formRef" :model="formData" :rules="formRules" label-width="140">
-                <TnFormItem label="用户名" prop="username">
-                    <TnInput v-model="formData.username" size="sm" />
-                </TnFormItem>
-                <TnFormItem label="密码" prop="password">
-                    <TnInput v-model="formData.password" size="sm" type="password" />
-                </TnFormItem>
-            </TnForm>
+            <wd-form ref="formRef" :model="formData" :rules="formRules" label-width="140">
+                <wd-cell-group>
+                    <wd-input v-model="formData.username" label="用户名" prop="username" />
+
+                    <wd-input v-model="formData.password" label="密码" prop="password" type="text" :show-password="true" />
+                </wd-cell-group>
+            </wd-form>
             <view class="tn-mt tn-flex-center">
-                <tn-button size="lg" @click="submitForm"> 提交 </tn-button>
+                <wd-button size="medium" @click="submitForm"> 提交 </wd-button>
             </view>
         </div>
 
@@ -44,7 +37,6 @@
         <div>
             <wd-button>主要按钮</wd-button>
             <wd-loading color="green" type="outline" />
-            <TnLoading show animation type="primary" mode="circle" />
         </div>
 
         <div flex-bc>
@@ -57,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FormItemRule, FormRules, TnFormInstance } from '@tuniao/tnui-vue3-uniapp'
+import type { FormInstance, FormItemRule, FormRules } from 'wot-design-uni/components/wd-form/types'
 import type { Article } from './index.types'
 import type { LayoutDataType } from '~/types'
 import rules from '@lincy/async-validation'
@@ -110,7 +102,7 @@ const swiperData = [
 ]
 const currentSwiperIndex = ref(0)
 
-const formRef = ref<TnFormInstance>()
+const formRef = ref<FormInstance>()
 
 // 表单数据
 const formData = reactive({
@@ -123,6 +115,7 @@ const formRules: FormRules = {
     username: [
         { required: true, message: '请输入用户名', trigger: ['change', 'blur'] },
         {
+            required: false,
             pattern: /^[\w-]{4,16}$/,
             message: '请输入4-16位英文、数字、下划线、横线',
             trigger: ['change', 'blur'],
@@ -133,7 +126,7 @@ const formRules: FormRules = {
 
 /* 提交表单 */
 function submitForm() {
-    formRef.value?.validate((valid) => {
+    formRef.value?.validate().then(({ valid }) => {
         if (valid) {
             showToast('提交成功', 'success')
         }

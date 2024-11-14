@@ -1,7 +1,7 @@
 <template>
     <div class="wrap" :class="`${className} ${isDark ? 'dark' : ''}`">
         <!-- 导航条:开始 -->
-        <TnNavbar
+        <!-- <TnNavbar
             v-if="layoutData.showTopBar"
             :back-icon="layoutData.showTopBarBackBtn ? 'left' : ''"
             :home-icon="layoutData.showTopBarBackBtn ? 'home-capsule-fill' : ''"
@@ -9,7 +9,12 @@
             :fixed="true" frosted index-url="/pages/index"
         >
             <text font-600 text="32px hex-333">{{ layoutData.topBarTitle }}</text>
-        </TnNavbar>
+        </TnNavbar> -->
+        <wd-navbar v-if="layoutData.showTopBar" title="标题" left-text="返回" left-arrow placeholder fixed>
+            <template #capsule>
+                <wd-navbar-capsule @back="handleBack" @back-home="handleBackHome" />
+            </template>
+        </wd-navbar>
         <!-- 导航条:结束 -->
         <!-- 不显示导航条时占位:开始 -->
         <div v-else-if="layoutData.showTopBarPlaceholder" class="top-bar-placeholder" :style="`height:${navBarInfo}px`" />
@@ -48,11 +53,6 @@ defineProps<{
     className: string
 }>()
 
-let safeAreaInsetRight = $ref(false)
-// #ifdef MP-WEIXIN
-safeAreaInsetRight = true
-// #endif
-
 const layoutData = inject(layoutDataKey, ref({} as LayoutDataType))
 
 watch(layoutData, (val) => {
@@ -61,4 +61,12 @@ watch(layoutData, (val) => {
     deep: true,
     immediate: true,
 })
+
+function handleBack() {
+    uni.navigateBack({})
+}
+
+function handleBackHome() {
+    uni.reLaunch({ url: '/pages/index' })
+}
 </script>

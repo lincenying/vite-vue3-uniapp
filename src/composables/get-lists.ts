@@ -5,7 +5,7 @@ interface PageType {
 interface ListsReactive<T> {
     dataIsLoaded: boolean
     dataLists: T[]
-    loadStatus: 'loading' | 'loadmore' | 'nomore'
+    loadStatus: 'loading' | 'error' | 'finished'
     apiUrl: string
     isRefresh: boolean
 }
@@ -21,17 +21,16 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
     const listData: ListsReactive<T> = reactive({
         dataIsLoaded: false,
         dataLists: [],
-        loadStatus: 'loadmore',
+        loadStatus: 'loading',
         apiUrl: url,
         isRefresh: false,
     })
 
     async function getData() {
-        if (listData.loadStatus === 'loading' || listData.loadStatus === 'nomore') {
+        if (listData.loadStatus === 'finished') {
             return
         }
 
-        listData.loadStatus = 'loading'
         const { code, data } = await $api.get<ResDataLists<T[]>>(listData.apiUrl, apiParams.value)
         if (code === 200) {
             if (apiParams.value.page === 1) {
@@ -43,10 +42,9 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
 
             if (data.hasNext) {
                 apiParams.value.page += 1
-                listData.loadStatus = 'loadmore'
             }
             else {
-                listData.loadStatus = 'nomore'
+                listData.loadStatus = 'finished'
             }
 
             if (listData.isRefresh) {
@@ -54,7 +52,7 @@ export function useLists<T, K extends PageType = PageType>(url: string, params?:
             }
         }
         else {
-            listData.loadStatus = 'loadmore'
+            listData.loadStatus = 'error'
         }
         listData.dataIsLoaded = true
     }

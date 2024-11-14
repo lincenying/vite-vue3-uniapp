@@ -1,23 +1,26 @@
 <template>
     <layout class-name="wrap-tab layout-img ActivityRouter">
-        <TnListItem
-            v-for="(item, index) in dataLists" :key="index" right-icon="right"
-            @click="router.push(`/pages-sub/acticity/detail?id=${item.c_id}`)"
+        <wd-cell
+            v-for="(item, index) in dataLists" :key="index"
+            is-link
+            :clickable="false"
+            :to="`/pages-sub/acticity/detail?id=${item.c_id}`"
         >
-            <div flex--c>
-                <TnIcon name="tree" />
-                <div ml-10px line-1>{{ item.c_title }}</div>
-            </div>
-        </TnListItem>
+            <template #title>
+                <div flex--c>
+                    <wd-icon name="heart" size="22px"></wd-icon>
+                    <div ml-10px line-1>{{ item.c_title }}</div>
+                </div>
+            </template>
+        </wd-cell>
         <div pb-10px pt-30px>
-            <TnLoadmore :status="loadStatus" :text="customLoadMoreText" loading-icon-mode="flower" color="#999" />
+            <wd-loadmore :state="loadStatus" loading-text="等等，数据正在赶来" finished-text="哎呀，没有啦" error-text="加载失败，点击重试" color="#999" />
         </div>
     </layout>
 </template>
 
 <script setup lang="ts">
 // import { useToast } from '@uni-helper/uni-use'
-import type { LoadmoreText } from '@tuniao/tnui-vue3-uniapp'
 import type { Article } from './index.types'
 import type { LayoutDataType } from '~/types'
 
@@ -28,13 +31,6 @@ defineOptions({
 useHead({
     title: 'Activity',
 })
-
-const customLoadMoreText: LoadmoreText = {
-    loadmore: '还有内容呢',
-    loading: '等等，数据正在赶来',
-    nomore: '哎呀，没有啦',
-    empty: '空空的呀',
-}
 
 // const showToast = useToast({ title: '标题标题标题标题标题', icon: 'none' })
 // showToast()
@@ -62,7 +58,7 @@ provide(layoutDataKey, computed<LayoutDataType>(() => ({
     ...defaultShowBar,
 })))
 provide(dataReloadKey, async () => {
-    loadStatus.value = 'loadmore'
+    loadStatus.value = 'loading'
     showLoading()
     await getData()
     uni.hideLoading()
