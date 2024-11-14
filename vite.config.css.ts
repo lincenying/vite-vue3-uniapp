@@ -28,7 +28,14 @@ const Css: CSSOptions = {
              */
             viewport({
                 unitToConvert: 'px', // 要转化的单位
-                viewportWidth: fontSize * 100, // UI设计稿的宽度
+                // viewportWidth: fontSize * 100, // UI设计稿的宽度
+                viewportWidth: (file) => {
+                    let num = fontSize * 100
+                    if (file.includes('wot-design-uni')) {
+                        num = num / 2
+                    }
+                    return num
+                },
                 unitPrecision: 6, // 转换后的精度，即小数点位数
                 propList: ['*'], // 指定可以转换的css属性，*代表全部css属性
                 viewportUnit: 'rpx', // 指定需要转换成的视窗单位，默认vw
