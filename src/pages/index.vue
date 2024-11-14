@@ -3,7 +3,7 @@
     <view class="init-top" />
     <layout class-name="wrap-tab layout-img IndexRouter">
         <div h-420px w-full>
-            <wd-swiper v-model:current="currentSwiperIndex" :list="swiperData" autoplay loop></wd-swiper>
+            <wd-swiper v-model:current="currentSwiperIndex" :list="swiperData" height="100%" autoplay loop class="h-full"></wd-swiper>
         </div>
         <div bg="hex-fff" mt-24px border-rd-16px p-24px>
             <wd-form ref="formRef" :model="formData" :rules="formRules" label-width="140">
@@ -18,7 +18,7 @@
             </view>
         </div>
 
-        <div flex--c>
+        <div mt-20px flex--c>
             <div class="i-carbon:api" />
             <div class="i-svg-spinners:ring-resize" text="60px hex-f90" />
             <div v-if="checked === 0" class="i-mdi:checkbox-blank-circle-outline" text="60px hex-999" @click="checked = 1" />
@@ -27,19 +27,19 @@
             <div v-else class="i-mdi:checkbox-intermediate" text="60px hex-f90" @click="radioed = 0" />
         </div>
 
-        <div flex--c>
+        <div mt-20px flex--c>
             <lcy-checkbox v-model="checked2" :font-size="40" icon-color="#f90">
                 <template #pre><div>单选框前置文本</div></template>
                 <div>单选框后置文本</div>
             </lcy-checkbox>
         </div>
 
-        <div>
+        <div mt-20px>
             <wd-button>主要按钮</wd-button>
             <wd-loading color="green" type="outline" />
         </div>
 
-        <div flex-bc>
+        <div mt-20px flex-bc>
             <div v-if="!heart" class="i-line-md:heart" text="40px" @click="heart = 1" />
             <div v-else class="i-line-md:heart-filled" text="40px" @click="heart = 0" />
             <div class="i-mdi:chevron-right" text="40px" />

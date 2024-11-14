@@ -29,6 +29,7 @@ export default defineUniPages({
         selectedColor: '#333333',
         backgroundColor: '#ffffff',
         borderStyle: 'black',
+        fontSize: '12px',
         list: [
             {
                 pagePath: 'pages/index',
