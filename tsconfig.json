@@ -12,7 +12,8 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "node"
+      "node",
+      "wot-design-uni/global"
     ],
     "allowJs": true,
     "strict": true,
