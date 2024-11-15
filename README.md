@@ -66,7 +66,7 @@ https://github.com/antfu/unplugin-vue-components#readme
 https://github.com/Moonofweisheng/wot-design-uni
 https://github.com/tuniaoTech/tuniaoui-rc-vue3-uniapp
 
-两个UI组件库可以混用, 也可以知选择其一使用, 影响不大,
+两个UI组件库可以混用, 也可以只选择其一使用, 影响不大,
 如果想删除tuniaoui, 那么只需要在`src/App.vue`中删除引入的css文件即可, 其他地方无需改动
 不想使用wot-design-uni, 无需做任何修改
 
