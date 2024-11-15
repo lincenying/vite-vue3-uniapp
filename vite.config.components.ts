@@ -40,7 +40,7 @@ export default (): PluginOption[] => ([
             },
         ],
         dts: 'src/auto-imports.d.ts',
-        dirs: ['src/components', 'src/composables', 'src/stores'],
+        dirs: ['src/components', 'src/**/components', 'src/composables', 'src/stores'],
 
         resolvers: [],
         defaultExportByFilename: false,
@@ -53,6 +53,7 @@ export default (): PluginOption[] => ([
      * @see https://github.com/lincenying/uniapp-ui-resolver
      */
     Components({
+        dirs: ['src/components', 'src/**/components'],
         include: [
             /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
             /\.vue$/,
