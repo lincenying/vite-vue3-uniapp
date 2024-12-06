@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import lincy from '@lincy/eslint-config'
 
 const autoImport = JSON.parse(
-    await readFile(new URL('./.eslintrc-auto-import.json', import.meta.url)),
+    (await readFile(new URL('./.eslintrc-auto-import.json', import.meta.url))).toString(),
 )
 
 const config = lincy(
@@ -13,8 +13,8 @@ const config = lincy(
             graphql: true,
             html: true,
             markdown: true,
-            toml: false,
         },
+        toml: false,
         overrides: {
             ignores: [
                 '**/assets',

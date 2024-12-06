@@ -2,31 +2,28 @@
 
 Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI/wot-design-uni + Pinia + Vite + TS + Unocss)
 
-> [!重要]
-> 注意: 升级依赖时, 请不要升级`@vueuse/core`和`pinia`, 这两个依赖需要`vue3.3`的支持, 但是`uniapp`目前还不支持`vue3.3`
-
--   Rem 适配
--   自动引入UI库组件/项目组件/函数等
--   Pinia 状态管理
--   自动生成路由
--   Api封装
--   列表封装: useLists
--   开发环境配置proxy跨域
--   Unocss
--   eslint/stylelint/prettierrc/vue-tsc
+- Rem 适配
+- 自动引入UI库组件/项目组件/函数等
+- Pinia 状态管理
+- 自动生成路由
+- Api封装
+- 列表封装: useLists
+- 开发环境配置proxy跨域
+- Unocss
+- eslint/stylelint/prettierrc/vue-tsc
 
 运行方法参考 uni-app 官方文档：[运行、发布uni-app](https://uniapp.dcloud.net.cn/quickstart-cli.html#%E8%BF%90%E8%A1%8C%E3%80%81%E5%8F%91%E5%B8%83uni-app)
 
 ## Variations
 
--   [vite-nuxt3](https://github.com/lincenying/vite-nuxt3) - Nuxt3 + Vite 入门模板
--   [vite-uniapp-vue3](https://github.com/lincenying/vite-uniapp-vue3) - Uniapp3 + Vite 入门模板
--   [vite-react-mobx-ssr](https://github.com/lincenying/vite-react-mobx-ssr) - React + Mobx + Vite + SSR 入门模板
--   [vite-react-mobx](https://github.com/lincenying/vite-react-mobx) - React + Mobx + Vite 入门模板
--   [vite-react-redux](https://github.com/lincenying/vite-react-redux) - React + Redux + Vite 入门模板
--   [vite-vue3-h5-ssr](https://github.com/lincenying/vite-vue3-h5-ssr) - Vue3 + Vant + Vite + SSR 入门模板
--   [vite-vue3-h5](https://github.com/lincenying/vite-vue3-h5) - Vue3 + Vant + Vite 入门模板
--   [vite-vue3-admin](https://github.com/lincenying/vite-vue3-admin) - Vue3 + ElementPlus + Vite 管理后台入门模板
+- [vite-nuxt3](https://github.com/lincenying/vite-nuxt3) - Nuxt3 + Vite 入门模板
+- [vite-uniapp-vue3](https://github.com/lincenying/vite-uniapp-vue3) - Uniapp3 + Vite 入门模板
+- [vite-react-mobx-ssr](https://github.com/lincenying/vite-react-mobx-ssr) - React + Mobx + Vite + SSR 入门模板
+- [vite-react-mobx](https://github.com/lincenying/vite-react-mobx) - React + Mobx + Vite 入门模板
+- [vite-react-redux](https://github.com/lincenying/vite-react-redux) - React + Redux + Vite 入门模板
+- [vite-vue3-h5-ssr](https://github.com/lincenying/vite-vue3-h5-ssr) - Vue3 + Vant + Vite + SSR 入门模板
+- [vite-vue3-h5](https://github.com/lincenying/vite-vue3-h5) - Vue3 + Vant + Vite 入门模板
+- [vite-vue3-admin](https://github.com/lincenying/vite-vue3-admin) - Vue3 + ElementPlus + Vite 管理后台入门模板
 
 ## Rem 适配
 
@@ -198,11 +195,11 @@ const { dataIsLoaded, dataLists, loadStatus, getData, apiParams } = useLists<Art
 
 如上面代码, 只需要将接口相关参数传入接口, 返回的参数中,
 
--   `dataIsLoaded`为接口是否请求完成(响应式的Ref数据),
--   `apiParams`为传入参数(响应式的Ref数据),
--   `dataList`为数据列表(响应式的Ref数据),
--   `getData`为请求列表的方法,
--   `loadStatus`为分页状态(响应式的Ref数据), 可能的值为: 'loading' | 'loadmore' | 'nomore'
+- `dataIsLoaded`为接口是否请求完成(响应式的Ref数据),
+- `apiParams`为传入参数(响应式的Ref数据),
+- `dataList`为数据列表(响应式的Ref数据),
+- `getData`为请求列表的方法,
+- `loadStatus`为分页状态(响应式的Ref数据), 可能的值为: 'loading' | 'loadmore' | 'nomore'
 
 模板代码为:
 

@@ -1,6 +1,6 @@
 import type { BuildOptions, ServerOptions } from 'vite'
 
-const config: { server: ServerOptions; build: BuildOptions } = {
+const config: { server: ServerOptions, build: BuildOptions } = {
     server: {
         port: 6778,
         proxy: {
