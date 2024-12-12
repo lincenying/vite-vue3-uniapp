@@ -22,6 +22,19 @@ const config: { server: ServerOptions, build: BuildOptions } = {
         target: 'es2018',
         cssTarget: 'chrome79',
         minify: true,
+        rollupOptions: {
+            output: {
+                manualChunks(id: string) {
+                    // 处理css分块
+                    if (id.includes('node_modules')) {
+                        return 'vendor'
+                    }
+                    if (id.includes('__uno.css')) {
+                        return 'unocss'
+                    }
+                },
+            },
+        },
     },
 }
 
