@@ -32,6 +32,5 @@ declare module 'vue' {
     WdPopup: typeof import('wot-design-uni/components/wd-popup/wd-popup.vue')['default']
     WdStatusTip: typeof import('wot-design-uni/components/wd-status-tip/wd-status-tip.vue')['default']
     WdSwiper: typeof import('wot-design-uni/components/wd-swiper/wd-swiper.vue')['default']
-    WdTransition: typeof import('wot-design-uni/components/wd-transition/wd-transition.vue')['default']
   }
 }
