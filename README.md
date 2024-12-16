@@ -10,6 +10,7 @@ Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI/wot-design-uni + Pinia
 - 列表封装: useLists
 - 开发环境配置proxy跨域
 - Unocss
+- UnoCSS Icons
 - eslint/stylelint/prettierrc/vue-tsc
 
 运行方法参考 uni-app 官方文档：[运行、发布uni-app](https://uniapp.dcloud.net.cn/quickstart-cli.html#%E8%BF%90%E8%A1%8C%E3%80%81%E5%8F%91%E5%B8%83uni-app)
@@ -149,6 +150,30 @@ userStore.setGlobalLoading(true)
 ```
 
 相关文档: https://github.com/uni-helper/vite-plugin-uni-pages
+
+## layout布局框架
+
+在`src/layouts`文件夹下创建布局文件, 然后在对应路由页面修改`route-block`即可, 如:
+
+```html
+<route lang="json"> { "layout": "default", "style": { "navigationStyle": "custom", "enablePullDownRefresh": true } } </route>
+```
+
+将会在pages.json变为:
+
+```json
+{
+  "path": "pages/activity",
+  "type": "page",
+  "layout": "default",
+  "style": {
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": true
+  }
+}
+```
+
+相关文档: https://uni-helper.js.org/vite-plugin-uni-layouts
 
 ## Api封装
 
@@ -292,6 +317,30 @@ https://github.com/lincenying/base-config/blob/main/src/uno.uniapp.config.ts
 官方文档见:
 
 https://unocss.dev/
+
+## UnoCSS Icons
+
+图标站点为: https://icones.js.org/collection/all
+
+打开上面的图片站, 在左边点击选择你想要的图标库, 查看地址栏上的地址, 假设是`https://icones.js.org/collection/ph`
+
+那么这么图标库的名称就是`ph`
+
+安装图标库
+
+```bash
+# 其他库只需要将后面的ph替换成对应库名即可
+pnpm install @iconify-json/ph
+```
+
+使用图标库, 只要点击想要的图标, 下方会出现该图标的详细信息, 复制图标名即可使用, 使用方法如下:
+
+class的规则如下: i-[图标库名]-[图标名称] 或者 i-[图标库名]:[图标名称]
+
+```html
+<div class="i-ph-airplane-landing-bold" text="60px hex-f90" />
+<div class="i-ph:airplane-landing-bold" text="60px hex-f90" />
+```
 
 ## eslint/stylelint/prettierrc/vue-tsc
 
