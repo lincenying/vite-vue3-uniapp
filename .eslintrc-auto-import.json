@@ -329,6 +329,10 @@
     "useTemplateRef": true,
     "DirectiveBinding": true,
     "MaybeRef": true,
-    "MaybeRefOrGetter": true
+    "MaybeRefOrGetter": true,
+    "NavBarInfo": true,
+    "NavbarBoundingInfo": true,
+    "SystemScreenInfo": true,
+    "WxShareOptions": true
   }
 }

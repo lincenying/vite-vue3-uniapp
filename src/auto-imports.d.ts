@@ -328,6 +328,12 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { NavBarInfo, NavbarBoundingInfo, SystemScreenInfo } from './composables/system-rect-info'
+  import('./composables/system-rect-info')
+  // @ts-ignore
+  export type { WxShareOptions } from './composables/wx-share'
+  import('./composables/wx-share')
 }
 
 // for vue template auto import
