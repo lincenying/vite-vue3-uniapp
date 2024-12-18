@@ -26,6 +26,14 @@ Uniapp Vue3 项目模板, 包含技术栈(Vue3 + TuniaoUI/wot-design-uni + Pinia
 - [vite-vue3-h5](https://github.com/lincenying/vite-vue3-h5) - Vue3 + Vant + Vite 入门模板
 - [vite-vue3-admin](https://github.com/lincenying/vite-vue3-admin) - Vue3 + ElementPlus + Vite 管理后台入门模板
 
+## 使用
+
+```bash
+npx degit lincenying/vite-vue3-uniapp my-uniapp-app
+cd my-uniapp-app
+pnpm i # 如果你没有安装 pnpm，请运行：npm install -g pnpm
+```
+
 ## Rem 适配
 
 设计稿相关参数配置见: `src/design.config.ts`, 按UI给的设计稿, 修改即可
