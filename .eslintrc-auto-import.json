@@ -333,6 +333,8 @@
     "NavBarInfo": true,
     "NavbarBoundingInfo": true,
     "SystemScreenInfo": true,
-    "WxShareOptions": true
+    "WxShareOptions": true,
+    "usePreferredReducedTransparency": true,
+    "useSSRWidth": true
   }
 }
