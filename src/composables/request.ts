@@ -33,14 +33,32 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     response => response,
-    error => Promise.resolve(error.response || error),
+    (error) => {
+        const response = {} as AxiosResponse
+        response.config = error.config
+        response.data = null
+        response.headers = error.config.headers
+        response.status = error.code
+        response.statusText = error.message
+        response.request = error.request
+        return Promise.resolve(response)
+    },
 )
 
 function checkStatus(response: AxiosResponse): ResponseData<any> {
-    if (response && (response.status === 200 || response.status === 304)) {
+    if ((response.status === 200 || response.status === 304)) {
         return response.data
     }
+    if (response.status === 401) {
+        return {
+            code: 401,
+            status: 401,
+            info: response.statusText || response.toString(),
+            data: response.statusText || response.toString(),
+            message: `您还没有登录, 或者登录超时!`,
 
+        }
+    }
     return {
         status: -404,
         code: -404,
