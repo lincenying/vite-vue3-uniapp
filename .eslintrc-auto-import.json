@@ -335,6 +335,7 @@
     "SystemScreenInfo": true,
     "WxShareOptions": true,
     "usePreferredReducedTransparency": true,
-    "useSSRWidth": true
+    "useSSRWidth": true,
+    "onElementRemoval": true
   }
 }
