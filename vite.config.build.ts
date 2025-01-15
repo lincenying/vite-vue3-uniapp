@@ -26,11 +26,13 @@ const config: { server: ServerOptions, build: BuildOptions } = {
             output: {
                 manualChunks(id: string) {
                     // 处理css分块
-                    if (id.includes('node_modules')) {
-                        return 'vendor'
-                    }
-                    if (id.includes('__uno.css')) {
-                        return 'unocss'
+                    if (id.includes('.css') || id.includes('.scss') || id.includes('.sass') || id.includes('.less')) {
+                        if (id.includes('node_modules')) {
+                            return 'vendor'
+                        }
+                        if (id.includes('__uno.css')) {
+                            return 'unocss'
+                        }
                     }
                 },
             },
