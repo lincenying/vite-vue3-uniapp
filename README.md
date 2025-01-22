@@ -37,6 +37,7 @@ pnpm i # 如果你没有安装 pnpm，请运行：npm install -g pnpm
 ### 开发环境
 
 ```bash
+# 第一次运行时, 会生成pages.json文件, 所以打开页面会没有tabBar, 把服务停了, 重新启动即可
 pnpm serve
 ```
 
