@@ -79,6 +79,7 @@
     "lint-staged": "^15.4.3",
     "miniprogram-api-typings": "^4.0.4",
     "pnpm": "^10.2.1",
+    "postcss": "^8.5.1",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "sass": "^1.84.0",
     "simple-git-hooks": "^2.11.1",
