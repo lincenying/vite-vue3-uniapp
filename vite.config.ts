@@ -14,7 +14,7 @@ import Components from './vite.config.components'
 import Css from './vite.config.css'
 import Macros from './vite.config.macros'
 
-// import { uniPolyfill } from './vite.config.uniapp'
+import { uniPolyfill } from './vite.config.uniapp'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => {
@@ -68,7 +68,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             // @ts-expect-error missing types
             uni.default(),
 
-            // uniPolyfill(),
+            // 解决微信小程序, uni-mp-vue 中缺少 render和TransitionGroup 方法的问题
+            uniPolyfill(),
         ],
     }
 })
