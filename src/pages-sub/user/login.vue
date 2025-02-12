@@ -25,7 +25,7 @@
                     <div mt-50px flex-cc>
                         <image h-96px w-231px src="https://media.sammu.top/lohascity/user/cancel.png" @click="needMobile = false" />
                         <button class="wx-btn" ml-28px h-96px w-231px open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
-                            <image h-96px w-231px src="https://media.sammu.top/lohascity/user/go-login.png" />
+                            <image h-96px w-231px src="@/static/user/go-accredit.png" />
                         </button>
                     </div>
                 </div>

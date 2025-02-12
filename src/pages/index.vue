@@ -35,8 +35,8 @@
         </div>
 
         <div mt-20px>
-            <wd-button>主要按钮</wd-button>
-            <wd-loading color="green" type="outline" />
+            <wd-button type="success">主要按钮</wd-button>
+            <wd-loading type="outline" color="#fa34aa" size="80px" />
         </div>
 
         <div mt-20px flex-bc>
