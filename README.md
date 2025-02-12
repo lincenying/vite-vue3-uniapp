@@ -185,6 +185,8 @@ userStore.setGlobalLoading(true)
 
 ## layout布局框架
 
+> 该功能和`page-meta`组件冲突, 请勿同时使用
+
 在`src/layouts`文件夹下创建布局文件, 然后在对应路由页面修改`route-block`即可, 如:
 
 ```html

@@ -152,7 +152,7 @@ provide(dataReloadKey, async () => {
 
 <route lang="json">
 {
-    "layout": "default",
+    "layout": "none",
     "style": {
         "navigationStyle": "custom"
     }

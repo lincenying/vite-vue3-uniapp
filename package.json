@@ -65,7 +65,7 @@
     "@lincy/eslint-config": "^5.4.1",
     "@lincy/stylelint-config": "^2.0.1",
     "@lincy/uniapp-ui-resolver": "^1.2.1",
-    "@lincy/unocss-base-config": "^2.2.0",
+    "@lincy/unocss-base-config": "^2.2.1",
     "@types/node": "^22.13.1",
     "@unhead/vue": "^1.11.18",
     "@uni-helper/uni-app-types": "1.0.0-alpha.6",

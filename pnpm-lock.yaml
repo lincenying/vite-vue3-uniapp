@@ -109,8 +109,8 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       '@lincy/unocss-base-config':
-        specifier: ^2.2.0
-        version: 2.2.0(@unocss/core@65.4.3)(@unocss/preset-mini@65.4.3)(@unocss/preset-uno@65.4.3)(postcss@8.5.2)(rollup@4.34.4)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.1)(sass@1.84.0)(terser@5.33.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))
+        specifier: ^2.2.1
+        version: 2.2.1(@unocss/core@65.4.3)(@unocss/preset-mini@65.4.3)(@unocss/preset-uno@65.4.3)(postcss@8.5.2)(rollup@4.34.4)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.1)(sass@1.84.0)(terser@5.33.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))
       '@types/node':
         specifier: ^22.13.1
         version: 22.13.1
@@ -1965,8 +1965,8 @@ packages:
   '@lincy/uniapp-ui-resolver@1.2.1':
     resolution: {integrity: sha512-oNQQA21/GWyXCgMO8zEXUNt4VZzuupVqPh+4qIuAE5Q3SRXVWDd6AisZj1S4AQof5dZ34zBoMZzQKIaRMfp2iQ==}
 
-  '@lincy/unocss-base-config@2.2.0':
-    resolution: {integrity: sha512-MN6l0pQeseOkIc8q05zQz00MRVMflIYzbkjAjvjc9yINvp+0k9fasbi593+JaNY+vvYXv4naHyQEERJhzph0/w==}
+  '@lincy/unocss-base-config@2.2.1':
+    resolution: {integrity: sha512-A1L5/aYen4JmMNBmbrOOdOP/ENKSP/ksdBQqFIIkK9KERKU+KL6Tm/uoJUNfVbJgbexNuKmcBOvIQ8T6vLpCdQ==}
 
   '@lincy/utils@0.6.2':
     resolution: {integrity: sha512-ZxrBdt6e92nj06zQm8737ywHF/EGdfCNFulHQ/PhcsfBszK5QxwgUK6lxP+DCChHt/42RzLnAjvbPmxl7fCHfQ==}
@@ -8437,7 +8437,7 @@ snapshots:
 
   '@lincy/uniapp-ui-resolver@1.2.1': {}
 
-  '@lincy/unocss-base-config@2.2.0(@unocss/core@65.4.3)(@unocss/preset-mini@65.4.3)(@unocss/preset-uno@65.4.3)(postcss@8.5.2)(rollup@4.34.4)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.1)(sass@1.84.0)(terser@5.33.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))':
+  '@lincy/unocss-base-config@2.2.1(@unocss/core@65.4.3)(@unocss/preset-mini@65.4.3)(@unocss/preset-uno@65.4.3)(postcss@8.5.2)(rollup@4.34.4)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.1)(sass@1.84.0)(terser@5.33.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))':
     dependencies:
       unocss: 65.4.3(postcss@8.5.2)(rollup@4.34.4)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.1)(sass@1.84.0)(terser@5.33.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3))
       unocss-applet: 0.9.0(@unocss/core@65.4.3)(@unocss/preset-mini@65.4.3)(@unocss/preset-uno@65.4.3)(unocss@65.4.3(postcss@8.5.2)(rollup@4.34.4)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.1)(sass@1.84.0)(terser@5.33.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.6.3)))
