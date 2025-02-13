@@ -5,7 +5,10 @@
         margin-left: -375px !important;
     }
 
+    /* #ifdef MP */
     .wd-swiper {
         height: 100%;
     }
+
+    /* #endif */
 }
