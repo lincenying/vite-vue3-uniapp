@@ -59,7 +59,13 @@ export function useUniAppSystemRectInfo() {
 
     const getSystemRectInfo = () => {
         try {
-            const uniSystemInfo = uni.getSystemInfoSync()
+            let uniSystemInfo
+            // #ifdef MP-WEIXIN
+            uniSystemInfo = uni.getWindowInfo()
+            // #endif
+            // #ifndef MP-WEIXIN
+            uniSystemInfo = uni.getSystemInfoSync()
+            // #endif
             const { statusBarHeight, windowWidth, windowHeight, titleBarHeight } = uniSystemInfo
 
             let height = 0

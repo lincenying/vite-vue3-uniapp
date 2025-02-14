@@ -27,8 +27,14 @@ export const ls = {
  */
 function useDark() {
     const darkMode = ref(false)
+    // #ifdef MP-WEIXIN
+    const appBaseInfo = uni.getAppBaseInfo()
+    darkMode.value = appBaseInfo?.theme === 'dark'
+    // #endif
+    // #ifndef MP-WEIXIN
     const systemInfo = uni.getSystemInfoSync()
     darkMode.value = systemInfo?.theme === 'dark'
+    // #endif
     uni.onThemeChange(res => darkMode.value = res.theme === 'dark')
     return darkMode
 }

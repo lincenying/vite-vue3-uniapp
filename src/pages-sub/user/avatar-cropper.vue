@@ -126,7 +126,13 @@ export default {
         }
     },
     onLoad(option) {
-        const rectInfo = uni.getSystemInfoSync()
+        let rectInfo
+        // #ifdef MP-WEIXIN
+        rectInfo = uni.getWindowInfo()
+        // #endif
+        // #ifndef MP-WEIXIN
+        rectInfo = uni.getSystemInfoSync()
+        // #endif
         this.width = rectInfo.windowWidth
         this.height = rectInfo.windowHeight - this.bottomNavHeight
         this.cropperOpt.width = this.width

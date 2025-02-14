@@ -10,7 +10,8 @@
 /* #ifdef H5 */
 html {
     --body-width: #{$vmDesignWidth}px;
-    --tabbar-height: 50Px;
+
+    // --tabbar-height: 50Px; 直接使用 --tab-bar-height
 }
 
 body {

@@ -9,7 +9,7 @@ const config = lincy(
     {
         unocss: true,
         formatters: {
-            css: false,
+            css: true,
             graphql: true,
             html: true,
             markdown: true,
@@ -17,7 +17,6 @@ const config = lincy(
         toml: false,
         overrides: {
             ignores: [
-                '**/assets',
                 '**/static',
                 '**/uni-app-types.d.ts',
             ],
