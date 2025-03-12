@@ -14,6 +14,7 @@ const config = lincy(
             html: true,
             markdown: true,
         },
+        pnpm: true,
         toml: false,
         overrides: {
             ignores: [
