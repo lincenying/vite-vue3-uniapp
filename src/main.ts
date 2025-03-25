@@ -1,4 +1,4 @@
-import { createHead } from '@unhead/vue'
+import { createHead } from '@unhead/vue/client'
 import * as Pinia from 'pinia'
 import { createSSRApp } from 'vue'
 
