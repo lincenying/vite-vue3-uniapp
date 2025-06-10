@@ -23,7 +23,7 @@ export default (): PluginOption[] => ([
             'vue',
             '@vueuse/core',
             {
-                '@lincy/utils': ['deepClone', 'deepMerge', 'deepEqual'],
+                '@lincy/utils': ['deepClone', 'deepMerge', 'deepEqual', 'sleep', 'UTC2Date'],
                 'pinia': ['defineStore', 'storeToRefs'],
                 '@unhead/vue': ['useHead'],
                 '@dcloudio/uni-app': [
