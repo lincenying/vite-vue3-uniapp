@@ -14,7 +14,7 @@ export const maxWindow = `${minWindow}Px`
 /** px转rpx的比例 */
 export const fontSize = designWidth / 750
 
-export const charsetRemoval = function () {
+export function charsetRemoval() {
     return {
         postcssPlugin: 'internal:charset-removal',
         AtRule: {

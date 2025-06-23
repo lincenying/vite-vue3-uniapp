@@ -9,6 +9,7 @@ declare global {
   const $api: typeof import('./composables/request')['$api']
   const EffectScope: typeof import('vue')['EffectScope']
   const ObjectToArray: typeof import('./composables/index')['ObjectToArray']
+  const UTC2Date: typeof import('@lincy/utils')['UTC2Date']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']
@@ -116,6 +117,7 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const showLoading: typeof import('./composables/index')['showLoading']
   const showToast: typeof import('./composables/index')['showToast']
+  const sleep: typeof import('@lincy/utils')['sleep']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
@@ -349,6 +351,7 @@ declare module 'vue' {
     readonly $api: UnwrapRef<typeof import('./composables/request')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly ObjectToArray: UnwrapRef<typeof import('./composables/index')['ObjectToArray']>
+    readonly UTC2Date: UnwrapRef<typeof import('@lincy/utils')['UTC2Date']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -456,6 +459,7 @@ declare module 'vue' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly showLoading: UnwrapRef<typeof import('./composables/index')['showLoading']>
     readonly showToast: UnwrapRef<typeof import('./composables/index')['showToast']>
+    readonly sleep: UnwrapRef<typeof import('@lincy/utils')['sleep']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>

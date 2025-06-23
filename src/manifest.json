@@ -59,7 +59,7 @@
   /* 小程序特有相关 */
   "mp-weixin": {
     "darkmode": true,
-    "appid": "wxa65568a8445e7347",
+    "appid": "wxb4e947dac78f4988",
     "setting": {
       "urlCheck": false,
       "es6": false

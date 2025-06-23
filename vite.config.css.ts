@@ -17,7 +17,7 @@ const Css: CSSOptions = {
             `,
             api: 'modern-compiler',
             // 忽略scss global-builtin, import 提示3.0将删除的警告
-            silenceDeprecations: ['global-builtin', 'import'],
+            silenceDeprecations: ['global-builtin', 'import', 'legacy-js-api'],
         },
     },
     postcss: {
