@@ -59,15 +59,15 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             ...Components(),
             ...Macros(),
 
+            // @ts-expect-error missing types
+            uni.default(),
+
             /**
              * unocss
              * @see https://github.com/antfu/unocss
              * see unocss.config.ts for config
              */
             Unocss(),
-
-            // @ts-expect-error missing types
-            uni.default(),
 
             // 解决微信小程序, uni-mp-vue 中缺少 render和TransitionGroup 方法的问题
             uniPolyfill(),
