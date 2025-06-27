@@ -83,6 +83,7 @@
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "sass": "^1.89.2",
     "simple-git-hooks": "^2.13.0",
+    "stylelint": "^16.21.0",
     "typescript": "^5.8.3",
     "unocss": "66.0.0",
     "unocss-applet": "^0.10.0",

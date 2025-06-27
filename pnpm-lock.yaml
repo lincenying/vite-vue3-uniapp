@@ -162,6 +162,9 @@ importers:
       simple-git-hooks:
         specifier: ^2.13.0
         version: 2.13.0
+      stylelint:
+        specifier: ^16.21.0
+        version: 16.21.0(typescript@5.8.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
