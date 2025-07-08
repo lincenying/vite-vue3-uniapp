@@ -3,6 +3,7 @@ import type { BuildOptions, ServerOptions } from 'vite'
 const config: { server: ServerOptions, build: BuildOptions } = {
     server: {
         port: 6778,
+        open: true,
         proxy: {
             '/api': {
                 target: 'https://php.mmxiaowu.com',

@@ -1,0 +1,17 @@
+* text=auto     eol=lf
+# Files with Unix line endings
+*.vue   text    eol=lf
+*.py    text    eol=lf
+*.php   text    eol=lf
+*.js    text    eol=lf
+*.jsx   text    eol=lf
+*.ts    text    eol=lf
+*.tsx   text    eol=lf
+*.css   text    eol=lf
+*.less  text    eol=lf
+*.scss  text    eol=lf
+*.json  text    eol=lf
+*.sh    text    eol=lf
+*.yml   text    eol=lf
+*.yaml  text    eol=lf
+*.md    text    eol=lf
