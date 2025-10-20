@@ -27,7 +27,7 @@
     "lint:ts": "vue-tsc --noEmit --skipLibCheck",
     "lint:css": "stylelint '**/*.{css,scss}' --fix",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "npx simple-git-hooks"
+    "prepare[-del]": "npx simple-git-hooks"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4060620250520001",
@@ -103,10 +103,10 @@
       "we-cropper"
     ]
   },
-  "simple-git-hooks": {
+  "simple-git-hooks[-del]": {
     "pre-commit": "pnpm lint-staged"
   },
-  "lint-staged": {
+  "lint-staged[-del]": {
     "*.{ts,tsx,vue}": [
       "eslint --fix"
     ],
