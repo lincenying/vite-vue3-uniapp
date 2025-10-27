@@ -27,6 +27,7 @@
     "lint:ts": "vue-tsc --noEmit --skipLibCheck",
     "lint:css": "stylelint '**/*.{css,scss}' --fix",
     "preinstall": "npx only-allow pnpm",
+    "copy": "deploy_dist vite-uniapp-vue3/dist",
     "prepare[-del]": "npx simple-git-hooks"
   },
   "dependencies": {
