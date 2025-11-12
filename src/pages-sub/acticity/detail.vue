@@ -17,8 +17,17 @@ import { isEmpty } from '@lincy/utils'
 defineOptions({
     name: 'BoxRouter',
 })
+
 // url 传的参数, 在 uniapp 中属于 attrs, 由于 attrs 不具有响应性, 所以不能使用 defineProps + toRefs, 否则控制台会出现警告
 const props = defineProps<{ id: string }>()
+
+definePage({
+    style: {
+        navigationStyle: 'custom',
+        enablePullDownRefresh: true,
+    },
+})
+
 const id = $toRef(props, 'id')
 
 console.log($$(id))
@@ -52,12 +61,3 @@ useHead({
     title: computed(() => dataDetail.value?.c_title || ''),
 })
 </script>
-
-<route lang="json">
-{
-    "style": {
-        "navigationStyle": "custom",
-        "enablePullDownRefresh": true
-    }
-}
-</route>

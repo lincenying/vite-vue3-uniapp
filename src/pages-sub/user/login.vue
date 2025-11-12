@@ -42,6 +42,12 @@ defineOptions({
     name: 'UserLogin',
 })
 
+definePage({
+    style: {
+        navigationStyle: 'custom',
+    },
+})
+
 useHead({
     title: 'Login',
 })
@@ -149,11 +155,3 @@ provide(dataReloadKey, async () => {
     uni.hideLoading()
 })
 </script>
-
-<route lang="json">
-{
-    "style": {
-        "navigationStyle": "custom"
-    }
-}
-</route>

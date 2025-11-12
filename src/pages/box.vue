@@ -38,6 +38,13 @@ defineOptions({
     name: 'BoxRouter',
 })
 
+definePage({
+    layout: 'home',
+    style: {
+        navigationStyle: 'custom',
+    },
+})
+
 useHead({
     title: 'Box',
 })
@@ -79,12 +86,3 @@ provide(dataReloadKey, async () => {
     uni.hideLoading()
 })
 </script>
-
-<route lang="json">
-{
-    "layout": "home",
-    "style": {
-        "navigationStyle": "custom"
-    }
-}
-</route>

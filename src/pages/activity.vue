@@ -28,6 +28,13 @@ defineOptions({
     name: 'ActivityRouter',
 })
 
+definePage({
+    style: {
+        navigationStyle: 'custom',
+        enablePullDownRefresh: true,
+    },
+})
+
 useHead({
     title: 'Activity',
 })
@@ -64,12 +71,3 @@ provide(dataReloadKey, async () => {
     uni.hideLoading()
 })
 </script>
-
-<route lang="json">
-{
-    "style": {
-        "navigationStyle": "custom",
-        "enablePullDownRefresh": true
-    }
-}
-</route>

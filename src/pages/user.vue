@@ -27,6 +27,12 @@ defineOptions({
     name: 'UserRouter',
 })
 
+definePage({
+    style: {
+        navigationStyle: 'custom',
+    },
+})
+
 useHead({
     title: 'User',
 })
@@ -65,11 +71,3 @@ function avatarChooseHandle(url: string) {
     })
 }
 </script>
-
-<route lang="json">
-{
-    "style": {
-        "navigationStyle": "custom"
-    }
-}
-</route>

@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "types": [
       "node",
-      "wot-design-uni/global"
+      "wot-design-uni/global",
+      "@uni-helper/vite-plugin-uni-pages"
     ],
     "allowJs": true,
     "strict": true,

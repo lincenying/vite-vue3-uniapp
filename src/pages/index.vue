@@ -58,6 +58,13 @@ defineOptions({
     name: 'IndexRouter',
 })
 
+definePage({
+    layout: 'none',
+    style: {
+        navigationStyle: 'custom',
+    },
+})
+
 useHead({
     title: 'Home',
 })
@@ -149,12 +156,3 @@ provide(dataReloadKey, async () => {
     uni.hideLoading()
 })
 </script>
-
-<route lang="json">
-{
-    "layout": "none",
-    "style": {
-        "navigationStyle": "custom"
-    }
-}
-</route>
