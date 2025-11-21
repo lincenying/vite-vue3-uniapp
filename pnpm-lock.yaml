@@ -57,8 +57,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6
       pinia:
-        specifier: 2.3.0
-        version: 2.3.0(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
+        specifier: 2.3.1
+        version: 2.3.1(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
       tnuiv3p-tn-update-user-info-popup:
         specifier: npm:@lincy/tnuiv3p-tn-update-user-info-popup@1.0.2
         version: '@lincy/tnuiv3p-tn-update-user-info-popup@1.0.2(@lincy/tnui-vue3-uniapp@1.0.23(@dcloudio/types@3.4.28)(@tuniao/tn-icon@1.11.0)(@tuniao/tn-style@1.0.20(sass@1.94.2))(postcss@8.5.6)(sass@1.94.2)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.2)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1))(vue@3.5.24(typescript@5.9.3)))(@tuniao/tn-icon@1.11.0)(@tuniao/tn-style@1.0.20(sass@1.94.2))(sass@1.94.2)(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))'
@@ -4793,8 +4793,8 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
 
-  pinia@2.3.0:
-    resolution: {integrity: sha512-ohZj3jla0LL0OH5PlLTDMzqKiVw2XARmC1XYLdLWIPBMdhDW/123ZWr4zVAhtJm+aoSkFa13pYXskAvAscIkhQ==}
+  pinia@2.3.1:
+    resolution: {integrity: sha512-khUlZSwt9xXCaTbbxFYBKDc/bWAGWJjOgvxETwkTN7KRm66EeT1ZdZj6i2ceh9sP2Pzqsbc704r2yngBrxBVug==}
     peerDependencies:
       typescript: '>=4.4.4'
       vue: ^2.7.0 || ^3.5.11
@@ -11815,7 +11815,7 @@ snapshots:
 
   pify@2.3.0: {}
 
-  pinia@2.3.0(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)):
+  pinia@2.3.1(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)):
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.24(typescript@5.9.3)

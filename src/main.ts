@@ -10,6 +10,7 @@ export function createApp() {
     const head = createHead()
 
     app.use(Pinia.createPinia()).use(head)
+
     return {
         app,
         Pinia,
