@@ -31,10 +31,10 @@ const emits = defineEmits<{
     (e: 'close', palyload: boolean): void
 }>()
 
-let showBasic = $ref(modelValue)
+const showBasic = ref(modelValue)
 
 watch(() => modelValue, () => {
-    showBasic = modelValue
+    showBasic.value = modelValue
 })
 
 function onClose() {

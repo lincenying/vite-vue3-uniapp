@@ -28,11 +28,9 @@ definePage({
     },
 })
 
-const id = $toRef(props, 'id')
+const id = toRef(props, 'id')
 
-console.log($$(id))
-
-const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id}`, { id })
+const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id.value}`, { id: id.value })
 
 console.log(apiParams.value)
 

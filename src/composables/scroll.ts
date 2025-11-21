@@ -1,14 +1,14 @@
 import type { MaybeRefOrGetter } from 'vue'
 
 export function useAutoScroll(watchData: MaybeRefOrGetter[]) {
-    let initTop = $ref(0)
-    let scrollTop = $ref(0)
+    const initTop = ref(0)
+    const scrollTop = ref(0)
 
     onMounted(() => {
         setTimeout(() => {
             const query = uni.createSelectorQuery()
             query.select('.init-top').boundingClientRect((res) => {
-                initTop = (Array.isArray(res) ? res[0].top : res.top) || 0
+                initTop.value = (Array.isArray(res) ? res[0].top : res.top) || 0
             }).exec()
         }, 100)
     })
@@ -22,7 +22,7 @@ export function useAutoScroll(watchData: MaybeRefOrGetter[]) {
         if (hasTrue) {
             setTimeout(() => {
                 uni.pageScrollTo({
-                    scrollTop,
+                    scrollTop: scrollTop.value,
                     duration: 100,
                 })
             }, 30)
@@ -30,7 +30,7 @@ export function useAutoScroll(watchData: MaybeRefOrGetter[]) {
         else {
             const query = uni.createSelectorQuery()
             query.select('.init-top').boundingClientRect((res) => {
-                scrollTop = initTop - ((Array.isArray(res) ? res[0].top : res.top) || 0)
+                scrollTop.value = initTop.value - ((Array.isArray(res) ? res[0].top : res.top) || 0)
             }).exec()
         }
     })

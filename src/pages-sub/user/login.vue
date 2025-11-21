@@ -54,7 +54,7 @@ useHead({
 
 const userStore = useUserStore()
 
-let needMobile = $ref(false)
+const needMobile = ref(false)
 
 const form = reactive({
     code: '',
@@ -65,11 +65,11 @@ const form = reactive({
     refereeId: 10001,
 })
 
-const agreeValue = $ref<boolean>(false)
+const agreeValue = ref<boolean>(false)
 
 // 微信小程序登录
 async function onGotUserInfo() {
-    if (!agreeValue) {
+    if (!agreeValue.value) {
         return showToast('请先同意用户使用协议')
     }
 
@@ -111,7 +111,7 @@ async function onGotUserInfo() {
                 userInfo: JSON.parse(e.rawData),
                 code: await getCode(),
             }
-            needMobile = true
+            needMobile.value = true
         }
     }
 }

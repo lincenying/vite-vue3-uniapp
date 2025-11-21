@@ -69,12 +69,12 @@ useHead({
     title: 'Home',
 })
 
-let popupShow = $ref(false)
+const popupShow = ref(false)
 
-const checked = $ref(0)
-let checked2 = $ref(false)
-const heart = $ref(0)
-const radioed = $ref(0)
+const checked = ref(0)
+const checked2 = ref(false)
+const heart = ref(0)
+const radioed = ref(0)
 
 // #ifdef H5
 useAutoScroll([
@@ -83,7 +83,7 @@ useAutoScroll([
 // #endif
 
 const pageStyle = computed(() => {
-    if (popupShow) {
+    if (popupShow.value) {
         return 'overflow: hidden; height: 100%'
     }
     return 'overflow: inherit'
@@ -93,11 +93,11 @@ const { dataIsLoaded, dataLists, getData } = useLists<Article>('/article/lists')
 
 watch(() => checked2, (val) => {
     if (val) {
-        popupShow = true
+        popupShow.value = true
     }
 })
 function onPopupClose(payload: boolean) {
-    checked2 = payload
+    checked2.value = payload
 }
 
 const swiperData = [

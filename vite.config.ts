@@ -13,7 +13,7 @@ import { defineConfig, loadEnv } from 'vite'
 import Build from './vite.config.build'
 import Components from './vite.config.components'
 import Css from './vite.config.css'
-import Macros from './vite.config.macros'
+// import Macros from './vite.config.macros'
 
 import { uniPolyfill } from './vite.config.uniapp'
 
@@ -57,7 +57,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             UniLayouts(),
 
             ...Components(),
-            ...Macros(),
+            // ...Macros(),
 
             // @ts-expect-error missing types
             uni.default(),

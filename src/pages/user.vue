@@ -37,19 +37,19 @@ useHead({
     title: 'User',
 })
 
-let hasData = $ref(false)
+const hasData = ref(false)
 
 provide(layoutDataKey, computed<LayoutDataType>(() => ({
     dataIsLoaded: true,
-    hasData,
-    showEmptySlot: !hasData,
+    hasData: hasData.value,
+    showEmptySlot: !hasData.value,
     topBarTitle: '我的',
     ...defaultShowBar,
 })))
 provide(dataReloadKey, async () => {
     showLoading()
     // await getData()
-    hasData = true
+    hasData.value = true
     uni.hideLoading()
 })
 
