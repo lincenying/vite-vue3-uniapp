@@ -1,0 +1,16 @@
+registry: https://registry.npmmirror.com
+
+# 用于控制是否严格检查对等依赖（peer dependencies）的版本一致性。
+# 当设置为 true 时，pnpm 会强制安装指定版本的对等依赖；
+# 设置为 false 时，会忽略版本不一致的警告
+strictPeerDependencies: false
+# 是否强制提升所有依赖
+shamefullyHoist: true
+# 是否忽略向工作区根目录添加依赖时的警告提示
+ignoreWorkspaceRootCheck: true
+# 在执行脚本时使用POSIX shell模拟器替代系统原生shell
+shellEmulator: true
+
+onlyBuiltDependencies:
+  - we-cropper
+  - vue-demi

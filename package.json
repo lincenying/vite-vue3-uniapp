@@ -43,14 +43,14 @@
     "@tuniao/tn-style": "^1.0.20",
     "@tuniao/tnui-vue3-uniapp": "npm:@lincy/tnui-vue3-uniapp@1.0.23",
     "@uni-helper/uni-use": "^0.19.15",
-    "@vue/compiler-sfc": "^3.5.24",
+    "@vue/compiler-sfc": "^3.5.25",
     "@vueuse/core": "^14.0.0",
     "axios": "^1.13.2",
     "fant-axios-adapter": "^0.0.6",
     "pinia": "2.3.1",
     "tnuiv3p-tn-update-user-info-popup": "npm:@lincy/tnuiv3p-tn-update-user-info-popup@1.0.2",
     "unhead": "^2.0.19",
-    "vue": "^3.5.24",
+    "vue": "^3.5.25",
     "we-cropper": "^1.4.0",
     "wot-design-uni": "^1.13.0"
   },
@@ -75,7 +75,7 @@
     "@uni-helper/vite-plugin-uni-pages": "^0.3.22",
     "@unocss/eslint-plugin": "66.0.0",
     "@vue-macros/volar": "^3.1.1",
-    "caniuse-lite": "^1.0.30001756",
+    "caniuse-lite": "^1.0.30001757",
     "eslint": "^9.39.1",
     "eslint-plugin-format": "^1.0.2",
     "lint-staged": "^16.2.7",
@@ -84,22 +84,15 @@
     "postcss": "^8.5.6",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "sass": "^1.94.2",
-    "stylelint": "^16.25.0",
+    "stylelint": "^16.26.0",
     "typescript": "^5.9.3",
     "unocss": "66.0.0",
     "unocss-applet": "^0.12.2",
     "unplugin-auto-import": "^20.2.0",
     "unplugin-vue-components": "^30.0.0",
     "unplugin-vue-macros": "^2.14.5",
-    "vite": "^6.4.1",
-    "vue-tsc": "^3.1.4"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "core-js",
-      "vue-demi",
-      "we-cropper"
-    ]
+    "vite": "6.4.1",
+    "vue-tsc": "^3.1.5"
   },
   "simple-git-hooks[-del]": {
     "pre-commit": "pnpm lint-staged"
