@@ -78,7 +78,6 @@
     "layoutDataKey": true,
     "ls": true,
     "makeDestructurable": true,
-    "manualResetRef": true,
     "markRaw": true,
     "navBarInfo": true,
     "nextTick": true,

@@ -410,7 +410,6 @@ declare module 'vue' {
     readonly layoutDataKey: UnwrapRef<typeof import('./composables/provide')['layoutDataKey']>
     readonly ls: UnwrapRef<typeof import('./composables/index')['ls']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
-    readonly manualResetRef: UnwrapRef<typeof import('@vueuse/core')['manualResetRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly navBarInfo: UnwrapRef<typeof import('./composables/system-rect-info')['navBarInfo']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
