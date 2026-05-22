@@ -14,3 +14,15 @@ shellEmulator: true
 onlyBuiltDependencies:
   - we-cropper
   - vue-demi
+
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  core-js-pure: true
+  esbuild: true
+  vue-demi: true
+  we-cropper: true
+
+minimumReleaseAgeExclude:
+  - '@iconify-json/carbon@1.2.22'
+  - pnpm@11.2.2
