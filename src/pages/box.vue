@@ -61,7 +61,7 @@ interface ApiParams {
     limit: number
 }
 
-const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('/article/lists', {
+const { dataIsLoaded, dataLists, getData } = useLists<Article, ApiParams>('/archive/lists', {
     limit: 20,
     page: 1,
 })

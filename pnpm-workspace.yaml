@@ -1,0 +1,53 @@
+# 控制是否以及如何将依赖项添加到默认目录中
+catalogMode: prefer
+
+# 是否忽略向工作区根目录添加依赖时的警告提示
+ignoreWorkspaceRootCheck: true
+
+# npm 包注册表的基本 URL（包括尾部斜杠）
+registry: https://registry.npmmirror.com/
+registries:
+  default: https://registry.npmmirror.com/
+
+# 定义了版本发布后 pnpm 安装之前必须经过的最少分钟数
+minimumReleaseAge: 0
+
+# 是否强制提升所有依赖
+shamefullyHoist: true
+
+# 在执行脚本时使用POSIX shell模拟器替代系统原生shell
+shellEmulator: true
+
+# 用于控制是否严格检查对等依赖（peer dependencies）的版本一致性。
+# 当设置为 true 时，pnpm 会强制安装指定版本的对等依赖；
+# 设置为 false 时，会忽略版本不一致的警告
+strictPeerDependencies: false
+
+# 当设置为“禁止降级”时，如果软件包的信任级别较之前的版本有所降低，pnpm 将无法安装
+trustPolicy: no-downgrade
+
+# 列出一个或多个 pnpm 应该允许安装的特定软件包或版本，即使这些软件包不满足信任策略要求。
+trustPolicyExclude:
+  - semver
+  - chokidar
+  - cached-factory
+  - unocss-applet
+  - '@oxc-resolver/binding-darwin-arm64'
+  - '@oxc-resolver/binding-darwin-x64'
+  - '@oxc-resolver/binding-linux-arm64-gnu'
+  - '@oxc-resolver/binding-linux-x64-gnu'
+  - '@oxc-resolver/binding-win32-arm64-msvc'
+  - '@oxc-resolver/binding-win32-x64-msvc'
+  - '@vitejs/plugin-legacy'
+  - synckit
+  - '@unocss-applet/transformer-hover'
+  - '@unocss-applet/preset-applet'
+  - '@unocss-applet/preset-rem-rpx'
+  - '@unocss-applet/transformer-attributify'
+
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  esbuild: true
+  vue-demi: true
+  we-cropper: true

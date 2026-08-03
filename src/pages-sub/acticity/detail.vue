@@ -23,7 +23,7 @@ const id = $toRef(props, 'id')
 
 console.log($$(id))
 
-const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id}`, { id })
+const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/archive/${id}`, { id })
 
 console.log(apiParams.value)
 

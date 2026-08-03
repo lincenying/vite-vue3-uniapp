@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import type { LayoutDataType } from '~/types'
 
-import TnUpdateUserInfoPopup from 'tnuiv3p-tn-update-user-info-popup/index.vue'
+import TnUpdateUserInfoPopup from '@lincy/tnuiv3p-tn-update-user-info-popup/index.vue'
 
 defineOptions({
     name: 'UserRouter',
