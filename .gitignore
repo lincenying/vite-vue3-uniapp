@@ -22,3 +22,5 @@ dist
 
 # pages config
 pages.json
+.cursor/rules/global*.mdc
+.qoder/rules/global*.mdc
