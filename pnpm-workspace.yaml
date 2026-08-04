@@ -1,3 +1,6 @@
+# 控制是否以及如何将依赖项添加到默认目录中
+catalogMode: prefer
+
 # 是否忽略向工作区根目录添加依赖时的警告提示
 ignoreWorkspaceRootCheck: true
 
@@ -21,12 +24,27 @@ shellEmulator: true
 strictPeerDependencies: false
 
 # 当设置为“禁止降级”时，如果软件包的信任级别较之前的版本有所降低，pnpm 将无法安装
-trustPolicy: off
+trustPolicy: no-downgrade
 
 # 列出一个或多个 pnpm 应该允许安装的特定软件包或版本，即使这些软件包不满足信任策略要求。
 trustPolicyExclude:
   - semver
   - chokidar
+  - cached-factory
+  - unocss-applet
+  - '@oxc-resolver/binding-darwin-arm64'
+  - '@oxc-resolver/binding-darwin-x64'
+  - '@oxc-resolver/binding-linux-arm64-gnu'
+  - '@oxc-resolver/binding-linux-x64-gnu'
+  - '@oxc-resolver/binding-win32-arm64-msvc'
+  - '@oxc-resolver/binding-win32-x64-msvc'
+  - '@vitejs/plugin-legacy'
+  - synckit
+  - vite
+  - '@unocss-applet/transformer-hover'
+  - '@unocss-applet/preset-applet'
+  - '@unocss-applet/preset-rem-rpx'
+  - '@unocss-applet/transformer-attributify'
 
 allowBuilds:
   '@parcel/watcher': true

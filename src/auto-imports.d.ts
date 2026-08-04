@@ -66,9 +66,7 @@ declare global {
   const layoutDataKey: typeof import('./composables/provide').layoutDataKey
   const ls: typeof import('./composables/index').ls
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
-  const manualResetRef: typeof import('@vueuse/core').manualResetRef
   const markRaw: typeof import('vue').markRaw
-  const name: typeof import('./composables/index').name
   const navBarInfo: typeof import('./composables/system-rect-info').navBarInfo
   const nextTick: typeof import('vue').nextTick
   const noDataKey: typeof import('./composables/provide').noDataKey
@@ -117,8 +115,8 @@ declare global {
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
   const resolveComponent: typeof import('vue').resolveComponent
-  const resolveRef: typeof import('@vueuse/core').resolveRef
-  const resolveUnref: typeof import('@vueuse/core').resolveUnref
+  const resolveRef: typeof import('@vueuse/core')['resolveRef']
+  const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const router: typeof import('./composables/use-router').router
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly

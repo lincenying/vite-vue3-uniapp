@@ -30,7 +30,7 @@ definePage({
 
 const id = toRef(props, 'id')
 
-const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/article/detail/${id.value}`, { id: id.value })
+const { dataIsLoaded, dataDetail, getData, apiParams } = useDetail<Article, { id: string }>(`/archive/${id.value}`)
 
 console.log(apiParams.value)
 

@@ -3,12 +3,11 @@
     "target": "es2016",
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
-    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
-      "~/*": ["src/*"],
-      "@/*": ["src/*"]
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "types": [
@@ -20,7 +19,6 @@
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "outDir": "dist",
     "sourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
